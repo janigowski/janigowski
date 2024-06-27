@@ -84,7 +84,7 @@ export const Header: React.FC<Props> = ({ book, views }) => {
 					</div>
 
 					<Link
-						href="/books"
+						href="/bookshelf"
 						className={`duration-200 hover:font-medium ${isIntersecting
 							? " text-zinc-400 hover:text-zinc-100"
 							: "text-zinc-600 hover:text-zinc-900"
