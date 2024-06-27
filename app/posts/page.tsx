@@ -36,39 +36,13 @@ export default async function postsPage() {
           <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
             Posts
           </h2>
-          <p className="mt-4 text-zinc-400">
-            Blog posts
-          </p>
         </div>
-        <div className="w-full h-px bg-zinc-800" />
 
-        <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
-
-        </div>
         <div className="hidden w-full h-px md:block bg-zinc-800" />
 
-        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
+        <div className="flex flex-col space-y-4 mx-auto lg:mx-0 md:grid-cols-3">
           <div className="grid grid-cols-1 gap-4">
             {sorted
-              .filter((_, i) => i % 3 === 0)
-              .map((post) => (
-                <Card key={post.slug}>
-                  <Article post={post} views={views[post.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 1)
-              .map((post) => (
-                <Card key={post.slug}>
-                  <Article post={post} views={views[post.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 2)
               .map((post) => (
                 <Card key={post.slug}>
                   <Article post={post} views={views[post.slug] ?? 0} />
