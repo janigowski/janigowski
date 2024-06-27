@@ -1,0 +1,25 @@
+---
+title: Wikipedia Streams
+description: Factory Pattern and Server Sent Events example in React application
+date: "2023-05-01"
+url: https://wikipedia-streams.netlify.app
+published: true
+repository: "janigowski/wikipedia-streams"
+  
+---
+
+
+ [![](https://github.com/dawidjaniga/wikipedia-streams/blob/main/showcase.gif?raw=true)](https://highstorm.app) 
+
+I've created this project as a programming excercise. I wanted to practice usage of **Factory Design Pattern** in **React** application.
+
+The idea is to show list of changes made on Wikipedia in *real time*. Wikipedia provides messages stream with type (edit, new, categorize, log). Every type can have different data and we might want to add different behaviour for them (like onNotificationClick, onUserClick etc). NotificationsFactory is used to achive the above, via creation of Notification components, based on type.
+
+Messages are sent from Wikipedia in one-way stream, called **Server-sent event**. It operates on HTTP and use **EventSource** in the browser for receiving data.
+
+## More info
+https://en.wikipedia.org/wiki/Factory_method_pattern
+https://sourcemaking.com/design_patterns/factory_method
+https://en.wikipedia.org/wiki/Server-sent_events
+https://developer.mozilla.org/en-US/docs/Web/API/EventSource
+https://wikitech.wikimedia.org/wiki/Event_Platform/EventStreams

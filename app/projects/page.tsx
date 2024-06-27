@@ -22,7 +22,7 @@ export default async function ProjectsPage() {
 
   const featured = allProjects.find((project) => project.slug === "mars-explorer")!;
   const top2 = allProjects.find((project) => project.slug === "wikipedia-map")!;
-  const top3 = allProjects.find((project) => project.slug === "highstorm")!;
+  const top3 = allProjects.find((project) => project.slug === "wikipedia-streams")!;
   const sorted = allProjects
     .filter((p) => p.published)
     .filter(
