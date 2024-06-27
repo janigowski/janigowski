@@ -32,6 +32,9 @@ export const Article: React.FC<Props> = ({ book, views }) => {
 					{book.title}
 				</h2>
 				<p className="z-20 mt-4 text-sm  duration-1000 text-zinc-400 group-hover:text-zinc-200">
+					{book.author}
+				</p>
+				<p className="z-20 mt-4 text-sm  duration-1000 text-zinc-400 group-hover:text-zinc-200">
 					{book.description}
 				</p>
 			</article>
