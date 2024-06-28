@@ -7,6 +7,13 @@ type Props = {
 	views: number;
 };
 
+const statusClassNameMap = {
+	read: 'text-white rounded bg-lime-600 p-1 px-2 text-sm',
+	reading: 'text-white rounded bg-sky-600 p-1 px-2 text-sm animate-pulse',
+	waiting: 'p-1 px-2 text-sm text-white rounded bg-amber-800',
+
+}
+
 export const Article: React.FC<Props> = ({ book, views }) => {
 	return (
 		<Link href={`/bookshelf/${book.slug}`}>
@@ -37,6 +44,9 @@ export const Article: React.FC<Props> = ({ book, views }) => {
 				<p className="z-20 mt-4 text-sm  duration-1000 text-zinc-400 group-hover:text-zinc-200">
 					{book.description}
 				</p>
+				<span className={statusClassNameMap[book.status]}>
+					{book.status}
+				</span>
 			</article>
 		</Link>
 	);

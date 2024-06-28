@@ -63,6 +63,11 @@ export const Book = defineDocumentType(() => ({
 			type: "string",
 			required: true,
 		},
+		status: {
+			type: 'enum',
+			options: ['read', 'reading', 'waiting'],
+			required: true,
+		},
 		description: {
 			type: "string",
 			required: true,
