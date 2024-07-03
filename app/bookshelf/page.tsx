@@ -11,7 +11,7 @@ const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function BookshelfPage() {
-  const views = {}
+  const views = {} as Record<string, number>
   // const views = (
   //   await redis.mget<number[]>(
   //     ...allBooks.map((p) => ["pageviews", "books", p.slug].join(":")),
