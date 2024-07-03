@@ -7,9 +7,9 @@ import { Card } from "../components/card";
 const socials = [
 	{
 		icon: <Twitter size={20} />,
-		href: "https://twitter.com/janigowski_",
+		href: "https://twitter.com/dawidjaniga",
 		label: "Twitter",
-		handle: "@janigowski_",
+		handle: "@janigowski",
 	},
 	{
 		icon: <Mail size={20} />,
@@ -19,7 +19,7 @@ const socials = [
 	},
 	{
 		icon: <Github size={20} />,
-		href: "https://github.com/janigowski",
+		href: "https://github.com/dawidjaniga",
 		label: "Github",
 		handle: "janigowski",
 	},
