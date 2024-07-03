@@ -11,7 +11,7 @@ const components = {
 	h1: ({ className, ...props }) => (
 		<h1
 			className={clsx(
-				"mt-2 scroll-m-20 text-4xl font-bold tracking-tight",
+				"mt-12 scroll-m-20 text-4xl font-bold tracking-tight",
 				className,
 			)}
 			{...props}
