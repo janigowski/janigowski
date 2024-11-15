@@ -4,22 +4,9 @@ import { allPosts } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
-import { Redis } from "@upstash/redis";
-import { Eye } from "lucide-react";
-
-const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function postsPage() {
-  const views = (
-    await redis.mget<number[]>(
-      ...allPosts.map((p) => ["pageviews", "posts", p.slug].join(":")),
-    )
-  ).reduce((acc, v, i) => {
-    acc[allPosts[i].slug] = v ?? 0;
-    return acc;
-  }, {} as Record<string, number>);
-
   const sorted = allPosts
     .filter((p) => p.published)
     .sort(
@@ -45,7 +32,7 @@ export default async function postsPage() {
             {sorted
               .map((post) => (
                 <Card key={post.slug}>
-                  <Article post={post} views={views[post.slug] ?? 0} />
+                  <Article post={post} />
                 </Card>
               ))}
           </div>

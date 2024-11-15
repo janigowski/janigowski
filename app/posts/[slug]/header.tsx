@@ -9,9 +9,9 @@ type Props = {
 		description: string;
 	};
 
-	views: number;
+	// views: number;
 };
-export const Header: React.FC<Props> = ({ post, views }) => {
+export const Header: React.FC<Props> = ({ post }) => {
 	const ref = useRef<HTMLElement>(null);
 	const [isIntersecting, setIntersecting] = useState(true);
 
@@ -48,9 +48,9 @@ export const Header: React.FC<Props> = ({ post, views }) => {
 								} `}
 						>
 							<Eye className="w-5 h-5" />{" "}
-							{Intl.NumberFormat("en-US", { notation: "compact" }).format(
+							{/* {Intl.NumberFormat("en-US", { notation: "compact" }).format(
 								views,
-							)}
+							)} */}
 						</span>
 						<Link target="_blank" href="https://twitter.com/dawidjaniga">
 							<Twitter

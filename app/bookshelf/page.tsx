@@ -4,23 +4,9 @@ import { allBooks } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
-import { Redis } from "@upstash/redis";
-import { Eye } from "lucide-react";
-
-const redis = Redis.fromEnv();
 
 export const revalidate = 60;
 export default async function BookshelfPage() {
-  const views = {} as Record<string, number>
-  // const views = (
-  //   await redis.mget<number[]>(
-  //     ...allBooks.map((p) => ["pageviews", "books", p.slug].join(":")),
-  //   )
-  // ).reduce((acc, v, i) => {
-  //   acc[allBooks[i].slug] = v ?? 0;
-  //   return acc;
-  // }, {} as Record<string, number>);
-
   const sorted = allBooks
     .filter((b) => b.published)
     .sort(
@@ -47,7 +33,7 @@ export default async function BookshelfPage() {
           {sorted
             .map((book) => (
               <Card key={book.slug}>
-                <Article book={book} views={views[book.slug] ?? 0} />
+                <Article book={book} />
               </Card>
             ))}
         </div>
