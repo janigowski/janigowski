@@ -4,16 +4,17 @@ import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
+// @TODO: Create OG photo
 export const metadata: Metadata = {
   title: {
     default: "janigowski.com",
     template: "%s | janigowski.com",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Product Engineer. Software Architect. Frontend. Creative.",
   openGraph: {
     title: "janigowski.com",
     description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
+      "Product Engineer. Software Architect. Frontend. Creative.",
     url: "https://janigowski.com",
     siteName: "janigowski.com",
     images: [

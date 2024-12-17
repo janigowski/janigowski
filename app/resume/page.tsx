@@ -6,8 +6,8 @@ import { Card } from "../components/card";
 
 const experience = [
     {
-        title: "Engineering Manager",
-        company: "Unkey.dev",
+        title: "Creator",
+        company: "janigowski.dev",
         location: "Remote",
         period: "2022 - Present",
         description: [
