@@ -75,8 +75,8 @@ export default function Resume() {
                     <div className="flex flex-wrap gap-3 text-zinc-400 text-sm">
                         <div className="flex items-center gap-1">
                             <Mail size={14} />
-                            <Link href="mailto:dev@janigowski.com" className="hover:text-white">
-                                dev@janigowski.com
+                            <Link href="mailto:dev@janigowski.dev" className="hover:text-white">
+                                dev@janigowski.dev
                             </Link>
                         </div>
                         <div className="flex items-center gap-1">
@@ -100,7 +100,6 @@ export default function Resume() {
                         <p className="text-zinc-300 text-sm leading-relaxed">
                             Engineering leader with 12+ years of experience, including 2+ years in engineering management.
                             Practice radical candor and servant leadership style to foster growth and innovation.
-                            Proven track record of scaling engineering teams and implementing effective processes.
                         </p>
                     </div>
                 </Card>

@@ -1,15 +1,17 @@
 "use client";
 
+import Script from "next/script";
+
 export function Analytics() {
-	const token = process.env.NEXT_PUBLIC_BEAM_TOKEN;
-	if (!token) {
+	if (process.env.NODE_ENV !== "production") {
 		return null;
 	}
+
 	return (
-		<script
-			src="https://beamanalytics.b-cdn.net/beam.min.js"
-			data-token={token}
-			async
+		<Script
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon='{"token": "01787df6fe4a40d5a38450a6033222b3"}'
 		/>
 	);
 }

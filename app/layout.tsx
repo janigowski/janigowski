@@ -7,19 +7,19 @@ import { Analytics } from "./components/analytics";
 // @TODO: Create OG photo
 export const metadata: Metadata = {
   title: {
-    default: "janigowski.com",
-    template: "%s | janigowski.com",
+    default: "janigowski.dev",
+    template: "%s | janigowski.dev",
   },
   description: "Product Engineer. Software Architect. Frontend. Creative.",
   openGraph: {
-    title: "janigowski.com",
+    title: "janigowski.dev",
     description:
       "Product Engineer. Software Architect. Frontend. Creative.",
-    url: "https://janigowski.com",
-    siteName: "janigowski.com",
+    url: "https://janigowski.dev",
+    siteName: "janigowski.dev",
     images: [
       {
-        url: "https://janigowski.com/og.png",
+        url: "https://janigowski.dev/og.png",
         width: 1920,
         height: 1080,
       },
