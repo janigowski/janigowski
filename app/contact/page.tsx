@@ -7,13 +7,13 @@ import { Card } from "../components/card";
 const socials = [
 	{
 		icon: <X size={20} />,
-		href: "https://x.com/dawidjaniga",
+		href: "https://x.com/janigowski",
 		label: "X",
 		handle: "@janigowski",
 	},
 	{
 		icon: <Github size={20} />,
-		href: "https://github.com/dawidjaniga",
+		href: "https://github.com/janigowski",
 		label: "Github",
 		handle: "janigowski",
 	},
