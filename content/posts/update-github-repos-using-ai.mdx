@@ -1,0 +1,190 @@
+---
+title: "AI-Powered Git Magic: Bulk Update Your GitHub Repos"
+description: Learn how to leverage AI to write a bash script for bulk updating GitHub repository ownership
+date: "2025-01-03"
+published: true
+---
+
+# Intro
+
+When you're managing multiple GitHub repositories, changing ownership can become a tedious task. Whether you're rebranding, moving projects between organizations, or just keeping things organized, doing it manually is time-consuming and error-prone. Instead of writing the script from scratch, I decided to leverage ChatGPT to help me create a solution.
+
+# The AI-Assisted Development Process
+
+I started by crafting a clear, detailed prompt for ChatGPT. Here's what I asked:
+
+```prompt
+Write a bash script that:
+
+1. Iterates through all directories in the current directory.
+2. Checks if a directory is a git repository.
+3. If the git repository has an `origin` remote URL owned by a parameterized user (e.g., `john`), updates the owner in the URL to another parameterized user (e.g., `betty`) using `git remote set-url`.
+4. Logs each directory iteration in the following formats:
+   - For updated repositories:  
+     `directory name: changed git origin from "git@github.com:john/REPOSITORY.git" to "git@github.com:betty/REPOSITORY.git"`
+   - For repositories not owned by the current owner:  
+     `directory name: is not owned by "john"`
+   - For non-git directories:  
+     `directory name: is not a git repository`
+5. Includes a `--dry-run` parameter to simulate the process without making actual changes, logging what would be done instead of executing it.
+```
+
+The prompt is specific about:
+- The exact functionality needed
+- The expected output format
+- Safety features like dry-run mode
+- Error handling cases
+
+This level of detail helped ChatGPT understand exactly what I needed and generate a script that required minimal modifications.
+
+# The Solution
+
+The AI generated a script that automates the process of updating GitHub repository ownership. Let's break down the key components before looking at the complete solution.
+
+## Script Configuration
+
+First, we define our parameters and handle the dry-run mode:
+
+```bash
+# Parameters for current and new git remote owners
+current_owner="dawidjaniga"
+new_owner="janigowski"
+
+# Dry-run parameter
+dry_run=false
+
+# Check for dry-run flag
+if [[ "$1" == "--dry-run" ]]; then
+    dry_run=true
+    echo "Running in dry-run mode: No changes will be made."
+fi
+```
+
+## Directory Processing
+
+The script processes each directory and checks if it's a git repository:
+
+```bash
+for dir in */; do
+    echo "Processing directory: $dir"
+
+    if [ -d "$dir/.git" ]; then
+        cd "$dir" || continue
+        # Process repository...
+    else
+        echo "$dir: is not a git repository"
+    fi
+done
+```
+
+## Repository Update Logic
+
+For each git repository, we check ownership and update if needed:
+
+```bash
+current_origin=$(git remote get-url origin 2>/dev/null)
+
+if [[ $current_origin == git@github.com:$current_owner/* ]]; then
+    repo_name=$(basename "$current_origin" .git)
+    new_origin="git@github.com:$new_owner/$repo_name.git"
+    
+    if $dry_run; then
+        echo "$dir: would change git origin from \"$current_origin\" to \"$new_origin\""
+    else
+        git remote set-url origin "$new_origin"
+        echo "$dir: changed git origin from \"$current_origin\" to \"$new_origin\""
+    fi
+fi
+```
+
+## Complete Script
+
+Here's the complete script that puts it all together:
+
+```bash
+#!/bin/bash
+
+# Parameters for current and new git remote owners
+current_owner="dawidjaniga"
+new_owner="janigowski"
+
+# Dry-run parameter
+dry_run=false
+
+# Check for dry-run flag
+if [[ "$1" == "--dry-run" ]]; then
+    dry_run=true
+    echo "Running in dry-run mode: No changes will be made."
+fi
+
+# Iterate through all directories in the current directory
+for dir in */; do
+    # Log the directory being processed
+    echo "Processing directory: $dir"
+
+    # Check if the directory is a git repository
+    if [ -d "$dir/.git" ]; then
+        # Navigate to the directory
+        cd "$dir" || continue
+
+        # Get the current git remote URL for 'origin'
+        current_origin=$(git remote get-url origin 2>/dev/null)
+
+        if [[ $current_origin == git@github.com:$current_owner/* ]]; then
+            # Extract the repository name from the URL
+            repo_name=$(basename "$current_origin" .git)
+
+            # Update the git remote URL to point to the new owner
+            new_origin="git@github.com:$new_owner/$repo_name.git"
+            if $dry_run; then
+                # Log the intended change without making it
+                echo "$dir: would change git origin from \"$current_origin\" to \"$new_origin\""
+            else
+                git remote set-url origin "$new_origin"
+                # Log the change
+                echo "$dir: changed git origin from \"$current_origin\" to \"$new_origin\""
+            fi
+        else
+            # Log if the repository is not owned by the current owner
+            echo "$dir: is not owned by \"$current_owner\""
+        fi
+
+        # Return to the parent directory
+        cd - > /dev/null || exit
+    else
+        # Log if the directory is not a git repository
+        echo "$dir: is not a git repository"
+    fi
+done
+```
+
+# How to Use It
+
+1. Save the script as `update_git_remotes.sh`
+2. Make it executable:
+```bash
+chmod +x update_git_remotes.sh
+```
+
+3. Test it with dry-run mode:
+```bash
+./update_git_remotes.sh --dry-run
+```
+
+4. When you're confident with the changes, run it for real:
+```bash
+./update_git_remotes.sh
+```
+
+# Working with AI: Tips from This Experience
+
+1. **Be Specific**: The more detailed your prompt, the better the output. Notice how I specified exact output formats and error cases.
+2. **Request Safety Features**: Always ask for safety measures like dry-run modes when dealing with system changes.
+3. **Include Error Handling**: Specify how different edge cases should be handled.
+4. **Test First**: Even with AI-generated code, always test in a safe environment first.
+
+# Final Thoughts
+
+Using ChatGPT to write this script saved me time in two ways: it generated the initial code quickly, and the quality of the generated code meant I spent less time debugging and modifying. The script has saved me hours of manual work and reduced the risk of mistakes when updating repository ownership.
+
+Remember to always use the dry-run mode first, especially when dealing with multiple repositories. It's better to be safe than sorry!
