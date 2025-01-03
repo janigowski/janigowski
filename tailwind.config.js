@@ -10,6 +10,39 @@ module.exports = {
 
 	theme: {
 		extend: {
+			colors: {
+				brand: {
+					lime: '#BBDF32',
+					olive: '#595E44',
+					purple: {
+						dark: '#5E445E',
+						darker: '#4C445E',
+					},
+					indigo: '#6831DE',
+					pink: '#D931DE',
+				},
+				code: {
+					bg: '#1C1C1C',
+					fg: '#F5F5F5',
+					accent: '#BBDF32',
+					black: '#FFCC00',
+					red: '#4C445E',
+					green: '#BBDF32',
+					yellow: '#4C445E',
+					blue: '#D931DE',
+					magenta: '#BBDF32',
+					cyan: '#D9E2EC',
+					white: '#595E44',
+					brightBlack: '#FFCC00',
+					brightRed: '#595E44',
+					brightGreen: '#BBDF32',
+					brightYellow: '#FF003C',
+					brightBlue: '#5E445E',
+					brightMagenta: '#6831DE',
+					brightCyan: '#BBDF32',
+					brightWhite: '#FFFFFF',
+				}
+			},
 			typography: {
 				DEFAULT: {
 					css: {

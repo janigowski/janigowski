@@ -4,6 +4,78 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
+const janigowskiWarpTheme = {
+	name: 'custom-warp',
+	type: 'dark',
+	colors: {
+		'editor.background': '#1C1C1C',
+		'editor.foreground': '#F5F5F5',
+		'activityBar.background': '#1C1C1C',
+		'activityBar.foreground': '#F5F5F5',
+		'editorLineNumber.foreground': '#595E44',
+		'editor.lineHighlightBackground': '#4C445E20',
+		'textLink.foreground': '#FFCC00',
+		'focusBorder': '#D931DE',
+		'textLink.activeForeground': '#BBDF32',
+	},
+	tokenColors: [
+		{
+			scope: ['comment', 'punctuation.definition.comment', 'string.comment'],
+				settings: {
+					foreground: '#595E44'
+				}
+		},
+		{
+			scope: ['constant', 'entity.name.constant', 'variable.other.constant', 'variable.other.enummember'],
+				settings: {
+					foreground: '#6831DE'
+				}
+		},
+		{
+			scope: ['entity.name.function', 'support.function'],
+				settings: {
+					foreground: '#FFCC00'
+				}
+		},
+		{
+			scope: ['keyword', 'storage.type', 'storage.modifier'],
+				settings: {
+					foreground: '#D931DE'
+				}
+		},
+		{
+			scope: ['string', 'string punctuation.section.embedded source'],
+				settings: {
+					foreground: '#BBDF32'
+				}
+		},
+		{
+			scope: ['variable', 'variable.parameter.function', 'variable.other'],
+				settings: {
+					foreground: '#F5F5F5'
+				}
+		},
+		{
+			scope: ['entity.name.type', 'entity.other.inherited-class'],
+				settings: {
+					foreground: '#5E445E'
+				}
+		},
+		{
+			scope: ['punctuation', 'meta.brace'],
+				settings: {
+					foreground: '#4C445E'
+				}
+		},
+		{
+			scope: ['meta.tag', 'meta.bracket'],
+				settings: {
+					foreground: '#6831DE'
+				}
+		}
+	]
+};
+
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
 	path: {
@@ -135,10 +207,8 @@ export default makeSource({
 			[
 				rehypePrettyCode,
 				{
-					theme: "github-dark",
+					theme: janigowskiWarpTheme,
 					onVisitLine(node) {
-						// Prevent lines from collapsing in `display: grid` mode, and allow empty
-						// lines to be copy/pasted
 						if (node.children.length === 0) {
 							node.children = [{ type: "text", value: " " }];
 						}
