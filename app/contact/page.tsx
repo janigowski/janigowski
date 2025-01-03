@@ -1,21 +1,15 @@
 "use client";
-import { Github, Mail, Twitter } from "lucide-react";
+import { Github, Mail, X, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 
 const socials = [
 	{
-		icon: <Twitter size={20} />,
-		href: "https://twitter.com/dawidjaniga",
-		label: "Twitter",
+		icon: <X size={20} />,
+		href: "https://x.com/dawidjaniga",
+		label: "X",
 		handle: "@janigowski",
-	},
-	{
-		icon: <Mail size={20} />,
-		href: "mailto:dev@janigowski.dev",
-		label: "Email",
-		handle: "dev@janigowski.dev",
 	},
 	{
 		icon: <Github size={20} />,
@@ -23,16 +17,22 @@ const socials = [
 		label: "Github",
 		handle: "janigowski",
 	},
+	{
+		icon: <Linkedin size={20} />,
+		href: "https://linkedin.com/in/dawidjaniga",
+		label: "LinkedIn",
+		handle: "Dawid Janiga",
+	},
 ];
 
-export default function Example() {
+export default function Contact() {
 	return (
 		<div className=" bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
 			<Navigation />
 			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
 				<div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
 					{socials.map((s) => (
-						<Card>
+						<Card key={s.href}>
 							<Link
 								href={s.href}
 								target="_blank"
