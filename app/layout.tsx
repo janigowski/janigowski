@@ -78,7 +78,7 @@ export default function RootLayout({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
         <div className="relative min-h-screen flex flex-col">
           <main className="flex-1">
