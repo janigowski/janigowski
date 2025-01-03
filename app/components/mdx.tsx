@@ -20,7 +20,7 @@ const components = {
 	h2: ({ className, ...props }) => (
 		<h2
 			className={clsx(
-				"mt-10 scroll-m-20 border-b border-b-zinc-800 pb-1 text-3xl font-semibold tracking-tight text-zinc-100 first:mt-0",
+				"mt-10 scroll-m-20 pb-1 text-3xl font-semibold tracking-tight text-zinc-100 first:mt-0",
 				className,
 			)}
 			{...props}
@@ -145,7 +145,7 @@ const components = {
 	pre: ({ className, ...props }) => (
 		<pre
 			className={clsx(
-				"mt-6 mb-4 overflow-x-auto rounded-lg bg-code-bg py-4 px-4",
+				"mt-6 mb-4 overflow-x-auto rounded border border-brand-olive bg-code-bg py-4 px-4 font-mono text-sm text-code-fg",
 				className,
 			)}
 			{...props}
@@ -154,7 +154,7 @@ const components = {
 	code: ({ className, ...props }) => (
 		<code
 			className={clsx(
-				"relative rounded border border-code-accent bg-code-bg py-[0.2rem] px-[0.3rem] font-mono text-sm text-code-fg",
+				"",
 				className,
 			)}
 			{...props}
