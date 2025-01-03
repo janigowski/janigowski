@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import Image from "next/image";
 
 // @TODO: Create OG photo
 export const metadata: Metadata = {
@@ -63,14 +64,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-      <head>
-        <Analytics />
-      </head>
       <body
-        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+        className={`relative min-h-screen bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
           }`}
       >
-        {children}
+        <div className="fixed inset-0 w-full h-full -z-[1]">
+          <Image
+            src="/janigowski-large-wallpaper.jpg"
+            alt="Background"
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+        </div>
+        <div className="relative min-h-screen flex flex-col">
+          <main className="flex-1">
+            {children}
+          </main>
+          <Analytics />
+        </div>
       </body>
     </html>
   );

@@ -1,9 +1,9 @@
+import ContentLayout from "../components/content-layout";
+
 export default function ProjectsLayout({
 	children,
-}: { children: React.ReactNode }) {
-	return (
-		<div className="relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900 ">
-			{children}
-		</div>
-	);
+}: {
+	children: React.ReactNode;
+}) {
+	return <ContentLayout>{children}</ContentLayout>;
 }
