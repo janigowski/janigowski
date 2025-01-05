@@ -9,12 +9,16 @@ Ever tried playing different sounds through specific outputs in your web app? Li
 
 ## The Challenge: Browser Audio is Stereo-Only by Default
 
-Here's what we're dealing with: Modern DJ software like `Traktor`, `Serato`, or `Rekordbox` lets you route different decks to different outputs. For example, you might want to preview the next track in your headphones while the current track plays through the main speakers. In my setup, I'm using the `Allen & Heath PX5` mixer which has 5 stereo channels (that's 10 channels when routing audio):
+Here's what we're dealing with: Modern DJ software like `Traktor`, `Serato`, or `Rekordbox` lets you route different decks to different outputs. For example, you might want to preview the next track in your headphones while the current track plays through the main speakers.
+
+In my setup, I'm using the `Allen & Heath PX5` mixer which has 5 stereo channels (that's 10 channels when routing audio):
 
 - Channels `1-4` are standard fader channels for your decks
 - Channel `A` is a special channel for connecting standalone devices like `Native Instruments Maschine`
 
 But here's the catch: web browsers are designed with simple `stereo output` in mind - just your regular `left` and `right` channels. The browser's default audio routing isn't built for this kind of professional DJ setup. But don't worry - I've got a solution that works beautifully with professional audio interfaces! 🎛️
+
+If you have any questions or need further assistance, feel free to [contact me](your/contact/page/url)!
 
 ## The Magic Behind Channel Splitting and Merging
 
@@ -101,7 +105,7 @@ class AudioManager {
 
 Let me share a tricky issue I encountered with `Tone.js`. Everything looked perfect in my code - `Transport` started, timer was increasing, audio was connected to the channels. But... silence. Complete silence. No errors, nothing in the console, just silence. 🤔
 
-After hours of debugging and diving into the source code, I discovered something interesting. While both `Tone.Transport` and `Tone.getTransport()` should technically work the same way (according to the docs), they don't always behave identically in practice. I suspect there might be two `Transport` instances running in some cases, creating a "false positive" situation.
+After hours of debugging and diving into the Tone.js source code, I discovered something interesting. While both `Tone.Transport` and `Tone.getTransport()` should technically work the same way (according to the docs), they don't always behave identically in practice. I suspect there might be two `Transport` instances running in some cases, creating a "false positive" situation. I even read the Tone.js source code to understand the issue better.
 
 I spent hours debugging this so you don't have to. Don't thank me! 😄
 
@@ -191,6 +195,6 @@ The key here is that we're quantizing the channel switches to musical subdivisio
 
 ## Need Help?
 
-Are you implementing multichannel audio in your web app? Running into issues? I'd love to help! Just head over to my contact page, and let's solve those audio routing challenges together. Whether it's a bug you can't squash or you need clarification on the concepts, I'm here to help! 🤝
+Are you implementing multichannel audio in your web app? Running into issues? I'd love to help! Just head over to my [contact page](/contact), and let's solve those audio routing challenges together. Whether it's a bug you can't squash or you need clarification on the concepts, I'm here to help! 🤝
 
 Remember: Working with professional audio on the web is challenging, but with the right tools and understanding of the fundamentals, you can build something that works reliably. Keep experimenting! 🎹 
