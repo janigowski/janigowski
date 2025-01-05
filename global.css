@@ -1,8 +1,7 @@
+@import './app/styles/syntax.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './app/styles/syntax.css';
 
 @layer base {
   .text-edge-outline {
