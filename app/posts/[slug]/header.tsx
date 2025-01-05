@@ -41,7 +41,7 @@ export const Header: React.FC<Props> = ({ post }) => {
 				<div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
 					<div className="flex justify-between gap-8">
 						<Link
-							href="https://twitter.com/dawidjaniga"
+							href="https://x.com/janigowski"
 							className={`duration-200 hover:font-medium ${isIntersecting
 								? "text-zinc-400 hover:text-zinc-100"
 								: "text-zinc-400 hover:text-zinc-100"
@@ -50,7 +50,7 @@ export const Header: React.FC<Props> = ({ post }) => {
 							<Twitter className="w-6 h-6" />
 						</Link>
 						<Link
-							href="https://github.com/dawidjaniga"
+							href="https://github.com/janigowski"
 							className={`duration-200 hover:font-medium ${isIntersecting
 								? "text-zinc-400 hover:text-zinc-100"
 								: "text-zinc-400 hover:text-zinc-100"

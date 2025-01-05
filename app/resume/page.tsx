@@ -81,13 +81,13 @@ export default function Resume() {
                         </div>
                         <div className="flex items-center gap-1">
                             <Github size={14} />
-                            <Link href="https://github.com/dawidjaniga" className="hover:text-white" target="_blank">
+                            <Link href="https://github.com/janigowski" className="hover:text-white" target="_blank">
                                 github.com/dawidjaniga
                             </Link>
                         </div>
                         <div className="flex items-center gap-1">
                             <Twitter size={14} />
-                            <Link href="https://twitter.com/dawidjaniga" className="hover:text-white" target="_blank">
+                            <Link href="https://x.com/janigowski" className="hover:text-white" target="_blank">
                                 @dawidjaniga
                             </Link>
                         </div>

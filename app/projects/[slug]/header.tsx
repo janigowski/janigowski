@@ -53,7 +53,7 @@ export const Header: React.FC<Props> = ({ project }) => {
 					<div className="flex justify-between gap-8">
 						<Link
 							target="_blank"
-							href="https://twitter.com/dawidjaniga"
+							href="https://x.com/janigowski"
 							className={`duration-200 hover:font-medium ${isIntersecting
 								? "text-zinc-400 hover:text-zinc-100"
 								: "text-zinc-400 hover:text-zinc-100"
@@ -63,7 +63,7 @@ export const Header: React.FC<Props> = ({ project }) => {
 						</Link>
 						<Link
 							target="_blank"
-							href="https://github.com/dawidjaniga"
+							href="https://github.com/janigowski"
 							className={`duration-200 hover:font-medium ${isIntersecting
 								? "text-zinc-400 hover:text-zinc-100"
 								: "text-zinc-400 hover:text-zinc-100"
