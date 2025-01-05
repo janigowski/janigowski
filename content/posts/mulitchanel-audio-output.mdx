@@ -1,109 +1,190 @@
 ---
-title: Multi-chanel audio output
-description: Control external audio mixer using Tone.js
-date: "2024-06-27"
-published: false
+title: 'How to Play Sounds on Multichannel Mixer Using Tone.js and WebAudio'
+description: 'A practical guide to routing audio through multiple channels in web browsers using Tone.js and WebAudio API'
+date: '2024-01-01'
+published: true
 ---
 
-EnvShare is a simple tool to share environment variables securely. It uses
-**AES-GCM** to encrypt your data before sending it to the server. The encryption
-key never leaves your browser.
+Ever tried playing different sounds through specific outputs in your web app? Like sending the kick drum to outputs `1-2` and vocals to `3-4`? If you've worked with professional audio interfaces like `Allen & Heath PX5`, you know this should be straightforward. But in web browsers? Not so much! 🎧
 
-## Features
+## The Challenge: Browser Audio is Stereo-Only by Default
 
-- **Shareable Links:** Share your environment variables securely by sending a
-  link
-- **End-to-End Encryption:** AES-GCM encryption is used to encrypt your data
-  before sending it to the server
-- **Limit number of reads:** Limit the number of times a link can be read
-- **Auto Expire:** Automatically expire links and delete data after a certain
-  time
+Here's what we're dealing with: Modern DJ software like `Traktor`, `Serato`, or `Rekordbox` lets you route different decks to different outputs. For example, you might want to preview the next track in your headphones while the current track plays through the main speakers. In my setup, I'm using the `Allen & Heath PX5` mixer which has 5 stereo channels (that's 10 channels when routing audio):
 
+- Channels `1-4` are standard fader channels for your decks
+- Channel `A` is a special channel for connecting standalone devices like `Native Instruments Maschine`
 
+But here's the catch: web browsers are designed with simple `stereo output` in mind - just your regular `left` and `right` channels. The browser's default audio routing isn't built for this kind of professional DJ setup. But don't worry - I've got a solution that works beautifully with professional audio interfaces! 🎛️
 
-![](https://github.com/dawidjaniga/envshare/raw/main/img/envshare.png)
+## The Magic Behind Channel Splitting and Merging
 
-## Built with
+Before diving into the code, let's understand what we're trying to achieve. Think of it like having multiple TV sets in your home:
 
-- [Next.js](https://nextjs.org)
-- [tailwindcss](https://tailwindcss.com)
-- Deployed on [Vercel](https://vercel.com?utm_source=envshare)
+1. First, we take our audio signal (like a TV signal) and create copies of it
+2. Then, we decide where each copy should go (like choosing which TV should show which channel)
+3. Finally, we send each signal to its destination (like each TV showing its own program)
 
-## Deploy your own
+It's like having a smart remote control where you can send any audio to any output. Pretty cool, right? 🎚️
 
-Detailed instructions can be found [here](https://envshare.dev/deploy)
+## The Solution: `Tone.js` + `WebAudio` Channel Routing
 
+Let's make this happen! First, we need to set up our `AudioContext` with the right channel configuration:
 
+```typescript
+interface AudioContextConfig {
+  channelCount: number;
+}
 
+const setupAudioContext = (config: AudioContextConfig): AudioContext => {
+  const audioContext = new AudioContext();
+  audioContext.destination.channelInterpretation = "discrete";
+  audioContext.destination.channelCountMode = "explicit";
+  audioContext.destination.channelCount = config.channelCount;
 
-## Configuration
+  // Initialize Tone.js with our context
+  Tone.setContext(audioContext);
+  
+  return audioContext;
+};
 
-### Environment Variables
-
-`ENABLE_VERCEL_ANALYTICS` Any truthy value will enable Vercel Analytics. This is turned off by default
-
-## Contributing
-
-This repository uses `pnpm` to manage dependencies. Install it using
-`npm install -g pnpm`
-
-Please run `pnpm fmt` before committing to format the code.
-
-## Docs
-
-Docs in the README are temporary and will be moved to the website soon.
-
-### API
-
-#### Store a secret
-
-**PLEASE NEVER EVER UPLOAD UNENCRYPTED SECRETS.**
-
-This endpoint is only meant to store **already encrypted** secrets. The
-encrypted secrets are stored in plain text.
-
-```sh-session
-$ curl -XPOST -s https://envshare.dev/api/v1/secret -d "already-encrypted-secret"
+const audioContext = setupAudioContext({ channelCount: 10 });
 ```
 
-You can add optional headers to configure the ttl and number of reads.
+Now for the interesting part - our channel routing system:
 
-```sh-session
-$ curl -XPOST -s https://envshare.dev/api/v1/secret -d "already-encrypted-secret" -H "envshare-ttl: 3600" -H "envshare-reads: 10"
-```
+```typescript
+interface AudioManagerConfig {
+  audioContext: AudioContext;
+}
 
-- Omitting the `envshare-ttl` header will set a default of 30 days. Disable the
-  ttl by setting it to 0. (`envshare-ttl: 0`)
-- Omitting the `envshare-reads` header will simply disable it and allow reading
-  for an unlimited number of times.
+class AudioManager {
+  private readonly audioContext: AudioContext;
+  private channelSplitters: ChannelSplitterNode[] = [];
+  private sounds: Map<string, Tone.Player> = new Map();
 
-This endpoint returns a JSON response with the secret id:
+  constructor(config: AudioManagerConfig) {
+    this.audioContext = config.audioContext;
+  }
 
-```json
-{
-  "data": {
-    "id": "HdPbXgpvUvNk43oxSdK97u",
-    "ttl": 86400,
-    "reads": 2,
-    "expiresAt": "2023-01-19T20:47:28.383Z",
-    "url": "http://envshare.dev/api/v1/secret/HdPbXgpvUvNk43oxSdK97u"
+  async createChannelMergers(): Promise<void> {
+    // Get the number of outputs available on the sound card
+    const numOutputs = this.audioContext.destination.maxChannelCount;
+    this.audioContext.destination.channelCount = numOutputs;
+
+    // Create ChannelSplitterNodes for each stereo pair
+    for (let i = 0; i < numOutputs / 2; i++) {
+      const splitter = this.audioContext.createChannelSplitter(2);
+      this.channelSplitters.push(splitter);
+    }
+
+    // Create a merger to combine all channels
+    const channelMerger = this.audioContext.createChannelMerger(numOutputs);
+    channelMerger.connect(this.audioContext.destination);
+
+    // Connect splitters to specific channel pairs in the merger
+    for (let i = 0; i < numOutputs / 2; i++) {
+      const [firstChannel, secondChannel] = [i * 2, (i * 2) + 1];
+      this.channelSplitters[i].connect(channelMerger, 0, firstChannel);
+      this.channelSplitters[i].connect(channelMerger, 1, secondChannel);
+    }
   }
 }
 ```
 
-#### Retrieve a secret
+## Important Note About `Transport`
 
-You need an id to retrieve a secret. The id is returned when you store a secret.
+Let me share a tricky issue I encountered with `Tone.js`. Everything looked perfect in my code - `Transport` started, timer was increasing, audio was connected to the channels. But... silence. Complete silence. No errors, nothing in the console, just silence. 🤔
 
-```sh-session
-$ curl -s https://envshare.dev/api/v1/secret/HdPbXgpvUvNk43oxSdK97u
+After hours of debugging and diving into the source code, I discovered something interesting. While both `Tone.Transport` and `Tone.getTransport()` should technically work the same way (according to the docs), they don't always behave identically in practice. I suspect there might be two `Transport` instances running in some cases, creating a "false positive" situation.
+
+I spent hours debugging this so you don't have to. Don't thank me! 😄
+
+The solution? Always use `getTransport()`:
+
+```typescript
+// ❌ This should work according to docs, but can be silent
+Tone.Transport.start();
+
+// ✅ This has proven to work reliably
+const transport = Tone.getTransport();
+transport.start();
 ```
 
-```json
-{
-  "data": {
-    "secret": "Hello",
-    "remainingReads": 1
+## Dynamic Channel Scheduling
+
+One of the powerful features of this system is the ability to schedule audio playback and channel routing in real-time. Here's how to implement dynamic scheduling:
+
+```typescript
+// We'll inject transport to make testing easier
+interface PerformanceControllerConfig {
+  audioManager: AudioManager;
+  transport: Tone.Transport;
+}
+
+class PerformanceController {
+  private audioManager: AudioManager;
+  private transport: Tone.Transport;
+
+  constructor(config: PerformanceControllerConfig) {
+    this.audioManager = config.audioManager;
+    this.transport = config.transport;
+  }
+
+  // Handle channel change from UI, keyboard, MIDI, etc.
+  handleChannelChange(trackId: string, targetChannel: number) {
+    // Get next safe time to make the switch (e.g., next 16th note)
+    const quantizeTime = this.transport.nextSubdivision('16n');
+    
+    // Add a tiny offset to ensure smooth transition
+    const switchTime = quantizeTime + 0.01;
+
+    try {
+      this.audioManager.rescheduleToChannel(trackId, targetChannel, switchTime);
+      console.log(`Track ${trackId} scheduled to channel ${targetChannel} at ${switchTime}`);
+    } catch (error) {
+      console.error('Failed to switch channels:', error);
+      // Handle the error in UI (show notification, etc.)
+    }
+  }
+
+  // Preview channel routing (useful for headphone preview)
+  previewChannel(trackId: string, previewChannel: number) {
+    const now = this.transport.now();
+    this.audioManager.rescheduleToChannel(trackId, previewChannel, now);
   }
 }
+
+// Example usage with dependency injection for better testing
+const performanceController = new PerformanceController({
+  audioManager: new AudioManager({ /* config */ }),
+  transport: Tone.getTransport()
+});
+
+// In tests, you can mock the transport:
+const mockTransport = {
+  nextSubdivision: jest.fn().mockReturnValue(1),
+  now: jest.fn().mockReturnValue(0)
+};
+
+const testController = new PerformanceController({
+  audioManager: mockAudioManager,
+  transport: mockTransport as unknown as Tone.Transport
+});
 ```
+
+This implementation allows you to:
+1. Schedule precise playback timing using `Tone.js Transport`
+2. Move audio between channels without interrupting playback
+3. Synchronize multiple channel changes
+4. Maintain timing relationships between different audio sources
+5. Handle real-time interactions from various input sources (`UI`, `keyboard`, `MIDI`)
+6. Preview channel routing before committing changes
+7. Write reliable tests with `dependency injection`
+
+The key here is that we're quantizing the channel switches to musical subdivisions (like `16th notes`) to keep everything in time with the music. We also add a tiny offset to ensure smooth transitions and handle any potential errors that might occur during the switch.
+
+## Need Help?
+
+Are you implementing multichannel audio in your web app? Running into issues? I'd love to help! Just head over to my contact page, and let's solve those audio routing challenges together. Whether it's a bug you can't squash or you need clarification on the concepts, I'm here to help! 🤝
+
+Remember: Working with professional audio on the web is challenging, but with the right tools and understanding of the fundamentals, you can build something that works reliably. Keep experimenting! 🎹 

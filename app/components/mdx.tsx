@@ -7,6 +7,7 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 function clsx(...args: any) {
 	return args.filter(Boolean).join(" ");
 }
+
 const components = {
 	h1: ({ className, ...props }) => (
 		<h1
@@ -153,10 +154,7 @@ const components = {
 	),
 	code: ({ className, ...props }) => (
 		<code
-			className={clsx(
-				"",
-				className,
-			)}
+			className={clsx("", className)}
 			{...props}
 		/>
 	),
