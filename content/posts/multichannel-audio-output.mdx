@@ -1,7 +1,7 @@
 ---
 title: 'How to Play Sounds on Multichannel Mixer Using Tone.js and WebAudio'
 description: 'A practical guide to routing audio through multiple channels in web browsers using Tone.js and WebAudio API'
-date: '2024-01-01'
+date: '2025-01-05'
 published: true
 ---
 
@@ -17,8 +17,6 @@ In my setup, I'm using the `Allen & Heath PX5` mixer which has 5 stereo channels
 - Channel `A` is a special channel for connecting standalone devices like `Native Instruments Maschine`
 
 But here's the catch: web browsers are designed with simple `stereo output` in mind - just your regular `left` and `right` channels. The browser's default audio routing isn't built for this kind of professional DJ setup. But don't worry - I've got a solution that works beautifully with professional audio interfaces! 🎛️
-
-If you have any questions or need further assistance, feel free to [contact me](your/contact/page/url)!
 
 ## The Magic Behind Channel Splitting and Merging
 
@@ -98,7 +96,59 @@ class AudioManager {
       this.channelSplitters[i].connect(channelMerger, 1, secondChannel);
     }
   }
+
+  async listAudioDevices(): Promise<MediaDeviceInfo[]> {
+    try {
+      // Request permission first
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const audioOutputs = devices.filter(device => device.kind === 'audiooutput');
+      
+      console.log('Available audio outputs:', audioOutputs);
+      return audioOutputs;
+    } catch (error) {
+      console.error('Failed to list audio devices:', error);
+      throw error;
+    }
+  }
+
+  async selectAudioOutput(deviceId: string): Promise<void> {
+    try {
+      // Check if the browser supports setSinkId
+      if (!('setSinkId' in AudioContext.prototype)) {
+        throw new Error('setSinkId is not supported in this browser');
+      }
+
+      // Get audio element (in this case we're using Tone.js context)
+      const audioElement = Tone.getContext().destination.context;
+      
+      // Set the audio output device
+      await audioElement.setSinkId(deviceId);
+      
+      console.log(`Audio output set to device: ${deviceId}`);
+    } catch (error) {
+      console.error('Failed to set audio output:', error);
+      throw error;
+    }
+  }
+
+  // Example usage within the class
+  async selectPX5Interface(): Promise<void> {
+    const devices = await this.listAudioDevices();
+    const px5Device = devices.find(device => device.label.includes('PX5'));
+
+    if (px5Device) {
+      await this.selectAudioOutput(px5Device.deviceId);
+    } else {
+      throw new Error('PX5 interface not found');
+    }
+  }
 }
+
+// Example usage:
+const audioManager = new AudioManager({ audioContext });
+await audioManager.selectPX5Interface();
 ```
 
 ## Important Note About `Transport`
