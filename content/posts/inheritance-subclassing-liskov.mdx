@@ -1,0 +1,175 @@
+---
+title: Inheritance, Subclassing and LISKOV Principle Using TypeScript
+description: Learn about object-oriented programming principles and best practices in TypeScript through practical examples
+date: "2024-01-15"
+published: true
+---
+
+# Understanding Inheritance in TypeScript
+
+Inheritance is a fundamental concept in object-oriented programming that allows us to create new classes based on existing ones. In TypeScript, we can create sophisticated inheritance hierarchies while maintaining type safety. Let's explore this through examples.
+
+## Basic Inheritance
+
+```typescript
+class Animal {
+  private name: string;
+  
+  constructor(name: string) {
+    this.name = name;
+  }
+  
+  makeSound(): string {
+    return "Some sound";
+  }
+}
+
+class Dog extends Animal {
+  breed: string;
+  
+  constructor(name: string, breed: string) {
+    super(name);
+    this.breed = breed;
+  }
+  
+  makeSound(): string {
+    return "Woof!";
+  }
+  
+  fetch(): string {
+    return `${this.name} is fetching the ball`;
+  }
+}
+```
+
+In this example, `Dog` inherits from `Animal` and demonstrates method overriding with `makeSound()` while adding its own `fetch()` method.
+
+# The Liskov Substitution Principle
+
+The Liskov Substitution Principle (LSP) states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program. Let's see both good and bad examples.
+
+## Bad LSP Example
+
+```typescript
+class Rectangle {
+  protected width: number;
+  protected height: number;
+
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
+
+  setWidth(width: number): void {
+    this.width = width;
+  }
+
+  setHeight(height: number): void {
+    this.height = height;
+  }
+
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  // This violates LSP because it changes the behavior of setWidth/setHeight
+  setWidth(width: number): void {
+    this.width = width;
+    this.height = width; // Square forces width = height
+  }
+
+  setHeight(height: number): void {
+    this.width = height; // Square forces width = height
+    this.height = height;
+  }
+}
+```
+
+## Good LSP Example
+
+```typescript
+interface Shape {
+  getArea(): number;
+}
+
+class Rectangle implements Shape {
+  constructor(
+    protected width: number,
+    protected height: number
+  ) {}
+
+  getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Square implements Shape {
+  constructor(
+    private sideLength: number
+  ) {}
+
+  getArea(): number {
+    return this.sideLength * this.sideLength;
+  }
+}
+```
+
+# Practical Subclassing with TypeScript
+
+Let's look at a real-world example using a payment processing system:
+
+```typescript
+interface PaymentProcessor {
+  processPayment(amount: number): Promise<boolean>;
+  validatePayment(amount: number): boolean;
+}
+
+abstract class BasePaymentProcessor implements PaymentProcessor {
+  constructor(protected apiKey: string) {}
+
+  abstract processPayment(amount: number): Promise<boolean>;
+
+  validatePayment(amount: number): boolean {
+    return amount > 0 && amount < 1000000;
+  }
+}
+
+class StripePaymentProcessor extends BasePaymentProcessor {
+  async processPayment(amount: number): Promise<boolean> {
+    if (!this.validatePayment(amount)) {
+      throw new Error("Invalid payment amount");
+    }
+    
+    // Simulate Stripe API call
+    console.log(`Processing ${amount} via Stripe`);
+    return true;
+  }
+}
+
+class PayPalPaymentProcessor extends BasePaymentProcessor {
+  async processPayment(amount: number): Promise<boolean> {
+    if (!this.validatePayment(amount)) {
+      throw new Error("Invalid payment amount");
+    }
+    
+    // Simulate PayPal API call
+    console.log(`Processing ${amount} via PayPal`);
+    return true;
+  }
+}
+```
+
+# Best Practices
+
+1. **Favor Composition Over Inheritance**: When possible, use interfaces and composition instead of deep inheritance hierarchies.
+2. **Program to Interfaces**: Design your code to work with abstractions rather than concrete implementations.
+3. **Keep the LSP in Mind**: Ensure that subclasses don't violate the contracts established by their parent classes.
+4. **Use Abstract Classes Wisely**: They're great for sharing common functionality while enforcing a contract for subclasses.
+
+# Conclusion
+
+Understanding inheritance, subclassing, and the Liskov Substitution Principle is crucial for writing maintainable TypeScript code. By following these principles, you can create more robust and flexible applications that are easier to extend and maintain over time.
+
+Remember that inheritance isn't always the best solution - sometimes composition or interfaces might be more appropriate. The key is to understand these patterns and use them judiciously based on your specific use case. 
