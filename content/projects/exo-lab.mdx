@@ -8,31 +8,31 @@ repository:
 ---
 
 **TL;DR:**  
-EXØ_LAB is my passion project—a desktop application designed to empower new media artists by unifying audio, video, and lighting tools into a single extensible platform. It bridges art and technology with features like context-aware MIDI control, intuitive mappings, and Spotlight for streamlined workflows. This post shares the journey behind the idea, its vision, and an invitation to collaborate or connect.
+<span className="text-brand-lime">EXØ_LAB</span> is my passion project—a desktop application designed to empower <span className="text-brand-lime">new media artists</span> by unifying audio, video, and lighting tools into a single extensible platform. It bridges <span className="text-brand-lime">art</span> and <span className="text-brand-lime">technology</span> with features like context-aware MIDI control, intuitive mappings, and Spotlight for streamlined workflows. This post shares the journey behind the idea, its vision, and an invitation to collaborate or connect.
 
 ---
 
-From the moment I could hold a screwdriver, I was dismantling remote-controlled cars just to see how they worked. My first computer opened up a whole new world—spending hours exploring music from around the globe (yes, via P2P—shame on me). My love for **science**, **art**, and **technology** was set in motion. 
+From the moment I could hold a screwdriver, I was dismantling remote-controlled cars just to see how they worked. My first computer opened up a whole new world—spending hours exploring music from around the globe (yes, via P2P—shame on me). My love for science, art, and technology was set in motion. 
 
-Art was always close to home. My mom’s beautiful reproduction of Van Gogh’s *Café Terrace at Night* still hangs in our living room, while my uncle’s paintings and photographs adorned the walls. By the age of 10, I knew these passions would guide me.
+Art was always close to home. My mom's beautiful reproduction of Van Gogh's *Café Terrace at Night* still hangs in our living room, while my uncle's paintings and photographs adorned the walls. By the age of 10, I knew these passions would guide me.
 
-Programming entered my life soon after, and it felt like **a form of art in itself**—a creative outlet where logic meets imagination. Over time, my twin passions evolved: **art** into graphic design, DJing, and music composition; and **technology** into software architecture and creative development. The inevitable dream?
+Programming entered my life soon after, and it felt like a form of art in itself—a creative outlet where logic meets imagination. Over time, my twin passions evolved: <span className="text-brand-lime">art</span> into graphic design, DJing, and music composition; and <span className="text-brand-lime">technology</span> into software architecture and creative development. The inevitable dream?
 
 To unite these worlds into something extraordinary.
 
 ---
 
-As a solo artist, I craved a way to **perform in a DJ-like fashion**, weaving together tracks, visuals, and emotions to craft a unique experience for my audience. Yet, I lacked the tools to express my vision. 
+As a solo artist, I craved a way to perform in a DJ-like fashion, weaving together tracks, visuals, and emotions to craft a unique experience for my audience. Yet, I lacked the tools to express my vision. 
 
-Through research, I found most performances relied on **multiple programs and teams**: a DJ for music, a VJ for visuals, and technicians for lighting. For solo artists like me, the setup felt fragmented and overwhelming. 
+Through research, I found most performances relied on multiple programs and teams: a DJ for music, a VJ for visuals, and technicians for lighting. For solo artists like me, the setup felt fragmented and overwhelming. 
 
-I also didn’t want to compete with the **entire teams** behind the biggest productions. Instead, I wanted to **enable their capabilities** for those who share my vision of creating immersive, multi-sensory experiences. I didn’t want to replicate existing tools; I wanted a solution tailored for **new media artists**, empowering them to unify their creative processes in a seamless way.
+I also didn't want to compete with the entire teams behind the biggest productions. Instead, I wanted to enable their capabilities for those who share my vision of creating immersive, multi-sensory experiences. I didn't want to replicate existing tools; I wanted a solution tailored for <span className="text-brand-lime">new media artists</span>, empowering them to unify their creative processes in a seamless way.
 
 ---
 
-## Introducing EXØ_LAB
+## Introducing <span className="text-brand-lime">EXØ_LAB</span>
 
-EXØ_LAB is the result of this vision—a desktop application that unifies audio, visual, and lighting tools into one cohesive platform. It’s not just for DJs, VJs, or producers, but for **artists who want to create experiences**.  
+EXØ_LAB is the result of this vision—a desktop application that unifies audio, visual, and lighting tools into one cohesive platform. It's not just for DJs, VJs, or producers, but for artists who want to create experiences.  
 
 While still in development, EXØ_LAB focuses on bridging gaps between existing tools and making advanced creative workflows intuitive, extensible, and artist-friendly. Here's a glimpse into some of its standout features:
 
@@ -46,14 +46,14 @@ While still in development, EXØ_LAB focuses on bridging gaps between existing t
 - Multi-channel mixing with BPM synchronization  
 
 ### Visual Performance Integration
-- Timeline-based control of lights, stroboscopes, lasers, and more using the **DMX standard**.  
+- Timeline-based control of lights, stroboscopes, lasers, and more using the DMX standard.  
 - No reliance on specific brands—EXØ_LAB is designed to integrate with stage equipment universally.  
 
 ### 2-Way MIDI Integration with Human-Readable Names  
-EXØ_LAB simplifies MIDI device integration in ways traditional tools don’t:  
-- **Human-readable control mappings**: Buttons and knobs appear in the interface as they are labeled on the hardware (e.g., "A", "B", "Layer" on Allen & Heath K2). No cryptic MIDI notes or channels.  
-- **Version-controlled mappings**: Experiment freely with new mappings without losing previous configurations.  
-- Powered by **WebMIDI**, ensuring smooth hardware-software interaction.
+EXØ_LAB simplifies MIDI device integration in ways traditional tools don't:  
+- Human-readable control mappings: Buttons and knobs appear in the interface as they are labeled on the hardware (e.g., "A", "B", "Layer" on Allen & Heath K2). No cryptic MIDI notes or channels.  
+- Version-controlled mappings: Experiment freely with new mappings without losing previous configurations.  
+- Powered by WebMIDI, ensuring smooth hardware-software interaction.
 
 ### Context-Dependent Shortcuts for MIDI and Keyboard  
 The platform introduces **view-aware shortcuts**, dynamically adapting controls to the active interface:  
@@ -66,20 +66,26 @@ Inspired by **MacOS Spotlight**, this command palette makes it effortless to:
 - Execute creative actions (e.g., synchronize videos to a beat, adjust lighting colors).  
 Spotlight eliminates interruptions, letting ideas flow directly onto the canvas.
 
+### Timeline: The Backbone of EXØ_LAB  
+The timeline is designed for precision and performance, supporting multi-type channels to handle audio, video, visuals, and lighting in a single interface.  
+- **High-performance rendering** ensures smooth operation, even with many items loaded.  
+- A **Minimap** offers a bird's-eye view of the entire performance, making it easy to navigate complex shows.  
+- All timeline tools are fully controllable via **MIDI devices, keyboard, and mouse**, providing flexibility to match each artist's workflow.
+
 ### Extensible by Design  
 EXØ_LAB is built with extensibility in mind. Artists and developers can:  
-- Integrate hardware like Arduino, Raspberry Pi, or ART-Net controllers.  
-- Use APIs or WebSockets to connect external services.  
+- Integrate hardware like Arduino, Raspberry Pi, or ART-Net controllers
+- Use APIs or WebSockets to connect external services
 - Access resources from platforms like Unsplash or Freesound directly within the app, bypassing manual imports.
 
 ---
 
 ## Why Share This Now?  
 
-EXØ_LAB represents my journey and vision to create a tool that empowers artists to blend creativity with technology. While it’s still evolving, sharing this now serves two purposes:  
+<span className="text-brand-lime">EXØ_LAB</span> represents my journey and vision to create a tool that empowers artists to blend creativity with technology. While it's still evolving, sharing this now serves two purposes:  
 
 1. **Feedback**: Your thoughts can help shape its direction and ensure it meets the needs of the creative community.  
-2. **Connection**: If this vision resonates with you—whether as an artist, developer, or collaborator—I’d love to hear from you.  
+2. **Connection**: If this vision resonates with you—whether as an artist, developer, or collaborator—I'd love to hear from you.  
 
 ---
 
@@ -87,4 +93,4 @@ EXØ_LAB represents my journey and vision to create a tool that empowers artists
 
 Want to connect? You can reach me through my [contact page](/contact).  
 
-Let’s shape the future of digital experiences together.  
+Let's shape the future of digital experiences together.  
