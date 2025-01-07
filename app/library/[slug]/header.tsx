@@ -5,10 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
 	book: {
-		url?: string;
 		title: string;
-		description: string;
-		repository?: string;
 		author: string;
 		tag?: string;
 		date?: string;
@@ -28,18 +25,6 @@ export const Header: React.FC<Props> = ({ book }) => {
 		: '';
 
 	const links: { label: string; href: string }[] = [];
-	if (book.repository) {
-		links.push({
-			label: "GitHub",
-			href: `https://github.com/${book.repository}`,
-		});
-	}
-	if (book.url) {
-		links.push({
-			label: "Website",
-			href: book.url,
-		});
-	}
 	useEffect(() => {
 		if (!ref.current) return;
 		const observer = new IntersectionObserver(([entry]) =>
@@ -123,9 +108,6 @@ export const Header: React.FC<Props> = ({ book }) => {
 								{formattedDate}
 							</time>
 						)}
-						<p className="mt-6 text-lg leading-8 text-zinc-400">
-							{book.description}
-						</p>
 					</div>
 
 					<div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
