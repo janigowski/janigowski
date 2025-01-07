@@ -149,10 +149,6 @@ export const Book = defineDocumentType(() => ({
 			type: "string",
 			required: true,
 		},
-		description: {
-			type: "string",
-			required: true,
-		},
 		date: {
 			type: "date",
 		},
