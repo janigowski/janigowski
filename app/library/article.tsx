@@ -54,7 +54,7 @@ export const Article: React.FC<Props> = ({ book }) => {
 					{book.description}
 				</p>
 				{hasContent && (
-					<Link href={`/bookshelf/${book.slug}`} className="inline-block mt-4 text-sm text-zinc-400 hover:text-zinc-200">
+					<Link href={`/library/${book.slug}`} className="inline-block mt-4 text-sm text-zinc-400 hover:text-zinc-200">
 						Read review →
 					</Link>
 				)}

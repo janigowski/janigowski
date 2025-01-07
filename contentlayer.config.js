@@ -120,7 +120,7 @@ export const Project = defineDocumentType(() => ({
 
 export const Book = defineDocumentType(() => ({
 	name: "Book",
-	filePathPattern: "./bookshelf/**/*.mdx",
+	filePathPattern: "./library/**/*.mdx",
 	contentType: "mdx",
 
 	fields: {

@@ -74,7 +74,7 @@ export const Header: React.FC<Props> = ({ book }) => {
 					</div>
 
 					<Link
-						href="/bookshelf"
+						href="/library"
 						className={`duration-200 hover:font-medium ${isIntersecting
 							? "text-zinc-400 hover:text-zinc-100"
 							: "text-zinc-400 hover:text-zinc-100"
