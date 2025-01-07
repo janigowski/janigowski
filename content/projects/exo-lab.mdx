@@ -7,11 +7,18 @@ published: true
 repository: 
 ---
 
+**TL;DR:**  
+EXØ_LAB is my passion project—a desktop application designed to empower new media artists by unifying audio, video, and lighting tools into a single extensible platform. It bridges art and technology with features like context-aware MIDI control, intuitive mappings, and Spotlight for streamlined workflows. This post shares the journey behind the idea, its vision, and an invitation to collaborate or connect.
+
+---
+
 From the moment I could hold a screwdriver, I was dismantling remote-controlled cars just to see how they worked. My first computer opened up a whole new world—spending hours exploring music from around the globe (yes, via P2P—shame on me). My love for **science**, **art**, and **technology** was set in motion. 
 
 Art was always close to home. My mom’s beautiful reproduction of Van Gogh’s *Café Terrace at Night* still hangs in our living room, while my uncle’s paintings and photographs adorned the walls. By the age of 10, I knew these passions would guide me.
 
-Programming entered my life soon after, and it felt like **a form of art in itself**—a creative outlet where logic meets imagination. Over time, my twin passions evolved: **art** into graphic design, DJing, and music composition; and **technology** into software architecture and creative development. The inevitable dream? To unite these worlds into something extraordinary.
+Programming entered my life soon after, and it felt like **a form of art in itself**—a creative outlet where logic meets imagination. Over time, my twin passions evolved: **art** into graphic design, DJing, and music composition; and **technology** into software architecture and creative development. The inevitable dream?
+
+To unite these worlds into something extraordinary.
 
 ---
 
@@ -23,93 +30,61 @@ I also didn’t want to compete with the **entire teams** behind the biggest pro
 
 ---
 
-**EXØ_LAB** was born as the answer to this challenge—a desktop application combining the best of **audio, visual, and performance tools** into one cohesive platform. Not just for DJs, VJs, or music producers, but for **artists who want to create experiences**.
+## Introducing EXØ_LAB
 
-Here’s how EXØ_LAB bridges the gap:
+EXØ_LAB is the result of this vision—a desktop application that unifies audio, visual, and lighting tools into one cohesive platform. It’s not just for DJs, VJs, or producers, but for **artists who want to create experiences**.  
+
+While still in development, EXØ_LAB focuses on bridging gaps between existing tools and making advanced creative workflows intuitive, extensible, and artist-friendly. Here's a glimpse into some of its standout features:
 
 ---
 
 ## Key Features
 
 ### Advanced Audio Management
-- **Professional-grade audio processing** using SuperPowered SDK  
-- **Real-time waveform visualization** and analysis  
-- **Multi-channel audio mixing** capabilities  
-- Automated **BPM detection and synchronization**  
-
-### Intelligent Track Management
-- **Smart metadata extraction**, including artist, title, and remix detection  
-- Organized library with a **hierarchical structure**  
-- Tools for **quick access** and **streamlined workflows**  
+- Professional-grade audio processing  
+- Real-time waveform visualization  
+- Multi-channel mixing with BPM synchronization  
 
 ### Visual Performance Integration
-- Seamless integration with **Philips Hue lighting systems**  
-- Real-time **audio-synced light shows**  
-- Control of **multiple devices** for cohesive performances  
+- Timeline-based control of lights, stroboscopes, lasers, and more using the **DMX standard**.  
+- No reliance on specific brands—EXØ_LAB is designed to integrate with stage equipment universally.  
 
-### Professional Performance Tools
-- **Timeline-based performance design** for precision control  
-- **Multi-channel routing** and live mixing tools  
-- MIDI device integration for hands-on interaction  
+### 2-Way MIDI Integration with Human-Readable Names  
+EXØ_LAB simplifies MIDI device integration in ways traditional tools don’t:  
+- **Human-readable control mappings**: Buttons and knobs appear in the interface as they are labeled on the hardware (e.g., "A", "B", "Layer" on Allen & Heath K2). No cryptic MIDI notes or channels.  
+- **Version-controlled mappings**: Experiment freely with new mappings without losing previous configurations.  
+- Powered by **WebMIDI**, ensuring smooth hardware-software interaction.
 
----
-
-### Operating Modes: Prepare and Perform  
-Drawing inspiration from tools like **DaVinci Resolve**, where artists work through distinct phases such as *Media*, *Cut*, *Edit*, *Fusion*, *Color*, *Fairlight*, and *Deliver*, EXØ_LAB introduces two modes of operation:  
-
-#### **Prepare Mode**  
-In this mode, artists can focus on sourcing and refining materials for their performance:  
-- **Audio**: Select tracks, label them, align beatgrids, normalize loudness, and add emotion descriptions.  
-- **Video**: Loop, trim, and label clips for seamless integration.  
-- **Lights**: Design lighting scenarios and stage device sequences tailored to the performance.  
-
-This phase ensures every element of the performance is polished and ready for seamless integration.  
-
-#### **Perform Mode**  
-Designed for live execution, Perform Mode provides a **stage-prepared UI** optimized for distance viewing and hands-on control with **audio mixers** and **MIDI devices**.  
-- Artists can start from a **blank canvas** or use their curated materials—tracks, visuals, and lighting setups—to craft the experience in real-time.  
-- With intuitive controls, performers can focus on delivering an immersive journey, blending pre-prepared elements with spontaneous creativity.  
-
----
+### Context-Dependent Shortcuts for MIDI and Keyboard  
+The platform introduces **view-aware shortcuts**, dynamically adapting controls to the active interface:  
+- In **Perform Mode**, MIDI controllers light up buttons relevant to live performance.  
+- Switch to the **"Add New Item" view**, and both functionality and visual feedback change, ensuring seamless navigation and usability.  
 
 ### Spotlight: Execute Ideas at the Speed of Light  
-Inspired by **MacOS Spotlight**, EXØ_LAB’s command palette ensures an artist’s vision flows effortlessly onto the canvas.  
+Inspired by **MacOS Spotlight**, this command palette makes it effortless to:  
+- Navigate sections (`go tracks`, `go visuals`)  
+- Execute creative actions (e.g., synchronize videos to a beat, adjust lighting colors).  
+Spotlight eliminates interruptions, letting ideas flow directly onto the canvas.
 
-- Need to **navigate to a specific section** of your project? Just type commands like `go tracks`, `go visuals`, or `go lights`.  
-- Want to **synchronize five videos to the beat** in sequence? Done in seconds.  
-- Planning to **set the venue to glow green for a particular moment**? The command is yours to execute.  
-
-Spotlight transforms the creative process into an uninterrupted flow, allowing artists to work as quickly as their imagination unfolds.
-
----
-
-## Technical Excellence
-
-### Architecture & Design
-- Built with **Clean Architecture principles** and **Domain-Driven Design (DDD)**  
-- **Event-driven architecture** for real-time updates  
-- Robust **error handling** for reliable performances  
-
-### Modern Technology Stack
-- **Electron** for cross-platform compatibility  
-- **Svelte** for responsive, reactive UIs  
-- **TypeScript** to ensure type safety and a smooth developer experience  
-- **TRPC** for seamless client-server communication  
-
-### Data Management
-- SQLite with **Knex.js query builder** for efficient database interactions  
-- **Repository pattern** to ensure scalability  
-- Real-time **data synchronization**  
+### Extensible by Design  
+EXØ_LAB is built with extensibility in mind. Artists and developers can:  
+- Integrate hardware like Arduino, Raspberry Pi, or ART-Net controllers.  
+- Use APIs or WebSockets to connect external services.  
+- Access resources from platforms like Unsplash or Freesound directly within the app, bypassing manual imports.
 
 ---
 
-## Development Practices: Building with Precision
-- **Test-Driven Development (TDD)** ensures robust and maintainable code  
-- **Storybook** for component-driven UI development and documentation  
-- CI/CD pipelines for consistent and reliable updates  
+## Why Share This Now?  
+
+EXØ_LAB represents my journey and vision to create a tool that empowers artists to blend creativity with technology. While it’s still evolving, sharing this now serves two purposes:  
+
+1. **Feedback**: Your thoughts can help shape its direction and ensure it meets the needs of the creative community.  
+2. **Connection**: If this vision resonates with you—whether as an artist, developer, or collaborator—I’d love to hear from you.  
 
 ---
 
-EXØ_LAB isn’t just a technical achievement—it’s the realization of a lifelong passion. It bridges the worlds of **art and technology**, empowering creators to craft extraordinary, immersive experiences. Whether you’re preparing materials or performing live, EXØ_LAB ensures that the tools never get in the way of the art.  
+## Contact  
 
-It’s more than software; it’s a platform for **shaping the future of digital experiences**.
+Want to connect? You can reach me through my [contact page](/contact).  
+
+Let’s shape the future of digital experiences together.  
