@@ -7,9 +7,9 @@ import { Article } from "./article";
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-  const featured = allProjects.find((project) => project.slug === "mars-explorer")!;
-  const top2 = allProjects.find((project) => project.slug === "wikipedia-map")!;
-  const top3 = allProjects.find((project) => project.slug === "wikipedia-streams")!;
+  const featured = allProjects.find((project) => project.slug === "exo-lab")!;
+  const top2 = allProjects.find((project) => project.slug === "mars-explorer")!;
+  const top3 = allProjects.find((project) => project.slug === "wikipedia-map")!;
   const sorted = allProjects
     .filter((p) => p.published)
     .filter(
