@@ -29,55 +29,59 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
     }
 
     return (
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <div className="flex flex-wrap gap-2">
-                <span className="text-sm text-zinc-400">Type:</span>
-                <Link
-                    href={getFilterUrl(null, selectedTag)}
-                    className={`text-sm px-3 py-1 rounded-full ${!selectedType
-                        ? "bg-zinc-700 text-zinc-100"
-                        : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800"
-                        }`}
-                >
-                    All
-                </Link>
-                {types.map((bookType) => (
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+            <div className="space-y-3">
+                <h3 className="text-sm font-medium text-zinc-300">Type</h3>
+                <div className="flex flex-wrap gap-2">
                     <Link
-                        key={bookType}
-                        href={getFilterUrl(bookType, selectedTag)}
-                        className={`text-sm px-3 py-1 rounded-full ${selectedType === bookType
-                            ? "bg-zinc-700 text-zinc-100"
-                            : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800"
+                        href={getFilterUrl(null, selectedTag)}
+                        className={`text-sm px-4 py-1.5 rounded-full transition-all duration-300 ${!selectedType
+                                ? "bg-zinc-700/90 text-zinc-100 shadow-lg shadow-zinc-900/20"
+                                : "bg-zinc-800/40 text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-300"
                             }`}
                     >
-                        {bookType}
+                        All
                     </Link>
-                ))}
+                    {types.map((bookType) => (
+                        <Link
+                            key={bookType}
+                            href={getFilterUrl(bookType, selectedTag)}
+                            className={`text-sm px-4 py-1.5 rounded-full transition-all duration-300 ${selectedType === bookType
+                                    ? "bg-zinc-700/90 text-zinc-100 shadow-lg shadow-zinc-900/20"
+                                    : "bg-zinc-800/40 text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-300"
+                                }`}
+                        >
+                            {bookType}
+                        </Link>
+                    ))}
+                </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-                <span className="text-sm text-zinc-400">Tag:</span>
-                <Link
-                    href={getFilterUrl(selectedType, null)}
-                    className={`text-sm px-3 py-1 rounded-full ${!selectedTag
-                        ? "bg-zinc-700 text-zinc-100"
-                        : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800"
-                        }`}
-                >
-                    All
-                </Link>
-                {tags.map((tag) => (
+            <div className="space-y-3">
+                <h3 className="text-sm font-medium text-zinc-300">Tag</h3>
+                <div className="flex flex-wrap gap-2">
                     <Link
-                        key={tag}
-                        href={getFilterUrl(selectedType, tag)}
-                        className={`text-sm px-3 py-1 rounded-full ${selectedTag === tag
-                            ? "bg-zinc-700 text-zinc-100"
-                            : "bg-zinc-800/50 text-zinc-400 hover:bg-zinc-800"
+                        href={getFilterUrl(selectedType, null)}
+                        className={`text-sm px-4 py-1.5 rounded-full transition-all duration-300 ${!selectedTag
+                                ? "bg-zinc-700/90 text-zinc-100 shadow-lg shadow-zinc-900/20"
+                                : "bg-zinc-800/40 text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-300"
                             }`}
                     >
-                        {tag}
+                        All
                     </Link>
-                ))}
+                    {tags.map((tag) => (
+                        <Link
+                            key={tag}
+                            href={getFilterUrl(selectedType, tag)}
+                            className={`text-sm px-4 py-1.5 rounded-full transition-all duration-300 ${selectedTag === tag
+                                    ? "bg-zinc-700/90 text-zinc-100 shadow-lg shadow-zinc-900/20"
+                                    : "bg-zinc-800/40 text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-300"
+                                }`}
+                        >
+                            {tag}
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );

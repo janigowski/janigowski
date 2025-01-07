@@ -43,34 +43,44 @@ export default async function LibraryPage({
   });
 
   return (
-    <div className="relative pb-16">
+    <div className="relative">
       <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+      <div className="px-6 pt-20 pb-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+        {/* Header */}
         <div className="max-w-2xl mx-auto lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
             Library
-          </h2>
-          <p className="mt-4 text-zinc-400">
-            Books I've read or am reading.
+          </h1>
+          <p className="mt-4 text-base text-zinc-400">
+            A curated collection of books that have shaped my perspective.
           </p>
         </div>
 
-        <BookFilters
-          types={types}
-          tags={tags}
-          selectedType={selectedType}
-          selectedTag={selectedTag}
-        />
+        {/* Filters */}
+        <div className="w-full max-w-2xl mx-auto lg:max-w-none">
+          <BookFilters
+            types={types}
+            tags={tags}
+            selectedType={selectedType}
+            selectedTag={selectedTag}
+          />
+        </div>
 
         <div className="w-full h-px bg-zinc-800" />
 
-        <div className="flex flex-col space-y-4">
+        {/* Book Grid */}
+        <div className="grid gap-4 mx-auto">
           {filteredBooks.map((book) => (
-            <Card key={book.slug}>
-              <Article book={book} />
-            </Card>
+            <Article key={book.slug} book={book} />
           ))}
         </div>
+
+        {/* Empty State */}
+        {filteredBooks.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-zinc-400">No books found matching your filters.</p>
+          </div>
+        )}
       </div>
     </div>
   );
