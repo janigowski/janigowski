@@ -15,9 +15,12 @@ export default function Article({ book }: { book: Book }) {
 	const hasReview = book.status === 'read' && book.body.raw.trim().length > 0;
 
 	return (
-		<article className="group relative flex items-start gap-8 py-10 first:pt-0 last:pb-0">
+		<article className={clsx(
+			"group relative flex items-start gap-8 py-10 first:pt-0 last:pb-0",
+			hasReview && "bg-zinc-800/10 -mx-6 px-6 rounded-2xl"
+		)}>
 			{/* Cover */}
-			<div className="relative aspect-[2/3] w-28 flex-none overflow-hidden">
+			<div className="relative aspect-[2/3] w-28 flex-none overflow-hidden rounded-lg">
 				<Image
 					src={book.cover}
 					alt={book.title}
@@ -31,22 +34,22 @@ export default function Article({ book }: { book: Book }) {
 			<div className="flex flex-col flex-auto min-w-0">
 				<div className="flex items-center gap-4 text-xs">
 					<span className={clsx(
-						'px-2 py-1 text-xs font-medium',
+						'px-2 py-1 text-xs font-medium rounded-md',
 						{
 							'bg-emerald-500/10 text-emerald-400': book.status === 'read',
 							'bg-blue-500/10 text-blue-400': book.status === 'reading',
-							'bg-zinc-500/10 text-white/60': book.status === 'waiting',
+							'bg-zinc-500/10 text-zinc-400': book.status === 'waiting',
 						}
 					)}>
 						{book.status}
 					</span>
-					<span className="bg-zinc-800 px-2 py-1 text-xs font-medium text-white/60">
+					<span className="bg-zinc-800 px-2 py-1 text-xs font-medium text-zinc-400 rounded-md">
 						{book.bookType}
 					</span>
 					{hasReview && (
 						<Link
 							href={`/library/${book.slug}`}
-							className="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-white hover:text-white/80 transition-colors duration-200"
+							className="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-zinc-200 hover:text-white transition-colors duration-200"
 						>
 							Read review
 							<span className="transition-transform duration-200 group-hover/link:translate-x-1">→</span>
@@ -58,18 +61,18 @@ export default function Article({ book }: { book: Book }) {
 					{book.title}
 				</h2>
 
-				<p className="mt-2 text-base text-white/60">
+				<p className="mt-2 text-base text-zinc-400">
 					{book.author}
 				</p>
 
 				<div className="mt-4 flex items-center gap-4">
 					{formattedDate && (
-						<time className="text-sm text-white/40" dateTime={book.date}>
+						<time className="text-sm text-zinc-500" dateTime={book.date}>
 							{formattedDate}
 						</time>
 					)}
 					{book.tag && (
-						<span className="text-sm text-white/40">
+						<span className="text-sm text-zinc-500">
 							{book.tag}
 						</span>
 					)}

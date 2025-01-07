@@ -9,11 +9,23 @@ type Props = {
 		title: string;
 		description: string;
 		repository?: string;
+		author: string;
+		tag?: string;
+		date?: string;
+		status: 'read' | 'reading' | 'waiting';
 	};
 };
 export const Header: React.FC<Props> = ({ book }) => {
 	const ref = useRef<HTMLElement>(null);
 	const [isIntersecting, setIntersecting] = useState(true);
+
+	const formattedDate = book.date
+		? new Date(book.date).toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+		})
+		: '';
 
 	const links: { label: string; href: string }[] = [];
 	if (book.repository) {
@@ -87,9 +99,30 @@ export const Header: React.FC<Props> = ({ book }) => {
 			<div className="container mx-auto relative isolate overflow-hidden py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
 					<div className="mx-auto max-w-2xl lg:mx-0">
+						<div className="flex items-center justify-center gap-4 mb-6">
+							<span className={`px-2 py-1 text-xs font-medium ${book.status === 'read' ? 'bg-emerald-500/10 text-emerald-400' :
+								book.status === 'reading' ? 'bg-blue-500/10 text-blue-400' :
+									'bg-zinc-500/10 text-white/60'
+								}`}>
+								{book.status}
+							</span>
+							{book.tag && (
+								<span className="bg-zinc-800 px-2 py-1 text-xs font-medium text-white/60">
+									{book.tag}
+								</span>
+							)}
+						</div>
 						<h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl font-display">
 							{book.title}
 						</h1>
+						<p className="mt-4 text-lg font-medium text-zinc-400">
+							{book.author}
+						</p>
+						{formattedDate && (
+							<time className="mt-2 block text-sm text-zinc-500" dateTime={book.date}>
+								{formattedDate}
+							</time>
+						)}
 						<p className="mt-6 text-lg leading-8 text-zinc-400">
 							{book.description}
 						</p>

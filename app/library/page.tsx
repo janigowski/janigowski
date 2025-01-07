@@ -65,7 +65,7 @@ export default async function LibraryPage({
   });
 
   return (
-    <div className="relative min-h-screen bg-zinc-900">
+    <div className="relative min-h-screen">
       <Navigation />
 
       {/* Main Content */}
@@ -73,10 +73,10 @@ export default async function LibraryPage({
         {/* Header */}
         <div className="relative mb-32">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-medium tracking-tight text-white sm:text-7xl">
+            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl font-display">
               Library
             </h1>
-            <p className="mt-8 text-lg text-white/60">
+            <p className="mt-8 text-lg text-zinc-400">
               A curated collection of books that have shaped my perspective.
             </p>
           </div>
@@ -86,50 +86,50 @@ export default async function LibraryPage({
         <div className="relative mb-32">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {/* Total Books */}
-            <div className="group relative overflow-hidden bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-white">{stats.total}</span>
-                <span className="mt-2 text-sm text-white/40">Books</span>
+                <span className="mt-2 text-sm text-zinc-400">Books</span>
               </div>
             </div>
 
             {/* Read */}
-            <div className="group relative overflow-hidden bg-emerald-500/5 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-emerald-500/5 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-emerald-400">{stats.read}</span>
-                <span className="mt-2 text-sm text-white/40">Read</span>
+                <span className="mt-2 text-sm text-zinc-400">Read</span>
               </div>
             </div>
 
             {/* Reading */}
-            <div className="group relative overflow-hidden bg-blue-500/5 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-blue-500/5 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-blue-400">{stats.reading}</span>
-                <span className="mt-2 text-sm text-white/40">Reading</span>
+                <span className="mt-2 text-sm text-zinc-400">Reading</span>
               </div>
             </div>
 
             {/* Waiting */}
-            <div className="group relative overflow-hidden bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-white">{stats.waiting}</span>
-                <span className="mt-2 text-sm text-white/40">Waiting</span>
+                <span className="mt-2 text-sm text-zinc-400">Waiting</span>
               </div>
             </div>
 
             {/* Most Read Category */}
-            <div className="group relative overflow-hidden bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
               <div className="relative flex flex-col">
-                <span className="text-xl font-medium text-white">{stats.mostReadCategory}</span>
-                <span className="mt-2 text-sm text-white/40">Most Read</span>
+                <span className="text-xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
+                <span className="mt-2 text-sm text-zinc-400">Most Read</span>
               </div>
             </div>
 
             {/* Completion Rate */}
-            <div className="group relative overflow-hidden bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-white">{stats.completionRate}%</span>
-                <span className="mt-2 text-sm text-white/40">Completed</span>
+                <span className="mt-2 text-sm text-zinc-400">Completed</span>
               </div>
             </div>
           </div>
@@ -146,14 +146,20 @@ export default async function LibraryPage({
         </div>
 
         {/* Books Grid */}
-        <div className="grid divide-y divide-zinc-800">
+        <div className="grid divide-y divide-zinc-800/50">
           {filteredBooks.map((book) => (
             <Article key={book.slug} book={book} />
           ))}
 
           {filteredBooks.length === 0 && (
             <div className="text-center py-32">
-              <p className="text-white/60 text-lg">No books found matching your filters.</p>
+              <p className="text-zinc-400 text-lg">No books found matching your filters.</p>
+              <Link
+                href="/library"
+                className="inline-block mt-4 text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-200"
+              >
+                Clear filters
+              </Link>
             </div>
           )}
         </div>
