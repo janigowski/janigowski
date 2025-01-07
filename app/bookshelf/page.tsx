@@ -4,16 +4,43 @@ import { allBooks } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
+import { BookFilters } from "./filters";
 
 export const revalidate = 60;
-export default async function BookshelfPage() {
-  const sorted = allBooks
+
+function sortBooks(books: typeof allBooks) {
+  return books
     .filter((b) => b.published)
-    .sort(
-      (a, b) =>
-        new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
-        new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
-    );
+    .sort((a, b) => {
+      // If both books have dates, sort by date (newest first)
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }
+      // If only one book has a date, the one with date comes first
+      if (a.date) return -1;
+      if (b.date) return 1;
+      // If neither has a date (waiting status), sort by title
+      return a.title.localeCompare(b.title);
+    });
+}
+
+export default async function BookshelfPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const selectedType = searchParams.type as string | undefined;
+  const selectedTag = searchParams.tag as string | undefined;
+
+  const books = sortBooks(allBooks);
+  const types = Array.from(new Set(books.map((book) => book.bookType)));
+  const tags = Array.from(new Set(books.map((book) => book.tag)));
+
+  const filteredBooks = books.filter((book) => {
+    if (selectedType && book.bookType !== selectedType) return false;
+    if (selectedTag && book.tag !== selectedTag) return false;
+    return true;
+  });
 
   return (
     <div className="relative pb-16">
@@ -24,13 +51,21 @@ export default async function BookshelfPage() {
             Bookshelf
           </h2>
           <p className="mt-4 text-zinc-400">
-            Books I've read, am reading, or plan to read.
+            Books I've read or am reading.
           </p>
         </div>
+
+        <BookFilters
+          types={types}
+          tags={tags}
+          selectedType={selectedType}
+          selectedTag={selectedTag}
+        />
+
         <div className="w-full h-px bg-zinc-800" />
 
         <div className="flex flex-col space-y-4">
-          {sorted.map((book) => (
+          {filteredBooks.map((book) => (
             <Card key={book.slug}>
               <Article book={book} />
             </Card>

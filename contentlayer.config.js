@@ -140,6 +140,15 @@ export const Book = defineDocumentType(() => ({
 			options: ['read', 'reading', 'waiting'],
 			required: true,
 		},
+		bookType: {
+			type: 'enum',
+			options: ['paper', 'audiobook', 'ebook'],
+			required: true,
+		},
+		tag: {
+			type: "string",
+			required: true,
+		},
 		description: {
 			type: "string",
 			required: true,
@@ -147,11 +156,9 @@ export const Book = defineDocumentType(() => ({
 		date: {
 			type: "date",
 		},
-		url: {
+		cover: {
 			type: "string",
-		},
-		repository: {
-			type: "string",
+			required: true,
 		},
 	},
 	computedFields,
