@@ -29,10 +29,10 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen">
       <Header book={book} />
 
-      <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
+      <article className="px-4 py-12 mx-auto prose prose-quoteless">
         <Mdx code={book.body.code} />
       </article>
     </div>

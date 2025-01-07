@@ -76,7 +76,7 @@ export default async function LibraryPage({
             <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl font-display">
               Library
             </h1>
-            <p className="mt-8 text-lg text-zinc-400">
+            <p className="mt-8 text-lg text-brand-olive">
               A curated collection of books that have shaped my perspective.
             </p>
           </div>
@@ -86,50 +86,50 @@ export default async function LibraryPage({
         <div className="relative mb-32">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {/* Total Books */}
-            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-white">{stats.total}</span>
-                <span className="mt-2 text-sm text-zinc-400">Books</span>
+                <span className="mt-2 text-sm text-brand-olive">Books</span>
               </div>
             </div>
 
             {/* Read */}
-            <div className="group relative overflow-hidden rounded-2xl bg-emerald-500/5 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-lime/5 p-6">
               <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-emerald-400">{stats.read}</span>
-                <span className="mt-2 text-sm text-zinc-400">Read</span>
+                <span className="text-4xl font-medium text-brand-lime">{stats.read}</span>
+                <span className="mt-2 text-sm text-brand-olive">Read</span>
               </div>
             </div>
 
             {/* Reading */}
-            <div className="group relative overflow-hidden rounded-2xl bg-blue-500/5 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-indigo/5 p-6">
               <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-blue-400">{stats.reading}</span>
-                <span className="mt-2 text-sm text-zinc-400">Reading</span>
+                <span className="text-4xl font-medium text-brand-indigo">{stats.reading}</span>
+                <span className="mt-2 text-sm text-brand-olive">Reading</span>
               </div>
             </div>
 
             {/* Waiting */}
-            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-olive/5 p-6">
               <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-white">{stats.waiting}</span>
-                <span className="mt-2 text-sm text-zinc-400">Waiting</span>
+                <span className="text-4xl font-medium text-brand-olive">{stats.waiting}</span>
+                <span className="mt-2 text-sm text-brand-olive">Waiting</span>
               </div>
             </div>
 
             {/* Most Read Category */}
-            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-6">
               <div className="relative flex flex-col">
                 <span className="text-xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
-                <span className="mt-2 text-sm text-zinc-400">Most Read</span>
+                <span className="mt-2 text-sm text-brand-olive">Most Read</span>
               </div>
             </div>
 
             {/* Completion Rate */}
-            <div className="group relative overflow-hidden rounded-2xl bg-zinc-800/50 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-6">
               <div className="relative flex flex-col">
                 <span className="text-4xl font-medium text-white">{stats.completionRate}%</span>
-                <span className="mt-2 text-sm text-zinc-400">Completed</span>
+                <span className="mt-2 text-sm text-brand-olive">Completed</span>
               </div>
             </div>
           </div>
@@ -146,17 +146,17 @@ export default async function LibraryPage({
         </div>
 
         {/* Books Grid */}
-        <div className="grid divide-y divide-zinc-800/50">
+        <div className="grid divide-y divide-brand-olive/10">
           {filteredBooks.map((book) => (
             <Article key={book.slug} book={book} />
           ))}
 
           {filteredBooks.length === 0 && (
             <div className="text-center py-32">
-              <p className="text-zinc-400 text-lg">No books found matching your filters.</p>
+              <p className="text-brand-olive text-lg">No books found matching your filters.</p>
               <Link
                 href="/library"
-                className="inline-block mt-4 text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-200"
+                className="inline-block mt-4 text-sm text-brand-olive/80 hover:text-brand-lime transition-colors duration-200"
               >
                 Clear filters
               </Link>
