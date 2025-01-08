@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import ScrollToTop from "./components/scroll-to-top";
 import Image from "next/image";
 
 // @TODO: Create OG photo
@@ -84,6 +85,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <ScrollToTop />
           <Analytics />
         </div>
       </body>
