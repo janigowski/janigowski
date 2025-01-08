@@ -32,7 +32,7 @@ export default async function PostPage({ params }: Props) {
     <div className="min-h-screen">
       <Header post={post} />
 
-      <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless prose-invert">
+      <article className="px-4 py-12 mx-auto prose prose-quoteless">
         <Mdx code={post.body.code} />
       </article>
     </div>

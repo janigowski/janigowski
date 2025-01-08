@@ -46,18 +46,71 @@ module.exports = {
 			typography: {
 				DEFAULT: {
 					css: {
-						"code::before": {
+						color: theme => theme('colors.zinc.100'),
+						maxWidth: '65ch',
+						h1: { color: theme => theme('colors.white') },
+						h2: { color: theme => theme('colors.white') },
+						h3: { color: theme => theme('colors.white') },
+						h4: { color: theme => theme('colors.white') },
+						h5: { color: theme => theme('colors.white') },
+						h6: { color: theme => theme('colors.white') },
+						strong: { color: theme => theme('colors.white') },
+						blockquote: {
+							color: theme => theme('colors.zinc.100'),
+							borderLeftColor: theme => theme('colors.brand.lime'),
+						},
+						code: {
+							color: theme => theme('colors.code.accent'),
+							'&::before': { content: '""' },
+							'&::after': { content: '""' },
+						},
+						'code::before': {
 							content: '""',
 						},
-						"code::after": {
+						'code::after': {
 							content: '""',
+						},
+						pre: {
+							backgroundColor: theme => theme('colors.code.bg'),
+							color: theme => theme('colors.code.fg'),
+							borderRadius: theme => theme('borderRadius.md'),
+							padding: theme => theme('spacing.4'),
+							'> code': {
+								color: 'inherit',
+								padding: '0',
+								background: 'none',
+								fontSize: '0.875em',
+							},
+						},
+						a: {
+							color: theme => theme('colors.brand.lime'),
+							textDecoration: 'none',
+							fontWeight: '500',
+							'&:hover': {
+								textDecoration: 'underline',
+							},
+						},
+						hr: { borderColor: theme => theme('colors.zinc.800') },
+						ul: {
+							li: {
+								'&::marker': {
+									color: theme => theme('colors.zinc.400'),
+								},
+							},
+						},
+						ol: {
+							li: {
+								'&::marker': {
+									color: theme => theme('colors.zinc.400'),
+								},
+							},
 						},
 					},
 				},
 				quoteless: {
 					css: {
-						"blockquote p:first-of-type::before": { content: "none" },
-						"blockquote p:first-of-type::after": { content: "none" },
+						'blockquote p:first-of-type::before': { content: 'none' },
+						'blockquote p:first-of-type::after': { content: 'none' },
 					},
 				},
 			},
