@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { allBooks } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
+import { Navigation } from "@/app/components/nav";
 import { Header } from "./header";
 import "./mdx.css";
 
@@ -30,8 +31,8 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
+      <Navigation />
       <Header book={book} />
-
       <article className="px-4 py-12 mx-auto prose prose-quoteless">
         <Mdx code={book.body.code} />
       </article>
