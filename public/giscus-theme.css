@@ -109,6 +109,10 @@ main .gsc-loading-image {
   transition: all 0.2s ease-in-out !important;
 }
 
+.gsc-timeline {
+    margin-top: 40px;
+}
+
 /* Remove borders and add minimal styling */
 .gsc-comment {
   border: none !important;;
