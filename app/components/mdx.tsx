@@ -3,12 +3,14 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import { Keyword } from "./keyword";
 
 function clsx(...args: any) {
 	return args.filter(Boolean).join(" ");
 }
 
 const components = {
+	Keyword,
 	h1: ({ className, ...props }) => (
 		<h1
 			className={clsx(
