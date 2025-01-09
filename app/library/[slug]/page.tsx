@@ -4,6 +4,7 @@ import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
 import { Header } from "./header";
 import "./mdx.css";
+import { Metadata } from "next";
 
 export const revalidate = 60;
 
@@ -12,6 +13,20 @@ type Props = {
     slug: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const book = allBooks.find((book) => book.slug === params.slug);
+
+  if (!book) {
+    return {
+      title: "Book Not Found"
+    };
+  }
+
+  return {
+    title: book.title
+  };
+}
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
   return allBooks

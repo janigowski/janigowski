@@ -5,6 +5,11 @@ import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import Article from "./article";
 import { BookFilters } from "./filters";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Library"
+};
 
 export const revalidate = 60;
 

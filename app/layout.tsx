@@ -10,7 +10,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: {
     default: "janigowski.dev",
-    template: "%s | janigowski.dev",
+    template: "%s :: janigowski.dev",
   },
   description: "Product Engineer. Software Architect. Frontend. Creative.",
   openGraph: {

@@ -4,6 +4,11 @@ import { allPosts } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Posts"
+};
 
 export const revalidate = 60;
 export default async function postsPage() {

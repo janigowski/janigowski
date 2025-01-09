@@ -4,8 +4,14 @@ import { allProjects } from "contentlayer/generated";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
+import { Metadata } from "next";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Projects"
+};
+
 export default async function ProjectsPage() {
   const featured = allProjects.find((project) => project.slug === "exo-lab")!;
   const top2 = allProjects.find((project) => project.slug === "mars-explorer")!;

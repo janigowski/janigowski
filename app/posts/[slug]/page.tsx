@@ -4,6 +4,7 @@ import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
 import { Header } from "./header";
 import "./mdx.css";
+import { Metadata } from "next";
 
 export const revalidate = 60;
 
@@ -12,6 +13,20 @@ type Props = {
     slug: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = allPosts.find((post) => post.slug === params.slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found"
+    };
+  }
+
+  return {
+    title: post.title
+  };
+}
 
 export async function generateStaticParams(): Promise<Props["params"][]> {
   return allPosts
