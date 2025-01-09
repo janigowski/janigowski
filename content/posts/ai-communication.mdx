@@ -1,0 +1,53 @@
+---
+title: "Communicating with AI: Lessons from the Product Team"
+description: "How and why treating AI like team members improves outcomes."
+date: "2025-01-09"
+published: false
+---
+
+As a **software architect** and **product engineer**, I've always believed that the biggest challenges in creating great products aren't technical—they're communicational. In my years of building and studying software, I've seen time and time again how clarity of communication determines the success of a project. Recently, this insight has become even more relevant in an unexpected area: working with **AI assistants** like ChatGPT or Cursor.
+
+## The Metaphor That Changed Everything
+
+Imagine walking into a restaurant, sitting down, and telling the waiter, “I want to eat.” What do you think would happen? Likely, you'd get a confused look. Instead, we study the menu, consider our preferences, and communicate clearly what we’d like to order. <span className="text-orange-500">[Does this analogy imply AI always requires structured context? Are there cases where less structured input works effectively?]</span>
+
+This process mirrors how we should approach **AI interactions**. Just as we tailor our language and abstraction level to different team members—technical jargon for engineers, high-level metaphors for product designers—we need to do the same with **AI**. **Communication** is the bridge to results, whether with humans or machines.
+
+## Why This Matters
+
+The results I’ve achieved with **AI assistants** improved dramatically when I began treating them like team members. I stopped issuing vague commands like “just do it” and instead focused on crafting precise, contextual instructions.
+
+## The EXO_LAB Story
+
+In [<span className="text-brand-lime">EXØ_LAB</span>](/projects/exo-lab), a product I founded, I recently faced an issue with the **Timeline component**. If you've worked with tools like Adobe Premiere Pro or Ableton, you'll be familiar with the concept: dragging a playhead (or needle) to navigate through a timeline. In EXO, this feature is controlled by multiple inputs—mouse, keyboard, and MIDI devices. I encapsulated this functionality as a Use Case using the **Command Pattern** to ensure the architecture supports **extensibility**.
+
+When I asked Cursor, running Claude Sonnet 3.5, to resolve a bug, it provided a working solution—but with a critical flaw. The fix was implemented directly in the Needle component’s event handler. For less experienced engineers, this might appear acceptable. The code worked. But it violated one of my core architectural drivers: **extensibility**. This is what I call a “false positive.” <span className="text-orange-500">[Do you believe less experienced engineers might rely too heavily on **AI** for correctness? How might we mitigate this?]</span>
+
+### A Conversation with Cursor
+
+Here’s where things got interesting. I asked Cursor if it was confident about the placement of the changes and whether it had considered the SOLID principles. It apologized and quickly adjusted its solution. The new implementation:
+
+- Delegated user events (e.g., DragStart, Dragging, DragEnd) to a Timeline Controller.
+- Allowed the Timeline Controller to calculate the new timeline position.
+- Relayed this to the PerformanceView, which evaluated the correct response—like toggling play/pause to avoid audio artifacts.
+- Invoked the **Seek Use Case** in the application core.
+
+By communicating with Cursor as I would with a seasoned engineer, I achieved a clean, extensible solution that aligned with the **Open-Closed Principle**.
+
+## What This Means for AI Era Developers
+
+This example highlights three important lessons:
+
+1. **Precision matters.** Treat your communication with AI assistants as you would with teammates. Provide context, architectural constraints, and clear goals.
+2. **AI needs guidance.** A solution that works isn't always the right one. Without explicit instructions, AI may violate your project's architectural drivers. <span className="text-orange-500">[How do we balance guidance with over-specifying instructions?]</span>
+3. **Knowledge is your compass.** Concepts like **software modeling**, design principles, and application architecture become critical tools for steering AI in the right direction.
+
+## Becoming Captains of the AI Ship
+
+If I were to use a metaphor, I’d say we, as software creators, are the captains of a ship. The **chat interface** is our steering wheel, and AI is the ship. To navigate effectively, we must know our destination and understand the conditions that influence our journey. <span className="text-orange-500">[Do you see risks in this analogy if **AI** capabilities outpace human understanding in specific domains?]</span>
+
+## Next Steps for You
+
+In this new **AI-driven era**, honing your understanding of **software principles** and **communication skills** is more important than ever. By reading books and articles on topics like **software design** and **product management**, you can expand your vocabulary and refine your ability to direct AI. If you’re looking for recommendations, check out my curated list in [My Library](/library).
+
+Let’s embrace this era with the precision and care it demands. After all, the better we communicate, the better our results—whether with humans or AI.
