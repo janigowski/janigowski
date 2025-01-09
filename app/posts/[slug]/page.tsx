@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
 import { Navigation } from "@/app/components/nav";
+import { Comments } from "@/app/components/comments";
 import { Header } from "./header";
 import "./mdx.css";
 import { Metadata } from "next";
@@ -50,6 +51,7 @@ export default async function PostPage({ params }: Props) {
       <Header post={post} />
       <article className="px-4 py-12 mx-auto prose prose-quoteless">
         <Mdx code={post.body.code} />
+        <Comments />
       </article>
     </div>
   );
