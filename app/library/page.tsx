@@ -89,54 +89,58 @@ export default async function LibraryPage({
 
         {/* Statistics */}
         <div className="relative mb-32">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Total Books */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
               <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-white">{stats.total}</span>
-                <span className="mt-2 text-sm text-brand-olive">Books</span>
-              </div>
-            </div>
-
-            {/* Read */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-lime/5 p-6">
-              <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-brand-lime">{stats.read}</span>
-                <span className="mt-2 text-sm text-brand-olive">Read</span>
-              </div>
-            </div>
-
-            {/* Reading */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-indigo/5 p-6">
-              <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-brand-indigo">{stats.reading}</span>
-                <span className="mt-2 text-sm text-brand-olive">Reading</span>
-              </div>
-            </div>
-
-            {/* Waiting */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-olive/5 p-6">
-              <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-brand-olive">{stats.waiting}</span>
-                <span className="mt-2 text-sm text-brand-olive">Waiting</span>
-              </div>
-            </div>
-
-            {/* Most Read Category */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-6">
-              <div className="relative flex flex-col">
-                <span className="text-xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
-                <span className="mt-2 text-sm text-brand-olive">Most Read</span>
+                <span className="text-6xl font-medium text-white">{stats.total}</span>
+                <span className="mt-4 text-base text-brand-olive font-medium">Total Books</span>
               </div>
             </div>
 
             {/* Completion Rate */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-6">
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
               <div className="relative flex flex-col">
-                <span className="text-4xl font-medium text-white">{stats.completionRate}%</span>
-                <span className="mt-2 text-sm text-brand-olive">Completed</span>
+                <span className="text-6xl font-medium text-white">{stats.completionRate}%</span>
+                <span className="mt-4 text-base text-brand-olive font-medium">Completion Rate</span>
               </div>
             </div>
+
+            {/* Most Read Category */}
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
+              <div className="relative flex flex-col">
+                <span className="text-3xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
+                <span className="mt-4 text-base text-brand-olive font-medium">Most Read Category</span>
+              </div>
+            </div>
+
+
+
+            {/* Read */}
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-lime/5 p-8 hover:bg-brand-lime/10 transition-colors duration-300">
+              <div className="relative flex flex-col">
+                <span className="text-6xl font-medium text-brand-lime">{stats.read}</span>
+                <span className="mt-4 text-base text-brand-olive font-medium">Read</span>
+              </div>
+            </div>
+
+            {/* Reading */}
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-indigo/5 p-8 hover:bg-brand-indigo/10 transition-colors duration-300">
+              <div className="relative flex flex-col">
+                <span className="text-6xl font-medium text-brand-indigo">{stats.reading}</span>
+                <span className="mt-4 text-base text-brand-olive font-medium">Reading</span>
+              </div>
+            </div>
+
+            {/* Waiting */}
+            <div className="group relative overflow-hidden rounded-2xl bg-brand-olive/5 p-8 hover:bg-brand-olive/10 transition-colors duration-300">
+              <div className="relative flex flex-col">
+                <span className="text-6xl font-medium text-brand-olive">{stats.waiting}</span>
+                <span className="mt-4 text-base text-brand-olive font-medium">Waiting</span>
+              </div>
+            </div>
+
+
           </div>
         </div>
 
