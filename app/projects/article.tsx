@@ -1,10 +1,8 @@
-import type { Project } from "@/.contentlayer/generated";
+import type { Project } from "contentlayer/generated";
 import Link from "next/link";
-import { Eye, View } from "lucide-react";
 
 type Props = {
 	project: Project;
-	// views: number;
 };
 
 export const Article: React.FC<Props> = ({ project }) => {

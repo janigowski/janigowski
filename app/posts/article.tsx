@@ -1,4 +1,4 @@
-import type { Post } from "@/.contentlayer/generated";
+import type { Post } from "contentlayer/generated";
 import Link from "next/link";
 import { Eye, View } from "lucide-react";
 

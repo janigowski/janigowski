@@ -126,6 +126,7 @@ export const Book = defineDocumentType(() => ({
 	fields: {
 		published: {
 			type: "boolean",
+			required: true,
 		},
 		title: {
 			type: "string",
