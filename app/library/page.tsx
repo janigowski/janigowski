@@ -31,8 +31,8 @@ function sortBooks(books: typeof allBooks) {
 
 function getStatistics(books: typeof allBooks) {
   const publishedBooks = books.filter(b => b.published);
-  const readBooks = publishedBooks.filter(b => b.status === 'read');
-  const readingBooks = publishedBooks.filter(b => b.status === 'reading');
+  const readBooks = publishedBooks.filter(b => b.status === 'read' || b.status === 'listened');
+  const readingBooks = publishedBooks.filter(b => b.status === 'reading' || b.status === 'listening');
   const waitingBooks = publishedBooks.filter(b => b.status === 'waiting');
   const booksByTag = publishedBooks.reduce((acc, book) => {
     acc[book.tag] = (acc[book.tag] || 0) + 1;
@@ -74,10 +74,10 @@ export default async function LibraryPage({
       <Navigation />
 
       {/* Main Content */}
-      <div className="relative px-6 pt-24 pb-16 mx-auto max-w-7xl lg:px-8 md:pt-32 lg:pt-40">
+      <div className="relative px-6 pt-24 pb-16 mx-auto max-w-4xl lg:px-8 md:pt-32 lg:pt-40">
         {/* Header */}
         <div className="relative mb-32">
-          <div className="max-w-3xl">
+          <div className="max-w-2xl">
             <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl font-display">
               Library
             </h1>

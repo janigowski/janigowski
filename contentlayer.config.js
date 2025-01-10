@@ -137,7 +137,7 @@ export const Book = defineDocumentType(() => ({
 		},
 		status: {
 			type: 'enum',
-			options: ['read', 'reading', 'waiting'],
+			options: ['read', 'reading', 'waiting', 'listened', 'listening'],
 			required: true,
 		},
 		bookType: {

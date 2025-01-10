@@ -12,7 +12,15 @@ export default function Article({ book }: { book: Book }) {
 		})
 		: '';
 
-	const hasReview = book.status === 'read' && book.body.raw.trim().length > 0;
+	const hasReview = (book.status === 'read' || book.status === 'listened') && book.body.raw.trim().length > 0;
+	const isInProgress = book.status === 'reading' || book.status === 'listening';
+	const statusClass = {
+		'read': 'bg-brand-lime/10 text-brand-lime',
+		'listened': 'bg-brand-lime/10 text-brand-lime',
+		'reading': 'bg-brand-indigo/10 text-brand-indigo animate-pulse',
+		'listening': 'bg-brand-indigo/10 text-brand-indigo animate-pulse',
+		'waiting': 'bg-brand-olive/10 text-brand-olive',
+	}[book.status] || 'bg-brand-olive/10 text-brand-olive';
 
 	return (
 		<article className={clsx(
@@ -34,12 +42,9 @@ export default function Article({ book }: { book: Book }) {
 			<div className="flex flex-col flex-auto min-w-0">
 				<div className="flex items-center gap-4 text-xs">
 					<span className={clsx(
-						'px-2 py-1 text-xs font-medium rounded-md',
-						{
-							'bg-brand-lime/10 text-brand-lime': book.status === 'read',
-							'bg-brand-indigo/10 text-brand-indigo': book.status === 'reading',
-							'bg-brand-olive/10 text-brand-olive': book.status === 'waiting',
-						}
+						'px-2 py-1 text-xs font-medium rounded-md transition-opacity duration-1000',
+						statusClass,
+						isInProgress && 'animate-pulse'
 					)}>
 						{book.status}
 					</span>

@@ -43,8 +43,8 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
     }
 
     return (
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
-            <div className="space-y-3 flex-1">
+        <div className="flex flex-col gap-8">
+            <div className="space-y-3">
                 <h3 className="text-sm font-medium text-zinc-300">Type</h3>
                 <div className="flex flex-wrap gap-2">
                     <Link
@@ -87,7 +87,7 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
                 </div>
             </div>
 
-            <div className="space-y-3 flex-1">
+            <div className="space-y-3">
                 <h3 className="text-sm font-medium text-zinc-300">Tag</h3>
                 <div className="flex flex-wrap gap-2">
                     <Link
