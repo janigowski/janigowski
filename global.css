@@ -7,4 +7,12 @@
   .text-edge-outline {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
+
+  ::selection {
+    @apply bg-brand-lime/100 text-zinc-800;
+  }
+
+  ::-moz-selection {
+    @apply bg-brand-lime/100 text-zinc-800;
+  }
 }
