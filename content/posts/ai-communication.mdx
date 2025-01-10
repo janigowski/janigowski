@@ -19,7 +19,7 @@ The results I've achieved with **AI assistants** improved dramatically when I be
 
 ## The EXO_LAB Story
 
-In <Keyword>EXØ_LAB</Keyword>, a product I founded, I recently faced an issue with the Timeline component. If you've worked with tools like Adobe Premiere Pro or Ableton, you'll be familiar with the concept: dragging a playhead (or needle) to navigate through a timeline. In EXO, this feature is controlled by multiple inputs—mouse, keyboard, and MIDI devices. I encapsulated this functionality as a Use Case using the <Keyword>Command Pattern</Keyword> to ensure the architecture supports extensibility.
+In [EXØ_LAB](/projects/exo-lab), a digital audio-visual performance platform I founded, I recently faced an issue with the Timeline component. If you've worked with tools like Adobe Premiere Pro or Ableton, you'll be familiar with the concept: dragging a playhead (or needle) to navigate through a timeline. In EXO, this feature is controlled by multiple inputs—mouse, keyboard, and MIDI devices. I encapsulated this functionality as a Use Case using the <Keyword>Command Pattern</Keyword> to ensure the architecture supports extensibility. You can see a practical example of this approach in my article about [multichannel audio output](/posts/multichannel-audio-output), where I discuss similar architectural patterns.
 
 When I asked Cursor, running Claude Sonnet 3.5, to resolve a bug, it provided a working solution—but with a critical flaw. The fix was implemented directly in the <Keyword>Needle component</Keyword>'s event handler. For less experienced engineers, this might appear acceptable. The code worked. But it violated one of my core architectural drivers: **extensibility**. This is what I call a "false positive."
 
@@ -38,9 +38,9 @@ By communicating with Cursor as I would with a seasoned engineer, I achieved a c
 
 This example highlights three important lessons:
 
-1. **Precision matters.** Treat your communication with AI assistants as you would with teammates. Provide context, architectural constraints, and clear goals.
+1. **Precision matters.** Treat your communication with AI assistants as you would with teammates. Provide context, architectural constraints, and clear goals. I've applied this approach successfully in [updating GitHub repositories using AI](/posts/update-github-repos-using-ai).
 2. **AI needs guidance.** A solution that works isn't always the right one. Without explicit instructions, AI may violate your project's architectural drivers.
-3. **Knowledge is your compass.** Concepts like <Keyword>software modeling</Keyword>, design principles, and application architecture become critical tools for steering AI in the right direction.
+3. **Knowledge is your compass.** Concepts like <Keyword>software modeling</Keyword>, design principles, and application architecture become critical tools for steering AI in the right direction. For a deeper dive into these principles, check out my review of [Design It!](/library/michael-keeling-design-it) by Michael Keeling.
 
 ## Becoming Captains of the AI Ship
 

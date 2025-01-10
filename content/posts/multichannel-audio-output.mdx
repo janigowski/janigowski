@@ -5,7 +5,7 @@ date: '2025-01-05'
 published: true
 ---
 
-Ever tried playing different sounds through specific outputs in your web app? Like sending the kick drum to outputs `1-2` and vocals to `3-4`? If you've worked with professional audio interfaces like `Allen & Heath PX5`, you know this should be straightforward. But in web browsers? Not so much! 🎧
+Ever tried playing different sounds through specific outputs in your web app? Like sending the kick drum to outputs `1-2` and vocals to `3-4`? If you've worked with professional audio interfaces like `Allen & Heath PX5`, you know this should be straightforward. But in web browsers? Not so much! 🎧 This article shares the audio routing solutions I developed for [EXØ_LAB](/projects/exo-lab), my digital audio-visual performance platform.
 
 ## The Challenge: Browser Audio is Stereo-Only by Default
 
@@ -20,9 +20,9 @@ But here's the catch: web browsers are designed with simple `stereo output` in m
 
 ## The Magic Behind Channel Splitting and Merging
 
-Think about this: humans have two ears, so it’s only natural that our audio devices cater to this with two speakers—one for the left ear and one for the right. This is so commonplace in our lives—headphones, computer speakers, TVs, monitors—that we might never give it a second thought. But if you stop and consider it, most music and audio tracks we listen to are designed as two separate streams, one for each speaker. This stereo arrangement is so deeply ingrained in how we consume sound that it often goes unnoticed.
+Think about this: humans have two ears, so it's only natural that our audio devices cater to this with two speakers—one for the left ear and one for the right. This is so commonplace in our lives—headphones, computer speakers, TVs, monitors—that we might never give it a second thought. But if you stop and consider it, most music and audio tracks we listen to are designed as two separate streams, one for each speaker. This stereo arrangement is so deeply ingrained in how we consume sound that it often goes unnoticed.
 
-However, this division becomes critical when working with audio mixers. These devices, whether physical hardware or virtual software, deal explicitly with the concept of left and right audio channels. Each physical mixer channel—the fader you slide up and down—actually handles two audio channels: one for the left and one for the right.
+However, this division becomes critical when working with audio mixers. These devices, whether physical hardware or virtual software, deal explicitly with the concept of left and right audio channels. Each physical mixer channel—the fader you slide up and down—actually handles two audio channels: one for the left and one for the right. This is exactly the challenge I faced when building the audio engine for [EXØ_LAB](/projects/exo-lab#advanced-audio-management).
 
 In the world of audio programming, routing stereo audio to a physical mixer channel involves a few key steps:
 1. **Splitting the stereo track**: Audio is separated into its left and right channels to work with them independently.
@@ -31,13 +31,13 @@ In the world of audio programming, routing stereo audio to a physical mixer chan
 
 This process illustrates how audio programming operates on both a high level—dealing with tracks, speakers, and mixer channels—and a low level, where individual audio streams are manipulated to achieve the desired outcome.
 
-When you're writing audio software, such as routing a stereo track to a mixer channel using the WebAudio API or Tone.js, these steps become explicit. You’re not just “sending” audio to the mixer; you’re directing and reshaping it at a fundamental level to match the physical infrastructure of the audio system.
+When you're writing audio software, such as routing a stereo track to a mixer channel using the WebAudio API or Tone.js, these steps become explicit. You're not just "sending" audio to the mixer; you're directing and reshaping it at a fundamental level to match the physical infrastructure of the audio system.
 
-Understanding these concepts bridges the gap between everyday listening and professional audio workflows. It’s what makes the seemingly simple act of playing a song through specific speakers a fascinating technical challenge—and why working with tools like WebAudio and Tone.js feels like uncovering the magic of sound engineering. 🎧
+Understanding these concepts bridges the gap between everyday listening and professional audio workflows. It's what makes the seemingly simple act of playing a song through specific speakers a fascinating technical challenge—and why working with tools like WebAudio and Tone.js feels like uncovering the magic of sound engineering. 🎧
 
 ## The Solution: `Tone.js` + `WebAudio` Channel Routing
 
-Let's make this happen! First, we need to set up our `AudioContext` with the right channel configuration:
+Let's make this happen! First, we need to set up our `AudioContext` with the right channel configuration. If you're interested in how I approach software architecture and clean code practices in audio applications, check out my article on [engineering AI communication](/posts/ai-communication) where I discuss similar principles.
 
 ```typescript
 interface AudioContextConfig {
@@ -154,11 +154,7 @@ await audioManager.selectPX5Interface();
 
 ## Important Note About `Transport`
 
-Let me share a tricky issue I encountered with `Tone.js`. Everything looked perfect in my code - `Transport` started, timer was increasing, audio was connected to the channels. But... silence. Complete silence. No errors, nothing in the console, just silence. 🤔
-
-After hours of debugging and diving into the Tone.js source code, I discovered something interesting. While both `Tone.Transport` and `Tone.getTransport()` should technically work the same way (according to the docs), they don't always behave identically in practice. I suspect there might be two `Transport` instances running in some cases, creating a "false positive" situation. I even read the Tone.js source code to understand the issue better.
-
-I spent hours debugging this so you don't have to. Don't thank me! 😄
+Let me share a tricky issue I encountered with `Tone.js`. Everything looked perfect in my code - `Transport` started, timer was increasing, audio was connected to the channels. But... silence. Complete silence. No errors, nothing in the console, just silence. 🤔 This is what I call a "false positive" - a situation I also discuss in my article about [letting your code speak to you](/posts/let-your-code-speak-to-you).
 
 The solution? Always use `getTransport()`:
 
@@ -246,6 +242,4 @@ The key here is that we're quantizing the channel switches to musical subdivisio
 
 ## Need Help?
 
-Are you implementing multichannel audio in your web app? Running into issues? I'd love to help! Just head over to my [contact page](/contact), and let's solve those audio routing challenges together. Whether it's a bug you can't squash or you need clarification on the concepts, I'm here to help! 🤝
-
-Remember: Working with professional audio on the web is challenging, but with the right tools and understanding of the fundamentals, you can build something that works reliably. Keep experimenting! 🎹 
+Are you implementing multichannel audio in your web app? Running into issues? I'd love to help! Just head over to my [contact page](/contact), and let's solve those audio routing challenges together. Whether it's a bug you can't squash or you need clarification on the concepts, I'm here to help! If you're interested in the development process and architecture behind audio applications, you might also enjoy reading about my [focus and coding music](/posts/focus-and-coding-music) setup. 🤝 
