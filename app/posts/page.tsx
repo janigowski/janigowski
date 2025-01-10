@@ -1,10 +1,9 @@
-import Link from "next/link";
 import React from "react";
 import { allPosts } from "contentlayer/generated";
-import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
 import { Metadata } from "next";
+import { RegularHeader } from "../components/regular-header";
 
 export const metadata: Metadata = {
   title: "Posts"
@@ -21,28 +20,22 @@ export default async function postsPage() {
     );
 
   return (
-    <div className="relative pb-16">
-      <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
-        <div className="max-w-2xl mx-auto lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-            Posts
-          </h2>
-        </div>
+    <>
+      <RegularHeader
+        title="Posts"
+        description="Just sharing my perspective on things"
+      />
 
-        <div className="hidden w-full h-px md:block bg-zinc-800" />
-
-        <div className="flex flex-col space-y-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .map((post) => (
-                <Card key={post.slug}>
-                  <Article post={post} />
-                </Card>
-              ))}
-          </div>
+      <div className="flex flex-col space-y-4 mx-auto lg:mx-0 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4">
+          {sorted
+            .map((post) => (
+              <Card key={post.slug}>
+                <Article post={post} />
+              </Card>
+            ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }

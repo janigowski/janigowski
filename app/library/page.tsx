@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { allBooks } from "contentlayer/generated";
-import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import Article from "./article";
 import { BookFilters } from "./filters";
 import { Metadata } from "next";
+import { RegularHeader } from "../components/regular-header";
 
 export const metadata: Metadata = {
   title: "Library"
@@ -70,109 +70,99 @@ export default async function LibraryPage({
   });
 
   return (
-    <div className="relative min-h-screen">
-      <Navigation />
+    <>
 
-      {/* Main Content */}
-      <div className="relative px-6 pt-24 pb-16 mx-auto max-w-4xl lg:px-8 md:pt-32 lg:pt-40">
-        {/* Header */}
-        <div className="relative mb-32">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl font-display">
-              Library
-            </h1>
-            <p className="mt-8 text-lg text-brand-olive">
-              A curated collection of books that have shaped my perspective.
-            </p>
+
+      <RegularHeader
+        title="Library"
+        description="A curated collection of books that have shaped my perspective"
+      />
+
+      {/* Statistics */}
+      <div className="relative mb-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Total Books */}
+          <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
+            <div className="relative flex flex-col">
+              <span className="text-6xl font-medium text-white">{stats.total}</span>
+              <span className="mt-4 text-base text-brand-olive font-medium">Total Books</span>
+            </div>
           </div>
-        </div>
 
-        {/* Statistics */}
-        <div className="relative mb-32">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Total Books */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
-              <div className="relative flex flex-col">
-                <span className="text-6xl font-medium text-white">{stats.total}</span>
-                <span className="mt-4 text-base text-brand-olive font-medium">Total Books</span>
-              </div>
+          {/* Completion Rate */}
+          <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
+            <div className="relative flex flex-col">
+              <span className="text-6xl font-medium text-white">{stats.completionRate}%</span>
+              <span className="mt-4 text-base text-brand-olive font-medium">Completion Rate</span>
             </div>
-
-            {/* Completion Rate */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
-              <div className="relative flex flex-col">
-                <span className="text-6xl font-medium text-white">{stats.completionRate}%</span>
-                <span className="mt-4 text-base text-brand-olive font-medium">Completion Rate</span>
-              </div>
-            </div>
-
-            {/* Most Read Category */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
-              <div className="relative flex flex-col">
-                <span className="text-3xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
-                <span className="mt-4 text-base text-brand-olive font-medium">Most Read Category</span>
-              </div>
-            </div>
-
-
-
-            {/* Read */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-lime/5 p-8 hover:bg-brand-lime/10 transition-colors duration-300">
-              <div className="relative flex flex-col">
-                <span className="text-6xl font-medium text-brand-lime">{stats.read}</span>
-                <span className="mt-4 text-base text-brand-olive font-medium">Read</span>
-              </div>
-            </div>
-
-            {/* Reading */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-indigo/5 p-8 hover:bg-brand-indigo/10 transition-colors duration-300">
-              <div className="relative flex flex-col">
-                <span className="text-6xl font-medium text-brand-indigo">{stats.reading}</span>
-                <span className="mt-4 text-base text-brand-olive font-medium">Reading</span>
-              </div>
-            </div>
-
-            {/* Waiting */}
-            <div className="group relative overflow-hidden rounded-2xl bg-brand-olive/5 p-8 hover:bg-brand-olive/10 transition-colors duration-300">
-              <div className="relative flex flex-col">
-                <span className="text-6xl font-medium text-brand-olive">{stats.waiting}</span>
-                <span className="mt-4 text-base text-brand-olive font-medium">Waiting</span>
-              </div>
-            </div>
-
-
           </div>
-        </div>
 
-        {/* Filters */}
-        <div className="mb-24">
-          <BookFilters
-            types={types}
-            tags={tags}
-            selectedType={selectedType}
-            selectedTag={selectedTag}
-          />
-        </div>
-
-        {/* Books Grid */}
-        <div className="grid divide-y divide-brand-olive/10">
-          {filteredBooks.map((book) => (
-            <Article key={book.slug} book={book} />
-          ))}
-
-          {filteredBooks.length === 0 && (
-            <div className="text-center py-32">
-              <p className="text-brand-olive text-lg">No books found matching your filters.</p>
-              <Link
-                href="/library"
-                className="inline-block mt-4 text-sm text-brand-olive/80 hover:text-brand-lime transition-colors duration-200"
-              >
-                Clear filters
-              </Link>
+          {/* Most Read Category */}
+          <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
+            <div className="relative flex flex-col">
+              <span className="text-3xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
+              <span className="mt-4 text-base text-brand-olive font-medium">Most Read Category</span>
             </div>
-          )}
+          </div>
+
+
+
+          {/* Read */}
+          <div className="group relative overflow-hidden rounded-2xl bg-brand-lime/5 p-8 hover:bg-brand-lime/10 transition-colors duration-300">
+            <div className="relative flex flex-col">
+              <span className="text-6xl font-medium text-brand-lime">{stats.read}</span>
+              <span className="mt-4 text-base text-brand-olive font-medium">Read</span>
+            </div>
+          </div>
+
+          {/* Reading */}
+          <div className="group relative overflow-hidden rounded-2xl bg-brand-indigo/5 p-8 hover:bg-brand-indigo/10 transition-colors duration-300">
+            <div className="relative flex flex-col">
+              <span className="text-6xl font-medium text-brand-indigo">{stats.reading}</span>
+              <span className="mt-4 text-base text-brand-olive font-medium">Reading</span>
+            </div>
+          </div>
+
+          {/* Waiting */}
+          <div className="group relative overflow-hidden rounded-2xl bg-brand-olive/5 p-8 hover:bg-brand-olive/10 transition-colors duration-300">
+            <div className="relative flex flex-col">
+              <span className="text-6xl font-medium text-brand-olive">{stats.waiting}</span>
+              <span className="mt-4 text-base text-brand-olive font-medium">Waiting</span>
+            </div>
+          </div>
+
+
         </div>
       </div>
-    </div>
+
+      {/* Filters */}
+      <div className="mb-24">
+        <BookFilters
+          types={types}
+          tags={tags}
+          selectedType={selectedType}
+          selectedTag={selectedTag}
+        />
+      </div>
+
+      {/* Books Grid */}
+      <div className="grid divide-y divide-brand-olive/10">
+        {filteredBooks.map((book) => (
+          <Article key={book.slug} book={book} />
+        ))}
+
+        {filteredBooks.length === 0 && (
+          <div className="text-center py-32">
+            <p className="text-brand-olive text-lg">No books found matching your filters.</p>
+            <Link
+              href="/library"
+              className="inline-block mt-4 text-sm text-brand-olive/80 hover:text-brand-lime transition-colors duration-200"
+            >
+              Clear filters
+            </Link>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
