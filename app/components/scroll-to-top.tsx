@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 
 export default function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false);
+    const scrollThreshold = 300;
 
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.scrollY > 300) {
+            if (window.scrollY > scrollThreshold) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -28,14 +29,10 @@ export default function ScrollToTop() {
         });
     };
 
-    if (!isVisible) {
-        return null;
-    }
-
     return (
         <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50"
+            className={`${isVisible ? "opacity-100" : "opacity-0"} fixed bottom-8 right-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50`}
             aria-label="Scroll to top"
         >
             <svg
