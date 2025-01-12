@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { allProjects } from "contentlayer/generated";
 import { Mdx } from "@/app/components/mdx";
-import { Navigation } from "@/app/components/nav";
 import { Comments } from "@/app/components/comments";
 import { Header } from "./header";
 import "./mdx.css";
@@ -37,7 +36,7 @@ export async function generateStaticParams(): Promise<Props["params"][]> {
     }));
 }
 
-export default async function PostPage({ params }: Props) {
+export default function ProjectPage({ params }: Props) {
   const slug = params?.slug;
   const project = allProjects.find((project) => project.slug === slug);
 
@@ -47,7 +46,6 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
       <Header project={project} />
       <article className="px-4 pb-12 mx-auto prose prose-quoteless">
         <Mdx code={project.body.code} />
