@@ -102,7 +102,7 @@ export default async function LibraryPage({
       </div>
 
       {/* Books Grid */}
-      <div className="grid divide-y divide-brand-olive/10">
+      <div className="grid auto-rows-min	divide-y divide-brand-olive/10 min-h-[100vh]">
         {filteredBooks.map((book) => (
           <Article key={book.slug} book={book} />
         ))}
@@ -112,6 +112,7 @@ export default async function LibraryPage({
             <p className="text-brand-olive text-lg">No books found matching your filters.</p>
             <Link
               href="/library"
+              scroll={false}
               className="inline-block mt-4 text-sm text-brand-olive/80 hover:text-brand-lime transition-colors duration-200"
             >
               Clear filters

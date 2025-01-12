@@ -48,6 +48,7 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
                 <h3 className="text-sm font-medium text-zinc-300">Type</h3>
                 <div className="flex flex-wrap gap-2">
                     <Link
+                        scroll={false}
                         href={getFilterUrl(null, selectedTag)}
                         className={`group text-sm px-4 py-2 rounded-xl transition-all duration-300 ${!selectedType
                             ? "bg-zinc-800/80 text-zinc-100 shadow-lg shadow-zinc-900/20"
@@ -66,6 +67,7 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
                     </Link>
                     {types.map((bookType) => (
                         <Link
+                            scroll={false}
                             key={bookType}
                             href={getFilterUrl(bookType, selectedTag)}
                             className={`group text-sm px-4 py-2 rounded-xl transition-all duration-300 ${selectedType === bookType
@@ -91,6 +93,7 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
                 <h3 className="text-sm font-medium text-zinc-300">Tag</h3>
                 <div className="flex flex-wrap gap-2">
                     <Link
+                        scroll={false}
                         href={getFilterUrl(selectedType, null)}
                         className={`group text-sm px-4 py-2 rounded-xl transition-all duration-300 ${!selectedTag
                             ? "bg-zinc-800/80 text-zinc-100 shadow-lg shadow-zinc-900/20"
@@ -109,6 +112,7 @@ export function BookFilters({ types, tags, selectedType, selectedTag }: Props) {
                     </Link>
                     {tags.map((tag) => (
                         <Link
+                            scroll={false}
                             key={tag}
                             href={getFilterUrl(selectedType, tag)}
                             className={`group text-sm px-4 py-2 rounded-xl transition-all duration-300 ${selectedTag === tag
