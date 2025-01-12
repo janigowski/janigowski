@@ -6,6 +6,7 @@ import Article from "./article";
 import { BookFilters } from "./filters";
 import { Metadata } from "next";
 import { RegularHeader } from "../components/regular-header";
+import { LibraryStats } from "../components/library-stats";
 
 export const metadata: Metadata = {
   title: "Library"
@@ -34,18 +35,30 @@ function getStatistics(books: typeof allBooks) {
   const readBooks = publishedBooks.filter(b => b.status === 'read' || b.status === 'listened');
   const readingBooks = publishedBooks.filter(b => b.status === 'reading' || b.status === 'listening');
   const waitingBooks = publishedBooks.filter(b => b.status === 'waiting');
-  const booksByTag = publishedBooks.reduce((acc, book) => {
-    acc[book.tag] = (acc[book.tag] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-  const mostReadTag = Object.entries(booksByTag).sort((a, b) => b[1] - a[1])[0];
+
+  // Count completed books by tag
+  const completedBooksByTag: Record<string, number> = {};
+  for (const book of readBooks) {
+    completedBooksByTag[book.tag] = (completedBooksByTag[book.tag] || 0) + 1;
+  }
+
+  // Find tag with most completed books
+  let maxCount = 0;
+  let mostReadTag = '';
+
+  for (const [tag, count] of Object.entries(completedBooksByTag)) {
+    if (count > maxCount) {
+      maxCount = count;
+      mostReadTag = tag;
+    }
+  }
 
   return {
     total: publishedBooks.length,
     read: readBooks.length,
     reading: readingBooks.length,
     waiting: waitingBooks.length,
-    mostReadCategory: mostReadTag ? `${mostReadTag[0]} (${mostReadTag[1]})` : 'None',
+    mostReadCategory: maxCount > 0 ? `${mostReadTag} (${maxCount})` : 'None',
     completionRate: Math.round((readBooks.length / publishedBooks.length) * 100)
   };
 }
@@ -71,69 +84,12 @@ export default async function LibraryPage({
 
   return (
     <>
-
-
       <RegularHeader
         title="Library"
         description="A curated collection of books that have shaped my perspective"
       />
 
-      {/* Statistics */}
-      <div className="relative mb-32">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Total Books */}
-          <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
-            <div className="relative flex flex-col">
-              <span className="text-6xl font-medium text-white">{stats.total}</span>
-              <span className="mt-4 text-base text-brand-olive font-medium">Total Books</span>
-            </div>
-          </div>
-
-          {/* Completion Rate */}
-          <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
-            <div className="relative flex flex-col">
-              <span className="text-6xl font-medium text-white">{stats.completionRate}%</span>
-              <span className="mt-4 text-base text-brand-olive font-medium">Completion Rate</span>
-            </div>
-          </div>
-
-          {/* Most Read Category */}
-          <div className="group relative overflow-hidden rounded-2xl bg-brand-purple-dark/5 p-8 hover:bg-brand-purple-dark/10 transition-colors duration-300">
-            <div className="relative flex flex-col">
-              <span className="text-3xl font-medium text-white line-clamp-2">{stats.mostReadCategory}</span>
-              <span className="mt-4 text-base text-brand-olive font-medium">Most Read Category</span>
-            </div>
-          </div>
-
-
-
-          {/* Read */}
-          <div className="group relative overflow-hidden rounded-2xl bg-brand-lime/5 p-8 hover:bg-brand-lime/10 transition-colors duration-300">
-            <div className="relative flex flex-col">
-              <span className="text-6xl font-medium text-brand-lime">{stats.read}</span>
-              <span className="mt-4 text-base text-brand-olive font-medium">Read</span>
-            </div>
-          </div>
-
-          {/* Reading */}
-          <div className="group relative overflow-hidden rounded-2xl bg-brand-indigo/5 p-8 hover:bg-brand-indigo/10 transition-colors duration-300">
-            <div className="relative flex flex-col">
-              <span className="text-6xl font-medium text-brand-indigo">{stats.reading}</span>
-              <span className="mt-4 text-base text-brand-olive font-medium">Reading</span>
-            </div>
-          </div>
-
-          {/* Waiting */}
-          <div className="group relative overflow-hidden rounded-2xl bg-brand-olive/5 p-8 hover:bg-brand-olive/10 transition-colors duration-300">
-            <div className="relative flex flex-col">
-              <span className="text-6xl font-medium text-brand-olive">{stats.waiting}</span>
-              <span className="mt-4 text-base text-brand-olive font-medium">Waiting</span>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
+      <LibraryStats stats={stats} />
 
       {/* Filters */}
       <div className="mb-24">
