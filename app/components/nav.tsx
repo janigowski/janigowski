@@ -57,10 +57,10 @@ export const Navigation: React.FC = () => {
 							Library
 						</Link>
 						<Link
-							href="/public-speaking"
+							href="/speaking"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
 						>
-							Public Speaking
+							Speaking
 						</Link>
 						<Link
 							href="/mentoring"
@@ -110,11 +110,11 @@ export const Navigation: React.FC = () => {
 							Library
 						</Link>
 						<Link
-							href="/public-speaking"
+							href="/speaking"
 							className="block duration-200 text-zinc-400 hover:text-zinc-100"
 							onClick={() => setIsMenuOpen(false)}
 						>
-							Public Speaking
+							Speaking
 						</Link>
 						<Link
 							href="/mentoring"
