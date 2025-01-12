@@ -1,6 +1,9 @@
 import { RegularHeader } from '../components/regular-header'
 import ConferenceItem from '../components/conference-item'
 import { Metadata } from 'next'
+import Link from 'next/link'
+import { Keyword } from '../components/keyword'
+import { CallToAction } from '../components/call-to-action'
 
 export const metadata: Metadata = {
     title: 'Public Speaking'
@@ -28,7 +31,7 @@ export default function PublicSpeaking() {
                 <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight text-zinc-100 first:mt-0">
                     Conference Talks
                 </h2>
-                <div className="flex flex-col space-y-12 mt-8">
+                <div className="flex flex-col divide-y divide-zinc-800 mt-8">
                     <ConferenceItem
                         date="2022"
                         place="National Stadium / PL"
@@ -42,7 +45,7 @@ export default function PublicSpeaking() {
                         place="Online"
                         conference="Netguru Internal"
                     >
-                        Using Gatsby, GraphlQL, YAML, THREE.js and GSAP to create innovative knowledge hub
+                        Using Gatsby, GraphQL, YAML, THREE.js and GSAP to create innovative knowledge hub
                     </ConferenceItem>
 
                     <ConferenceItem
@@ -94,11 +97,26 @@ export default function PublicSpeaking() {
                     </ConferenceItem>
                 </div>
 
-                <h2 className="mt-24 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight text-zinc-100">
+                <h2 className="mt-24 scroll-m-20 pb-2 text-3xl text-center font-semibold tracking-tight text-zinc-100">
                     Frontend Architecture Area
                 </h2>
-                <div className="text-zinc-300 mt-8">
-                    Beyond conferences, I've had the pleasure of hosting over 100 Frontend Architecture Area weekly meetings at Netguru for more than two years. These sessions have been a melting pot of ideas, where we've explored everything from software architecture and product engineering to business development and team building strategies.
+                <div className="text-zinc-300 mt-8 text-center">
+                    Beyond conferences, I've had the pleasure of hosting <Keyword>100+</Keyword> Frontend Architecture Area weekly meetings at Netguru for more than two years.
+
+                    <br></br>
+                    <br></br>
+
+                    These sessions have been a melting pot of ideas, where we've explored everything from software architecture and product engineering to business development and team building strategies.
+                </div>
+
+                <h2 className="mt-24 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight text-zinc-100 text-center">
+                    Want me to speak at your event?
+                </h2>
+                <p className="mt-6 leading-7 text-zinc-300 text-center">
+                    I'm always excited to share knowledge and connect with the community. If you'd like me to speak at your conference, meetup, or event, let's talk!
+                </p>
+                <div className="mt-8 text-center">
+                    <CallToAction href="/contact">Get in touch</CallToAction>
                 </div>
             </article>
         </>
