@@ -32,7 +32,7 @@ export default function Article({ book }: { book: Book }) {
 				<Image
 					src={book.cover}
 					alt={book.title}
-					className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 will-change-transform group-hover:scale-105"
+					className="absolute inset-0 h-full w-full object-contain transition-transform duration-300 will-change-transform group-hover:scale-105"
 					width={400}
 					height={600}
 				/>
