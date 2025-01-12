@@ -53,6 +53,12 @@ export const Navigation: React.FC = () => {
 							Library
 						</Link>
 						<Link
+							href="/public-speaking"
+							className="duration-200 text-zinc-400 hover:text-zinc-100"
+						>
+							Public Speaking
+						</Link>
+						<Link
 							href="/mentoring"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
 						>

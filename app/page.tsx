@@ -6,6 +6,7 @@ const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "Posts", href: "/posts" },
   { name: "Library", href: "/library" },
+  { name: "Public Speaking", href: "/public-speaking" },
   { name: "Mentoring", href: "/mentoring" },
   { name: "Contact", href: "/contact" },
 ];
