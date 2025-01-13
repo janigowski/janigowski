@@ -72,8 +72,18 @@ export default async function LibraryPage({
   const selectedTag = searchParams.tag as string | undefined;
 
   const books = sortBooks(allBooks);
-  const types = Array.from(new Set(books.map((book) => book.bookType)));
-  const tags = Array.from(new Set(books.map((book) => book.tag)));
+  const types = Array.from(new Set(books.map((book) => book.bookType)))
+    .sort((a, b) => {
+      const countA = books.filter(book => book.bookType === a).length;
+      const countB = books.filter(book => book.bookType === b).length;
+      return countB - countA;
+    });
+  const tags = Array.from(new Set(books.map((book) => book.tag)))
+    .sort((a, b) => {
+      const countA = books.filter(book => book.tag === a).length;
+      const countB = books.filter(book => book.tag === b).length;
+      return countB - countA;
+    });
   const stats = getStatistics(allBooks);
 
   const filteredBooks = books.filter((book) => {
