@@ -156,7 +156,7 @@ export function LibraryStats({ stats }: { stats: Stats }) {
         },
         {
             value: stats.reading,
-            label: 'Reading',
+            label: 'Ongoing',
             color: 'bg-brand-indigo/5',
             textColor: 'text-brand-indigo',
             labelColor: 'text-brand-indigo/60'
