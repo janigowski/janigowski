@@ -34,7 +34,7 @@ function getStatistics(books: typeof allBooks) {
   const publishedBooks = books.filter(b => b.published);
   const readBooks = publishedBooks.filter(b => b.status === 'read' || b.status === 'listened');
   const readingBooks = publishedBooks.filter(b => b.status === 'reading' || b.status === 'listening');
-  const waitingBooks = publishedBooks.filter(b => b.status === 'waiting');
+  const waitingBooks = publishedBooks.filter(b => b.status === 'waiting' || b.status === 'paused');
 
   // Count completed books by tag
   const completedBooksByTag: Record<string, number> = {};
