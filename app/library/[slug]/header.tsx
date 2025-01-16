@@ -6,7 +6,7 @@ type Props = {
 		author: string;
 		tag?: string;
 		date?: string;
-		status: 'read' | 'reading' | 'waiting' | 'listened' | 'listening';
+		status: 'read' | 'reading' | 'waiting' | 'listened' | 'listening' | 'paused';
 	};
 };
 
@@ -26,6 +26,7 @@ export const Header: React.FC<Props> = ({ book }) => {
 		'reading': 'bg-brand-indigo/10 text-brand-indigo',
 		'listening': 'bg-brand-indigo/10 text-brand-indigo',
 		'waiting': 'bg-brand-olive/10 text-brand-olive',
+		'paused': 'bg-brand-olive/10 text-brand-olive',
 	}[book.status] || 'bg-brand-olive/10 text-brand-olive';
 
 	return (

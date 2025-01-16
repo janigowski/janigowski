@@ -1,4 +1,4 @@
-import type { Book } from "@/.contentlayer/generated";
+import type { Book } from "contentlayer/generated";
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
@@ -20,6 +20,7 @@ export default function Article({ book }: { book: Book }) {
 		'reading': 'bg-brand-indigo/10 text-brand-indigo animate-pulse',
 		'listening': 'bg-brand-indigo/10 text-brand-indigo animate-pulse',
 		'waiting': 'bg-brand-olive/10 text-brand-olive',
+		'paused': 'bg-brand-olive/10 text-brand-olive',
 	}[book.status] || 'bg-brand-olive/10 text-brand-olive';
 
 	return (
