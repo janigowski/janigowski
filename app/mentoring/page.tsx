@@ -18,7 +18,7 @@ export default function MentoringPage() {
                 <h2 className="mt-10 scroll-m-20 pb-1 text-3xl font-semibold tracking-tight text-zinc-100 first:mt-0">Areas of Focus</h2>
                 <ul className="my-6 ml-6 space-y-4">
                     <ListItem>Software Architecture & System Design</ListItem>
-                    <ListItem>Frontend Engineering Excellence</ListItem>
+                    <ListItem>Frontend Engineering</ListItem>
                     <ListItem>Product Development & Technical Leadership</ListItem>
                     <ListItem>Career Growth & Team Building</ListItem>
                 </ul>
