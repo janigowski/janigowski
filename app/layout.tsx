@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 import ScrollToTop from "./components/scroll-to-top";
 import Image from "next/image";
+// import LavaBackground from "./components/LavaBackground";
 
 // @TODO: Create OG photo
 export const metadata: Metadata = {
@@ -69,7 +70,7 @@ export default function RootLayout({
         className={`relative min-h-screen bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
           }`}
       >
-        <div className="fixed inset-0 w-full h-full -z-[1]">
+        <div className="fixed inset-0 w-full h-full -z-[2]">
           <Image
             src="/janigowski-large-wallpaper.jpg"
             alt="Background"
@@ -81,6 +82,7 @@ export default function RootLayout({
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
+        {/* <LavaBackground /> */}
         <div className="relative min-h-screen flex flex-col">
           <main className="flex-1">
             {children}
