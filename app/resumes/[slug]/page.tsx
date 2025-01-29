@@ -100,15 +100,21 @@ export default function ResumePage({ params }: PageProps) {
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Professional Experience
+                                Experience
                             </h2>
                             <div className="space-y-6">
                                 {resume.experience.map((item: ExperienceItem, i: number) => (
                                     <div key={i} className="grid grid-cols-[120px,1fr] gap-6">
                                         <div className="text-zinc-500 text-sm">{item.period}</div>
                                         <div>
-                                            <h3 className="font-semibold text-zinc-800 text-sm">{item.title}</h3>
-                                            <Company name={item.company} /> - {item.location}
+                                            <div className='flex row justify-between mb-2'>
+                                                <h3 className="font-normal text-zinc-800 text-sm uppercase">{item.title}</h3>
+                                                <div className='flex row text-sm'>
+                                                    <Company name={item.company} />
+                                                    {/* <span className="text-zinc-400 w-6 text-center">//</span>
+                                                    <span className="text-zinc-500">{item.location}</span> */}
+                                                </div>
+                                            </div>
 
                                             <p className="text-zinc-600 text-sm leading-relaxed">{item.description}</p>
                                         </div>

@@ -10,19 +10,19 @@ const companies = {
         textColor: '#4a4a4a',
         logo: 'netguru.jpg'
     },
-    'Janigowski': {
+    'janigowski.dev': {
         mainColor: '#BBDF32',
         textColor: '#4a4a4a',
         logo: 'janigowski.jpg'
     },
     'ThinkSmart': {
-        mainColor: '#fff',
-        textColor: '#4a4a4a',
+        mainColor: '#4a4a4a',
+        textColor: '#fff',
         logo: 'thinksmart.jpg'
     },
     'ADPList': {
-        mainColor: '#fff',
-        textColor: '#4a4a4a',
+        mainColor: '#000',
+        textColor: '#fff',
         logo: 'adplist.jpg'
     },
     'GetResponse': {
@@ -40,7 +40,8 @@ export default function Company({ name }: CompanyProps) {
     }
 
     return (
-        <div className="inline-flex items-center gap-2">
+        <div className="flex items-center  text-center w-36 px-2" style={{ color: company.textColor, backgroundColor: company.mainColor }}>
+
             <div className="relative w-4 h-4">
                 <Image
                     src={`/companies/${company.logo}`}
@@ -50,7 +51,9 @@ export default function Company({ name }: CompanyProps) {
                     className="object-contain"
                 />
             </div>
-            <span style={{ color: company.textColor }}>{name}</span>
+            <span className='flex-1'>
+                {name}
+            </span>
         </div>
     )
 } 
