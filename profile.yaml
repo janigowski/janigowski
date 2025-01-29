@@ -1,0 +1,435 @@
+metadata:
+  version: 1.0
+  last_updated: "2024-03-19"
+  template: "modern"
+
+personal:
+  name: Dawid Janiga
+  title: Software Engineer
+  summary: I love to create digital products
+  objective: Looking to join Buffer to create digital products
+  email: dawidjaniga@gmail.com
+
+highlights:
+  experience_years: 10+
+  products_contributed: 24+
+  mentees_guided: 36+
+  countries_impacted: 17+
+
+personality:
+  clifton_strengths:
+    - Futuristic
+    - Strategic
+    - Significance
+    - Activator
+    - Individualization
+
+skills:
+  technical:
+    - React
+    - Node.js
+    - TypeScript
+    - Software Architecture
+    - Leadership
+    - Team building
+  applications:
+    - Web
+    - Mobile
+    - APIs
+    - CLI
+    - Editors
+    - Tools
+    - Design Systems
+
+interests:
+  main:
+    - Software Architecture
+    - Product Development
+    - Rock climbing & bouldering
+    - History, Art & design
+    - "I run my first halfmarathon last year and didn't die"
+    - "I'm a Techno DJ"
+  other:
+    - "Trendy AI: ChatGPT, DALL-E, Midjourney and Cursor"
+    - "UI/UX/graphic design, video edit, sound production"
+
+mindset:
+  - I like to work on a broader scope
+  - take the initiative
+  - and Lead projects
+
+education:
+  - degree: Math-physics profile
+    school: Stefan Czarniecki High School
+    location: Człuchów, Poland
+
+hackathons:
+  - name: HackFest2011 48h
+    achievement: Won Audience Award
+  - name: HackFest2012 48h
+  - name: GetResponse - Monsters Insomnia 24h
+  - name: Forum Wizja Rozwoju 24h
+  - name: Netguru 8h
+
+public_speaking:
+  - date: "2022"
+    conference: CodeEurope
+    place: National Stadium / PL
+    title: What if _your_Frontend_framework_ will die?
+  - date: "2022"
+    conference: Netguru Internal
+    place: Online
+    title: Using Gatsby, GraphlQL, YAML, THREE.js and GSAP to create innovative knowledge hub
+  - date: "2021"
+    conference: Burning Minds
+    place: Online
+    title: Being a software developer is just a first step. How to think as a product engineer?
+  - date: "2021"
+    conference: Netguru Hangout
+    place: Online
+    title: How to control Philips Hue Lights with Traktor DJ Controller using JavaScript?
+  - date: "2020"
+    conference: Netguru Internal
+    place: Online
+    title: React, Transparent Videos, Zustand and 60 FPS to showcase a product
+  - date: "2019"
+    conference: SparkCamp
+    place: Koszalin / PL
+    title: WebXR - Journey through all realities
+  - date: "2019"
+    conference: 3cityVR
+    place: Gdańsk / PL
+    title: WebVR - Mixed Reality in web browsers without plugins?
+  - date: "2016"
+    conference: GetResponse
+    place: Gdańsk / PL
+    title: WebGL - definition, status and examples
+
+experience:
+  - company: ADPList
+    color: "#6831DE"
+    position: Mentor
+    period: "Mar 2024 - Present"
+    achievements:
+      - "TOP 1% MENTOR (4x Recognized)"
+      - "Mentored 36+ developers from 17 countries"
+      - "Provided 4500+ minutes of technical guidance"
+      - "Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture"
+      - "Created structured interview preparation and career development plans"
+      - "Facilitated hands-on technical sessions and live coding"
+      - "Developed personalized growth strategies for mentees"
+    impact:
+      - "Transformed mentees' technical confidence through live coding sessions"
+      - "Enabled career transitions through structured roadmaps"
+      - "Improved mentees' problem-solving abilities and architectural thinking"
+    technologies:
+      - React
+      - TypeScript
+      - Software Architecture
+      - Career Development
+      - Technical Leadership
+      - Mentoring
+
+  - company: Janigowski
+    color: "#BBDF32"
+    position: Media Technology Explorer
+    period: "Aug 2022 - Present"
+    description: "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists"
+    achievements:
+      - "Conceptualized and developed an integrated environment for real-time audio-visual performance"
+      - "Engineered real-time waveform visualization and multi-channel mixing with BPM sync"
+      - "Integrated MIDI controls with hardware devices (mixers, controllers)"
+      - "Implemented context-dependent shortcuts for MIDI and keyboard inputs"
+      - "Created 'Spotlight' command palette for swift navigation"
+      - "Designed multi-channel timeline for audio, video, and visuals"
+    technologies:
+      - Electron
+      - TypeScript
+      - Svelte
+      - Node.js
+      - tRPC
+      - Signals
+      - SQLite
+      - Tone.js
+      - WebAudio
+      - WebMIDI
+      - OOP
+      - Clean Architecture
+
+  - company: Netguru
+    color: "#47E071"
+    positions:
+      - title: Software Architect Frontend
+        achievements:
+          - Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget
+          - Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops
+          - Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows
+          - Reduced Map loading time by 80% (10s ↘ 2s)
+          - Optimized state management by removing over +1500 LOC
+          - Crafted 3D solution for a NFT knowledge hub utilizing procedural environment generation
+        product_engineering:
+          - Conducted 10+ consultations for business enhancement
+          - Engaged in discussions, analyzed performance data, proposed process and code improvements
+          - Worked closely with the Product Manager and Product Designer
+          - Delved into Product Management, exploring new methodologies
+          - Influenced by Marty Cagan and Silicon Valley Product Group
+          - Gained insights into technical and product strategy intersection
+        company_wide:
+          - Introduced Event Storming in a series of workshops for 20 people
+          - "Organized #bookclub - we've read and discussed 4 books together"
+          - Conducted interviews for regular and senior positions
+          - Mentored group of 25 developers in Product Discovery matter
+        technologies:
+          - React
+          - Node.js
+          - react-sweet-state
+          - react-query
+          - Redux
+          - styled-components
+          - Remotion
+          - GSAP
+          - WebGL
+          - Three.js
+          - GLSL
+          - HTML5 Canvas
+          - Google Maps API
+          - Wikimedia API
+          - Gatsby
+          - Next
+          - Product Engineering
+          - Consulting
+          - REST API
+          - Websockets
+          - GraphQL
+          - YAML
+          - Trunk development
+          - Jest
+          - Testing library
+          - Cypress
+          - TDD
+          - Performance Optimization
+        leadership:
+          meetings_hosted: 100+
+          description: For over two years I conducted Frontend Architecture Area weekly meetings. Knowledge sharing for 5-10 developers.
+          topics:
+            - software architecture
+            - Soft skills
+            - product engineering
+            - Clean Architecture
+            - Domain Driven Design
+            - team building
+
+      - title: Team Leader
+        responsibilities:
+          - Provided emotional and technical support for 6 team members
+          - Plan self-development roadmaps and perform quarterly evaluations
+          - Conducting one-on-one and team meetings
+          - Promoting a feedback culture among direct reports and their teammates
+          - Keeping the team connected with the company's strategy, processes, and updates
+        skills:
+          - Radical Candor
+          - Servant Leadership
+          - Technical Support
+          - Active listening
+
+      - title: Senior Frontend Developer
+        achievements:
+          - Designed a chatbot engine and visual language to reduce Customer Support workload
+          - Created a complex, data-intensive FinTech Inquiry Form with over 120 interdependent fields
+          - Designed and implemented high-performant product showcase using transparent videos
+          - Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)
+          - Decreased development time by utilizing AST-to-AST refactoring
+          - Engaged in short-term projects across FinTech, Real Estate, and NGO sectors
+        technologies:
+          - React
+          - Zustand
+          - Redux
+          - Node.js
+          - CircleCI
+          - CI/CD optimization
+          - Figma
+          - Storybook
+          - CSS Modules
+          - Design Patterns
+          - Amazon AWS
+          - jscodeshift
+        teaching:
+          course_length: 5 days
+          students: 24
+          topic: React
+          project: Wikipedia Map
+        product_design:
+          sprints: 4
+          description: Developed technical roadmaps, estimations and risk registries during several week-long workshops
+
+  - company: ThinkSmart
+    color: "#fff"
+    position: Full Stack JavaScript Developer
+    projects:
+      - Transformed startup ideas into functional applications
+      - Developed two mobile apps and refactored existing web app
+      - Elder-focused real-time communicator
+      - Social Media platform for horse riding enthusiasts
+      - Delivered GPS-based business cards MVP in 2 weeks
+    responsibilities:
+      - Set up CI/CD workflows
+      - Designed and built APIs following JSON:API and REST principles
+      - Wrote E2E, integration and unit tests
+      - Maintained code quality using automatic tools
+    technologies:
+      - React
+      - React Native
+      - Node.js
+      - Postgres
+      - Knex.js
+      - Sequelize
+      - ElasticSearch
+      - Redis
+      - Express
+      - WebSockets
+      - Jest
+      - Enzyme
+      - Cypress
+      - Bitbucket
+      - Amazon AWS
+      - DevOps
+      - StandardJS
+      - Prettier
+      - Commitizen
+
+  - company: GetResponse
+    color: "#00BDFF"
+    positions:
+      - title: JavaScript Developer
+        projects:
+          - name: Marketing Automation Creator
+            achievements:
+              - Implemented an editor using MVC architecture
+              - Implemented bespoke drag-and-drop functionality
+          - name: CRM Platform
+            achievements:
+              - Designed editor's architecture and data structures
+              - Successfully delivered the MVP in a company-record time of just 6 weeks
+        other_achievements:
+          - Participated in the team's efforts in React migration from PHP
+        technologies:
+          - Design Patterns
+          - OOP
+          - Data Structures
+          - React
+          - Redux
+          - react-dnd
+          - Sass
+          - Webpack
+          - Gulp
+          - require.js
+          - Vagrant
+          - Scrum
+          - Agile
+          - JIRA
+
+      - title: Junior Software Developer
+        responsibilities:
+          - Focused on maintenance and enhancement of key web applications and internal tools
+          - Gained comprehensive insights into enterprise-scale application development
+          - Developed an internal tool for collecting frontend performance metrics
+        technologies:
+          - JavaScript 1.8/ES5
+          - Node.js
+          - PHP
+          - MySQL
+          - Redis
+          - Docker
+          - HTML5
+          - XSLT
+          - XML
+          - Sass
+          - PostCSS
+          - Grunt
+          - Bootstrap
+          - PhantomJS
+          - ElasticSearch
+          - Kibana
+
+freelance:
+  company: Janigowski
+  start_year: 2009
+  description: My interest in computers made me experiment a lot. I like to explore and learn.
+  achievements:
+    - Crafted CMS, Forums and Landing Pages
+    - Designed graphics: websites, landing pages, posters, business cards (including DTP)
+  technologies:
+    - PHP
+    - MySQL
+    - Apache
+    - Linux (Ubuntu, Fedora, Kali)
+    - XML
+    - JSON
+    - Wordpress
+    - HTML4/5
+    - CSS2/3
+    - JavaScript
+    - jQuery
+    - Bootstrap
+    - Semantic UI
+    - pug
+    - jade
+    - Photoshop
+    - HTML5 Canvas
+    - Google Maps API
+    - Wikimedia API
+
+companies:
+  Buffer:
+    mainColor: "#2C4BFF"
+    textColor: "#4a4a4a"
+    status: desired
+  Netguru:
+    mainColor: "#47E071"
+    textColor: "#4a4a4a"
+  Janigowski:
+    mainColor: "#BBDF32"
+    textColor: "#4a4a4a"
+  ThinkSmart:
+    mainColor: "#fff"
+    textColor: "#4a4a4a"
+  GetResponse:
+    mainColor: "#00BDFF"
+    textColor: "#ffffff"
+
+projects:
+  - name: Digital Products Development
+    summary: Led development of multiple successful digital products
+    tags:
+      - React
+      - Node.js
+      - TypeScript
+    stats:
+      - metric: Products Delivered
+        value: 24+
+      - metric: Years Experience
+        value: 10+
+
+  - name: Team Leadership
+    summary: Built and led high-performing development teams
+    tags:
+      - Leadership
+      - Mentoring
+      - Team Building
+    stats:
+      - metric: Team Size
+        value: TBD
+      - metric: Projects Led
+        value: TBD
+
+  - name: Team Leadership
+    summary: Built and led high-performing development teams
+    tags:
+      - Leadership
+      - Mentoring
+      - Team Building
+    stats:
+      - metric: Team Size
+        value: TBD
+      - metric: Projects Led
+        value: TBD 

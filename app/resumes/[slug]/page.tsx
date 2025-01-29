@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import { allResumes } from 'contentlayer/generated'
 import { getMDXComponent } from 'next-contentlayer/hooks'
 import { Metadata } from 'next'
-import { Resume } from '../../../types/resume'
+import { Resume, ResumeSection, ExperienceItem, EducationItem } from '../../../types/resume'
+import { Phone, Mail, Globe, MapPin } from 'lucide-react'
 
 interface PageProps {
     params: {
@@ -32,50 +33,90 @@ export default function ResumePage({ params }: PageProps) {
     const Content = getMDXComponent(resume.body.code)
 
     return (
-        <div className="relative min-h-screen">
-            <header className="relative isolate overflow-hidden">
-                <div className="container mx-auto relative isolate overflow-hidden py-24 sm:py-32">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
-                        <div className="mx-auto max-w-2xl lg:mx-0">
-                            <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl font-display">
-                                {resume.title}
-                            </h1>
-                            {resume.date && (
-                                <time className="mt-4 block text-sm text-zinc-400" dateTime={resume.date}>
-                                    {new Date(resume.date).toLocaleDateString('en-US', {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric'
-                                    })}
-                                </time>
-                            )}
+        <div className="relative min-h-screen bg-zinc-100 py-8">
+            <article className="mx-auto bg-white" style={{
+                width: '210mm',
+                minHeight: '297mm',
+                padding: '20mm',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            }}>
+                {/* Header Section */}
+                <header className="mb-8">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <h1 className="text-4xl font-bold text-zinc-800">{resume.firstName}</h1>
+                            <h1 className="text-4xl font-bold text-zinc-800 mb-1">{resume.lastName}</h1>
+                            <h2 className="text-base text-zinc-600">{resume.position}</h2>
+                        </div>
+                        <div className="text-right text-sm text-zinc-600 space-y-0.5">
+                            <div className="flex items-center justify-end gap-2">
+                                <Phone className="w-4 h-4 text-zinc-400" />
+                                <span>{resume.contact.phone}</span>
+                            </div>
+                            <div className="flex items-center justify-end gap-2">
+                                <Mail className="w-4 h-4 text-zinc-400" />
+                                <span>{resume.contact.email}</span>
+                            </div>
+                            <div className="flex items-center justify-end gap-2">
+                                <Globe className="w-4 h-4 text-zinc-400" />
+                                <span>{resume.contact.website}</span>
+                            </div>
+                            <div className="flex items-center justify-end gap-2">
+                                <MapPin className="w-4 h-4 text-zinc-400" />
+                                <span>{resume.contact.location}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </header>
+                </header>
 
-            <div className="relative pb-16">
-                <article className="mx-auto bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50" style={{
-                    width: '210mm',
-                    minHeight: '297mm',
-                    padding: '20mm',
-                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                    margin: '0 auto',
-                }}>
-                    {resume.sections.map((section: { title: string; content: string }, index: number) => (
+                {/* Main Content */}
+                <div>
+                    {resume.sections.map((section: ResumeSection, index: number) => (
                         <section key={index} className="mb-8">
-                            <h2 className="text-2xl font-semibold mb-4 text-zinc-100">{section.title}</h2>
-                            <div className="prose prose-invert prose-zinc max-w-none prose-a:text-brand-lime prose-headings:text-zinc-100 prose-p:text-zinc-300">
-                                {section.content}
-                            </div>
+                            {index > 0 && <hr className="border-zinc-200 mb-8" />}
+                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                {section.title}
+                            </h2>
+                            {section.type === 'about' && section.content && (
+                                <div className="text-zinc-600 text-sm leading-relaxed">
+                                    {section.content}
+                                </div>
+                            )}
+                            {section.type === 'experience' && section.items && (
+                                <div className="space-y-6">
+                                    {(section.items as ExperienceItem[]).map((item, i) => (
+                                        <div key={i} className="grid grid-cols-[120px,1fr] gap-6">
+                                            <div className="text-zinc-500 text-sm">{item.period}</div>
+                                            <div>
+                                                <h3 className="font-semibold text-zinc-800 text-sm">{item.title}</h3>
+                                                <p className="text-zinc-600 text-sm mb-2">{item.company} - {item.location}</p>
+                                                <p className="text-zinc-600 text-sm leading-relaxed">{item.description}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            {section.type === 'education' && section.items && (
+                                <div className="grid grid-cols-2 gap-x-8">
+                                    {(section.items as EducationItem[]).map((item, i) => (
+                                        <div key={i} className="grid grid-cols-[120px,1fr] gap-6">
+                                            <div className="text-zinc-500 text-sm">{item.period}</div>
+                                            <div>
+                                                <h3 className="font-semibold text-zinc-800 text-sm">{item.degree}</h3>
+                                                <p className="text-zinc-600 text-sm">{item.school} - {item.location}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </section>
                     ))}
+                </div>
 
-                    <div className="prose prose-invert prose-zinc max-w-none prose-a:text-brand-lime prose-headings:text-zinc-100 prose-p:text-zinc-300">
-                        <Content />
-                    </div>
-                </article>
-            </div>
+                <div className="mt-8 prose prose-zinc max-w-none">
+                    <Content />
+                </div>
+            </article>
         </div>
     )
 } 
