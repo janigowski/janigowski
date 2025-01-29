@@ -3,7 +3,9 @@ import { allResumes } from 'contentlayer/generated'
 import { getMDXComponent } from 'next-contentlayer/hooks'
 import { Metadata } from 'next'
 import { Resume, ResumeSection, ExperienceItem, EducationItem } from '../../../types/resume'
-import { Phone, Mail, Globe, MapPin } from 'lucide-react'
+import { Mail, Globe, MapPin } from 'lucide-react'
+import Image from 'next/image'
+import Line from './Line'
 
 interface PageProps {
     params: {
@@ -33,47 +35,52 @@ export default function ResumePage({ params }: PageProps) {
     const Content = getMDXComponent(resume.body.code)
 
     return (
-        <div className="relative min-h-screen bg-zinc-100 py-8">
+        <div className="relative min-h-screen bg-zinc-100">
             <article className="mx-auto bg-white" style={{
                 width: '210mm',
                 minHeight: '297mm',
-                padding: '20mm',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             }}>
                 {/* Header Section */}
-                <header className="mb-8">
-                    <div className="flex justify-between items-start">
+                <header className="relative mb-8">
+                    <div className="relative z-10 p-10 flex justify-between items-start">
                         <div>
-                            <h1 className="text-4xl font-bold text-zinc-800">{resume.firstName}</h1>
-                            <h1 className="text-4xl font-bold text-zinc-800 mb-1">{resume.lastName}</h1>
-                            <h2 className="text-base text-zinc-600">{resume.position}</h2>
+                            <h1 className="text-5xl font-bold tracking-tight text-white font-display">{resume.firstName} {resume.lastName}</h1>
+                            <h2 className="mt-4 font-mono text-zinc-200">{resume.position}</h2>
                         </div>
-                        <div className="text-right text-sm text-zinc-600 space-y-0.5">
-                            <div className="flex items-center justify-end gap-2">
-                                <Phone className="w-4 h-4 text-zinc-400" />
-                                <span>{resume.contact.phone}</span>
-                            </div>
-                            <div className="flex items-center justify-end gap-2">
-                                <Mail className="w-4 h-4 text-zinc-400" />
+                        <div className="text-right text-sm text-zinc-400 space-y-0.5">
+                            <div className="flex items-center justify-start gap-2">
+                                <Mail className=" w-4 h-4" />
                                 <span>{resume.contact.email}</span>
                             </div>
-                            <div className="flex items-center justify-end gap-2">
-                                <Globe className="w-4 h-4 text-zinc-400" />
+                            <div className="flex items-center justify-start gap-2">
+                                <Globe className=" w-4 h-4" />
                                 <span>{resume.contact.website}</span>
                             </div>
-                            <div className="flex items-center justify-end gap-2">
-                                <MapPin className="w-4 h-4 text-zinc-400" />
+                            <div className="flex items-center justify-start gap-2">
+                                <MapPin className=" w-4 h-4" />
                                 <span>{resume.contact.location}</span>
                             </div>
                         </div>
                     </div>
+                    <div className="absolute top-0 left-0 w-full h-full z-0">
+                        <Image
+                            src="/janigowski-large-wallpaper.jpg"
+                            alt="Background"
+                            fill
+                            priority
+                            quality={100}
+                            sizes="100vw"
+                            className="object-cover"
+                        />
+                    </div>
                 </header>
 
                 {/* Main Content */}
-                <div>
+                <div className="px-12">
                     {resume.sections.map((section: ResumeSection, index: number) => (
                         <section key={index} className="mb-8">
-                            {index > 0 && <hr className="border-zinc-200 mb-8" />}
+                            {index > 0 && <Line />}
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 {section.title}
                             </h2>
