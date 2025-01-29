@@ -67,8 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <body
-        className={`relative min-h-screen bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-          }`}
+        className="relative min-h-screen bg-black"
       >
         <div className="fixed inset-0 w-full h-full -z-[2]">
           <Image
@@ -78,7 +77,7 @@ export default function RootLayout({
             priority
             quality={100}
             sizes="100vw"
-            className="object-cover"
+            className="object-cover print:hidden"
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>

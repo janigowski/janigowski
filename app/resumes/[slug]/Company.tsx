@@ -45,8 +45,8 @@ export default function Company({ name }: CompanyProps) {
                 <Image
                     src={`/companies/${company.logo}`}
                     alt={`${name} logo`}
-                    width={16}
-                    height={16}
+                    width={32}
+                    height={32}
                     className="object-contain"
                 />
             </div>

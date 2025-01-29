@@ -76,7 +76,7 @@ export default function ResumePage({ params }: PageProps) {
                             alt="Background"
                             fill
                             priority
-                            quality={100}
+                            quality={75}
                             sizes="100vw"
                             className="object-cover"
                         />
