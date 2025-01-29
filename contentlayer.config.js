@@ -210,9 +210,26 @@ export const Resume = defineDocumentType(() => ({
 			type: "json",
 			required: true,
 		},
-		sections: {
+		about: {
+			type: "string",
+		},
+		experience: {
 			type: "json",
-			required: true,
+		},
+		education: {
+			type: "json",
+		},
+		expertise: {
+			type: "json",
+		},
+		interests: {
+			type: "json",
+		},
+		publicSpeaking: {
+			type: "json",
+		},
+		leadershipMentoring: {
+			type: "json",
 		},
 		published: {
 			type: "boolean",

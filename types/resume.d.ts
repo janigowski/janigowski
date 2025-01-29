@@ -17,21 +17,12 @@ export interface EducationItem {
 
 export interface SkillItem {
     name: string
-    level: number
 }
 
 export interface ReferenceItem {
     name: string
     title: string
-    phone: string
     email: string
-}
-
-export interface ResumeSection {
-    title: string
-    type: 'about' | 'experience' | 'education' | 'expertise' | 'reference'
-    content?: string
-    items?: ExperienceItem[] | EducationItem[] | SkillItem[] | ReferenceItem[]
 }
 
 export interface Resume {
@@ -40,12 +31,21 @@ export interface Resume {
     lastName: string
     position: string
     contact: {
-        phone: string
         email: string
         website: string
         location: string
     }
-    sections: ResumeSection[]
+    about?: string
+    experience?: ExperienceItem[]
+    education?: EducationItem[]
+    expertise?: string[]
+    interests?: string[]
+    publicSpeaking?: {
+        title: string
+        event: string
+        year: number
+    }[]
+    leadershipMentoring?: string[]
     published?: boolean
     date?: string
     body: MDX
