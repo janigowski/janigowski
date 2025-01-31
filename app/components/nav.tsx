@@ -3,30 +3,124 @@ import { Hexagon, Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
-export const Navigation: React.FC = () => {
-	const ref = useRef<HTMLElement>(null);
+const links = [
+	{ href: "/projects", label: "Projects" },
+	{ href: "/posts", label: "Posts" },
+	{ href: "/library", label: "Library" },
+	{ href: "/speaking", label: "Speaking" },
+	{ href: "/mentoring", label: "Mentoring" },
+	{ href: "/contact", label: "Contact" },
+];
+
+const useIntersectionObserver = (ref: React.RefObject<HTMLElement>) => {
 	const [isIntersecting, setIntersecting] = useState(true);
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	useEffect(() => {
 		if (!ref.current) return;
+
 		const observer = new IntersectionObserver(([entry]) =>
 			setIntersecting(entry.isIntersecting),
 		);
 
 		observer.observe(ref.current);
 		return () => observer.disconnect();
-	}, []);
+	}, [ref]);
+
+	return isIntersecting;
+};
+
+const useClickOutside = (
+	isOpen: boolean,
+	onClose: () => void,
+	excludeRefs: React.RefObject<HTMLElement>[]
+) => {
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			const clickedOutside = excludeRefs.every(
+				ref => ref.current && !ref.current.contains(event.target as Node)
+			);
+
+			if (clickedOutside) {
+				onClose();
+			}
+		};
+
+		if (isOpen) {
+			document.addEventListener('mousedown', handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isOpen, onClose, excludeRefs]);
+};
+
+const NavigationLink: React.FC<{
+	href: string;
+	onClick?: () => void;
+	children: React.ReactNode;
+	isMobile?: boolean;
+}> = ({
+	href,
+	children,
+	onClick,
+	isMobile = false,
+}) => (
+		<Link
+			href={href}
+			className={`duration-200 text-zinc-400 hover:text-zinc-100 ${isMobile ? 'block' : ''}`}
+			onClick={onClick}
+		>
+			{children}
+		</Link>
+	);
+
+const DesktopNavigation = () => (
+	<div className="hidden md:flex justify-around gap-8 text-sm">
+		{links.map(({ href, label }) => (
+			<NavigationLink key={href} href={href}>
+				{label}
+			</NavigationLink>
+		))}
+	</div>
+);
+
+const MobileNavigation: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
+	isOpen,
+	onClose,
+}) => {
+	if (!isOpen) return null;
 
 	return (
-		<header ref={ref}>
+		<div className="md:hidden px-6 pb-6 space-y-4">
+			{links.map(({ href, label }) => (
+				<NavigationLink key={href} href={href} onClick={onClose} isMobile>
+					{label}
+				</NavigationLink>
+			))}
+		</div>
+	);
+};
+
+export const Navigation: React.FC = () => {
+	const headerRef = useRef<HTMLElement>(null);
+	const menuRef = useRef<HTMLDivElement>(null);
+	const buttonRef = useRef<HTMLButtonElement>(null);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const isIntersecting = useIntersectionObserver(headerRef);
+	useClickOutside(isMenuOpen, () => setIsMenuOpen(false), [menuRef, buttonRef]);
+
+	const getBackgroundColor = () => {
+		if (isMenuOpen) return "bg-zinc-900/95";
+		return isIntersecting ? "bg-zinc-800/40" : "bg-zinc-800/70";
+	};
+
+	return (
+		<header ref={headerRef}>
 			<div
-				className={`mx-auto sm:container fixed top-4 inset-x-4 sm:inset-x-0 z-50 rounded-2xl shadow-[inset_0_1px_1px_0_hsla(0,0%,100%,.15)] border border-white/10 backdrop-blur duration-200 ${isMenuOpen
-					? "bg-zinc-900/95"
-					: isIntersecting
-						? "bg-zinc-800/40"
-						: "bg-zinc-800/70"
-					}`}
+				ref={menuRef}
+				className={`mx-auto sm:container fixed top-4 inset-x-4 sm:inset-x-0 z-50 rounded-2xl shadow-[inset_0_1px_1px_0_hsla(0,0%,100%,.15)] border border-white/10 backdrop-blur duration-200 ${getBackgroundColor()}`}
 			>
 				<div className="flex items-center justify-between p-6">
 					<Link
@@ -36,48 +130,10 @@ export const Navigation: React.FC = () => {
 						<Hexagon className="w-6 h-6" />
 					</Link>
 
-					{/* Desktop Navigation */}
-					<div className="hidden md:flex justify-around gap-8 text-sm">
-						<Link
-							href="/projects"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Projects
-						</Link>
-						<Link
-							href="/posts"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Posts
-						</Link>
-						<Link
-							href="/library"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Library
-						</Link>
-						<Link
-							href="/speaking"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Speaking
-						</Link>
-						<Link
-							href="/mentoring"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Mentoring
-						</Link>
-						<Link
-							href="/contact"
-							className="duration-200 text-zinc-400 hover:text-zinc-100"
-						>
-							Contact
-						</Link>
-					</div>
+					<DesktopNavigation />
 
-					{/* Mobile Menu Button */}
 					<button
+						ref={buttonRef}
 						className="md:hidden text-zinc-400 hover:text-zinc-100"
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
 					>
@@ -85,53 +141,7 @@ export const Navigation: React.FC = () => {
 					</button>
 				</div>
 
-				{/* Mobile Navigation */}
-				{isMenuOpen && (
-					<div className="md:hidden px-6 pb-6 space-y-4">
-						<Link
-							href="/projects"
-							className="block duration-200 text-zinc-400 hover:text-zinc-100"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Projects
-						</Link>
-						<Link
-							href="/posts"
-							className="block duration-200 text-zinc-400 hover:text-zinc-100"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Posts
-						</Link>
-						<Link
-							href="/library"
-							className="block duration-200 text-zinc-400 hover:text-zinc-100"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Library
-						</Link>
-						<Link
-							href="/speaking"
-							className="block duration-200 text-zinc-400 hover:text-zinc-100"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Speaking
-						</Link>
-						<Link
-							href="/mentoring"
-							className="block duration-200 text-zinc-400 hover:text-zinc-100"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Mentoring
-						</Link>
-						<Link
-							href="/contact"
-							className="block duration-200 text-zinc-400 hover:text-zinc-100"
-							onClick={() => setIsMenuOpen(false)}
-						>
-							Contact
-						</Link>
-					</div>
-				)}
+				<MobileNavigation isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 			</div>
 		</header>
 	);
