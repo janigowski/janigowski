@@ -1,0 +1,129 @@
+---
+title: "Let the Code Speak to You"
+description: A smarter way to log in your code
+date: "2025-01-31"
+published: true
+---
+
+import Image from 'next/image';
+
+# Let the Code Speak to You
+
+## Seeing Code in Action
+
+When we write code, we often want to *see* what's happening step by step. Whether it's tracking variables, following execution flow, or troubleshooting unexpected behavior, logging is usually the first instinct.
+
+The most straightforward way? **`console.log()`**—a trusted old friend. Drop it into your code, run your app, and watch the logs roll in. Simple, effective... until it isn't.
+
+### The Limits of `console.log()`
+
+While `console.log()` is easy to use, it quickly gets messy:
+
+- Cluttering the output with unnecessary logs
+- Having to manually comment out or remove logs before committing
+- No easy way to control what gets logged without modifying the code
+
+There's a better way. A **future-proof** way. Enter: **`debug`**.
+
+---
+
+## Introducing `debug` – A Smarter Way to Log
+
+[`debug`](https://www.npmjs.com/package/debug) is a lightweight logging package that gives you **control over what speaks** in your application—without modifying the code. It works similarly to `console.log()`, but with a key difference: **selective visibility**.
+
+### How It Works
+
+Instead of using `console.log()`, you create named debugging instances:
+
+```javascript
+import debug from 'debug';
+
+const log = debug('app:core');
+
+log('This is a debug message!');
+```
+
+By default, nothing shows up. But when you run your app with the `DEBUG` environment variable set, you control which logs are displayed:
+
+```bash
+DEBUG=app:* node index.js
+```
+
+Now you see only relevant logs, keeping your output clean.
+
+---
+
+## Real-World Example: `express`
+
+A prime example of `debug` in action is within the popular [Express](https://expressjs.com/) framework. Express uses `debug` extensively to provide detailed internal logging.
+
+In the [Express application file](https://github.com/expressjs/express/blob/master/lib/application.js), you'll find:
+
+```javascript
+import debug from 'debug';
+
+const log = debug('express:application');
+```
+
+This line sets up a debug instance named `express:application`. Throughout the file, `log` is called to log various internal events and states. To see these logs, you can run your application with the `DEBUG` environment variable set:
+
+```bash
+DEBUG=express:* node yourApp.js
+```
+
+This enables you to gain insights into Express's internal workings without altering its source code.
+
+---
+
+## Two Perspectives on Using `debug`
+
+1. **Introducing `debug` in Your Projects**
+
+   - **Selective Logging**: Control which parts of your app "speak" without modifying the code. Need to focus on a specific module? Just tweak `DEBUG=module:*`.
+   - **Better for Production Code**: Unlike `console.log()`, which you'll eventually need to clean up, `debug` lets you ship code with built-in logging that clients can enable if needed.
+   - **Lightweight and Non-Intrusive**: If `DEBUG` isn't set, `debug` remains silent—no extra noise, no performance hit.
+
+2. **Leveraging `debug` in External Projects**
+
+   Many popular npm packages utilize `debug` for their internal logging. By enabling `debug` for these packages, you can gain deeper insights into their operations, which is invaluable for troubleshooting and understanding behavior.
+
+   To enable debugging for a specific package, set the `DEBUG` environment variable to the appropriate namespace. For example, to see all internal logs used in Express, set `DEBUG=express:*` when launching your app:
+
+   ```bash
+   DEBUG=express:* node yourApp.js
+   ```
+
+   This approach allows you to tap into the internal workings of your dependencies without altering their code.
+
+---
+
+## Popular npm Packages Using `debug` in Modern JavaScript Frameworks
+
+The `debug` package is widely adopted across the Node.js ecosystem, including many modern frameworks and libraries. Here are some notable examples:
+
+1. **Next.js**: A React framework for server-side rendering and static site generation.
+2. **Nuxt.js**: A framework for creating Vue.js applications with server-side rendering.
+3. **NestJS**: A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
+4. **Sapper**: A framework for building Svelte applications with server-side rendering.
+5. **Gatsby**: A React-based open-source framework for creating websites and apps.
+6. **Electron**: A framework for building cross-platform desktop applications with JavaScript, HTML, and CSS.
+7. **React Native**: A framework for building native apps using React.
+8. **Vue CLI**: A standard tooling for Vue.js development.
+9. **Angular CLI**: A command-line interface tool to initialize, develop, scaffold, and maintain Angular applications.
+10. **TypeORM**: An ORM for TypeScript and JavaScript (ES7, ES6, ES5) that supports many database systems.
+
+For a comprehensive list of packages that depend on `debug`, you can visit the [npm dependents page](https://www.npmjs.com/browse/depended/debug).
+
+---
+
+## Conclusion
+
+Let your code *speak*, but make sure it speaks **when it matters**. While `console.log()` is great for quick debugging, **`debug` is the smarter, more maintainable choice**—especially for scalable applications and shared libraries.
+
+Next time you're about to sprinkle `console.log()` everywhere, ask yourself: *Do I want this message to be permanent?* If the answer is *yes*, give `debug` a try. 🚀
+
+---
+
+### What's Your Debugging Setup?
+
+How do you manage logs in your projects? Drop a comment or share your experience! 👇
