@@ -5,8 +5,6 @@ date: "2025-01-31"
 published: true
 ---
 
-# Let the Code Speak to You
-
 ## Seeing Code in Action
 
 When we write code, we often want to *see* what's happening step by step. Whether it's tracking variables, following execution flow, or troubleshooting unexpected behavior, logging is usually the first instinct.
@@ -48,6 +46,16 @@ DEBUG=app:* node index.js
 ```
 
 Now you see only relevant logs, keeping your output clean.
+
+`debug` runs in both: browser and node.js.
+
+If you want for example to see almost all logs but not the `updater` module you can use:
+
+```bash
+DEBUG=app:*,-app:updater node index.js
+```
+
+Check out the [debug docs](https://www.npmjs.com/package/debug) for more examples.
 
 ---
 
@@ -111,6 +119,8 @@ The `debug` package is widely adopted across the Node.js ecosystem, including ma
 10. **TypeORM**: An ORM for TypeScript and JavaScript (ES7, ES6, ES5) that supports many database systems.
 
 For a comprehensive list of packages that depend on `debug`, you can visit the [npm dependents page](https://www.npmjs.com/browse/depended/debug).
+
+That means you can run each of these packages with `debug` enabled and see their internals without altering their code.
 
 ---
 
