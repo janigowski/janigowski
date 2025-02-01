@@ -30,11 +30,6 @@ export interface Resume {
     firstName: string
     lastName: string
     position: string
-    contact: {
-        email: string
-        website: string
-        location: string
-    }
     about?: string
     experience?: ExperienceItem[]
     education?: EducationItem[]
@@ -60,6 +55,20 @@ export interface Resume {
     }
 }
 
+export interface Profile {
+    personal: {
+        name: string
+        title: string
+        email: string
+        website: string
+        location: string
+        github: string
+        linkedin: string
+    }
+    // ... other profile fields can be added as needed
+}
+
 declare module 'contentlayer/generated' {
     export const allResumes: Resume[]
+    export const allProfiles: Profile[]
 } 

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { allResumes } from 'contentlayer/generated'
+import { allResumes, allProfiles } from 'contentlayer/generated'
 import { getMDXComponent } from 'next-contentlayer/hooks'
 import { Metadata } from 'next'
 import { Resume, ExperienceItem, EducationItem } from '../../../types/resume'
@@ -7,6 +7,7 @@ import { Mail, Globe, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Line from './Line'
 import Company from './Company'
+import Contact from './Contact'
 
 interface PublicSpeakingItem {
     title: string
@@ -34,8 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ResumePage({ params }: PageProps) {
     const resume = allResumes.find((resume) => resume.slug === params.slug)
+    const profile = allProfiles[0] // There should be only one profile
 
-    if (!resume) {
+    if (!resume || !profile) {
         notFound()
     }
 
@@ -55,20 +57,13 @@ export default function ResumePage({ params }: PageProps) {
                             <h1 className="text-5xl font-bold tracking-tight text-white font-display">{resume.firstName} {resume.lastName}</h1>
                             <h2 className="mt-4 font-mono text-zinc-200">{resume.position}</h2>
                         </div>
-                        <div className="text-right text-sm text-zinc-400 space-y-0.5">
-                            <div className="flex items-center justify-start gap-2">
-                                <Mail className=" w-4 h-4" />
-                                <span>{resume.contact.email}</span>
-                            </div>
-                            <div className="flex items-center justify-start gap-2">
-                                <Globe className=" w-4 h-4" />
-                                <span>{resume.contact.website}</span>
-                            </div>
-                            <div className="flex items-center justify-start gap-2">
-                                <MapPin className=" w-4 h-4" />
-                                <span>{resume.contact.location}</span>
-                            </div>
-                        </div>
+                        <Contact
+                            email={profile.personal.email}
+                            website={profile.personal.website}
+                            location={profile.personal.location}
+                            github={profile.personal.github}
+                            linkedin={profile.personal.linkedin}
+                        />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full z-0">
                         <Image

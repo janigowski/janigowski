@@ -206,10 +206,6 @@ export const Resume = defineDocumentType(() => ({
 			type: "string",
 			required: true,
 		},
-		contact: {
-			type: "json",
-			required: true,
-		},
 		about: {
 			type: "string",
 		},
@@ -242,9 +238,73 @@ export const Resume = defineDocumentType(() => ({
 	computedFields,
 }));
 
+export const Profile = defineDocumentType(() => ({
+	name: "Profile",
+	filePathPattern: "./profile/profile.yaml",
+	contentType: "data",
+	fields: {
+		metadata: {
+			type: "json",
+			required: true,
+		},
+		personal: {
+			type: "json",
+			required: true,
+		},
+		highlights: {
+			type: "json",
+			required: true,
+		},
+		personality: {
+			type: "json",
+			required: true,
+		},
+		skills: {
+			type: "json",
+			required: true,
+		},
+		interests: {
+			type: "json",
+			required: true,
+		},
+		mindset: {
+			type: "json",
+			required: true,
+		},
+		education: {
+			type: "json",
+			required: true,
+		},
+		hackathons: {
+			type: "json",
+			required: true,
+		},
+		public_speaking: {
+			type: "json",
+			required: true,
+		},
+		experience: {
+			type: "json",
+			required: true,
+		},
+		freelance: {
+			type: "json",
+			required: true,
+		},
+		companies: {
+			type: "json",
+			required: true,
+		},
+		projects: {
+			type: "json",
+			required: true,
+		}
+	}
+}));
+
 export default makeSource({
 	contentDirPath: "./content",
-	documentTypes: [Project, Book, Post, Resume],
+	documentTypes: [Project, Book, Post, Resume, Profile],
 	mdx: {
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [
