@@ -226,9 +226,13 @@ export const Resume = defineDocumentType(() => ({
 			type: "json",
 			description: "List of interest groups"
 		},
-		volunteer: {
+		talks: {
 			type: "json",
-			description: "List of volunteer activities"
+			description: "List of conference talks and presentations"
+		},
+		hackathons: {
+			type: "json",
+			description: "List of hackathon participations"
 		}
 	},
 

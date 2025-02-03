@@ -8,6 +8,13 @@ import Line from './Line'
 import Company from './Company'
 import Contact from './Contact'
 
+interface Talk {
+    date: string
+    conference: string
+    place: string
+    title: string
+}
+
 interface PageProps {
     params: {
         slug: string
@@ -55,15 +62,16 @@ export default function ResumePage({ params }: PageProps) {
         education = [],
         skills = [],
         interests = [],
-        volunteer = [],
+        talks = [],
+        hackathons = [],
         mentoring
     } = resolvedResume
 
     // Split name into first and last name
     const [firstName, lastName] = name.split(' ')
 
-    // Get last 3 presentations
-    const recentPresentations = volunteer?.find((v: Volunteer) => v.organization === "Public Speaking")?.highlights.slice(0, 3) as Presentation[] || []
+    // Get last 3 talks
+    const recentTalks = talks.slice(0, 3)
 
     return (
         <div className="relative min-h-screen bg-zinc-100">
@@ -286,23 +294,23 @@ export default function ResumePage({ params }: PageProps) {
                             </section>
                         )}
 
-                        {recentPresentations.length > 0 && (
+                        {recentTalks.length > 0 && (
                             <section className="col-span-2">
                                 <Line />
                                 <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                     Talks
                                 </h2>
                                 <div className="space-y-4">
-                                    {recentPresentations.map((presentation, i) => (
+                                    {recentTalks.map((talk: Talk, i: number) => (
                                         <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
                                             <div>
-                                                <h3 className="font-medium text-zinc-800 text-sm">{presentation.title}</h3>
+                                                <h3 className="font-medium text-zinc-800 text-sm">{talk.title}</h3>
                                                 <p className="text-zinc-600 text-sm">
-                                                    {presentation.conference} @ {presentation.place}
+                                                    {talk.conference} @ {talk.place}
                                                 </p>
                                             </div>
                                             <div className="text-zinc-500 text-sm text-right">
-                                                {presentation.date}
+                                                {talk.date}
                                             </div>
                                         </div>
                                     ))}

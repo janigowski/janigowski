@@ -238,85 +238,72 @@
             ]
         }
     ],
-    "volunteer": [
+    "talks": [
         {
-            "organization": "Public Speaking",
-            "position": "Speaker",
-            "startDate": "2016",
-            "endDate": "2022",
-            "summary": "Regular speaker at tech conferences and internal events",
-            "highlights": [
-                {
-                    "date": "2022",
-                    "conference": "CodeEurope",
-                    "place": "National Stadium / PL",
-                    "title": "What if _your_Frontend_framework_ will die?"
-                },
-                {
-                    "date": "2022",
-                    "conference": "Netguru Internal",
-                    "place": "Online",
-                    "title": "Using Gatsby, GraphlQL, YAML, THREE.js and GSAP to create innovative knowledge hub"
-                },
-                {
-                    "date": "2021",
-                    "conference": "Burning Minds",
-                    "place": "Online",
-                    "title": "Being a software developer is just a first step. How to think as a product engineer?"
-                },
-                {
-                    "date": "2021",
-                    "conference": "Netguru Hangout",
-                    "place": "Online",
-                    "title": "How to control Philips Hue Lights with Traktor DJ Controller using JavaScript?"
-                },
-                {
-                    "date": "2020",
-                    "conference": "Netguru Internal",
-                    "place": "Online",
-                    "title": "React, Transparent Videos, Zustand and 60 FPS to showcase a product"
-                },
-                {
-                    "date": "2019",
-                    "conference": "SparkCamp",
-                    "place": "Koszalin / PL",
-                    "title": "WebXR - Journey through all realities"
-                },
-                {
-                    "date": "2019",
-                    "conference": "3cityVR",
-                    "place": "Gdańsk / PL",
-                    "title": "WebVR - Mixed Reality in web browsers without plugins?"
-                },
-                {
-                    "date": "2016",
-                    "conference": "GetResponse",
-                    "place": "Gdańsk / PL",
-                    "title": "WebGL - definition, status and examples"
-                }
-            ]
+            "date": "2022",
+            "conference": "CodeEurope",
+            "place": "National Stadium / PL",
+            "title": "What if _your_Frontend_framework_ will die?"
         },
         {
-            "organization": "Hackathons",
-            "position": "Participant",
-            "highlights": [
-                {
-                    "name": "HackFest2011 48h",
-                    "achievement": "Won Audience Award"
-                },
-                {
-                    "name": "HackFest2012 48h"
-                },
-                {
-                    "name": "GetResponse - Monsters Insomnia 24h"
-                },
-                {
-                    "name": "Forum Wizja Rozwoju 24h"
-                },
-                {
-                    "name": "Netguru 8h"
-                }
-            ]
+            "date": "2022",
+            "conference": "Netguru Internal",
+            "place": "Online",
+            "title": "Using Gatsby, GraphlQL, YAML, THREE.js and GSAP to create innovative knowledge hub"
+        },
+        {
+            "date": "2021",
+            "conference": "Burning Minds",
+            "place": "Online",
+            "title": "Being a software developer is just a first step. How to think as a product engineer?"
+        },
+        {
+            "date": "2021",
+            "conference": "Netguru Hangout",
+            "place": "Online",
+            "title": "How to control Philips Hue Lights with Traktor DJ Controller using JavaScript?"
+        },
+        {
+            "date": "2020",
+            "conference": "Netguru Internal",
+            "place": "Online",
+            "title": "React, Transparent Videos, Zustand and 60 FPS to showcase a product"
+        },
+        {
+            "date": "2019",
+            "conference": "SparkCamp",
+            "place": "Koszalin / PL",
+            "title": "WebXR - Journey through all realities"
+        },
+        {
+            "date": "2019",
+            "conference": "3cityVR",
+            "place": "Gdańsk / PL",
+            "title": "WebVR - Mixed Reality in web browsers without plugins?"
+        },
+        {
+            "date": "2016",
+            "conference": "GetResponse",
+            "place": "Gdańsk / PL",
+            "title": "WebGL - definition, status and examples"
+        }
+    ],
+    "hackathons": [
+        {
+            "name": "HackFest2011 48h",
+            "achievement": "Won Audience Award"
+        },
+        {
+            "name": "HackFest2012 48h"
+        },
+        {
+            "name": "GetResponse - Monsters Insomnia 24h"
+        },
+        {
+            "name": "Forum Wizja Rozwoju 24h"
+        },
+        {
+            "name": "Netguru 8h"
         }
     ]
 }
