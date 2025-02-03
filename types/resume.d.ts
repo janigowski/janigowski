@@ -33,19 +33,65 @@ export interface Job {
     location: string
 }
 
+export interface Location {
+    city: string
+    countryCode: string
+}
+
+export interface Profile {
+    network: string
+    username?: string
+    url: string
+}
+
+export interface Basics {
+    name: string
+    label: string
+    email: string
+    url: string
+    summary: string
+    location: Location
+    profiles: Profile[]
+}
+
+export interface Work {
+    name: string
+    position: string
+    startDate: string
+    endDate?: string
+    summary: string
+    highlights: string[]
+}
+
+export interface Education {
+    institution: string
+    area: string
+    location: string
+}
+
+export interface Skill {
+    name: string
+    keywords: string[]
+}
+
+export interface Interest {
+    name: string
+    keywords: string[]
+}
+
 export interface Resume {
-    title: string
-    role: string
-    about: string
-    experience: {
-        [key: string]: string  // Maps job ID to MDX content
-    }
-    published: boolean
-    date: string
-    body: {
-        code: string
-    }
-    slug: string
+    name: string
+    label: string
+    email: string
+    url: string
+    summary: string
+    locationCity: string
+    locationCountryCode: string
+    profiles: Profile[]
+    work: Work[]
+    education: Education[]
+    skills: Skill[]
+    interests: Interest[]
     _id: string
     _raw: {
         sourceFilePath: string
@@ -54,6 +100,31 @@ export interface Resume {
         contentType: string
         flattenedPath: string
     }
+}
+
+export interface ResumeExtension {
+    name?: string
+    label?: string
+    email?: string
+    url?: string
+    summary?: string
+    locationCity?: string
+    locationCountryCode?: string
+    profiles?: Profile[]
+    work?: Work[]
+    education?: Education[]
+    skills?: Skill[]
+    interests?: Interest[]
+    _id: string
+    _raw: {
+        sourceFilePath: string
+        sourceFileName: string
+        sourceFileDir: string
+        contentType: string
+        flattenedPath: string
+    }
+    slug: string
+    mergedResume: Resume
 }
 
 interface Position {
@@ -85,40 +156,6 @@ interface ExperienceEntry {
     positions?: Position[]
 }
 
-export interface Profile {
-    metadata: {
-        version: string
-        last_updated: string
-        template: string
-    }
-    personal: {
-        name: string
-        title: string
-        email: string
-        website: string
-        location: string
-        github: string
-        linkedin: string
-    }
-    experience: ExperienceEntry[]
-    skills: {
-        technical: string[]
-        applications: string[]
-    }
-    education: EducationItem[]
-    public_speaking: PublicSpeakingItem[]
-    interests: {
-        main: string[]
-        other: string[]
-    }
-    highlights: {
-        experience_years: string
-        products_contributed: string
-        mentees_guided: string
-        countries_impacted: string
-    }
-}
-
 export interface PublicSpeakingItem {
     date: string
     conference: string
@@ -126,7 +163,15 @@ export interface PublicSpeakingItem {
     title: string
 }
 
+export interface ContactProps {
+    email: string
+    website: string
+    location: string
+    github?: string
+    linkedin?: string
+}
+
 declare module 'contentlayer/generated' {
     export const allResumes: Resume[]
-    export const allProfiles: Profile[]
+    export const allResumeExtensions: ResumeExtension[]
 } 

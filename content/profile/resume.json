@@ -1,0 +1,337 @@
+{
+    "name": "Dawid Janiga",
+    "label": "Software Engineer",
+    "email": "dawidjaniga@gmail.com",
+    "url": "https://janigowski.dev",
+    "summary": "I love to create digital products",
+    "locationCity": "Kraków",
+    "locationCountryCode": "PL",
+    "profiles": [
+        {
+            "network": "GitHub",
+            "username": "janigowski",
+            "url": "https://github.com/janigowski"
+        },
+        {
+            "network": "LinkedIn",
+            "url": "https://linkedin.com/in/dawidjaniga"
+        }
+    ],
+    "basics": {
+        "highlights": {
+            "experience_years": "10+",
+            "products_contributed": "24+",
+            "mentees_guided": "36+",
+            "countries_impacted": "17+"
+        },
+        "personality": {
+            "clifton_strengths": [
+                "Futuristic",
+                "Strategic",
+                "Significance",
+                "Activator",
+                "Individualization"
+            ]
+        },
+        "mindset": [
+            "I like to work on a broader scope",
+            "take the initiative",
+            "and Lead projects"
+        ]
+    },
+    "work": [
+        {
+            "name": "ADPList",
+            "position": "Mentor",
+            "startDate": "2024-03",
+            "summary": "Mentored 36+ developers from 17 countries",
+            "highlights": [
+                "TOP 1% MENTOR (4x Recognized)",
+                "Mentored 36+ developers from 17 countries",
+                "Provided 4500+ minutes of technical guidance",
+                "Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture",
+                "Created structured interview preparation and career development plans",
+                "Facilitated hands-on technical sessions and live coding",
+                "Developed personalized growth strategies for mentees"
+            ],
+            "impact": [
+                "Transformed mentees' technical confidence through live coding sessions",
+                "Enabled career transitions through structured roadmaps",
+                "Improved mentees' problem-solving abilities and architectural thinking"
+            ],
+            "technologies": [
+                "React",
+                "TypeScript",
+                "Software Architecture",
+                "Career Development",
+                "Technical Leadership",
+                "Mentoring"
+            ]
+        },
+        {
+            "name": "janigowski.dev",
+            "position": "Media Technology Explorer",
+            "startDate": "2022-08",
+            "summary": "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
+            "highlights": [
+                "Conceptualized and developed an integrated environment for real-time audio-visual performance",
+                "Engineered real-time waveform visualization and multi-channel mixing with BPM sync",
+                "Integrated MIDI controls with hardware devices (mixers, controllers)",
+                "Implemented context-dependent shortcuts for MIDI and keyboard inputs",
+                "Created 'Spotlight' command palette for swift navigation",
+                "Designed multi-channel timeline for audio, video, and visuals"
+            ],
+            "technologies": [
+                "Electron",
+                "TypeScript",
+                "Svelte",
+                "Node.js",
+                "tRPC",
+                "Signals",
+                "SQLite",
+                "Tone.js",
+                "WebAudio",
+                "WebMIDI",
+                "OOP",
+                "Clean Architecture"
+            ]
+        },
+        {
+            "name": "Netguru",
+            "position": "Software Architect Frontend",
+            "startDate": "2021",
+            "endDate": "2022",
+            "summary": "Led technical architecture and team development",
+            "highlights": [
+                "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
+                "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
+                "Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows",
+                "Reduced Map loading time by 80% (10s ↘ 2s)",
+                "Optimized state management by removing over +1500 LOC",
+                "Crafted 3D solution for a NFT knowledge hub utilizing procedural environment generation"
+            ]
+        },
+        {
+            "name": "Netguru",
+            "position": "Team Leader",
+            "startDate": "2020",
+            "endDate": "2021",
+            "summary": "Led and supported a team of 6 developers",
+            "highlights": [
+                "Provided emotional and technical support for 6 team members",
+                "Plan self-development roadmaps and perform quarterly evaluations",
+                "Conducting one-on-one and team meetings",
+                "Promoting a feedback culture among direct reports and their teammates",
+                "Keeping the team connected with the company's strategy, processes, and updates"
+            ]
+        },
+        {
+            "name": "Netguru",
+            "position": "Senior Frontend Developer",
+            "startDate": "2019",
+            "endDate": "2020",
+            "summary": "Delivered high-impact solutions across multiple domains",
+            "highlights": [
+                "Designed a chatbot engine and visual language to reduce Customer Support workload",
+                "Created a complex, data-intensive FinTech Inquiry Form with over 120 interdependent fields",
+                "Designed and implemented high-performant product showcase using transparent videos",
+                "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
+                "Decreased development time by utilizing AST-to-AST refactoring",
+                "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors"
+            ]
+        },
+        {
+            "name": "ThinkSmart",
+            "position": "Full Stack JavaScript Developer",
+            "startDate": "2017",
+            "endDate": "2019",
+            "summary": "Drove startup innovation and technical implementation",
+            "highlights": [
+                "Transformed startup ideas into functional applications",
+                "Developed two mobile apps and refactored existing web app",
+                "Delivered GPS-based business cards MVP in 2 weeks",
+                "Set up CI/CD workflows",
+                "Designed and built APIs following JSON:API and REST principles",
+                "Wrote E2E, integration and unit tests",
+                "Maintained code quality using automatic tools"
+            ]
+        },
+        {
+            "name": "GetResponse",
+            "position": "JavaScript Developer",
+            "startDate": "2015",
+            "endDate": "2017",
+            "summary": "Led key platform development initiatives",
+            "highlights": [
+                "Implemented Marketing Automation Creator using MVC architecture",
+                "Delivered CRM Platform MVP in record time (6 weeks)",
+                "Participated in React migration from PHP",
+                "Developed internal tools for frontend performance metrics"
+            ]
+        },
+        {
+            "name": "Janigowski",
+            "position": "Freelance Developer",
+            "startDate": "2009",
+            "summary": "My interest in computers made me experiment a lot. I like to explore and learn.",
+            "highlights": [
+                "Crafted CMS, Forums and Landing Pages",
+                "Designed graphics: websites, landing pages, posters, business cards (including DTP)"
+            ],
+            "technologies": [
+                "PHP",
+                "MySQL",
+                "Apache",
+                "Linux (Ubuntu, Fedora, Kali)",
+                "XML",
+                "JSON",
+                "Wordpress",
+                "HTML4/5",
+                "CSS2/3",
+                "JavaScript",
+                "jQuery",
+                "Bootstrap",
+                "Semantic UI",
+                "pug",
+                "jade",
+                "Photoshop",
+                "HTML5 Canvas",
+                "Google Maps API",
+                "Wikimedia API"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Stefan Czarniecki High School",
+            "area": "Math-physics profile",
+            "location": "Człuchów, Poland"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Technical",
+            "keywords": [
+                "React",
+                "Node.js",
+                "TypeScript",
+                "Software Architecture",
+                "Leadership",
+                "Team building"
+            ]
+        },
+        {
+            "name": "Applications",
+            "keywords": [
+                "Web",
+                "Mobile",
+                "APIs",
+                "CLI",
+                "Editors",
+                "Tools",
+                "Design Systems"
+            ]
+        }
+    ],
+    "interests": [
+        {
+            "name": "Main",
+            "keywords": [
+                "Software Architecture",
+                "Product Development",
+                "Rock climbing & bouldering",
+                "History, Art & design",
+                "I run my first halfmarathon last year and didn't die",
+                "I'm a Techno DJ"
+            ]
+        },
+        {
+            "name": "Other",
+            "keywords": [
+                "Trendy AI: ChatGPT, DALL-E, Midjourney and Cursor",
+                "UI/UX/graphic design, video edit, sound production"
+            ]
+        }
+    ],
+    "volunteer": [
+        {
+            "organization": "Public Speaking",
+            "position": "Speaker",
+            "startDate": "2016",
+            "endDate": "2022",
+            "summary": "Regular speaker at tech conferences and internal events",
+            "highlights": [
+                {
+                    "date": "2022",
+                    "conference": "CodeEurope",
+                    "place": "National Stadium / PL",
+                    "title": "What if _your_Frontend_framework_ will die?"
+                },
+                {
+                    "date": "2022",
+                    "conference": "Netguru Internal",
+                    "place": "Online",
+                    "title": "Using Gatsby, GraphlQL, YAML, THREE.js and GSAP to create innovative knowledge hub"
+                },
+                {
+                    "date": "2021",
+                    "conference": "Burning Minds",
+                    "place": "Online",
+                    "title": "Being a software developer is just a first step. How to think as a product engineer?"
+                },
+                {
+                    "date": "2021",
+                    "conference": "Netguru Hangout",
+                    "place": "Online",
+                    "title": "How to control Philips Hue Lights with Traktor DJ Controller using JavaScript?"
+                },
+                {
+                    "date": "2020",
+                    "conference": "Netguru Internal",
+                    "place": "Online",
+                    "title": "React, Transparent Videos, Zustand and 60 FPS to showcase a product"
+                },
+                {
+                    "date": "2019",
+                    "conference": "SparkCamp",
+                    "place": "Koszalin / PL",
+                    "title": "WebXR - Journey through all realities"
+                },
+                {
+                    "date": "2019",
+                    "conference": "3cityVR",
+                    "place": "Gdańsk / PL",
+                    "title": "WebVR - Mixed Reality in web browsers without plugins?"
+                },
+                {
+                    "date": "2016",
+                    "conference": "GetResponse",
+                    "place": "Gdańsk / PL",
+                    "title": "WebGL - definition, status and examples"
+                }
+            ]
+        },
+        {
+            "organization": "Hackathons",
+            "position": "Participant",
+            "highlights": [
+                {
+                    "name": "HackFest2011 48h",
+                    "achievement": "Won Audience Award"
+                },
+                {
+                    "name": "HackFest2012 48h"
+                },
+                {
+                    "name": "GetResponse - Monsters Insomnia 24h"
+                },
+                {
+                    "name": "Forum Wizja Rozwoju 24h"
+                },
+                {
+                    "name": "Netguru 8h"
+                }
+            ]
+        }
+    ]
+}

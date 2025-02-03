@@ -187,104 +187,157 @@ export const Post = defineDocumentType(() => ({
 
 export const Resume = defineDocumentType(() => ({
 	name: "Resume",
-	filePathPattern: "./resumes/**/*.mdx",
-	contentType: "mdx",
+	filePathPattern: "./profile/resume.json",
+	contentType: "json",
+
 	fields: {
-		title: {
-			type: "string",
-			required: true,
-		},
-		role: {
-			type: "string",
-			required: true,
-		},
-		about: {
-			type: "string",
-			required: true,
-		},
-		experience: {
-			type: "json",
-			required: true,
-		},
-		published: {
-			type: "boolean",
-			default: true,
-		},
-		date: {
-			type: "date",
-			required: true,
-		}
-	},
-	computedFields,
+		name: { type: "string" },
+		label: { type: "string" },
+		email: { type: "string" },
+		url: { type: "string" },
+		summary: { type: "string" },
+		locationCity: { type: "string" },
+		locationCountryCode: { type: "string" },
+		profiles: { type: "json" },
+		work: { type: "json" },
+		education: { type: "json" },
+		skills: { type: "json" },
+		interests: { type: "json" }
+	}
 }));
 
-export const Profile = defineDocumentType(() => ({
-	name: "Profile",
-	filePathPattern: "./profile/profile.yaml",
-	contentType: "data",
+export const ResumeExtension = defineDocumentType(() => ({
+	name: "ResumeExtension",
+	filePathPattern: "./resumes/**/*.json",
+	contentType: "json",
+
 	fields: {
-		metadata: {
+		summary: { type: "string", required: false }
+	},
+
+	computedFields: {
+		...computedFields,
+		mergedResume: {
 			type: "json",
-			required: true,
-		},
-		personal: {
-			type: "json",
-			required: true,
-		},
-		highlights: {
-			type: "json",
-			required: true,
-		},
-		personality: {
-			type: "json",
-			required: true,
-		},
-		skills: {
-			type: "json",
-			required: true,
-		},
-		interests: {
-			type: "json",
-			required: true,
-		},
-		mindset: {
-			type: "json",
-			required: true,
-		},
-		education: {
-			type: "json",
-			required: true,
-		},
-		hackathons: {
-			type: "json",
-			required: true,
-		},
-		public_speaking: {
-			type: "json",
-			required: true,
-		},
-		experience: {
-			type: "json",
-			required: true,
-		},
-		freelance: {
-			type: "json",
-			required: true,
-		},
-		companies: {
-			type: "json",
-			required: true,
-		},
-		projects: {
-			type: "json",
-			required: true,
+			resolve: async (extension) => {
+				// Get base resume data directly from the file
+				const baseResume = {
+					name: "Dawid Janiga",
+					label: "Software Engineer",
+					email: "dawidjaniga@gmail.com",
+					url: "https://janigowski.dev",
+					locationCity: "Kraków",
+					locationCountryCode: "PL",
+					profiles: [
+						{
+							network: "GitHub",
+							username: "janigowski",
+							url: "https://github.com/janigowski"
+						},
+						{
+							network: "LinkedIn",
+							url: "https://linkedin.com/in/dawidjaniga"
+						}
+					],
+					work: [
+						{
+							name: "ADPList",
+							position: "Mentor",
+							startDate: "2024-03",
+							summary: "Mentored 36+ developers from 17 countries",
+							highlights: [
+								"TOP 1% MENTOR (4x Recognized)",
+								"Provided 4500+ minutes of technical guidance",
+								"Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture"
+							]
+						},
+						{
+							name: "janigowski.dev",
+							position: "Media Technology Explorer",
+							startDate: "2022-08",
+							summary: "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
+							highlights: [
+								"Conceptualized and developed an integrated environment for real-time audio-visual performance",
+								"Engineered real-time waveform visualization and multi-channel mixing with BPM sync"
+							]
+						},
+						{
+							name: "Netguru",
+							position: "Software Architect Frontend",
+							startDate: "2021",
+							endDate: "2022",
+							summary: "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
+							highlights: [
+								"Reduced Map loading time by 80% (10s ↘ 2s)",
+								"Optimized state management by removing over +1500 LOC"
+							]
+						}
+					],
+					education: [
+						{
+							institution: "Stefan Czarniecki High School",
+							area: "Math-physics profile",
+							location: "Człuchów, Poland"
+						}
+					],
+					skills: [
+						{
+							name: "Technical",
+							keywords: [
+								"React",
+								"Node.js",
+								"TypeScript",
+								"Software Architecture",
+								"Leadership",
+								"Team building"
+							]
+						},
+						{
+							name: "Applications",
+							keywords: [
+								"Web",
+								"Mobile",
+								"APIs",
+								"CLI",
+								"Editors",
+								"Tools",
+								"Design Systems"
+							]
+						}
+					],
+					interests: [
+						{
+							name: "Main",
+							keywords: [
+								"Software Architecture",
+								"Product Development",
+								"Rock climbing & bouldering",
+								"History, Art & design"
+							]
+						},
+						{
+							name: "Other",
+							keywords: [
+								"Trendy AI: ChatGPT, DALL-E, Midjourney and Cursor",
+								"UI/UX/graphic design, video edit, sound production"
+							]
+						}
+					]
+				};
+
+				// Only override the summary from the extension
+				return {
+					...baseResume,
+					summary: extension.summary || baseResume.summary
+				};
+			}
 		}
 	}
 }));
 
 export default makeSource({
 	contentDirPath: "./content",
-	documentTypes: [Project, Book, Post, Resume, Profile],
+	documentTypes: [Resume, ResumeExtension, Project, Book, Post],
 	mdx: {
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [
