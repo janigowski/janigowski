@@ -17,28 +17,22 @@
             "url": "https://linkedin.com/in/dawidjaniga"
         }
     ],
-    "basics": {
-        "highlights": {
-            "experience_years": "10+",
-            "products_contributed": "24+",
-            "mentees_guided": "36+",
-            "countries_impacted": "17+"
-        },
-        "personality": {
-            "clifton_strengths": [
-                "Futuristic",
-                "Strategic",
-                "Significance",
-                "Activator",
-                "Individualization"
-            ]
-        },
-        "mindset": [
-            "I like to work on a broader scope",
-            "take the initiative",
-            "and Lead projects"
-        ]
-    },
+    "experience_years": "10+",
+    "products_contributed": "24+",
+    "mentees_guided": "36+",
+    "countries_impacted": "17+",
+    "clifton_strengths": [
+        "Futuristic",
+        "Strategic",
+        "Significance",
+        "Activator",
+        "Individualization"
+    ],
+    "mindset": [
+        "I like to work on a broader scope",
+        "take the initiative",
+        "and Lead projects"
+    ],
     "work": [
         {
             "name": "ADPList",
@@ -53,11 +47,6 @@
                 "Created structured interview preparation and career development plans",
                 "Facilitated hands-on technical sessions and live coding",
                 "Developed personalized growth strategies for mentees"
-            ],
-            "impact": [
-                "Transformed mentees' technical confidence through live coding sessions",
-                "Enabled career transitions through structured roadmaps",
-                "Improved mentees' problem-solving abilities and architectural thinking"
             ],
             "technologies": [
                 "React",

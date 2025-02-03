@@ -1,5 +1,4 @@
 import { allResumes } from 'contentlayer/generated'
-import { Resume } from '../../types/resume'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 
@@ -8,8 +7,18 @@ export const metadata = {
     description: 'Collection of my professional resumes',
 }
 
+function capitalizeAndFormat(slug: string): string {
+    return slug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+}
+
 export default function ResumesPage() {
-    const resumes: Resume[] = allResumes
+    // Sort variants by slug
+    const sortedResumes = [...allResumes].sort((a, b) =>
+        a.slug.localeCompare(b.slug)
+    )
 
     return (
         <div className="relative min-h-screen">
@@ -30,33 +39,34 @@ export default function ResumesPage() {
 
             <div className="px-6 mx-auto max-w-7xl lg:px-8">
                 <div className="max-w-2xl mx-auto lg:max-w-none">
-                    {resumes.length === 0 ? (
+                    {sortedResumes.length === 0 ? (
                         <p className="text-zinc-400">No resumes available.</p>
                     ) : (
                         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {resumes.map((resume) => (
-                                <Link
-                                    key={resume.slug}
-                                    href={`/resumes/${resume.slug}`}
-                                    className="group relative flex flex-col items-start"
-                                >
-                                    <h2 className="text-xl font-semibold text-zinc-100 group-hover:text-brand-lime transition">
-                                        <Balancer>{resume.title}</Balancer>
-                                    </h2>
-                                    {resume.date && (
-                                        <time className="relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 pl-3.5">
-                                            <span className="absolute inset-y-0 left-0 flex items-center">
-                                                <span className="h-4 w-0.5 rounded-full bg-zinc-700" />
-                                            </span>
-                                            {new Date(resume.date).toLocaleDateString('en-US', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })}
-                                        </time>
-                                    )}
-                                </Link>
-                            ))}
+                            {sortedResumes.map((resume) => {
+                                const resolvedResume = resume.resolvedResume
+                                if (!resolvedResume) return null
+
+                                return (
+                                    <Link
+                                        key={resume.slug}
+                                        href={`/resumes/${resume.slug}`}
+                                        className="group relative flex flex-col items-start p-6 bg-zinc-900/50 rounded-lg hover:bg-zinc-900/75 transition"
+                                    >
+                                        <h2 className="text-xl font-semibold text-zinc-100 group-hover:text-brand-lime transition">
+                                            <Balancer>{capitalizeAndFormat(resume.slug)}</Balancer>
+                                        </h2>
+                                        {resolvedResume.summary && (
+                                            <p className="mt-4 text-sm text-zinc-400 line-clamp-3">
+                                                {resolvedResume.summary}
+                                            </p>
+                                        )}
+                                        <div className="mt-4 text-xs text-zinc-500">
+                                            {resolvedResume.label} • {resolvedResume.locationCity}, {resolvedResume.locationCountryCode}
+                                        </div>
+                                    </Link>
+                                )
+                            })}
                         </div>
                     )}
                 </div>

@@ -3,6 +3,8 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import lodash from 'lodash'
+import baseResume from './resume.json'
 
 const janigowskiWarpTheme = {
 	name: 'custom-warp',
@@ -187,10 +189,11 @@ export const Post = defineDocumentType(() => ({
 
 export const Resume = defineDocumentType(() => ({
 	name: "Resume",
-	filePathPattern: "./profile/resume.json",
+	filePathPattern: "./resumes/**/*.json",
 	contentType: "json",
 
 	fields: {
+		slug: { type: "string", required: true },
 		name: { type: "string" },
 		label: { type: "string" },
 		email: { type: "string" },
@@ -198,138 +201,45 @@ export const Resume = defineDocumentType(() => ({
 		summary: { type: "string" },
 		locationCity: { type: "string" },
 		locationCountryCode: { type: "string" },
-		profiles: { type: "json" },
-		work: { type: "json" },
-		education: { type: "json" },
-		skills: { type: "json" },
-		interests: { type: "json" }
-	}
-}));
-
-export const ResumeExtension = defineDocumentType(() => ({
-	name: "ResumeExtension",
-	filePathPattern: "./resumes/**/*.json",
-	contentType: "json",
-
-	fields: {
-		summary: { type: "string", required: false }
+		profiles: { 
+			type: "json",
+			description: "List of social media profiles"
+		},
+		experience_years: { type: "string" },
+		products_contributed: { type: "string" },
+		mentees_guided: { type: "string" },
+		countries_impacted: { type: "string" },
+		clifton_strengths: { type: "json" },
+		mindset: { type: "json" },
+		work: {
+			type: "json",
+			description: "List of work experiences"
+		},
+		education: {
+			type: "json",
+			description: "List of education entries"
+		},
+		skills: {
+			type: "json",
+			description: "List of skill groups"
+		},
+		interests: {
+			type: "json",
+			description: "List of interest groups"
+		},
+		volunteer: {
+			type: "json",
+			description: "List of volunteer activities"
+		}
 	},
 
 	computedFields: {
 		...computedFields,
-		mergedResume: {
+		resolvedResume: {
 			type: "json",
-			resolve: async (extension) => {
-				// Get base resume data directly from the file
-				const baseResume = {
-					name: "Dawid Janiga",
-					label: "Software Engineer",
-					email: "dawidjaniga@gmail.com",
-					url: "https://janigowski.dev",
-					locationCity: "Kraków",
-					locationCountryCode: "PL",
-					profiles: [
-						{
-							network: "GitHub",
-							username: "janigowski",
-							url: "https://github.com/janigowski"
-						},
-						{
-							network: "LinkedIn",
-							url: "https://linkedin.com/in/dawidjaniga"
-						}
-					],
-					work: [
-						{
-							name: "ADPList",
-							position: "Mentor",
-							startDate: "2024-03",
-							summary: "Mentored 36+ developers from 17 countries",
-							highlights: [
-								"TOP 1% MENTOR (4x Recognized)",
-								"Provided 4500+ minutes of technical guidance",
-								"Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture"
-							]
-						},
-						{
-							name: "janigowski.dev",
-							position: "Media Technology Explorer",
-							startDate: "2022-08",
-							summary: "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
-							highlights: [
-								"Conceptualized and developed an integrated environment for real-time audio-visual performance",
-								"Engineered real-time waveform visualization and multi-channel mixing with BPM sync"
-							]
-						},
-						{
-							name: "Netguru",
-							position: "Software Architect Frontend",
-							startDate: "2021",
-							endDate: "2022",
-							summary: "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
-							highlights: [
-								"Reduced Map loading time by 80% (10s ↘ 2s)",
-								"Optimized state management by removing over +1500 LOC"
-							]
-						}
-					],
-					education: [
-						{
-							institution: "Stefan Czarniecki High School",
-							area: "Math-physics profile",
-							location: "Człuchów, Poland"
-						}
-					],
-					skills: [
-						{
-							name: "Technical",
-							keywords: [
-								"React",
-								"Node.js",
-								"TypeScript",
-								"Software Architecture",
-								"Leadership",
-								"Team building"
-							]
-						},
-						{
-							name: "Applications",
-							keywords: [
-								"Web",
-								"Mobile",
-								"APIs",
-								"CLI",
-								"Editors",
-								"Tools",
-								"Design Systems"
-							]
-						}
-					],
-					interests: [
-						{
-							name: "Main",
-							keywords: [
-								"Software Architecture",
-								"Product Development",
-								"Rock climbing & bouldering",
-								"History, Art & design"
-							]
-						},
-						{
-							name: "Other",
-							keywords: [
-								"Trendy AI: ChatGPT, DALL-E, Midjourney and Cursor",
-								"UI/UX/graphic design, video edit, sound production"
-							]
-						}
-					]
-				};
-
-				// Only override the summary from the extension
-				return {
-					...baseResume,
-					summary: extension.summary || baseResume.summary
-				};
+			resolve: (doc) => {
+				const { _id, _raw, type, slug, ...cleanVariant } = doc
+				return lodash.merge({}, baseResume, cleanVariant)
 			}
 		}
 	}
@@ -337,7 +247,7 @@ export const ResumeExtension = defineDocumentType(() => ({
 
 export default makeSource({
 	contentDirPath: "./content",
-	documentTypes: [Resume, ResumeExtension, Project, Book, Post],
+	documentTypes: [Resume, Project, Book, Post],
 	mdx: {
 		remarkPlugins: [remarkGfm],
 		rehypePlugins: [

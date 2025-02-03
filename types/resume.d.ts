@@ -61,6 +61,7 @@ export interface Work {
     endDate?: string
     summary: string
     highlights: string[]
+    technologies?: string[]
 }
 
 export interface Education {
@@ -79,6 +80,37 @@ export interface Interest {
     keywords: string[]
 }
 
+export interface Presentation {
+    date: string
+    conference: string
+    place: string
+    title: string
+}
+
+export interface HackathonEntry {
+    name: string
+    achievement?: string
+}
+
+export interface Volunteer {
+    organization: string
+    position: string
+    startDate?: string
+    endDate?: string
+    summary?: string
+    highlights: Presentation[] | HackathonEntry[]
+}
+
+export interface Mentoring {
+    name: string
+    position: string
+    startDate: string
+    summary: string
+    highlights: string[]
+    impact: string[]
+    technologies: string[]
+}
+
 export interface Resume {
     name: string
     label: string
@@ -88,10 +120,17 @@ export interface Resume {
     locationCity: string
     locationCountryCode: string
     profiles: Profile[]
+    experience_years: string
+    products_contributed: string
+    mentees_guided: string
+    countries_impacted: string
+    clifton_strengths: string[]
+    mindset: string[]
     work: Work[]
     education: Education[]
     skills: Skill[]
     interests: Interest[]
+    volunteer: Volunteer[]
     _id: string
     _raw: {
         sourceFilePath: string
@@ -103,18 +142,8 @@ export interface Resume {
 }
 
 export interface ResumeExtension {
-    name?: string
-    label?: string
-    email?: string
-    url?: string
-    summary?: string
-    locationCity?: string
-    locationCountryCode?: string
-    profiles?: Profile[]
-    work?: Work[]
-    education?: Education[]
-    skills?: Skill[]
-    interests?: Interest[]
+    slug: string
+    mergedResume: Resume
     _id: string
     _raw: {
         sourceFilePath: string
@@ -123,8 +152,6 @@ export interface ResumeExtension {
         contentType: string
         flattenedPath: string
     }
-    slug: string
-    mergedResume: Resume
 }
 
 interface Position {
@@ -171,7 +198,21 @@ export interface ContactProps {
     linkedin?: string
 }
 
+export interface General {
+    slug: string
+    resume: Resume
+    _id: string
+    _raw: {
+        sourceFilePath: string
+        sourceFileName: string
+        sourceFileDir: string
+        contentType: string
+        flattenedPath: string
+    }
+}
+
 declare module 'contentlayer/generated' {
     export const allResumes: Resume[]
     export const allResumeExtensions: ResumeExtension[]
+    export const allGenerals: General[]
 } 

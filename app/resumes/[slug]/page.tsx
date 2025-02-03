@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
-import { allResumeExtensions } from 'contentlayer/generated'
+import { allResumes } from 'contentlayer/generated'
 import { Metadata } from 'next'
-import { Profile, Work, Education, Skill, Interest } from '../../../types/resume'
+import { Profile, Work, Education, Skill, Interest, Volunteer, Presentation } from '../../../types/resume'
 import { Mail, Globe, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Line from './Line'
@@ -15,45 +15,77 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-    return allResumeExtensions.map((resume) => ({
-        slug: resume.slug,
+    return allResumes.map(resume => ({
+        slug: resume.slug
     }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const resume = allResumeExtensions.find((resume) => resume.slug === params.slug)
-    if (!resume) return { title: 'Resume Not Found' }
-    return { title: `${resume.mergedResume.name} - ${resume.mergedResume.label}` }
+    const resume = allResumes.find(r => r.slug === params.slug)
+    if (!resume?.resolvedResume) return { title: 'Resume Not Found' }
+
+    const resolvedResume = resume.resolvedResume
+    return {
+        title: `${resolvedResume.name} - ${resolvedResume.label}`,
+        description: resolvedResume.summary
+    }
 }
 
 export default function ResumePage({ params }: PageProps) {
-    const resumeExt = allResumeExtensions.find((resume) => resume.slug === params.slug)
+    const resume = allResumes.find(r => r.slug === params.slug)
+    const resolvedResume = resume?.resolvedResume
 
-    if (!resumeExt) {
-        console.error('Resume extension not found:', params.slug)
-        notFound()
-    }
-
-    const resume = resumeExt.mergedResume
-    if (!resume) {
-        console.error('Merged resume data is missing:', resumeExt)
+    if (!resolvedResume) {
+        console.error('Resume not found:', params.slug)
         notFound()
     }
 
     // Validate required fields
-    const requiredFields = ['name', 'label', 'email', 'url', 'locationCity', 'locationCountryCode', 'profiles']
-    const missingFields = requiredFields.filter(field => !resume[field])
+    const requiredFields = [
+        'name', 'label', 'email', 'url', 'locationCity', 'locationCountryCode',
+        'profiles', 'experience_years', 'products_contributed', 'mentees_guided',
+        'countries_impacted', 'clifton_strengths', 'mindset'
+    ] as const
+
+    const missingFields = requiredFields.filter(field => {
+        const value = resolvedResume[field]
+        return value === undefined || value === null || value === ''
+    })
 
     if (missingFields.length > 0) {
         console.error('Missing required fields in resume:', missingFields)
-        console.error('Resume data:', resume)
+        console.error('Resume data:', resolvedResume)
         notFound()
     }
 
-    const { name, label, email, url, summary, locationCity, locationCountryCode, profiles, work, education, skills, interests } = resume
+    const {
+        name,
+        label,
+        email,
+        url,
+        summary,
+        locationCity,
+        locationCountryCode,
+        profiles,
+        experience_years,
+        products_contributed,
+        mentees_guided,
+        countries_impacted,
+        clifton_strengths,
+        mindset,
+        work = [],
+        education = [],
+        skills = [],
+        interests = [],
+        volunteer = [],
+        mentoring
+    } = resolvedResume
 
     // Split name into first and last name
     const [firstName, lastName] = name.split(' ')
+
+    // Get last 3 presentations
+    const recentPresentations = volunteer?.find((v: Volunteer) => v.organization === "Public Speaking")?.highlights.slice(0, 3) as Presentation[] || []
 
     return (
         <div className="relative min-h-screen bg-zinc-100">
@@ -105,6 +137,138 @@ export default function ResumePage({ params }: PageProps) {
                         </section>
                     )}
 
+                    {/* Highlights Section */}
+                    <section className="mb-8">
+                        <Line />
+                        <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            Highlights
+                        </h2>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="text-zinc-600 text-sm">
+                                <strong>{experience_years}</strong> years of experience
+                            </div>
+                            <div className="text-zinc-600 text-sm">
+                                <strong>{products_contributed}</strong> products contributed
+                            </div>
+                            <div className="text-zinc-600 text-sm">
+                                <strong>{mentees_guided}</strong> mentees guided
+                            </div>
+                            <div className="text-zinc-600 text-sm">
+                                <strong>{countries_impacted}</strong> countries impacted
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Personality Section */}
+                    <section className="mb-8">
+                        <Line />
+                        <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            Personality
+                        </h2>
+                        <div className="space-y-4">
+                            {clifton_strengths?.length > 0 && (
+                                <div>
+                                    <h3 className="text-sm font-medium text-zinc-700 mb-2">Clifton Strengths</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {clifton_strengths.map((strength: string, i: number) => (
+                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                {strength}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                            {mindset?.length > 0 && (
+                                <div>
+                                    <h3 className="text-sm font-medium text-zinc-700 mb-2">Mindset</h3>
+                                    <div className="text-zinc-600 text-sm">
+                                        {mindset.join(', ')}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </section>
+
+                    {mentoring && (
+                        <section className="mb-8">
+                            <Line />
+                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                Mentoring
+                            </h2>
+                            <div className="space-y-6">
+                                <div className="grid grid-cols-[1fr,120px] gap-6">
+                                    <div>
+                                        <div className='flex row justify-between mb-2'>
+                                            <h3 className="font-normal text-zinc-800 text-sm uppercase">{mentoring.position}</h3>
+                                            <div className='flex row text-sm'>
+                                                <Company name={mentoring.name} />
+                                            </div>
+                                        </div>
+                                        <div className="text-zinc-600 text-sm leading-relaxed">
+                                            <p>{mentoring.summary}</p>
+                                            {mentoring.highlights && mentoring.highlights.length > 0 && (
+                                                <ul className="mt-2 list-disc list-inside">
+                                                    {mentoring.highlights.map((highlight: string, i: number) => (
+                                                        <li key={i}>{highlight}</li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                            {mentoring.impact && mentoring.impact.length > 0 && (
+                                                <>
+                                                    <h4 className="mt-4 font-medium">Impact:</h4>
+                                                    <ul className="mt-2 list-disc list-inside">
+                                                        {mentoring.impact.map((impact: string, i: number) => (
+                                                            <li key={i}>{impact}</li>
+                                                        ))}
+                                                    </ul>
+                                                </>
+                                            )}
+                                            {mentoring.technologies && mentoring.technologies.length > 0 && (
+                                                <>
+                                                    <h4 className="mt-4 font-medium">Technologies:</h4>
+                                                    <div className="mt-2 flex flex-wrap gap-2">
+                                                        {mentoring.technologies.map((tech: string, i: number) => (
+                                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                                {tech}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="text-zinc-500 text-sm text-right">
+                                        {mentoring.startDate} - Present
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    )}
+
+                    {recentPresentations.length > 0 && (
+                        <section className="mb-8">
+                            <Line />
+                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                Recent Talks
+                            </h2>
+                            <div className="space-y-4">
+                                {recentPresentations.map((presentation, i) => (
+                                    <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
+                                        <div>
+                                            <h3 className="font-medium text-zinc-800 text-sm">{presentation.title}</h3>
+                                            <p className="text-zinc-600 text-sm">
+                                                {presentation.conference} @ {presentation.place}
+                                            </p>
+                                        </div>
+                                        <div className="text-zinc-500 text-sm text-right">
+                                            {presentation.date}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
                     {work && work.length > 0 && (
                         <section className="mb-8">
                             <Line />
@@ -113,10 +277,7 @@ export default function ResumePage({ params }: PageProps) {
                             </h2>
                             <div className="space-y-6">
                                 {work.map((job: Work, index: number) => (
-                                    <div key={index} className="grid grid-cols-[120px,1fr] gap-6">
-                                        <div className="text-zinc-500 text-sm">
-                                            {job.startDate} - {job.endDate || 'Present'}
-                                        </div>
+                                    <div key={index} className="grid grid-cols-[1fr,120px] gap-6">
                                         <div>
                                             <div className='flex row justify-between mb-2'>
                                                 <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.position}</h3>
@@ -134,6 +295,9 @@ export default function ResumePage({ params }: PageProps) {
                                                     </ul>
                                                 )}
                                             </div>
+                                        </div>
+                                        <div className="text-zinc-500 text-sm text-right">
+                                            {job.startDate} - {job.endDate || 'Present'}
                                         </div>
                                     </div>
                                 ))}
