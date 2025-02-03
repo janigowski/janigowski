@@ -246,16 +246,6 @@ export default function ResumePage({ params }: PageProps) {
                                                     ))}
                                                 </ul>
                                             )}
-                                            {mentoring.impact && mentoring.impact.length > 0 && (
-                                                <>
-                                                    <h4 className="mt-4 font-medium">Impact:</h4>
-                                                    <ul className="mt-2 list-disc list-inside">
-                                                        {mentoring.impact.map((impact: string, i: number) => (
-                                                            <li key={i}>{impact}</li>
-                                                        ))}
-                                                    </ul>
-                                                </>
-                                            )}
                                             {mentoring.technologies && mentoring.technologies.length > 0 && (
                                                 <>
                                                     <h4 className="mt-4 font-medium">Technologies:</h4>
@@ -278,7 +268,7 @@ export default function ResumePage({ params }: PageProps) {
                         </section>
                     )}
 
-                    {/* Education and Talks Row */}
+                    {/* Education and Hackathons Row */}
                     <div className="grid grid-cols-3 gap-8 mb-8">
                         {education && education.length > 0 && (
                             <section className="col-span-1">
@@ -297,41 +287,42 @@ export default function ResumePage({ params }: PageProps) {
                             </section>
                         )}
 
-                        {recentTalks.length > 0 && (
+                        {hackathons && hackathons.length > 0 && (
                             <section className="col-span-2">
                                 <Line />
                                 <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                    Talks
+                                    Hackathons
                                 </h2>
                                 <div className="space-y-4">
-                                    {recentTalks.map((talk: Talk, i: number) => (
-                                        <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
-                                            <div>
-                                                <h3 className="font-medium text-zinc-800 text-sm">{talk.title}</h3>
-                                                <p className="text-zinc-600 text-sm">
-                                                    {talk.conference} @ {talk.place}
-                                                </p>
-                                            </div>
-                                            <div className="text-zinc-500 text-sm text-right">
-                                                {talk.date}
-                                            </div>
-                                        </div>
-                                    ))}
+                                    <p className="text-zinc-600 text-sm">
+                                        Spent <strong>152 hours</strong> across <strong>{hackathons.length}</strong> hackathons, because nothing says "I love coding" like doing it non-stop for days.
+                                    </p>
                                 </div>
                             </section>
                         )}
                     </div>
 
-                    {hackathons && hackathons.length > 0 && (
+                    {/* Talks Section */}
+                    {recentTalks.length > 0 && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Hackathons
+                                Talks
                             </h2>
                             <div className="space-y-4">
-                                <p className="text-zinc-600 text-sm">
-                                    Spent <strong>152 hours</strong> in {hackathons.length} hackathons. My keyboard has more coffee stains than my coffee mug.
-                                </p>
+                                {recentTalks.map((talk: Talk, i: number) => (
+                                    <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
+                                        <div>
+                                            <h3 className="font-medium text-zinc-800 text-sm">{talk.title}</h3>
+                                            <p className="text-zinc-600 text-sm">
+                                                {talk.conference} @ {talk.place}
+                                            </p>
+                                        </div>
+                                        <div className="text-zinc-500 text-sm text-right">
+                                            {talk.date}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </section>
                     )}
