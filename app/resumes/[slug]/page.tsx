@@ -2,18 +2,12 @@ import { notFound } from 'next/navigation'
 import { allResumes, allProfiles } from 'contentlayer/generated'
 import { getMDXComponent } from 'next-contentlayer/hooks'
 import { Metadata } from 'next'
-import { Resume, ExperienceItem, EducationItem } from '../../../types/resume'
+import { Resume, Job, EducationItem, PublicSpeakingItem } from '../../../types/resume'
 import { Mail, Globe, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Line from './Line'
 import Company from './Company'
 import Contact from './Contact'
-
-interface PublicSpeakingItem {
-    title: string
-    event: string
-    year: number
-}
 
 interface PageProps {
     params: {
@@ -41,7 +35,28 @@ export default function ResumePage({ params }: PageProps) {
         notFound()
     }
 
-    const Content = getMDXComponent(resume.body.code)
+    // Split name into first and last name
+    const [firstName, lastName] = profile.personal.name.split(' ')
+
+    // Extract jobs from experience data
+    const jobs = profile.experience.flatMap((exp: any) => {
+        if (exp.positions) {
+            return exp.positions.map((pos: any) => ({
+                id: pos.id,
+                company: exp.company,
+                title: pos.title,
+                period: pos.period,
+                location: exp.location || 'Remote',
+            }));
+        }
+        return [{
+            id: exp.id,
+            company: exp.company,
+            title: exp.position,
+            period: exp.period,
+            location: exp.location || 'Remote',
+        }];
+    });
 
     return (
         <div className="relative min-h-screen bg-zinc-100">
@@ -54,8 +69,8 @@ export default function ResumePage({ params }: PageProps) {
                 <header className="relative mb-8">
                     <div className="relative z-10 p-10 flex justify-between items-start">
                         <div>
-                            <h1 className="text-5xl font-bold tracking-tight text-white font-display">{resume.firstName} {resume.lastName}</h1>
-                            <h2 className="mt-4 font-mono text-zinc-200">{resume.position}</h2>
+                            <h1 className="text-5xl font-bold tracking-tight text-white font-display">{firstName} {lastName}</h1>
+                            <h2 className="mt-4 font-mono text-zinc-200">{resume.role}</h2>
                         </div>
                         <Contact
                             email={profile.personal.email}
@@ -91,42 +106,60 @@ export default function ResumePage({ params }: PageProps) {
                         </section>
                     )}
 
-                    {resume.experience && (
+                    {jobs.length > 0 && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Experience
                             </h2>
                             <div className="space-y-6">
-                                {resume.experience.map((item: ExperienceItem, i: number) => (
-                                    <div key={i} className="grid grid-cols-[120px,1fr] gap-6">
-                                        <div className="text-zinc-500 text-sm">{item.period}</div>
-                                        <div>
-                                            <div className='flex row justify-between mb-2'>
-                                                <h3 className="font-normal text-zinc-800 text-sm uppercase">{item.title}</h3>
-                                                <div className='flex row text-sm'>
-                                                    <Company name={item.company} />
-                                                    {/* <span className="text-zinc-400 w-6 text-center">//</span>
-                                                    <span className="text-zinc-500">{item.location}</span> */}
+                                {jobs.map((job: Job) => {
+                                    const experienceContent = resume.experience[job.id];
+                                    if (!experienceContent) return null;
+
+                                    const [description, ...bullets] = experienceContent
+                                        .split('\n')
+                                        .map(line => line.trim())
+                                        .filter(Boolean);
+
+                                    return (
+                                        <div key={job.id} className="grid grid-cols-[120px,1fr] gap-6">
+                                            <div className="text-zinc-500 text-sm">{job.period}</div>
+                                            <div>
+                                                <div className='flex row justify-between mb-2'>
+                                                    <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.title}</h3>
+                                                    <div className='flex row text-sm'>
+                                                        <Company name={job.company} />
+                                                        <span className="text-zinc-400 w-6 text-center">//</span>
+                                                        <span className="text-zinc-500">{job.location}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="text-zinc-600 text-sm leading-relaxed">
+                                                    <p>{description}</p>
+                                                    <ul className="mt-2 list-disc list-inside">
+                                                        {bullets.map((bullet, index) => (
+                                                            <li key={index}>
+                                                                {bullet.replace(/^-\s*/, '')}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
                                             </div>
-
-                                            <p className="text-zinc-600 text-sm leading-relaxed">{item.description}</p>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </section>
                     )}
 
-                    {resume.education && (
+                    {profile.education && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Education
                             </h2>
                             <div className="space-y-6">
-                                {resume.education.map((item: EducationItem, i: number) => (
+                                {profile.education.map((item: EducationItem, i: number) => (
                                     <div key={i} className="grid grid-cols-[120px,1fr] gap-6">
                                         <div className="text-zinc-500 text-sm">{item.period}</div>
                                         <div>
@@ -139,14 +172,14 @@ export default function ResumePage({ params }: PageProps) {
                         </section>
                     )}
 
-                    {resume.expertise && (
+                    {profile.skills && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Technical Skills
                             </h2>
                             <div className="grid grid-cols-2 gap-4">
-                                {resume.expertise.map((skill: string, i: number) => (
+                                {profile.skills.technical.map((skill: string, i: number) => (
                                     <div key={i} className="text-zinc-600 text-sm">
                                         {skill}
                                     </div>
@@ -155,46 +188,47 @@ export default function ResumePage({ params }: PageProps) {
                         </section>
                     )}
 
-                    {resume.leadershipMentoring && (
+                    {profile.highlights && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Leadership & Mentoring
                             </h2>
                             <div className="space-y-2">
-                                {resume.leadershipMentoring.map((item: string, i: number) => (
-                                    <div key={i} className="text-zinc-600 text-sm">
-                                        {item}
-                                    </div>
-                                ))}
+                                <div className="text-zinc-600 text-sm">
+                                    Mentored {profile.highlights.mentees_guided} developers from {profile.highlights.countries_impacted} countries
+                                </div>
+                                <div className="text-zinc-600 text-sm">
+                                    {profile.highlights.experience_years} years of experience with {profile.highlights.products_contributed} products contributed
+                                </div>
                             </div>
                         </section>
                     )}
 
-                    {resume.publicSpeaking && (
+                    {profile.public_speaking && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Public Speaking
                             </h2>
                             <div className="space-y-4">
-                                {resume.publicSpeaking.map((item: PublicSpeakingItem, i: number) => (
+                                {profile.public_speaking.map((item: PublicSpeakingItem, i: number) => (
                                     <div key={i} className="text-zinc-600 text-sm">
-                                        {item.event} {item.year}: "{item.title}"
+                                        {item.conference} {item.date}: "{item.title}"
                                     </div>
                                 ))}
                             </div>
                         </section>
                     )}
 
-                    {resume.interests && (
+                    {profile.interests && (
                         <section className="mb-8">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Interests
                             </h2>
                             <div className="space-y-2">
-                                {resume.interests.map((item: string, i: number) => (
+                                {[...profile.interests.main, ...profile.interests.other].map((item: string, i: number) => (
                                     <div key={i} className="text-zinc-600 text-sm">
                                         {item}
                                     </div>
@@ -202,10 +236,6 @@ export default function ResumePage({ params }: PageProps) {
                             </div>
                         </section>
                     )}
-                </div>
-
-                <div className="mt-8 prose prose-zinc max-w-none">
-                    <Content />
                 </div>
             </article>
         </div>

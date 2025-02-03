@@ -194,38 +194,17 @@ export const Resume = defineDocumentType(() => ({
 			type: "string",
 			required: true,
 		},
-		firstName: {
-			type: "string",
-			required: true,
-		},
-		lastName: {
-			type: "string",
-			required: true,
-		},
-		position: {
+		role: {
 			type: "string",
 			required: true,
 		},
 		about: {
 			type: "string",
+			required: true,
 		},
 		experience: {
 			type: "json",
-		},
-		education: {
-			type: "json",
-		},
-		expertise: {
-			type: "json",
-		},
-		interests: {
-			type: "json",
-		},
-		publicSpeaking: {
-			type: "json",
-		},
-		leadershipMentoring: {
-			type: "json",
+			required: true,
 		},
 		published: {
 			type: "boolean",
@@ -233,6 +212,7 @@ export const Resume = defineDocumentType(() => ({
 		},
 		date: {
 			type: "date",
+			required: true,
 		}
 	},
 	computedFields,

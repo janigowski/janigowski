@@ -110,7 +110,8 @@ public_speaking:
     title: WebGL - definition, status and examples
 
 experience:
-  - company: ADPList
+  - id: "adplist-mentor"
+    company: ADPList
     color: "#6831DE"
     position: Mentor
     period: "Mar 2024 - Present"
@@ -134,7 +135,8 @@ experience:
       - Technical Leadership
       - Mentoring
 
-  - company: Janigowski
+  - id: "janigowski-media-technology-explorer"
+    company: janigowski.dev
     color: "#BBDF32"
     position: Media Technology Explorer
     period: "Aug 2022 - Present"
@@ -160,10 +162,13 @@ experience:
       - OOP
       - Clean Architecture
 
-  - company: Netguru
+  - id: "netguru"
+    company: Netguru
     color: "#47E071"
     positions:
-      - title: Software Architect Frontend
+      - id: "netguru-software-architect"
+        title: Software Architect Frontend
+        period: "2021 - 2022"
         achievements:
           - Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget
           - Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops
@@ -223,7 +228,9 @@ experience:
             - Domain Driven Design
             - team building
 
-      - title: Team Leader
+      - id: "netguru-team-leader"
+        title: Team Leader
+        period: "2020 - 2021"
         responsibilities:
           - Provided emotional and technical support for 6 team members
           - Plan self-development roadmaps and perform quarterly evaluations
@@ -236,7 +243,9 @@ experience:
           - Technical Support
           - Active listening
 
-      - title: Senior Frontend Developer
+      - id: "netguru-senior-frontend"
+        title: Senior Frontend Developer
+        period: "2019 - 2020"
         achievements:
           - Designed a chatbot engine and visual language to reduce Customer Support workload
           - Created a complex, data-intensive FinTech Inquiry Form with over 120 interdependent fields
@@ -354,6 +363,7 @@ experience:
           - PhantomJS
           - ElasticSearch
           - Kibana
+          - Grafana
 
 freelance:
   company: Janigowski
@@ -436,4 +446,36 @@ projects:
       - metric: Team Size
         value: TBD
       - metric: Projects Led
-        value: TBD 
+        value: TBD
+
+jobs:
+  - id: "janigowski-media-technology-explorer"
+    company: "Janigowski"
+    title: "Media Technology Explorer"
+    period: "Aug 2022 - Present"
+    location: "Remote"
+  - id: "netguru-software-architect"
+    company: "Netguru"
+    title: "Software Architect Frontend"
+    period: "2021 - 2022"
+    location: "Remote"
+  - id: "netguru-team-leader"
+    company: "Netguru"
+    title: "Team Leader"
+    period: "2020 - 2021"
+    location: "Remote"
+  - id: "netguru-senior-frontend"
+    company: "Netguru"
+    title: "Senior Frontend Developer"
+    period: "2019 - 2020"
+    location: "Remote"
+  - id: "thinksmart-fullstack"
+    company: "ThinkSmart"
+    title: "Full Stack JavaScript Developer"
+    period: "2017 - 2019"
+    location: "Poland"
+  - id: "getresponse-javascript"
+    company: "GetResponse"
+    title: "JavaScript Developer"
+    period: "2015 - 2017"
+    location: "Poland" 
