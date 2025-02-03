@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { allResumes } from 'contentlayer/generated'
 import { Metadata } from 'next'
-import { Profile, Work, Interest, Volunteer, Presentation } from '../../../types/resume'
+import { Profile, Work, Interest, Volunteer, Presentation, Education } from '../../../types/resume'
 import { Mail, Globe, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Line from './Line'
@@ -67,7 +67,8 @@ export default function ResumePage({ params }: PageProps) {
         interests = [],
         talks = [],
         hackathons = [],
-        mentoring
+        mentoring,
+        education
     } = resolvedResume
 
     // Split name into first and last name
@@ -236,6 +237,22 @@ export default function ResumePage({ params }: PageProps) {
 
                     {/* Hackathons Row */}
                     <div className="grid grid-cols-3 gap-8 mb-8">
+                        {education && education.length > 0 && (
+                            <section className="col-span-1">
+                                <Line />
+                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                    Education
+                                </h2>
+                                <div className="space-y-6">
+                                    {education.map((item: Education, i: number) => (
+                                        <div key={i}>
+                                            <h3 className="font-semibold text-zinc-800 text-sm">{item.area}</h3>
+                                            <p className="text-zinc-600 text-sm">{item.institution} - {item.location}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
                         {hackathons && hackathons.length > 0 && (
                             <section className="col-span-2">
                                 <Line />
