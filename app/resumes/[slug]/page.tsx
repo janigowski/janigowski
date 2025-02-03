@@ -52,7 +52,6 @@ export default function ResumePage({ params }: PageProps) {
         experience_years,
         products_contributed,
         clifton_strengths,
-        mindset,
         work = [],
         education = [],
         skills = [],
@@ -167,14 +166,6 @@ export default function ResumePage({ params }: PageProps) {
                                                     {strength}
                                                 </span>
                                             ))}
-                                        </div>
-                                    </div>
-                                )}
-                                {mindset?.length > 0 && (
-                                    <div>
-                                        <h3 className="text-sm font-medium text-zinc-700 mb-2">Mindset</h3>
-                                        <div className="text-zinc-600 text-sm">
-                                            {mindset.join(', ')}
                                         </div>
                                     </div>
                                 )}
