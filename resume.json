@@ -1,6 +1,8 @@
 {
     "name": "Dawid Janiga",
-    "label": "Software Architect Frontend // Product Engineer",
+    "role": "Software Architect Frontend // Product Engineer",
+    "experience_years": "10+",
+    "products_contributed": "24+",
     "email": "dawidjaniga@gmail.com",
     "url": "https://janigowski.dev",
     "summary": "I love to create digital products",
@@ -17,8 +19,20 @@
             "url": "https://linkedin.com/in/dawidjaniga"
         }
     ],
-    "experience_years": "10+",
-    "products_contributed": "24+",
+    "highlights": {
+        "technical": [
+            "React",
+            "Svelte",
+            "Node.js",
+            "TypeScript",
+            "Software Architecture",
+            "Leadership"
+        ],
+        "numbers": {
+            "experience_years": "10+",
+            "products_contributed": "24+"
+        }
+    },
     "clifton_strengths": [
         "Futuristic",
         "Strategic",
@@ -191,17 +205,6 @@
         }
     ],
     "skills": [
-        {
-            "name": "Technical",
-            "keywords": [
-                "React",
-                "Node.js",
-                "TypeScript",
-                "Software Architecture",
-                "Leadership",
-                "Team building"
-            ]
-        },
         {
             "name": "Applications",
             "keywords": [

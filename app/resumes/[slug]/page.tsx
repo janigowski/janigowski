@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const resolvedResume = resume.resolvedResume
     return {
-        title: `${resolvedResume.name} - ${resolvedResume.label}`,
+        title: `${resolvedResume.name} - ${resolvedResume.role}`,
         description: resolvedResume.summary
     }
 }
@@ -42,15 +42,14 @@ export default function ResumePage({ params }: PageProps) {
 
     const {
         name,
-        label,
+        role,
         email,
         url,
         summary,
         locationCity,
         locationCountryCode,
         profiles,
-        experience_years,
-        products_contributed,
+        highlights,
         clifton_strengths,
         work = [],
         education = [],
@@ -80,7 +79,26 @@ export default function ResumePage({ params }: PageProps) {
                             <h1 className="text-5xl font-bold tracking-tight text-white font-display">
                                 {firstName} {lastName}
                             </h1>
-                            <h2 className="mt-4 font-mono text-zinc-200">{label}</h2>
+                            <h2 className="mt-4 font-mono text-zinc-200">{role}</h2>
+                            {highlights?.technical?.length > 0 && (
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                    {highlights.technical.map((skill: string, i: number) => (
+                                        <span key={i} className="inline-block px-2 py-1 text-xs bg-white/10 text-white/80 rounded">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                            {highlights?.numbers && (
+                                <div className="mt-4 grid grid-cols-2 gap-4">
+                                    <div className="text-zinc-200 text-sm">
+                                        <strong className="text-white">{highlights.numbers.experience_years}</strong> years of experience
+                                    </div>
+                                    <div className="text-zinc-200 text-sm">
+                                        <strong className="text-white">{highlights.numbers.products_contributed}</strong> products contributed
+                                    </div>
+                                </div>
+                            )}
                         </div>
                         <Contact
                             email={email}
@@ -115,22 +133,6 @@ export default function ResumePage({ params }: PageProps) {
                             </div>
                         </section>
                     )}
-
-                    {/* Highlights Section */}
-                    <section className="mb-8">
-                        <Line />
-                        <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                            Highlights
-                        </h2>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="text-zinc-600 text-sm">
-                                <strong>{experience_years}</strong> years of experience
-                            </div>
-                            <div className="text-zinc-600 text-sm">
-                                <strong>{products_contributed}</strong> products contributed
-                            </div>
-                        </div>
-                    </section>
 
                     {/* Education and Personality Row */}
                     <div className="grid grid-cols-3 gap-8 mb-8">

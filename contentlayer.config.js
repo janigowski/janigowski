@@ -195,7 +195,7 @@ export const Resume = defineDocumentType(() => ({
 	fields: {
 		slug: { type: "string", required: true },
 		name: { type: "string" },
-		label: { type: "string" },
+		role: { type: "string" },
 		email: { type: "string" },
 		url: { type: "string" },
 		summary: { type: "string" },
@@ -205,8 +205,10 @@ export const Resume = defineDocumentType(() => ({
 			type: "json",
 			description: "List of social media profiles"
 		},
-		experience_years: { type: "string" },
-		products_contributed: { type: "string" },
+		highlights: {
+			type: "json",
+			description: "Technical skills and key numbers"
+		},
 		clifton_strengths: { type: "json" },
 		work: {
 			type: "json",
