@@ -169,7 +169,7 @@ export default function ResumePage({ params }: PageProps) {
                             </h2>
                             <div className="space-y-6">
                                 {work.map((job: Work, index: number) => (
-                                    <div key={index} className="grid grid-cols-[1fr,120px] gap-6">
+                                    <div key={index} className="grid grid-cols-[1fr,180px] gap-6">
                                         <div>
                                             <div className='flex row justify-between mb-2'>
                                                 <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.position}</h3>
@@ -186,8 +186,19 @@ export default function ResumePage({ params }: PageProps) {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className="text-zinc-500 text-sm text-right">
-                                            {job.startDate} - {job.endDate || 'Present'}
+                                        <div className="space-y-4">
+                                            <div className="text-zinc-500 text-sm">
+                                                {job.startDate} - {job.endDate || 'Present'}
+                                            </div>
+                                            {job.technologies && (
+                                                <div className="flex flex-wrap gap-2">
+                                                    {job.technologies.map((tech: string, i: number) => (
+                                                        <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                            {tech}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 ))}
