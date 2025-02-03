@@ -128,20 +128,21 @@ export default function ResumePage({ params }: PageProps) {
 
                 {/* Main Content */}
                 <div className="px-12">
-                    {summary && (
-                        <section className="mb-8">
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                About me
-                            </h2>
-                            <div className="text-zinc-600 text-sm leading-relaxed">
-                                {summary}
-                            </div>
-                        </section>
-                    )}
+                    {/* About Me and Clifton Strengths Row */}
+                    <div className="grid grid-cols-[1fr,180px] gap-8 mb-8">
+                        {summary && (
+                            <section>
+                                <Line />
+                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                    About me
+                                </h2>
+                                <div className="text-zinc-600 text-sm leading-relaxed">
+                                    {summary}
+                                </div>
+                            </section>
+                        )}
 
-                    {/* Personality Row */}
-                    <div className="grid grid-cols-3 gap-8 mb-8">
-                        <section className="col-span-2">
+                        <section>
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
                                 Clifton Strengths
@@ -155,7 +156,6 @@ export default function ResumePage({ params }: PageProps) {
                                             </span>
                                         ))}
                                     </div>
-
                                 )}
                             </div>
                         </section>
