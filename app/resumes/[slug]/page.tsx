@@ -75,9 +75,6 @@ export default function ResumePage({ params }: PageProps) {
     // Split name into first and last name
     const [firstName, lastName] = name.split(' ')
 
-    // Get last 3 talks
-    const recentTalks = talks.slice(0, 3)
-
     return (
         <div className="relative min-h-screen bg-zinc-100">
             <article className="mx-auto bg-white" style={{
@@ -93,32 +90,28 @@ export default function ResumePage({ params }: PageProps) {
                                 {firstName} {lastName}
                             </h1>
                             <h2 className="mt-4 font-mono text-zinc-200">{role}</h2>
-                            {highlights?.technical?.length > 0 && (
-                                <div className="mt-4 flex flex-wrap gap-2">
-                                    {highlights.technical.map((skill: string, i: number) => (
-                                        <span key={i} className="inline-block px-2 py-1 text-xs bg-white/10 text-white/80 rounded">
-                                            {skill}
-                                        </span>
-                                    ))}
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                {highlights.technical.map((skill: string, i: number) => (
+                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-white/10 text-white/80 rounded">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="mt-4 grid grid-cols-2 gap-4">
+                                <div className="text-zinc-200 text-sm">
+                                    <strong className="text-white">{highlights.numbers.experience_years}</strong> years of experience
                                 </div>
-                            )}
-                            {highlights?.numbers && (
-                                <div className="mt-4 grid grid-cols-2 gap-4">
-                                    <div className="text-zinc-200 text-sm">
-                                        <strong className="text-white">{highlights.numbers.experience_years}</strong> years of experience
-                                    </div>
-                                    <div className="text-zinc-200 text-sm">
-                                        <strong className="text-white">{highlights.numbers.products_contributed}</strong> products contributed
-                                    </div>
+                                <div className="text-zinc-200 text-sm">
+                                    <strong className="text-white">{highlights.numbers.products_contributed}</strong> products contributed
                                 </div>
-                            )}
+                            </div>
                         </div>
                         <Contact
                             email={email}
                             website={url}
                             location={`${locationCity}, ${locationCountryCode}`}
-                            github={profiles?.find((p: Profile) => p.network === 'GitHub')?.url}
-                            linkedin={profiles?.find((p: Profile) => p.network === 'LinkedIn')?.url}
+                            github={profiles.find((p: Profile) => p.network === 'GitHub')?.url}
+                            linkedin={profiles.find((p: Profile) => p.network === 'LinkedIn')?.url}
                         />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full z-0">
@@ -204,13 +197,11 @@ export default function ResumePage({ params }: PageProps) {
                                             </div>
                                             <div className="text-zinc-600 text-sm leading-relaxed">
                                                 <p>{job.summary}</p>
-                                                {job.highlights && job.highlights.length > 0 && (
-                                                    <ul className="mt-2 list-disc list-inside">
-                                                        {job.highlights.map((highlight: string, i: number) => (
-                                                            <li key={i}>{highlight}</li>
-                                                        ))}
-                                                    </ul>
-                                                )}
+                                                <ul className="mt-2 list-disc list-inside">
+                                                    {job.highlights.map((highlight: string, i: number) => (
+                                                        <li key={i}>{highlight}</li>
+                                                    ))}
+                                                </ul>
                                             </div>
                                         </div>
                                         <div className="text-zinc-500 text-sm text-right">
@@ -239,25 +230,19 @@ export default function ResumePage({ params }: PageProps) {
                                         </div>
                                         <div className="text-zinc-600 text-sm leading-relaxed">
                                             <p>{mentoring.summary}</p>
-                                            {mentoring.highlights && mentoring.highlights.length > 0 && (
-                                                <ul className="mt-2 list-disc list-inside">
-                                                    {mentoring.highlights.map((highlight: string, i: number) => (
-                                                        <li key={i}>{highlight}</li>
-                                                    ))}
-                                                </ul>
-                                            )}
-                                            {mentoring.technologies && mentoring.technologies.length > 0 && (
-                                                <>
-                                                    <h4 className="mt-4 font-medium">Technologies:</h4>
-                                                    <div className="mt-2 flex flex-wrap gap-2">
-                                                        {mentoring.technologies.map((tech: string, i: number) => (
-                                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                                                {tech}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </>
-                                            )}
+                                            <ul className="mt-2 list-disc list-inside">
+                                                {mentoring.highlights.map((highlight: string, i: number) => (
+                                                    <li key={i}>{highlight}</li>
+                                                ))}
+                                            </ul>
+                                            <h4 className="mt-4 font-medium">Technologies:</h4>
+                                            <div className="mt-2 flex flex-wrap gap-2">
+                                                {mentoring.technologies.map((tech: string, i: number) => (
+                                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="text-zinc-500 text-sm text-right">
@@ -303,29 +288,27 @@ export default function ResumePage({ params }: PageProps) {
                     </div>
 
                     {/* Talks Section */}
-                    {recentTalks.length > 0 && (
-                        <section className="mb-8">
-                            <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Talks
-                            </h2>
-                            <div className="space-y-4">
-                                {recentTalks.map((talk: Talk, i: number) => (
-                                    <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
-                                        <div>
-                                            <h3 className="font-medium text-zinc-800 text-sm">{talk.title}</h3>
-                                            <p className="text-zinc-600 text-sm">
-                                                {talk.conference} @ {talk.place}
-                                            </p>
-                                        </div>
-                                        <div className="text-zinc-500 text-sm text-right">
-                                            {talk.date}
-                                        </div>
+                    <section className="mb-8">
+                        <Line />
+                        <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            Talks
+                        </h2>
+                        <div className="space-y-4">
+                            {talks.map((talk: Talk, i: number) => (
+                                <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
+                                    <div>
+                                        <h3 className="font-medium text-zinc-800 text-sm">{talk.title}</h3>
+                                        <p className="text-zinc-600 text-sm">
+                                            {talk.conference} @ {talk.place}
+                                        </p>
                                     </div>
-                                ))}
-                            </div>
-                        </section>
-                    )}
+                                    <div className="text-zinc-500 text-sm text-right">
+                                        {talk.date}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
 
                     {skills && skills.length > 0 && (
                         <section className="mb-8">
