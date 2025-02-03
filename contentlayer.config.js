@@ -224,10 +224,6 @@ export const Resume = defineDocumentType(() => ({
 			type: "json",
 			description: "List of education entries"
 		},
-		skills: {
-			type: "json",
-			description: "List of skill groups"
-		},
 		interests: {
 			type: "json",
 			description: "List of interest groups"

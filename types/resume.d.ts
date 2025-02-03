@@ -15,10 +15,6 @@ export interface EducationItem {
     location: string
 }
 
-export interface SkillItem {
-    name: string
-}
-
 export interface ReferenceItem {
     name: string
     title: string
@@ -70,11 +66,6 @@ export interface Education {
     location: string
 }
 
-export interface Skill {
-    name: string
-    keywords: string[]
-}
-
 export interface Interest {
     name: string
     keywords: string[]
@@ -121,7 +112,6 @@ export interface Resume {
     mentoring: Mentoring
     work: Work[]
     education: Education[]
-    skills: Skill[]
     interests: Interest[]
     volunteer: Volunteer[]
     _id: string
@@ -160,7 +150,6 @@ interface Position {
         description: string
         topics: string[]
     }
-    skills?: string[]
 }
 
 interface ExperienceEntry {
