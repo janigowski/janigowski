@@ -15,6 +15,11 @@ interface Talk {
     title: string
 }
 
+interface Hackathon {
+    name: string
+    achievement?: string
+}
+
 interface PageProps {
     params: {
         slug: string
@@ -318,6 +323,20 @@ export default function ResumePage({ params }: PageProps) {
                             </section>
                         )}
                     </div>
+
+                    {hackathons && hackathons.length > 0 && (
+                        <section className="mb-8">
+                            <Line />
+                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                Hackathons
+                            </h2>
+                            <div className="space-y-4">
+                                <p className="text-zinc-600 text-sm">
+                                    Spent <strong>152 hours</strong> in {hackathons.length} hackathons. My keyboard has more coffee stains than my coffee mug.
+                                </p>
+                            </div>
+                        </section>
+                    )}
 
                     {skills && skills.length > 0 && (
                         <section className="mb-8">
