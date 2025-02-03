@@ -169,20 +169,18 @@ export default function ResumePage({ params }: PageProps) {
                         <section className="col-span-2">
                             <Line />
                             <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Personality
+                                Clifton Strengths
                             </h2>
                             <div className="space-y-4">
                                 {clifton_strengths?.length > 0 && (
-                                    <div>
-                                        <h3 className="text-sm font-medium text-zinc-700 mb-2">Clifton Strengths</h3>
-                                        <div className="flex flex-wrap gap-2">
-                                            {clifton_strengths.map((strength: string, i: number) => (
-                                                <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                                    {strength}
-                                                </span>
-                                            ))}
-                                        </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {clifton_strengths.map((strength: string, i: number) => (
+                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                {strength}
+                                            </span>
+                                        ))}
                                     </div>
+
                                 )}
                             </div>
                         </section>
