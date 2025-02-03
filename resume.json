@@ -1,6 +1,6 @@
 {
     "name": "Dawid Janiga",
-    "label": "Software Engineer",
+    "label": "Software Architect Frontend // Product Engineer",
     "email": "dawidjaniga@gmail.com",
     "url": "https://janigowski.dev",
     "summary": "I love to create digital products",
@@ -19,8 +19,6 @@
     ],
     "experience_years": "10+",
     "products_contributed": "24+",
-    "mentees_guided": "36+",
-    "countries_impacted": "17+",
     "clifton_strengths": [
         "Futuristic",
         "Strategic",
@@ -33,30 +31,30 @@
         "take the initiative",
         "and Lead projects"
     ],
+    "mentoring": {
+        "name": "ADPList",
+        "position": "Mentor",
+        "startDate": "2024-03",
+        "summary": "Mentored 36+ developers from 17 countries",
+        "highlights": [
+            "TOP 1% MENTOR (4x Recognized)",
+            "Mentored 36+ developers from 17 countries",
+            "Provided 4500+ minutes of technical guidance",
+            "Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture",
+            "Created structured interview preparation and career development plans",
+            "Facilitated hands-on technical sessions and live coding",
+            "Developed personalized growth strategies for mentees"
+        ],
+        "technologies": [
+            "React",
+            "TypeScript",
+            "Software Architecture",
+            "Career Development",
+            "Technical Leadership",
+            "Mentoring"
+        ]
+    },
     "work": [
-        {
-            "name": "ADPList",
-            "position": "Mentor",
-            "startDate": "2024-03",
-            "summary": "Mentored 36+ developers from 17 countries",
-            "highlights": [
-                "TOP 1% MENTOR (4x Recognized)",
-                "Mentored 36+ developers from 17 countries",
-                "Provided 4500+ minutes of technical guidance",
-                "Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture",
-                "Created structured interview preparation and career development plans",
-                "Facilitated hands-on technical sessions and live coding",
-                "Developed personalized growth strategies for mentees"
-            ],
-            "technologies": [
-                "React",
-                "TypeScript",
-                "Software Architecture",
-                "Career Development",
-                "Technical Leadership",
-                "Mentoring"
-            ]
-        },
         {
             "name": "janigowski.dev",
             "position": "Media Technology Explorer",
@@ -159,7 +157,7 @@
             ]
         },
         {
-            "name": "Janigowski",
+            "name": "janigowski.dev",
             "position": "Freelance Developer",
             "startDate": "2009",
             "summary": "My interest in computers made me experiment a lot. I like to explore and learn.",

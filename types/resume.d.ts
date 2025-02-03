@@ -101,14 +101,8 @@ export interface Volunteer {
     highlights: Presentation[] | HackathonEntry[]
 }
 
-export interface Mentoring {
-    name: string
-    position: string
-    startDate: string
-    summary: string
-    highlights: string[]
-    impact: string[]
-    technologies: string[]
+export interface Mentoring extends Work {
+    impact?: string[]
 }
 
 export interface Resume {
@@ -122,10 +116,9 @@ export interface Resume {
     profiles: Profile[]
     experience_years: string
     products_contributed: string
-    mentees_guided: string
-    countries_impacted: string
     clifton_strengths: string[]
     mindset: string[]
+    mentoring: Mentoring
     work: Work[]
     education: Education[]
     skills: Skill[]

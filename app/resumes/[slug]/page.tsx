@@ -40,24 +40,6 @@ export default function ResumePage({ params }: PageProps) {
         notFound()
     }
 
-    // Validate required fields
-    const requiredFields = [
-        'name', 'label', 'email', 'url', 'locationCity', 'locationCountryCode',
-        'profiles', 'experience_years', 'products_contributed', 'mentees_guided',
-        'countries_impacted', 'clifton_strengths', 'mindset'
-    ] as const
-
-    const missingFields = requiredFields.filter(field => {
-        const value = resolvedResume[field]
-        return value === undefined || value === null || value === ''
-    })
-
-    if (missingFields.length > 0) {
-        console.error('Missing required fields in resume:', missingFields)
-        console.error('Resume data:', resolvedResume)
-        notFound()
-    }
-
     const {
         name,
         label,
@@ -69,8 +51,6 @@ export default function ResumePage({ params }: PageProps) {
         profiles,
         experience_years,
         products_contributed,
-        mentees_guided,
-        countries_impacted,
         clifton_strengths,
         mindset,
         work = [],
@@ -150,44 +130,93 @@ export default function ResumePage({ params }: PageProps) {
                             <div className="text-zinc-600 text-sm">
                                 <strong>{products_contributed}</strong> products contributed
                             </div>
-                            <div className="text-zinc-600 text-sm">
-                                <strong>{mentees_guided}</strong> mentees guided
-                            </div>
-                            <div className="text-zinc-600 text-sm">
-                                <strong>{countries_impacted}</strong> countries impacted
-                            </div>
                         </div>
                     </section>
 
-                    {/* Personality Section */}
-                    <section className="mb-8">
-                        <Line />
-                        <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                            Personality
-                        </h2>
-                        <div className="space-y-4">
-                            {clifton_strengths?.length > 0 && (
-                                <div>
-                                    <h3 className="text-sm font-medium text-zinc-700 mb-2">Clifton Strengths</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {clifton_strengths.map((strength: string, i: number) => (
-                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                                {strength}
-                                            </span>
-                                        ))}
-                                    </div>
+                    {/* Education and Personality Row */}
+                    <div className="grid grid-cols-3 gap-8 mb-8">
+                        {education && education.length > 0 && (
+                            <section className="col-span-1">
+                                <Line />
+                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                    Education
+                                </h2>
+                                <div className="space-y-6">
+                                    {education.map((item: Education, i: number) => (
+                                        <div key={i}>
+                                            <h3 className="font-semibold text-zinc-800 text-sm">{item.area}</h3>
+                                            <p className="text-zinc-600 text-sm">{item.institution} - {item.location}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            )}
-                            {mindset?.length > 0 && (
-                                <div>
-                                    <h3 className="text-sm font-medium text-zinc-700 mb-2">Mindset</h3>
-                                    <div className="text-zinc-600 text-sm">
-                                        {mindset.join(', ')}
+                            </section>
+                        )}
+
+                        <section className="col-span-2">
+                            <Line />
+                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                Personality
+                            </h2>
+                            <div className="space-y-4">
+                                {clifton_strengths?.length > 0 && (
+                                    <div>
+                                        <h3 className="text-sm font-medium text-zinc-700 mb-2">Clifton Strengths</h3>
+                                        <div className="flex flex-wrap gap-2">
+                                            {clifton_strengths.map((strength: string, i: number) => (
+                                                <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                    {strength}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </div>
-                    </section>
+                                )}
+                                {mindset?.length > 0 && (
+                                    <div>
+                                        <h3 className="text-sm font-medium text-zinc-700 mb-2">Mindset</h3>
+                                        <div className="text-zinc-600 text-sm">
+                                            {mindset.join(', ')}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+                    </div>
+
+                    {work && work.length > 0 && (
+                        <section className="mb-8">
+                            <Line />
+                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                Experience
+                            </h2>
+                            <div className="space-y-6">
+                                {work.map((job: Work, index: number) => (
+                                    <div key={index} className="grid grid-cols-[1fr,120px] gap-6">
+                                        <div>
+                                            <div className='flex row justify-between mb-2'>
+                                                <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.position}</h3>
+                                                <div className='flex row text-sm'>
+                                                    <Company name={job.name} />
+                                                </div>
+                                            </div>
+                                            <div className="text-zinc-600 text-sm leading-relaxed">
+                                                <p>{job.summary}</p>
+                                                {job.highlights && job.highlights.length > 0 && (
+                                                    <ul className="mt-2 list-disc list-inside">
+                                                        {job.highlights.map((highlight: string, i: number) => (
+                                                            <li key={i}>{highlight}</li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="text-zinc-500 text-sm text-right">
+                                            {job.startDate} - {job.endDate || 'Present'}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
                     {mentoring && (
                         <section className="mb-8">
@@ -245,85 +274,49 @@ export default function ResumePage({ params }: PageProps) {
                         </section>
                     )}
 
-                    {recentPresentations.length > 0 && (
-                        <section className="mb-8">
-                            <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Recent Talks
-                            </h2>
-                            <div className="space-y-4">
-                                {recentPresentations.map((presentation, i) => (
-                                    <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
-                                        <div>
-                                            <h3 className="font-medium text-zinc-800 text-sm">{presentation.title}</h3>
-                                            <p className="text-zinc-600 text-sm">
-                                                {presentation.conference} @ {presentation.place}
-                                            </p>
-                                        </div>
-                                        <div className="text-zinc-500 text-sm text-right">
-                                            {presentation.date}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    )}
-
-                    {work && work.length > 0 && (
-                        <section className="mb-8">
-                            <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Experience
-                            </h2>
-                            <div className="space-y-6">
-                                {work.map((job: Work, index: number) => (
-                                    <div key={index} className="grid grid-cols-[1fr,120px] gap-6">
-                                        <div>
-                                            <div className='flex row justify-between mb-2'>
-                                                <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.position}</h3>
-                                                <div className='flex row text-sm'>
-                                                    <Company name={job.name} />
-                                                </div>
-                                            </div>
-                                            <div className="text-zinc-600 text-sm leading-relaxed">
-                                                <p>{job.summary}</p>
-                                                {job.highlights && job.highlights.length > 0 && (
-                                                    <ul className="mt-2 list-disc list-inside">
-                                                        {job.highlights.map((highlight: string, i: number) => (
-                                                            <li key={i}>{highlight}</li>
-                                                        ))}
-                                                    </ul>
-                                                )}
-                                            </div>
-                                        </div>
-                                        <div className="text-zinc-500 text-sm text-right">
-                                            {job.startDate} - {job.endDate || 'Present'}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    )}
-
-                    {education && education.length > 0 && (
-                        <section className="mb-8">
-                            <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
-                                Education
-                            </h2>
-                            <div className="space-y-6">
-                                {education.map((item: Education, i: number) => (
-                                    <div key={i} className="grid grid-cols-[120px,1fr] gap-6">
-                                        <div className="text-zinc-500 text-sm"></div>
-                                        <div>
+                    {/* Education and Talks Row */}
+                    <div className="grid grid-cols-3 gap-8 mb-8">
+                        {education && education.length > 0 && (
+                            <section className="col-span-1">
+                                <Line />
+                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                    Education
+                                </h2>
+                                <div className="space-y-6">
+                                    {education.map((item: Education, i: number) => (
+                                        <div key={i}>
                                             <h3 className="font-semibold text-zinc-800 text-sm">{item.area}</h3>
                                             <p className="text-zinc-600 text-sm">{item.institution} - {item.location}</p>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    )}
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {recentPresentations.length > 0 && (
+                            <section className="col-span-2">
+                                <Line />
+                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                    Talks
+                                </h2>
+                                <div className="space-y-4">
+                                    {recentPresentations.map((presentation, i) => (
+                                        <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
+                                            <div>
+                                                <h3 className="font-medium text-zinc-800 text-sm">{presentation.title}</h3>
+                                                <p className="text-zinc-600 text-sm">
+                                                    {presentation.conference} @ {presentation.place}
+                                                </p>
+                                            </div>
+                                            <div className="text-zinc-500 text-sm text-right">
+                                                {presentation.date}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+                    </div>
 
                     {skills && skills.length > 0 && (
                         <section className="mb-8">
