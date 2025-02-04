@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { allResumes } from 'contentlayer/generated'
 import { Metadata } from 'next'
-import { Profile, Work, Interest, Volunteer, Presentation, Education } from '../../../types/resume'
+import { Profile, Work, Interest, Education } from '../../../types/resume'
 import { Mail, Globe, MapPin } from 'lucide-react'
 import Image from 'next/image'
 import Line from './Line'
@@ -137,7 +137,12 @@ export default function ResumePage({ params }: PageProps) {
                                     About me
                                 </h2>
                                 <div className="text-zinc-600 text-sm leading-relaxed">
-                                    {summary}
+                                    <div
+
+                                        dangerouslySetInnerHTML={{
+                                            __html: summary
+                                        }}
+                                    />
                                 </div>
                             </section>
                         )}
