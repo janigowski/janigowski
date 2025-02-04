@@ -104,6 +104,72 @@
                 "Reduced Map loading time by 80% (10s ↘ 2s)",
                 "Optimized state management by removing over +1500 LOC",
                 "Crafted 3D solution for a NFT knowledge hub utilizing procedural environment generation"
+            ],
+            "product_engineering": [
+                "Conducted 10+ consultations for business enhancement",
+                "Engaged in discussions, analyzed performance data, proposed process and code improvements",
+                "Worked closely with the Product Manager and Product Designer",
+                "Delved into Product Management, exploring new methodologies",
+                "Influenced by Marty Cagan and Silicon Valley Product Group",
+                "Gained insights into technical and product strategy intersection"
+            ],
+            "company_wide": [
+                "Introduced Event Storming in a series of workshops for 20 people",
+                "Organized #bookclub - we've read and discussed 4 books together",
+                "Conducted interviews for regular and senior positions",
+                "Mentored group of 25 developers in Product Discovery matter"
+            ],
+            "leadership": {
+                "meetings_hosted": "100+",
+                "description": "For over two years I conducted Frontend Architecture Area weekly meetings. Knowledge sharing for 5-10 developers.",
+                "topics": [
+                    "software architecture",
+                    "Soft skills",
+                    "product engineering",
+                    "Clean Architecture",
+                    "Domain Driven Design",
+                    "team building"
+                ]
+            },
+            "teaching": {
+                "course_length": "5 days",
+                "students": 24,
+                "topic": "React",
+                "project": "Wikipedia Map"
+            },
+            "product_design": {
+                "sprints": 4,
+                "description": "Developed technical roadmaps, estimations and risk registries during several week-long workshops"
+            },
+            "technologies": [
+                "React",
+                "Node.js",
+                "react-sweet-state",
+                "react-query",
+                "Redux",
+                "styled-components",
+                "Remotion",
+                "GSAP",
+                "WebGL",
+                "Three.js",
+                "GLSL",
+                "HTML5 Canvas",
+                "Google Maps API",
+                "Wikimedia API",
+                "Gatsby",
+                "Next",
+                "Product Engineering",
+                "Consulting",
+                "REST API",
+                "Websockets",
+                "GraphQL",
+                "YAML",
+                "Trunk development",
+                "Jest",
+                "Testing library",
+                "Cypress",
+                "TDD",
+                "Performance Optimization"
             ]
         },
         {
@@ -141,6 +207,10 @@
             "startDate": "2017",
             "endDate": "2019",
             "summary": "Drove startup innovation and technical implementation",
+            "projects": [
+                "Elder-focused real-time communicator",
+                "Social Media platform for horse riding enthusiasts"
+            ],
             "highlights": [
                 "Transformed startup ideas into functional applications",
                 "Developed two mobile apps and refactored existing web app",
@@ -149,6 +219,27 @@
                 "Designed and built APIs following JSON:API and REST principles",
                 "Wrote E2E, integration and unit tests",
                 "Maintained code quality using automatic tools"
+            ],
+            "technologies": [
+                "React",
+                "React Native",
+                "Node.js",
+                "Postgres",
+                "Knex.js",
+                "Sequelize",
+                "ElasticSearch",
+                "Redis",
+                "Express",
+                "WebSockets",
+                "Jest",
+                "Enzyme",
+                "Cypress",
+                "Bitbucket",
+                "Amazon AWS",
+                "DevOps",
+                "StandardJS",
+                "Prettier",
+                "Commitizen"
             ]
         },
         {
@@ -162,6 +253,56 @@
                 "Delivered CRM Platform MVP in record time (6 weeks)",
                 "Participated in React migration from PHP",
                 "Developed internal tools for frontend performance metrics"
+            ],
+            "projects": {
+                "Marketing Automation Creator": {
+                    "achievements": [
+                        "Implemented an editor using MVC architecture",
+                        "Implemented bespoke drag-and-drop functionality"
+                    ]
+                },
+                "CRM Platform": {
+                    "achievements": [
+                        "Designed editor's architecture and data structures",
+                        "Successfully delivered the MVP in a company-record time of just 6 weeks"
+                    ]
+                }
+            },
+            "other_achievements": [
+                "Focused on maintenance and enhancement of key web applications and internal tools",
+                "Gained comprehensive insights into enterprise-scale application development",
+                "Developed an internal tool for collecting frontend performance metrics"
+            ],
+            "technologies": [
+                "Design Patterns",
+                "OOP",
+                "Data Structures",
+                "React",
+                "Redux",
+                "react-dnd",
+                "JavaScript 1.8/ES5",
+                "Node.js",
+                "PHP",
+                "MySQL",
+                "Redis",
+                "Docker",
+                "HTML5",
+                "XSLT",
+                "XML",
+                "Sass",
+                "PostCSS",
+                "Grunt",
+                "Webpack",
+                "Gulp",
+                "require.js",
+                "Bootstrap",
+                "PhantomJS",
+                "ElasticSearch",
+                "Kibana",
+                "Vagrant",
+                "Scrum",
+                "Agile",
+                "JIRA"
             ]
         },
         {
@@ -201,40 +342,6 @@
             "institution": "Stefan Czarniecki High School",
             "area": "Math-physics profile",
             "location": "Człuchów, Poland"
-        }
-    ],
-    "skills": [
-        {
-            "name": "Applications",
-            "keywords": [
-                "Web",
-                "Mobile",
-                "APIs",
-                "CLI",
-                "Editors",
-                "Tools",
-                "Design Systems"
-            ]
-        }
-    ],
-    "interests": [
-        {
-            "name": "Main",
-            "keywords": [
-                "Application Architecture",
-                "Product Development",
-                "Rock climbing & bouldering",
-                "History, Art & design",
-                "Running, Techno",
-                "Psychology, Neuroscience, Philosophy"
-            ]
-        },
-        {
-            "name": "Other",
-            "keywords": [
-                "Trendy AI: ChatGPT, DALL-E, Midjourney and Cursor",
-                "UI/UX/graphic design, video edit, sound production"
-            ]
         }
     ],
     "talks": [
