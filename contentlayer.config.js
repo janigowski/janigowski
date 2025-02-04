@@ -244,8 +244,17 @@ export const Resume = defineDocumentType(() => ({
 		resolvedResume: {
 			type: "json",
 			resolve: (doc) => {
-				const { _id, _raw, type, slug, ...cleanVariant } = doc
-				return lodash.merge({}, baseResume, cleanVariant)
+				const { _id, _raw, type, resolvedResume, ...cleanVariant } = doc
+				
+				const customizer = (objValue, srcValue) => {
+					if (Array.isArray(srcValue)) {
+						return srcValue;
+					}
+				}
+				
+				const result = lodash.mergeWith({}, baseResume, cleanVariant, customizer)
+				
+				return result
 			}
 		}
 	}
