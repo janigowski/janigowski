@@ -54,7 +54,7 @@
             "Facilitated hands-on technical sessions and live coding",
             "Developed personalized growth strategies for mentees"
         ],
-        "technologies": [
+        "skills": [
             "React",
             "TypeScript",
             "Software Architecture",
@@ -77,7 +77,7 @@
                 "Created 'Spotlight' command palette for swift navigation",
                 "Designed multi-channel timeline for audio, video, and visuals"
             ],
-            "technologies": [
+            "skills": [
                 "Electron",
                 "TypeScript",
                 "Svelte",
@@ -141,7 +141,7 @@
                 "sprints": 4,
                 "description": "Developed technical roadmaps, estimations and risk registries during several week-long workshops"
             },
-            "technologies": [
+            "skills": [
                 "React",
                 "Node.js",
                 "react-sweet-state",
@@ -184,6 +184,12 @@
                 "Conducting one-on-one and team meetings",
                 "Promoting a feedback culture among direct reports and their teammates",
                 "Keeping the team connected with the company's strategy, processes, and updates"
+            ],
+            "skills": [
+                "Radical Candor",
+                "Servant Leadership",
+                "Technical Support",
+                "Active listening"
             ]
         },
         {
@@ -199,6 +205,30 @@
                 "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
                 "Decreased development time by utilizing AST-to-AST refactoring",
                 "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors"
+            ],
+            "teaching": {
+                "course_length": "5 days",
+                "students": 24,
+                "topic": "React",
+                "project": "Wikipedia Map"
+            },
+            "product_design": {
+                "sprints": 4,
+                "description": "Developed technical roadmaps, estimations and risk registries during several week-long workshops"
+            },
+            "skills": [
+                "React",
+                "Node.js",
+                "Zustand",
+                "Redux",
+                "CircleCI",
+                "CI/CD optimization",
+                "Figma",
+                "Storybook",
+                "CSS Modules",
+                "Design Patterns",
+                "Amazon AWS",
+                "jscodeshift"
             ]
         },
         {
@@ -220,7 +250,7 @@
                 "Wrote E2E, integration and unit tests",
                 "Maintained code quality using automatic tools"
             ],
-            "technologies": [
+            "skills": [
                 "React",
                 "React Native",
                 "Node.js",
@@ -273,7 +303,7 @@
                 "Gained comprehensive insights into enterprise-scale application development",
                 "Developed an internal tool for collecting frontend performance metrics"
             ],
-            "technologies": [
+            "skills": [
                 "Design Patterns",
                 "OOP",
                 "Data Structures",
@@ -314,7 +344,7 @@
                 "Crafted CMS, Forums and Landing Pages",
                 "Designed graphics: websites, landing pages, posters, business cards (including DTP)"
             ],
-            "technologies": [
+            "skills": [
                 "PHP",
                 "MySQL",
                 "Apache",

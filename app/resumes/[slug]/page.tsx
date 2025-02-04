@@ -195,11 +195,11 @@ export default function ResumePage({ params }: PageProps) {
                                             <div className="text-zinc-500 text-sm">
                                                 {job.startDate} - {job.endDate || 'Present'}
                                             </div>
-                                            {job.technologies && (
+                                            {job.skills && (
                                                 <div className="flex flex-wrap gap-2">
-                                                    {job.technologies.map((tech: string, i: number) => (
+                                                    {job.skills.map((skill: string, i: number) => (
                                                         <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                                            {tech}
+                                                            {skill}
                                                         </span>
                                                     ))}
                                                 </div>
@@ -233,11 +233,11 @@ export default function ResumePage({ params }: PageProps) {
                                                     <li key={i}>{highlight}</li>
                                                 ))}
                                             </ul>
-                                            <h4 className="mt-4 font-medium">Technologies:</h4>
+                                            <h4 className="mt-4 font-medium">Skills:</h4>
                                             <div className="mt-2 flex flex-wrap gap-2">
-                                                {mentoring.technologies.map((tech: string, i: number) => (
+                                                {mentoring.skills.map((skill: string, i: number) => (
                                                     <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                                        {tech}
+                                                        {skill}
                                                     </span>
                                                 ))}
                                             </div>

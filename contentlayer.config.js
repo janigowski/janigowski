@@ -210,15 +210,16 @@ export const Resume = defineDocumentType(() => ({
 			description: "Technical skills and key numbers"
 		},
 		clifton_strengths: { 
-			type: "json"
+			type: "json",
+			description: "List of Clifton Strengths assessment results"
 		},
 		mentoring: {
 			type: "json",
-			description: "Current mentoring position"
+			description: "Current mentoring position with highlights and skills"
 		},
 		work: {
 			type: "json",
-			description: "List of work experiences"
+			description: "List of work experiences with highlights, skills, product engineering, company-wide impact, leadership, teaching, and product design achievements"
 		},
 		education: {
 			type: "json",
