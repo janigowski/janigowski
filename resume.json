@@ -94,8 +94,8 @@
         {
             "name": "Netguru",
             "position": "Software Architect Frontend",
-            "startDate": "2021",
-            "endDate": "2022",
+            "startDate": "2021-08",
+            "endDate": "2022-08",
             "summary": "Led technical architecture and team development",
             "highlights": [
                 "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
@@ -175,8 +175,8 @@
         {
             "name": "Netguru",
             "position": "Team Leader",
-            "startDate": "2020",
-            "endDate": "2021",
+            "startDate": "2021-02",
+            "endDate": "2021-10",
             "summary": "Led and supported a team of 6 developers",
             "highlights": [
                 "Provided emotional and technical support for 6 team members",
@@ -195,8 +195,8 @@
         {
             "name": "Netguru",
             "position": "Senior Frontend Developer",
-            "startDate": "2019",
-            "endDate": "2020",
+            "startDate": "2019-08",
+            "endDate": "2021-09",
             "summary": "Delivered high-impact solutions across multiple domains",
             "highlights": [
                 "Designed a chatbot engine and visual language to reduce Customer Support workload",
@@ -234,8 +234,8 @@
         {
             "name": "ThinkSmart",
             "position": "Full Stack JavaScript Developer",
-            "startDate": "2017",
-            "endDate": "2019",
+            "startDate": "2017-07",
+            "endDate": "2018-07",
             "summary": "Drove startup innovation and technical implementation",
             "projects": [
                 "Elder-focused real-time communicator",
@@ -275,8 +275,8 @@
         {
             "name": "GetResponse",
             "position": "JavaScript Developer",
-            "startDate": "2015",
-            "endDate": "2017",
+            "startDate": "2016-10",
+            "endDate": "2017-06",
             "summary": "Led key platform development initiatives",
             "highlights": [
                 "Implemented Marketing Automation Creator using MVC architecture",
@@ -333,6 +333,36 @@
                 "Scrum",
                 "Agile",
                 "JIRA"
+            ]
+        },
+        {
+            "name": "GetResponse",
+            "position": "Junior Software Developer",
+            "startDate": "2015-06",
+            "endDate": "2016-10",
+            "summary": "Started career in enterprise software development",
+            "highlights": [
+                "Focused on maintenance and enhancement of key web applications and internal tools",
+                "Gained comprehensive insights into enterprise-scale application development",
+                "Developed an internal tool for collecting frontend performance metrics"
+            ],
+            "skills": [
+                "JavaScript 1.8/ES5",
+                "Node.js",
+                "PHP",
+                "MySQL",
+                "Redis",
+                "Docker",
+                "HTML5",
+                "XSLT",
+                "XML",
+                "Sass",
+                "PostCSS",
+                "Grunt",
+                "Bootstrap",
+                "PhantomJS",
+                "ElasticSearch",
+                "Kibana"
             ]
         },
         {
