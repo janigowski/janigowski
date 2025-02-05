@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Line from './Line'
 import Company from './Company'
 import Contact from './Contact'
+import Work from './Work'
 
 interface Talk {
     date: string
@@ -14,7 +15,6 @@ interface Talk {
 }
 
 type Profile = Resume['profiles'][number]
-type Work = Resume['work'][number]
 type Education = Resume['education'][number]
 type Interest = Resume['interests'][number]
 
@@ -151,39 +151,8 @@ export default function ResumePage({ params }: ResumePageProps) {
                                 Experience
                             </h2>
                             <div className="space-y-6">
-                                {resolvedResume.work.map((job: Work, index: number) => (
-                                    <div key={index} className="grid grid-cols-[1fr,180px] gap-6">
-                                        <div>
-                                            <div className='flex row justify-between mb-2'>
-                                                <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.position}</h3>
-                                                <div className='flex row text-sm'>
-                                                    <Company name={job.name} />
-                                                </div>
-                                            </div>
-                                            <div className="text-zinc-600 text-sm leading-relaxed">
-                                                <p>{job.summary}</p>
-                                                <ul className="mt-2 list-disc list-inside">
-                                                    {job.highlights.map((highlight: string, i: number) => (
-                                                        <li key={i}>{highlight}</li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <div className="text-zinc-500 text-sm">
-                                                {job.startDate} - {job.endDate || 'Present'}
-                                            </div>
-                                            {job.skills && (
-                                                <div className="flex flex-wrap gap-2">
-                                                    {job.skills.map((skill: string, i: number) => (
-                                                        <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                                            {skill}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
+                                {resolvedResume.work.map((job: Resume['work'][number], index: number) => (
+                                    <Work key={index} job={job} />
                                 ))}
                             </div>
                         </section>
@@ -326,47 +295,6 @@ function SocialProfiles({ profiles }: { profiles: Resume['profiles'] }) {
                 >
                     {profile.network}
                 </a>
-            ))}
-        </div>
-    )
-}
-
-function WorkExperience({ jobs }: { jobs: Resume['work'] }) {
-    return (
-        <div className="space-y-6">
-            {jobs.map((job: Work, index: number) => (
-                <div key={index} className="grid grid-cols-[1fr,180px] gap-6">
-                    <div>
-                        <div className='flex row justify-between mb-2'>
-                            <h3 className="font-normal text-zinc-800 text-sm uppercase">{job.position}</h3>
-                            <div className='flex row text-sm'>
-                                <Company name={job.name} />
-                            </div>
-                        </div>
-                        <div className="text-zinc-600 text-sm leading-relaxed">
-                            <p>{job.summary}</p>
-                            <ul className="mt-2 list-disc list-inside">
-                                {job.highlights.map((highlight: string, i: number) => (
-                                    <li key={i}>{highlight}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="space-y-4">
-                        <div className="text-zinc-500 text-sm">
-                            {job.startDate} - {job.endDate || 'Present'}
-                        </div>
-                        {job.skills && (
-                            <div className="flex flex-wrap gap-2">
-                                {job.skills.map((skill: string, i: number) => (
-                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
             ))}
         </div>
     )
