@@ -1,6 +1,13 @@
 import { Mail, Globe, MapPin, Github, Linkedin } from 'lucide-react'
 import Link from 'next/link'
-import { ContactProps } from '../../../types/resume'
+
+type ContactProps = {
+    email: string
+    website: string
+    location: string
+    github?: string
+    linkedin?: string
+}
 
 export default function Contact({ email, website, location, github, linkedin }: ContactProps) {
     return (

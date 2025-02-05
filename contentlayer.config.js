@@ -4,7 +4,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import lodash from 'lodash'
-import baseResume from './resume.json'
+import baseResume from './resume.json' assert { type: 'json' };
 
 const janigowskiWarpTheme = {
 	name: 'custom-warp',
@@ -89,6 +89,145 @@ const computedFields = {
 		resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
 	},
 };
+
+const Profile = {
+	network: { type: "string", required: true },
+	username: { type: "string" },
+	url: { type: "string", required: true }
+};
+
+const Leadership = {
+	meetings_hosted: { type: "string", required: true },
+	description: { type: "string", required: true },
+	topics: { type: "json", required: true }
+};
+
+const Teaching = {
+	course_length: { type: "string", required: true },
+	students: { type: "number", required: true },
+	topic: { type: "string", required: true },
+	project: { type: "string", required: true }
+};
+
+const ProductDesign = {
+	sprints: { type: "number", required: true },
+	description: { type: "string", required: true }
+};
+
+const Work = {
+	name: { type: "string", required: true },
+	position: { type: "string", required: true },
+	startDate: { type: "string", required: true },
+	endDate: { type: "string" },
+	summary: { type: "string" },
+	highlights: { type: "json" },
+	skills: { type: "json" },
+	product_engineering: { type: "json" },
+	company_wide: { type: "json" },
+	leadership: { type: "json" },
+	teaching: { type: "json" },
+	product_design: { type: "json" },
+	projects: { type: "json" },
+	other_achievements: { type: "json" }
+};
+
+const Education = {
+	institution: { type: "string", required: true },
+	area: { type: "string", required: true },
+	location: { type: "string", required: true }
+};
+
+const Talk = {
+	date: { type: "string", required: true },
+	conference: { type: "string", required: true },
+	place: { type: "string", required: true },
+	title: { type: "string", required: true }
+};
+
+const Hackathon = {
+	name: { type: "string", required: true },
+	achievement: { type: "string" }
+};
+
+export const Resume = defineDocumentType(() => ({
+	name: "Resume",
+	filePathPattern: "./resumes/**/*.json",
+	contentType: "json",
+
+	fields: {
+		slug: { type: "string", required: true },
+		name: { type: "string" },
+		role: { type: "string" },
+		experience_years: { type: "string" },
+		products_contributed: { type: "string" },
+		email: { type: "string" },
+		url: { type: "string" },
+		summary: { type: "string" },
+		locationCity: { type: "string" },
+		locationCountryCode: { type: "string" },
+		profiles: { 
+			type: "json",
+			description: "List of social media profiles"
+		},
+		highlights: {
+			type: "json",
+			description: "Technical skills and numbers"
+		},
+		clifton_strengths: { 
+			type: "json",
+			description: "List of Clifton Strengths assessment results"
+		},
+		mentoring: {
+			type: "json",
+			description: "Current mentoring position with highlights and skills"
+		},
+		work: {
+			type: "json",
+			description: "List of work experiences with structure: { name, position, startDate, endDate?, summary?, highlights?, skills?, product_engineering?, company_wide?, leadership?, teaching?, product_design?, projects?, other_achievements? }"
+		},
+		education: {
+			type: "json",
+			description: "List of education entries with structure: { institution, area, location }"
+		},
+		interests: {
+			type: "json",
+			description: "List of interest groups with structure: { name, keywords }"
+		},
+		talks: {
+			type: "json",
+			description: "List of talks with structure: { date, conference, place, title }"
+		},
+		hackathons: {
+			type: "json",
+			description: "List of hackathon entries with structure: { name, achievement? }"
+		}
+	},
+
+	computedFields: {
+		...computedFields,
+		resolvedResume: {
+			type: "json",
+			resolve: (doc) => {
+				const { _id, _raw, type, resolvedResume, ...cleanVariant } = doc
+				
+				const base = JSON.parse(JSON.stringify(baseResume))
+				
+				const customizer = (objValue, srcValue) => {
+					if (srcValue === undefined || srcValue === null) {
+						return objValue
+					}
+					if (Array.isArray(srcValue)) {
+						return srcValue
+					}
+				}
+				
+				const result = lodash.mergeWith({}, base, cleanVariant, customizer)
+				
+				return result
+			}
+		}
+	}
+}));
 
 export const Project = defineDocumentType(() => ({
 	name: "Project",
@@ -185,79 +324,6 @@ export const Post = defineDocumentType(() => ({
 		},
 	},
 	computedFields,
-}));
-
-export const Resume = defineDocumentType(() => ({
-	name: "Resume",
-	filePathPattern: "./resumes/**/*.json",
-	contentType: "json",
-
-	fields: {
-		slug: { type: "string", required: true },
-		name: { type: "string" },
-		role: { type: "string" },
-		email: { type: "string" },
-		url: { type: "string" },
-		summary: { type: "string" },
-		locationCity: { type: "string" },
-		locationCountryCode: { type: "string" },
-		profiles: { 
-			type: "json",
-			description: "List of social media profiles"
-		},
-		highlights: {
-			type: "json",
-			description: "Technical skills and key numbers"
-		},
-		clifton_strengths: { 
-			type: "json",
-			description: "List of Clifton Strengths assessment results"
-		},
-		mentoring: {
-			type: "json",
-			description: "Current mentoring position with highlights and skills"
-		},
-		work: {
-			type: "json",
-			description: "List of work experiences with highlights, skills, product engineering, company-wide impact, leadership, teaching, and product design achievements"
-		},
-		education: {
-			type: "json",
-			description: "List of education entries"
-		},
-		interests: {
-			type: "json",
-			description: "List of interest groups"
-		},
-		talks: {
-			type: "json",
-			description: "List of conference talks and presentations"
-		},
-		hackathons: {
-			type: "json",
-			description: "List of hackathon participations"
-		}
-	},
-
-	computedFields: {
-		...computedFields,
-		resolvedResume: {
-			type: "json",
-			resolve: (doc) => {
-				const { _id, _raw, type, resolvedResume, ...cleanVariant } = doc
-				
-				const customizer = (objValue, srcValue) => {
-					if (Array.isArray(srcValue)) {
-						return srcValue;
-					}
-				}
-				
-				const result = lodash.mergeWith({}, baseResume, cleanVariant, customizer)
-				
-				return result
-			}
-		}
-	}
 }));
 
 export default makeSource({
