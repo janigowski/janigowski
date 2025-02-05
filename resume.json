@@ -77,6 +77,9 @@
                 "Created 'Spotlight' command palette for swift navigation",
                 "Designed multi-channel timeline for audio, video, and visuals"
             ],
+            "projects": [
+                "EXØ_LAB: Desktop application for new media artists"
+            ],
             "skills": [
                 "Electron",
                 "TypeScript",
@@ -103,44 +106,23 @@
                 "Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows",
                 "Reduced Map loading time by 80% (10s ↘ 2s)",
                 "Optimized state management by removing over +1500 LOC",
-                "Crafted 3D solution for a NFT knowledge hub utilizing procedural environment generation"
-            ],
-            "product_engineering": [
                 "Conducted 10+ consultations for business enhancement",
-                "Engaged in discussions, analyzed performance data, proposed process and code improvements",
+                "Engaged in discussions, analyzed performance data, proposed process improvements",
                 "Worked closely with the Product Manager and Product Designer",
                 "Delved into Product Management, exploring new methodologies",
-                "Influenced by Marty Cagan and Silicon Valley Product Group",
-                "Gained insights into technical and product strategy intersection"
-            ],
-            "company_wide": [
                 "Introduced Event Storming in a series of workshops for 20 people",
-                "Organized #bookclub - we've read and discussed 4 books together",
-                "Conducted interviews for regular and senior positions",
-                "Mentored group of 25 developers in Product Discovery matter"
+                "Organized #bookclub",
+                "Conducted technical interviews and screening",
+                "Mentored group of 25 developers in Product Discovery matter",
+                "Hosted 100+ Frontend Architecture Area weekly meetings for 5-10 developers",
+                "Led knowledge sharing sessions on software architecture, soft skills, product engineering",
+                "Conducted sessions on Clean Architecture, Domain Driven Design, and Team building"
             ],
-            "leadership": {
-                "meetings_hosted": "100+",
-                "description": "For over two years I conducted Frontend Architecture Area weekly meetings. Knowledge sharing for 5-10 developers.",
-                "topics": [
-                    "software architecture",
-                    "Soft skills",
-                    "product engineering",
-                    "Clean Architecture",
-                    "Domain Driven Design",
-                    "team building"
-                ]
-            },
-            "teaching": {
-                "course_length": "5 days",
-                "students": 24,
-                "topic": "React",
-                "project": "Wikipedia Map"
-            },
-            "product_design": {
-                "sprints": 4,
-                "description": "Developed technical roadmaps, estimations and risk registries during several week-long workshops"
-            },
+            "projects": [
+                "NFT Knowledge Hub: 3D visualization platform for NFT education",
+                "Procedural environment generation with WebGL",
+                "Interactive 3D learning experience"
+            ],
             "skills": [
                 "React",
                 "Node.js",
@@ -169,7 +151,13 @@
                 "Testing library",
                 "Cypress",
                 "TDD",
-                "Performance Optimization"
+                "Performance Optimization",
+                "software architecture",
+                "Soft skills",
+                "product engineering",
+                "Clean Architecture",
+                "Domain Driven Design",
+                "team building"
             ]
         },
         {
@@ -204,18 +192,13 @@
                 "Designed and implemented high-performant product showcase using transparent videos",
                 "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
                 "Decreased development time by utilizing AST-to-AST refactoring",
-                "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors"
+                "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors",
+                "Developed technical roadmaps, estimations and risk registries during several week-long workshops - 4 times"
             ],
-            "teaching": {
-                "course_length": "5 days",
-                "students": 24,
-                "topic": "React",
-                "project": "Wikipedia Map"
-            },
-            "product_design": {
-                "sprints": 4,
-                "description": "Developed technical roadmaps, estimations and risk registries during several week-long workshops"
-            },
+            "projects": [
+                "Wikipedia Map: Interactive learning platform with React",
+                "Led 5-day course for 24 students"
+            ],
             "skills": [
                 "React",
                 "Node.js",
@@ -237,10 +220,6 @@
             "startDate": "2017-07",
             "endDate": "2018-07",
             "summary": "Drove startup innovation and technical implementation",
-            "projects": [
-                "Elder-focused real-time communicator",
-                "Social Media platform for horse riding enthusiasts"
-            ],
             "highlights": [
                 "Transformed startup ideas into functional applications",
                 "Developed two mobile apps and refactored existing web app",
@@ -249,6 +228,10 @@
                 "Designed and built APIs following JSON:API and REST principles",
                 "Wrote E2E, integration and unit tests",
                 "Maintained code quality using automatic tools"
+            ],
+            "projects": [
+                "KAMA: Real-time communication platform for elderly users",
+                "Pluvinel: Platform for horse riding enthusiasts"
             ],
             "skills": [
                 "React",
@@ -279,29 +262,15 @@
             "endDate": "2017-06",
             "summary": "Led key platform development initiatives",
             "highlights": [
-                "Implemented Marketing Automation Creator using MVC architecture",
-                "Delivered CRM Platform MVP in record time (6 weeks)",
                 "Participated in React migration from PHP",
-                "Developed internal tools for frontend performance metrics"
-            ],
-            "projects": {
-                "Marketing Automation Creator": {
-                    "achievements": [
-                        "Implemented an editor using MVC architecture",
-                        "Implemented bespoke drag-and-drop functionality"
-                    ]
-                },
-                "CRM Platform": {
-                    "achievements": [
-                        "Designed editor's architecture and data structures",
-                        "Successfully delivered the MVP in a company-record time of just 6 weeks"
-                    ]
-                }
-            },
-            "other_achievements": [
+                "Developed internal tools for frontend performance metrics",
                 "Focused on maintenance and enhancement of key web applications and internal tools",
-                "Gained comprehensive insights into enterprise-scale application development",
-                "Developed an internal tool for collecting frontend performance metrics"
+                "Gained comprehensive insights into enterprise-scale application development"
+            ],
+            "projects": [
+                "Marketing Automation Creator: Visual workflow builder with MVC architecture",
+                "CRM Platform: Led the delivery of MVP in record time of 6 weeks",
+                "Designed editor's architecture with real-time collaboration"
             ],
             "skills": [
                 "Design Patterns",
@@ -331,8 +300,7 @@
                 "Kibana",
                 "Vagrant",
                 "Scrum",
-                "Agile",
-                "JIRA"
+                "Agile"
             ]
         },
         {

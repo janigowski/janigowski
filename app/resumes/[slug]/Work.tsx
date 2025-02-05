@@ -1,7 +1,9 @@
 import { Resume } from 'contentlayer/generated'
 import Company from './Company'
 
-type Work = Resume['work'][number]
+type Work = Resume['work'][number] & {
+    projects?: string[]
+}
 
 const companyToColor = (name: string): string => {
     const companies = {
@@ -37,6 +39,16 @@ export default function Work({ job }: { job: Work }) {
                             <li key={i}>{highlight}</li>
                         ))}
                     </ul>
+                    {job.projects && job.projects.length > 0 && (
+                        <div className="mt-4">
+                            <h4 className="font-medium text-zinc-800 mb-2">Projects</h4>
+                            <ul className="list-disc list-inside">
+                                {job.projects.map((project: string, index: number) => (
+                                    <li key={index}>{project}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="space-y-4">
