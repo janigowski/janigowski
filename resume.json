@@ -169,8 +169,7 @@
                 "Performance Optimization",
                 "Software Architecture",
                 "Clean Architecture",
-                "Domain Driven Design",
-                "Team Building"
+                "Domain Driven Design"
             ]
         },
         {
@@ -289,7 +288,7 @@
                 "Enzyme",
                 "Cypress",
                 "Bitbucket",
-                "Amazon AWS",
+                "AWS",
                 "DevOps",
                 "StandardJS",
                 "Prettier",
@@ -335,20 +334,12 @@
                 "react-dnd",
                 "JavaScript 1.8/ES5",
                 "Node.js",
-                "PHP",
-                "MySQL",
-                "Redis",
-                "Docker",
-                "HTML5",
-                "XSLT",
-                "XML",
                 "Sass",
                 "PostCSS",
                 "Grunt",
                 "Webpack",
                 "Gulp",
                 "require.js",
-                "Bootstrap",
                 "PhantomJS",
                 "ElasticSearch",
                 "Kibana",
@@ -365,26 +356,16 @@
             "summary": "Started career in enterprise software development",
             "highlights": [
                 "Focused on maintenance and enhancement of key web applications and internal tools",
-                "Gained comprehensive insights into enterprise-scale application development",
-                "Developed an internal tool for collecting frontend performance metrics"
+                "Gained comprehensive insights into enterprise-scale application development"
             ],
             "skills": [
-                "JavaScript 1.8/ES5",
-                "Node.js",
                 "PHP",
                 "MySQL",
                 "Redis",
                 "Docker",
-                "HTML5",
                 "XSLT",
                 "XML",
-                "Sass",
-                "PostCSS",
-                "Grunt",
-                "Bootstrap",
-                "PhantomJS",
-                "ElasticSearch",
-                "Kibana"
+                "Bootstrap"
             ]
         },
         {
@@ -400,22 +381,19 @@
                 "PHP",
                 "MySQL",
                 "Apache",
-                "Linux (Ubuntu, Fedora, Kali)",
-                "XML",
-                "JSON",
-                "Wordpress",
-                "HTML4/5",
-                "CSS2/3",
+                "Linux",
                 "JavaScript",
                 "jQuery",
+                "XML",
+                "JSON",
+                "HTML4/5",
+                "CSS2/3",
+                "Wordpress",
                 "Bootstrap",
                 "Semantic UI",
-                "pug",
-                "jade",
                 "Photoshop",
                 "HTML5 Canvas",
-                "Google Maps API",
-                "Wikimedia API"
+                "Google Maps API"
             ]
         }
     ],
