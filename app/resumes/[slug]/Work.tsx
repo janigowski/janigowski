@@ -28,16 +28,16 @@ export default function Work({ job }: { job: Work }) {
             <div>
                 <div className='flex row justify-between mb-2'>
                     <h3
-                        className="font-normal text-zinc-800 text-sm uppercase"
+                        className="font-normal text-zinc-800 text-xs uppercase"
                         style={{ borderBottom: `1px solid ${companyToColor(job.name)}` }}
                     >
                         {job.position}
                     </h3>
-                    <div className='flex row text-sm'>
+                    <div className='flex row text-xs'>
                         <Company name={job.name} />
                     </div>
                 </div>
-                <div className="text-zinc-600 text-sm leading-relaxed">
+                <div className="text-zinc-600 text-xs leading-relaxed">
                     <p>{job.summary}</p>
                     <ul className="mt-2 ml-8 list-disc list-outside">
                         {job.highlights.map((highlight: string, i: number) => (
@@ -70,7 +70,7 @@ export default function Work({ job }: { job: Work }) {
                 </div>
             </div>
             <div className="space-y-4">
-                <div className="text-zinc-500 text-sm">
+                <div className="text-zinc-500 text-xs">
                     {job.startDate} - {job.endDate || 'Present'}
                 </div>
                 {job.skills && (

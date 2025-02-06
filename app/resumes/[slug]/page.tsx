@@ -63,25 +63,30 @@ export default function ResumePage({ params }: ResumePageProps) {
                 {/* Header Section */}
                 <header className="relative mb-8">
                     <div className="relative z-10 p-10 flex justify-between items-start">
-                        <div>
-                            <h1 className="text-5xl font-bold tracking-tight text-white font-display">
+                        <div className='flex flex-col justify-between'>
+                            <h1 className="text-3xl px-2 leading-none mb-6 font-bold tracking-tight text-white font-display">
                                 {firstName} {lastName}
                             </h1>
-                            <h2 className="mt-4 font-mono text-zinc-200">{resolvedResume.role}</h2>
-                            <div className="mt-4 flex flex-wrap gap-2">
+
+                            <div className="text-xs px-2 mb-4  text-zinc-200 " dangerouslySetInnerHTML={{
+                                __html: resolvedResume.role
+                            }} />
+
+                            <div className="flex gap-4 mb-4 text-zinc-400 text-xs">
+                                <div className='bg-zinc-800/50 px-2 py-1 rounded-md'>
+                                    <strong >{resolvedResume.highlights.numbers.experience_years}</strong> years of experience
+                                </div>
+                                <div className='bg-zinc-800/50 px-2 py-1 rounded-md'>
+                                    <strong >{resolvedResume.highlights.numbers.products_contributed}</strong> products contributed
+                                </div>
+                            </div>
+
+                            <div className="flex flex-wrap gap-2 text-xs text-zinc-500 ">
                                 {resolvedResume.highlights.technical.map((skill: string, i: number) => (
-                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-white/10 text-white/80 rounded">
+                                    <span key={i} className='bg-zinc-900/20 px-2 py-1 rounded-md'>
                                         {skill}
                                     </span>
                                 ))}
-                            </div>
-                            <div className="mt-4 grid grid-cols-2 gap-4">
-                                <div className="text-zinc-200 text-sm">
-                                    <strong className="text-white">{resolvedResume.highlights.numbers.experience_years}</strong> years of experience
-                                </div>
-                                <div className="text-zinc-200 text-sm">
-                                    <strong className="text-white">{resolvedResume.highlights.numbers.products_contributed}</strong> products contributed
-                                </div>
                             </div>
                         </div>
                         <Contact
@@ -112,10 +117,10 @@ export default function ResumePage({ params }: ResumePageProps) {
                         {resolvedResume.summary && (
                             <section>
                                 <Line />
-                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                     About me
                                 </h2>
-                                <div className="text-zinc-600 text-sm leading-relaxed">
+                                <div className="text-zinc-600 text-xs leading-relaxed">
                                     <div
                                         dangerouslySetInnerHTML={{
                                             __html: resolvedResume.summary
@@ -127,14 +132,14 @@ export default function ResumePage({ params }: ResumePageProps) {
 
                         <section>
                             <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Clifton Strengths
                             </h2>
                             <div className="space-y-4">
                                 {resolvedResume.clifton_strengths?.length > 0 && (
                                     <div className="flex flex-wrap gap-2">
                                         {resolvedResume.clifton_strengths.map((strength: string, i: number) => (
-                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                            <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 text-zinc-500 rounded">
                                                 {strength}
                                             </span>
                                         ))}
@@ -147,7 +152,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                     {resolvedResume.work && resolvedResume.work.length > 0 && (
                         <section className="mb-8">
                             <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Experience
                             </h2>
                             <div className="space-y-6">
@@ -161,7 +166,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                     {resolvedResume.mentoring && (
                         <section className="mb-8">
                             <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Mentoring
                             </h2>
                             <div className="space-y-6">
@@ -203,7 +208,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                         {resolvedResume.education && resolvedResume.education.length > 0 && (
                             <section className="col-span-1">
                                 <Line />
-                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                     Education
                                 </h2>
                                 <div className="space-y-6">
@@ -219,7 +224,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                         {resolvedResume.hackathons && resolvedResume.hackathons.length > 0 && (
                             <section className="col-span-2">
                                 <Line />
-                                <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                                <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                     Hackathons
                                 </h2>
                                 <div className="space-y-4">
@@ -234,7 +239,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                     {/* Talks Section */}
                     <section className="mb-8">
                         <Line />
-                        <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                        <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                             Talks
                         </h2>
                         <div className="space-y-4">
@@ -257,7 +262,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                     {resolvedResume.interests && resolvedResume.interests.length > 0 && (
                         <section className="mb-8">
                             <Line />
-                            <h2 className="text-base font-semibold text-zinc-800 mb-4 uppercase">
+                            <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Interests
                             </h2>
                             <div className="space-y-4">
