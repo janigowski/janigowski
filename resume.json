@@ -71,11 +71,10 @@
             "summary": "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
             "highlights": [
                 "Conceptualized and developed an integrated environment for real-time audio-visual performance",
+                "Designed multi-channel timeline for audio, video, and visuals",
                 "Engineered real-time waveform visualization and multi-channel mixing with BPM sync",
                 "Integrated MIDI controls with hardware devices (mixers, controllers)",
-                "Implemented context-dependent shortcuts for MIDI and keyboard inputs",
-                "Created 'Spotlight' command palette for swift navigation",
-                "Designed multi-channel timeline for audio, video, and visuals"
+                "Implemented context-dependent shortcuts for MIDI and keyboard inputs"
             ],
             "projects": [
                 "EXØ_LAB: Desktop application for new media artists"

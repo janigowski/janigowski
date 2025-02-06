@@ -34,7 +34,7 @@ export default function Work({ job }: { job: Work }) {
                 </div>
                 <div className="text-zinc-600 text-sm leading-relaxed">
                     <p>{job.summary}</p>
-                    <ul className="mt-2 list-disc list-inside">
+                    <ul className="mt-2 list-disc list-outside">
                         {job.highlights.map((highlight: string, i: number) => (
                             <li key={i}>{highlight}</li>
                         ))}
@@ -42,7 +42,7 @@ export default function Work({ job }: { job: Work }) {
                     {job.projects && job.projects.length > 0 && (
                         <div className="mt-4">
                             <h4 className="font-medium text-zinc-800 mb-2">Projects</h4>
-                            <ul className="list-disc list-inside">
+                            <ul className="list-disc list-outside">
                                 {job.projects.map((project: string, index: number) => (
                                     <li key={index}>{project}</li>
                                 ))}
