@@ -100,27 +100,45 @@
             "endDate": "2022-08",
             "summary": "Led technical architecture and team development",
             "highlights": [
-                "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
-                "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
-                "Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows",
-                "Reduced Map loading time by 80% (10s ↘ 2s)",
-                "Optimized state management by removing over +1500 LOC",
-                "Conducted 10+ consultations for business enhancement",
-                "Engaged in discussions, analyzed performance data, proposed process improvements",
-                "Worked closely with the Product Manager and Product Designer",
-                "Delved into Product Management, exploring new methodologies",
-                "Introduced Event Storming in a series of workshops for 20 people",
-                "Organized #bookclub",
-                "Conducted technical interviews and screening",
-                "Mentored group of 25 developers in Product Discovery matter",
                 "Hosted 100+ Frontend Architecture Area weekly meetings for 5-10 developers",
+                "Conducted sessions on Clean Architecture, Domain Driven Design, and Team building",
+                "-----",
+                "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
+                "Introduced Event Storming in a series of workshops for 20+ people",
+                "Organized #bookclub",
                 "Led knowledge sharing sessions on software architecture, soft skills, product engineering",
-                "Conducted sessions on Clean Architecture, Domain Driven Design, and Team building"
+                "Conducted technical interviews and screening"
+            ],
+            "__highlights-not-sure": [
+                "Worked closely with the Product Manager and Product Designer",
+                "Engaged in discussions, analyzed performance data, proposed process improvements"
             ],
             "projects": [
-                "NFT Knowledge Hub: 3D visualization platform for NFT education",
-                "Procedural environment generation with WebGL",
-                "Interactive 3D learning experience"
+                {
+                    "name": "Żappka Click&Collect",
+                    "highlights": [
+                        "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
+                        "Reduced Map loading time by <strong>80%</strong> (10s ↘ 2s)",
+                        "Optimized state management by removing over +1500 LOC",
+                        "Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows"
+                    ]
+                },
+                {
+                    "name": "Empowered Product Team",
+                    "highlights": [
+                        "Conducted 10+ consultations for business enhancement",
+                        "Delved into Product Management, exploring new methodologies",
+                        "Mentored group of 25 developers in Product Discovery matter"
+                    ]
+                },
+                {
+                    "name": "NFT Knowledge Hub",
+                    "highlights": [
+                        "Built 3D visualization platform for NFT education",
+                        "Implemented interactive 3D learning experience",
+                        "Developed procedural environment generation with WebGL"
+                    ]
+                }
             ],
             "skills": [
                 "React",
@@ -134,29 +152,25 @@
                 "WebGL",
                 "Three.js",
                 "GLSL",
-                "HTML5 Canvas",
                 "Google Maps API",
                 "Wikimedia API",
                 "Gatsby",
                 "Next",
                 "Product Engineering",
                 "Consulting",
-                "REST API",
+                "REST",
                 "Websockets",
                 "GraphQL",
-                "YAML",
                 "Trunk development",
                 "Jest",
                 "Testing library",
                 "Cypress",
                 "TDD",
                 "Performance Optimization",
-                "software architecture",
-                "Soft skills",
-                "product engineering",
+                "Software Architecture",
                 "Clean Architecture",
                 "Domain Driven Design",
-                "team building"
+                "Team Building"
             ]
         },
         {
@@ -173,10 +187,10 @@
                 "Keeping the team connected with the company's strategy, processes, and updates"
             ],
             "skills": [
+                "Active listening",
                 "Radical Candor",
-                "Servant Leadership",
                 "Technical Support",
-                "Active listening"
+                "Servant Leadership"
             ]
         },
         {
@@ -186,21 +200,35 @@
             "endDate": "2021-09",
             "summary": "Delivered high-impact solutions across multiple domains",
             "highlights": [
-                "Designed a chatbot engine and visual language to reduce Customer Support workload",
-                "Created a complex, data-intensive FinTech Inquiry Form with over 120 interdependent fields",
-                "Designed and implemented high-performant product showcase using transparent videos",
                 "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
-                "Decreased development time by utilizing AST-to-AST refactoring",
-                "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors",
-                "Developed technical roadmaps, estimations and risk registries during several week-long workshops - 4 times"
+                "Enabled entire codebase updates by utilizing AST-to-AST refactoring",
+                "Developed technical roadmaps, estimations and risk registries during week-long workshops on <strong>4</strong> products",
+                "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors"
             ],
             "projects": [
-                "Wikipedia Map: Interactive learning platform with React",
-                "Led 5-day course for 24 students"
+                {
+                    "name": "Merk Eyrise",
+                    "highlights": [
+                        "Designed and implemented high-performant product showcase using transparent videos"
+                    ]
+                },
+                {
+                    "name": "tr8fin",
+                    "highlights": [
+                        "Created complex form with 120+ interdependent fields",
+                        "Implemented real-time validation and conditional logic",
+                        "Optimized performance for large data sets"
+                    ]
+                },
+                {
+                    "name": "Chatbot Engine",
+                    "highlights": [
+                        "Designed and implemented visual language for chatbot flows",
+                        "Reduced Customer Support workload by 30%"
+                    ]
+                }
             ],
             "skills": [
-                "React",
-                "Node.js",
                 "Zustand",
                 "Redux",
                 "CircleCI",
@@ -209,7 +237,7 @@
                 "Storybook",
                 "CSS Modules",
                 "Design Patterns",
-                "Amazon AWS",
+                "AWS",
                 "jscodeshift"
             ]
         },
@@ -229,8 +257,22 @@
                 "Maintained code quality using automatic tools"
             ],
             "projects": [
-                "KAMA: Real-time communication platform for elderly users",
-                "Pluvinel: Platform for horse riding enthusiasts"
+                {
+                    "name": "Business Cards App",
+                    "highlights": [
+                        "Delivered GPS-based business cards MVP in 2 weeks",
+                        "Implemented real-time location tracking",
+                        "Built React Native mobile app with offline support"
+                    ]
+                },
+                {
+                    "name": "Legacy Web App Refactor",
+                    "highlights": [
+                        "Refactored existing web application to modern stack",
+                        "Improved performance and user experience",
+                        "Added comprehensive test coverage"
+                    ]
+                }
             ],
             "skills": [
                 "React",
@@ -267,9 +309,22 @@
                 "Gained comprehensive insights into enterprise-scale application development"
             ],
             "projects": [
-                "Marketing Automation Creator: Visual workflow builder with MVC architecture",
-                "CRM Platform: Led the delivery of MVP in record time of 6 weeks",
-                "Designed editor's architecture with real-time collaboration"
+                {
+                    "name": "Marketing Automation Creator",
+                    "highlights": [
+                        "Visual workflow builder with MVC architecture",
+                        "Designed editor's architecture with real-time collaboration",
+                        "Implemented drag-and-drop functionality"
+                    ]
+                },
+                {
+                    "name": "CRM Platform",
+                    "highlights": [
+                        "Led the delivery of MVP in record time of 6 weeks",
+                        "Implemented core CRM functionality",
+                        "Optimized performance for large datasets"
+                    ]
+                }
             ],
             "skills": [
                 "Design Patterns",
