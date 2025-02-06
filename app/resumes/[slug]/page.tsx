@@ -155,11 +155,10 @@ export default function ResumePage({ params }: ResumePageProps) {
                             <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Experience
                             </h2>
-                            <div className="space-y-6">
-                                {resolvedResume.work.map((job: Resume['work'][number], index: number) => (
-                                    <Work key={index} job={job} />
-                                ))}
-                            </div>
+
+                            {resolvedResume.work.map((job: Resume['work'][number], index: number) => (
+                                <Work key={index} job={job} />
+                            ))}
                         </section>
                     )}
 

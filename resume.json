@@ -23,7 +23,7 @@
         "technical": [
             "React",
             "Svelte",
-            "Node.js",
+            "Node",
             "TypeScript",
             "Software Architecture",
             "Leadership"
@@ -68,8 +68,8 @@
             "name": "janigowski.dev",
             "position": "Media Technology Explorer",
             "startDate": "2022-08",
-            "summary": "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
             "highlights": [
+                "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
                 "Conceptualized and developed an integrated environment for real-time audio-visual performance",
                 "Designed multi-channel timeline for audio, video, and visuals",
                 "Engineered real-time waveform visualization and multi-channel mixing with BPM sync",
@@ -83,14 +83,12 @@
                 "Electron",
                 "TypeScript",
                 "Svelte",
-                "Node.js",
+                "Node",
                 "tRPC",
                 "SQLite",
                 "Tone.js",
                 "WebAudio",
-                "WebMIDI",
-                "OOP",
-                "Clean Architecture"
+                "WebMIDI"
             ]
         },
         {
@@ -98,7 +96,6 @@
             "position": "Software Architect Frontend",
             "startDate": "2021-08",
             "endDate": "2022-08",
-            "summary": "Led technical architecture and team development",
             "highlights": [
                 "Hosted 100+ Frontend Architecture Area weekly meetings for 5-10 developers",
                 "Conducted sessions on Clean Architecture, Domain Driven Design, and Team building",
@@ -142,34 +139,17 @@
             ],
             "skills": [
                 "React",
-                "Node.js",
-                "react-sweet-state",
-                "react-query",
-                "Redux",
-                "styled-components",
-                "Remotion",
-                "GSAP",
-                "WebGL",
-                "Three.js",
-                "GLSL",
-                "Google Maps API",
-                "Wikimedia API",
-                "Gatsby",
+                "Node",
                 "Next",
-                "Product Engineering",
-                "Consulting",
-                "REST",
-                "Websockets",
-                "GraphQL",
-                "Trunk development",
-                "Jest",
-                "Testing library",
-                "Cypress",
+                "Gatsby",
+                "react-query",
+                "react-sweet-state",
+                "GSAP",
+                "Three.js",
                 "TDD",
-                "Performance Optimization",
-                "Software Architecture",
-                "Clean Architecture",
-                "Domain Driven Design"
+                "WebGL",
+                "Product Engineering",
+                "Clean Architecture"
             ]
         },
         {
@@ -177,8 +157,8 @@
             "position": "Team Leader",
             "startDate": "2021-02",
             "endDate": "2021-10",
-            "summary": "Led and supported a team of 6 developers",
             "highlights": [
+                "Led and supported a team of 6 developers",
                 "Provided emotional and technical support for 6 team members",
                 "Plan self-development roadmaps and perform quarterly evaluations",
                 "Conducting one-on-one and team meetings",
@@ -197,8 +177,8 @@
             "position": "Senior Frontend Developer",
             "startDate": "2019-08",
             "endDate": "2021-09",
-            "summary": "Delivered high-impact solutions across multiple domains",
             "highlights": [
+                "Delivered high-impact solutions across multiple domains",
                 "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
                 "Enabled entire codebase updates by utilizing AST-to-AST refactoring",
                 "Developed technical roadmaps, estimations and risk registries during week-long workshops on <strong>4</strong> products",
@@ -230,14 +210,10 @@
             "skills": [
                 "Zustand",
                 "Redux",
+                "Figma",
                 "CircleCI",
                 "CI/CD optimization",
-                "Figma",
-                "Storybook",
-                "CSS Modules",
-                "Design Patterns",
-                "AWS",
-                "jscodeshift"
+                "Storybook"
             ]
         },
         {
@@ -245,7 +221,6 @@
             "position": "Full Stack JavaScript Developer",
             "startDate": "2017-07",
             "endDate": "2018-07",
-            "summary": "Drove startup innovation and technical implementation",
             "highlights": [
                 "Transformed startup ideas into functional applications",
                 "Developed two mobile apps and refactored existing web app",
@@ -276,23 +251,13 @@
             "skills": [
                 "React",
                 "React Native",
-                "Node.js",
+                "Node",
                 "Postgres",
-                "Knex.js",
-                "Sequelize",
-                "ElasticSearch",
-                "Redis",
                 "Express",
                 "WebSockets",
-                "Jest",
-                "Enzyme",
                 "Cypress",
-                "Bitbucket",
-                "AWS",
                 "DevOps",
-                "StandardJS",
-                "Prettier",
-                "Commitizen"
+                "AWS"
             ]
         },
         {
@@ -300,7 +265,6 @@
             "position": "JavaScript Developer",
             "startDate": "2016-10",
             "endDate": "2017-06",
-            "summary": "Led key platform development initiatives",
             "highlights": [
                 "Participated in React migration from PHP",
                 "Developed internal tools for frontend performance metrics",
@@ -326,26 +290,14 @@
                 }
             ],
             "skills": [
-                "Design Patterns",
                 "OOP",
-                "Data Structures",
                 "React",
                 "Redux",
-                "react-dnd",
-                "JavaScript 1.8/ES5",
-                "Node.js",
-                "Sass",
-                "PostCSS",
-                "Grunt",
+                "Node",
                 "Webpack",
-                "Gulp",
-                "require.js",
                 "PhantomJS",
-                "ElasticSearch",
                 "Kibana",
-                "Vagrant",
-                "Scrum",
-                "Agile"
+                "ElasticSearch"
             ]
         },
         {
@@ -353,7 +305,6 @@
             "position": "Junior Software Developer",
             "startDate": "2015-06",
             "endDate": "2016-10",
-            "summary": "Started career in enterprise software development",
             "highlights": [
                 "Focused on maintenance and enhancement of key web applications and internal tools",
                 "Gained comprehensive insights into enterprise-scale application development"
@@ -372,8 +323,8 @@
             "name": "janigowski.dev",
             "position": "Freelance Developer",
             "startDate": "2009",
-            "summary": "My interest in computers made me experiment a lot. I like to explore and learn.",
             "highlights": [
+                "My interest in computers made me experiment a lot. I like to explore and learn.",
                 "Crafted CMS, Forums and Landing Pages",
                 "Designed graphics: websites, landing pages, posters, business cards (including DTP)"
             ],
@@ -384,16 +335,9 @@
                 "Linux",
                 "JavaScript",
                 "jQuery",
-                "XML",
-                "JSON",
-                "HTML4/5",
-                "CSS2/3",
                 "Wordpress",
                 "Bootstrap",
-                "Semantic UI",
-                "Photoshop",
-                "HTML5 Canvas",
-                "Google Maps API"
+                "Photoshop"
             ]
         }
     ],

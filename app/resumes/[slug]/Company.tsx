@@ -40,9 +40,8 @@ export default function Company({ name }: CompanyProps) {
     }
 
     return (
-        <div className="flex items-center  text-center w-36 px-2" style={{ color: company.textColor, backgroundColor: company.mainColor }}>
-
-            <div className="relative w-4 h-4">
+        <div className="flex items-center text-center" >
+            <div className="relative w-4 h-4 mr-2">
                 <Image
                     src={`/companies/${company.logo}`}
                     alt={`${name} logo`}
@@ -51,7 +50,7 @@ export default function Company({ name }: CompanyProps) {
                     className="object-contain"
                 />
             </div>
-            <span className='flex-1'>
+            <span className='flex-1 text-sm text-zinc-600'>
                 {name}
             </span>
         </div>
