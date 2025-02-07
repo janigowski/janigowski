@@ -77,7 +77,9 @@
                 "Implemented context-dependent shortcuts for MIDI and keyboard inputs"
             ],
             "projects": [
-                "EXØ_LAB: Desktop application for new media artists"
+                {
+                    "name": "EXØ_LAB: Desktop application for new media artists"
+                }
             ],
             "skills": [
                 "Electron",
