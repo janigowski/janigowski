@@ -168,34 +168,38 @@ export default function ResumePage({ params }: ResumePageProps) {
                             <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Mentoring
                             </h2>
-                            <div className="space-y-6">
-                                <div className="grid grid-cols-[1fr,120px] gap-6">
+                            <h3 className="font-bold text-zinc-950 text-sm uppercase py-1">
+                                {resolvedResume.mentoring.position}
+                            </h3>
+                            <div className='flex row justify-between mb-8'>
+                                <div className="grid grid-cols-[1fr,180px] gap-6 w-full">
                                     <div>
                                         <div className='flex row justify-between mb-2'>
-                                            <h3 className="font-normal text-zinc-800 text-sm uppercase">{resolvedResume.mentoring.position}</h3>
-                                            <div className='flex row text-sm'>
-                                                <Company name={resolvedResume.mentoring.name} />
+                                            <span className="text-zinc-500 text-xs">
+                                                {resolvedResume.mentoring.name}
+                                            </span>
+                                            <div className="text-zinc-500 text-xs">
+                                                {resolvedResume.mentoring.startDate} - Present
                                             </div>
                                         </div>
-                                        <div className="text-zinc-600 text-sm leading-relaxed">
-                                            <p>{resolvedResume.mentoring.summary}</p>
-                                            <ul className="mt-2 list-disc list-inside">
+                                        <div className="text-zinc-600 text-xs leading-relaxed">
+                                            <ul className="mt-2 ml-8 list-disc list-outside">
                                                 {resolvedResume.mentoring.highlights.map((highlight: string, i: number) => (
                                                     <li key={i}>{highlight}</li>
                                                 ))}
                                             </ul>
-                                            <h4 className="mt-4 font-medium">Skills:</h4>
-                                            <div className="mt-2 flex flex-wrap gap-2">
+                                        </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        {resolvedResume.mentoring.skills && (
+                                            <div className="flex flex-wrap gap-2">
                                                 {resolvedResume.mentoring.skills.map((skill: string, i: number) => (
-                                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-100 rounded">
+                                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-50 text-zinc-500 rounded">
                                                         {skill}
                                                     </span>
                                                 ))}
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="text-zinc-500 text-sm text-right">
-                                        {resolvedResume.mentoring.startDate} - Present
+                                        )}
                                     </div>
                                 </div>
                             </div>

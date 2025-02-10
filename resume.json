@@ -43,16 +43,14 @@
     "mentoring": {
         "name": "ADPList",
         "position": "Mentor",
-        "startDate": "2024-03",
-        "summary": "Mentored 36+ developers from 17 countries",
+        "startDate": "Mar 2024",
         "highlights": [
-            "TOP 1% MENTOR (4x Recognized)",
+            "Recognized 4 times as Top 1% Engineering Mentor",
             "Mentored 36+ developers from 17 countries",
-            "Provided 4500+ minutes of technical guidance",
-            "Conducted 1:1 mentorship sessions focusing on React, TypeScript, and architecture",
-            "Created structured interview preparation and career development plans",
-            "Facilitated hands-on technical sessions and live coding",
-            "Developed personalized growth strategies for mentees"
+            "During 107+ sessions, provided 4700+ minutes",
+            "Facilitated hands-on technical sessions",
+            "Created interview preparation and career development plans",
+            "Developed personalized growth strategies"
         ],
         "skills": [
             "React",
