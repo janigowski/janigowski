@@ -72,13 +72,13 @@ export default function Work({ job }: { job: Work }) {
                             </ul>
                             {job.projects && job.projects.length > 0 && (
                                 <div className="mt-4">
-                                    <h4 className="font-medium text-zinc-800">Projects</h4>
-                                    <div className="space-y-4">
+                                    <h4 className="font-medium text-zinc-600 mb-2">Projects</h4>
+                                    <div className='space-y-1'>
                                         {job.projects.map((project: Project, index: number) => (
                                             <div key={index}>
-                                                <h5 className="font-medium text-zinc-700 ml-4">{project.name}</h5>
+                                                <h5 className=" text-zinc-700 ml-4">{project.name}</h5>
                                                 {project.highlights && project.highlights.length > 0 && (
-                                                    <ul className="mt-2 ml-8 list-disc list-outside">
+                                                    <ul className="mt-1 mb-4 ml-8 list-disc list-outside text-zinc-600">
                                                         {project.highlights.map((highlight: string, i: number) => (
                                                             <li key={i} dangerouslySetInnerHTML={{
                                                                 __html: highlight
