@@ -67,7 +67,7 @@
         {
             "name": "janigowski.dev",
             "position": "Media Technology Explorer",
-            "startDate": "2022-08",
+            "startDate": "Aug 2022",
             "highlights": [
                 "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
                 "Conceptualized and developed an integrated environment for real-time audio-visual performance",
@@ -96,8 +96,8 @@
         {
             "name": "Netguru",
             "position": "Software Architect Frontend",
-            "startDate": "2021-08",
-            "endDate": "2022-08",
+            "startDate": "Aug 2021",
+            "endDate": "Aug 2022",
             "highlights": [
                 "Hosted 100+ Frontend Architecture Area weekly meetings for 5-10 developers",
                 "Conducted sessions on Clean Architecture, Domain Driven Design, and Team building",
@@ -116,6 +116,7 @@
                 {
                     "name": "Żappka Click&Collect",
                     "highlights": [
+                        "Real time stocks in 7500+ stores",
                         "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
                         "Reduced Map loading time by <strong>80%</strong> (10s ↘ 2s)",
                         "Optimized state management by removing over +1500 LOC",
@@ -157,8 +158,8 @@
         {
             "name": "Netguru",
             "position": "Team Leader",
-            "startDate": "2021-02",
-            "endDate": "2021-10",
+            "startDate": "Feb 2021",
+            "endDate": "Oct 2021",
             "highlights": [
                 "Led and supported a team of 6 developers",
                 "Provided emotional and technical support for 6 team members",
@@ -177,8 +178,8 @@
         {
             "name": "Netguru",
             "position": "Senior Frontend Developer",
-            "startDate": "2019-08",
-            "endDate": "2021-09",
+            "startDate": "Aug 2019",
+            "endDate": "Sep 2021",
             "highlights": [
                 "Delivered high-impact solutions across multiple domains",
                 "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
@@ -221,8 +222,8 @@
         {
             "name": "ThinkSmart",
             "position": "Full Stack JavaScript Developer",
-            "startDate": "2017-07",
-            "endDate": "2018-07",
+            "startDate": "Jul 2017",
+            "endDate": "Jul 2018",
             "highlights": [
                 "Transformed startup ideas into functional applications",
                 "Developed two mobile apps and refactored existing web app",
@@ -265,8 +266,8 @@
         {
             "name": "GetResponse",
             "position": "JavaScript Developer",
-            "startDate": "2016-10",
-            "endDate": "2017-06",
+            "startDate": "Oct 2016",
+            "endDate": "Jun 2017",
             "highlights": [
                 "Participated in React migration from PHP",
                 "Developed internal tools for frontend performance metrics",
@@ -305,8 +306,8 @@
         {
             "name": "GetResponse",
             "position": "Junior Software Developer",
-            "startDate": "2015-06",
-            "endDate": "2016-10",
+            "startDate": "Jun 2015",
+            "endDate": "Oct 2016",
             "highlights": [
                 "Focused on maintenance and enhancement of key web applications and internal tools",
                 "Gained comprehensive insights into enterprise-scale application development"
@@ -324,7 +325,7 @@
         {
             "name": "janigowski.dev",
             "position": "Freelance Developer",
-            "startDate": "2009",
+            "startDate": "Jan 2009",
             "highlights": [
                 "My interest in computers made me experiment a lot. I like to explore and learn.",
                 "Designed and developed: CMS, forums, booking systems and Landing Pages",
