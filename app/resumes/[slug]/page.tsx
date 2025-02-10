@@ -210,11 +210,11 @@ export default function ResumePage({ params }: ResumePageProps) {
                                 <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                     Education
                                 </h2>
-                                <div className="space-y-6">
+                                <div className="text-xs">
                                     {resolvedResume.education.map((item: Education, i: number) => (
                                         <div key={i}>
-                                            <h3 className="font-semibold text-zinc-800 text-sm">{item.area}</h3>
-                                            <p className="text-zinc-600 text-sm">{item.institution} - {item.location}</p>
+                                            <h3 className="font-semibold text-zinc-800 ">{item.area}</h3>
+                                            <p className="text-zinc-600 ">{item.institution} - {item.location}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -227,7 +227,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                                     Hackathons
                                 </h2>
                                 <div className="space-y-4">
-                                    <p className="text-zinc-600 text-sm">
+                                    <p className="text-zinc-600 text-xs">
                                         Spent <strong>152 hours</strong> across <strong>{resolvedResume.hackathons.length}</strong> hackathons, because nothing says "I love coding" like doing it non-stop for days.
                                     </p>
                                 </div>
