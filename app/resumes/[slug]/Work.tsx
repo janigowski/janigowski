@@ -54,7 +54,13 @@ export default function Work({ job }: { job: Work }) {
                 <div className="grid grid-cols-[1fr,180px] gap-6 w-full">
                     <div>
                         <div className='flex row justify-between mb-2'>
-                            <Company name={job.name} />
+                            {/* <Company name={job.name} /> */}
+                            <span className="text-zinc-500 text-xs ">
+                                {job.name}
+                            </span>
+                            <div className="text-zinc-500 text-xs ">
+                                {job.startDate} - {job.endDate || 'Present'}
+                            </div>
                         </div>
                         <div className="text-zinc-600 text-xs leading-relaxed">
                             <ul className="mt-2 ml-8 list-disc list-outside">
@@ -88,9 +94,7 @@ export default function Work({ job }: { job: Work }) {
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <div className="text-zinc-500 text-xs">
-                            {job.startDate} - {job.endDate || 'Present'}
-                        </div>
+
                         {job.skills && (
                             <div className="flex flex-wrap gap-2">
                                 {job.skills.map((skill: string, i: number) => (
@@ -102,11 +106,11 @@ export default function Work({ job }: { job: Work }) {
                         )}
                     </div>
                 </div>
-                <div
+                {/* <div
                     className="self-stretch w-px"
                     style={{ backgroundColor: companyToColor(job.name).mainColor }}
                 >
-                </div>
+                </div> */}
             </div>
         </>
     )
