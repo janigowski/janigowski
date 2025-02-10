@@ -243,14 +243,14 @@ export default function ResumePage({ params }: ResumePageProps) {
                         </h2>
                         <div className="space-y-4">
                             {resolvedResume.talks.map((talk: Talk, i: number) => (
-                                <div key={i} className="grid grid-cols-[1fr,120px] gap-6">
-                                    <div>
-                                        <h3 className="font-medium text-zinc-800 text-sm">{talk.title}</h3>
-                                        <p className="text-zinc-600 text-sm">
-                                            {talk.conference} @ {talk.place}
+                                <div key={i} className="flex justify-between">
+                                    <div className="flex-1">
+                                        <h3 className="font-medium text-zinc-800 text-xs">{talk.title}</h3>
+                                        <p className="text-zinc-400 text-xs">
+                                            {talk.conference} / {talk.place}
                                         </p>
                                     </div>
-                                    <div className="text-zinc-500 text-sm text-right">
+                                    <div className="text-zinc-500 text-xs text-left">
                                         {talk.date}
                                     </div>
                                 </div>

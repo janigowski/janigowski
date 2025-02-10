@@ -355,7 +355,7 @@
         {
             "date": "2022",
             "conference": "CodeEurope",
-            "place": "National Stadium / PL",
+            "place": "National Stadium, PL",
             "title": "What if _your_Frontend_framework_ will die?"
         },
         {
@@ -385,19 +385,19 @@
         {
             "date": "2019",
             "conference": "SparkCamp",
-            "place": "Koszalin / PL",
+            "place": "Koszalin, PL",
             "title": "WebXR - Journey through all realities"
         },
         {
             "date": "2019",
             "conference": "3cityVR",
-            "place": "Gdańsk / PL",
+            "place": "Gdańsk, PL",
             "title": "WebVR - Mixed Reality in web browsers without plugins?"
         },
         {
             "date": "2016",
             "conference": "GetResponse",
-            "place": "Gdańsk / PL",
+            "place": "Gdańsk, PL",
             "title": "WebGL - definition, status and examples"
         }
     ],
