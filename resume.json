@@ -167,11 +167,10 @@
             "startDate": "Feb 2021",
             "endDate": "Oct 2021",
             "highlights": [
-                "Provided emotional and technical support for 6 team members",
-                "Plan self-development roadmaps and perform quarterly evaluations",
+                "Provided technical & emotional support to <strong>6</strong> team members",
+                "Created self-development roadmaps & led quarterly evaluations",
                 "Conducting one-on-one and team meetings",
-                "Promoting a feedback culture among direct reports and their teammates",
-                "Keeping the team connected with the company's strategy, processes, and updates"
+                "Promoted a feedback culture and strong team cohesion"
             ],
             "skills": [
                 "Active listening",
@@ -186,6 +185,7 @@
             "startDate": "Aug 2019",
             "endDate": "Sep 2021",
             "highlights": [
+                "Technical Leader",
                 "Delivered high-impact solutions across multiple domains",
                 "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
                 "Enabled entire codebase updates by utilizing AST-to-AST refactoring",
