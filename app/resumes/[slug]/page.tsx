@@ -54,11 +54,10 @@ export default function ResumePage({ params }: ResumePageProps) {
     const [firstName, lastName] = resolvedResume.name.split(' ')
 
     return (
-        <div className="relative min-h-screen bg-zinc-100">
+        <div className="relative min-h-screen">
             <article className="mx-auto bg-white" style={{
                 width: '210mm',
                 minHeight: '297mm',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             }}>
                 {/* Header Section */}
                 <header className="relative mb-8">
@@ -218,7 +217,8 @@ export default function ResumePage({ params }: ResumePageProps) {
                                     {resolvedResume.education.map((item: Education, i: number) => (
                                         <div key={i}>
                                             <h3 className="font-semibold text-zinc-800 ">{item.area}</h3>
-                                            <p className="text-zinc-600 ">{item.institution} - {item.location}</p>
+                                            <p className="text-zinc-500 ">{item.institution} {item.location}</p>
+                                            <p className="text-zinc-400 ">{item.year}</p>
                                         </div>
                                     ))}
                                 </div>
