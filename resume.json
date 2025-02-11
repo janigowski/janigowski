@@ -46,8 +46,8 @@
         "startDate": "Mar 2024",
         "highlights": [
             "Recognized 4 times as Top 1% Engineering Mentor",
-            "Mentored 36+ developers from 17 countries",
-            "During 107+ sessions, provided 4700+ minutes",
+            "Mentored 36 developers from 17 countries",
+            "During 107 sessions, provided 4700+ minutes",
             "Facilitated hands-on technical sessions",
             "Created interview preparation and career development plans",
             "Developed personalized growth strategies"
@@ -120,7 +120,6 @@
                 {
                     "name": "Żappka Click&Collect",
                     "highlights": [
-                        "",
                         "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
                         "Real time stocks in 7500+ stores",
                         "Reduced Map loading time by <strong>80%</strong> (10s ↘ 2s)",
@@ -328,9 +327,10 @@
             "position": "Freelance Developer",
             "startDate": "Jan 2009",
             "highlights": [
-                "My interest in computers made me experiment a lot. I like to explore and learn.",
-                "Designed and developed: CMS, forums, booking systems and Landing Pages",
-                "Designed graphics: websites, landing pages, posters, business cards (including DTP)"
+                "Developed from scratch: CMS, forums, booking systems and landing pages",
+                "Designed: websites, posters, business cards",
+                "In total I've delivered <strong>15</strong> projects for <strong>8</strong> different clients",
+                "I was so fascinated by the technology that I've created bunch of projects just for sheer curiosity 🦾"
             ],
             "skills": [
                 "PHP",
