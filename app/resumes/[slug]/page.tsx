@@ -254,7 +254,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                                             {talk.conference} / {talk.place}
                                         </p>
                                     </div>
-                                    <div className="text-zinc-500 text-xs text-left">
+                                    <div className="text-zinc-500  text-xs text-left tabular-nums">
                                         {talk.date}
                                     </div>
                                 </div>
