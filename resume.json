@@ -123,12 +123,13 @@
             "projects": [
                 {
                     "name": "Żappka Click&Collect",
+                    "summary": "Mobile app for the biggest Polish grocery store chain",
                     "highlights": [
-                        "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
-                        "Real time stocks in 7500+ stores",
-                        "Reduced Map loading time by <strong>80%</strong> (10s ↘ 2s)",
-                        "Optimized state management by removing over +1500 LOC",
-                        "Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows"
+                        "Led <strong>Event storming</strong> sessions that revealed necessity for strategic refactor",
+                        "Unblocked refactor by implementing unit and integration tests, followed by moving state to URL to enable E2E testing",
+                        "With comprehensive test coverage in place, successfully executed refactor reducing <strong>1,500</strong> LOC",
+                        "Implemented <strong>daily deployment</strong> mechanism, accelerating team's ability to experiment and deliver features",
+                        "Achieved planned business goals in <strong>6 weeks</strong>, including <strong>80%</strong> map optimization (10s ↘ 2s) for <strong>7500+</strong> stores, unlocking strategic decisions"
                     ]
                 },
                 {

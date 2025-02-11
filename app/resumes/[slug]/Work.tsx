@@ -80,7 +80,10 @@ export default function Work({ job }: { job: Work }) {
                                         {job.projects.map((project: Project, index: number) => (
                                             <div key={index}>
                                                 <h5 className="text-zinc-700 ml-4">
-                                                    <span className="italic">{project.name}</span> {project.summary ? `: ${project.summary}` : ''}</h5>
+                                                    <span className="italic">{project.name}</span> {project.summary ?
+                                                        <span className="text-zinc-500 text-xs">: {project.summary}</span>
+                                                        : ''
+                                                    }</h5>
                                                 {project.highlights && project.highlights.length > 0 && (
                                                     <div className="print:break-inside-avoid">
                                                         <ul className="mt-1 mb-4 ml-8 list-disc list-outside">
