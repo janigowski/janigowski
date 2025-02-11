@@ -64,19 +64,30 @@
     "work": [
         {
             "name": "janigowski.dev",
-            "position": "Media Technology Explorer",
+            "position": "Founder",
             "startDate": "Aug 2022",
             "highlights": [
                 "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
                 "Conceptualized and developed an integrated environment for real-time audio-visual performance",
                 "Designed multi-channel timeline for audio, video, and visuals",
                 "Engineered real-time waveform visualization and multi-channel mixing with BPM sync",
-                "Integrated MIDI controls with hardware devices (mixers, controllers)",
-                "Implemented context-dependent shortcuts for MIDI and keyboard inputs"
+                "Integrated MIDI controls with hardware devices (mixer, controllers)"
             ],
             "projects": [
                 {
                     "name": "EXØ_LAB: Desktop application for new media artists"
+                },
+                {
+                    "name": "Mars Explorer: Discover the Red Planet with images from all of NASA's rovers"
+                },
+                {
+                    "name": "Wikipedia Map: Explore Wikipedia articles on map"
+                },
+                {
+                    "name": "Philips Hue Remote: Control Philips Hue lights from your browser"
+                },
+                {
+                    "name": "Wikipedia Streams: See how fast Wikipedia articles are updated"
                 }
             ],
             "skills": [
@@ -99,23 +110,19 @@
             "highlights": [
                 "Hosted 100+ Frontend Architecture Area weekly meetings for 5-10 developers",
                 "Conducted sessions on Clean Architecture, Domain Driven Design, and Team building",
-                "-----",
                 "Identified architectural drivers, technical risks and business needs to deliver new set of features in time and budget",
                 "Introduced Event Storming in a series of workshops for 20+ people",
-                "Organized #bookclub",
                 "Led knowledge sharing sessions on software architecture, soft skills, product engineering",
-                "Conducted technical interviews and screening"
-            ],
-            "__highlights-not-sure": [
-                "Worked closely with the Product Manager and Product Designer",
-                "Engaged in discussions, analyzed performance data, proposed process improvements"
+                "Conducted technical interviews and screening",
+                "Organized book club"
             ],
             "projects": [
                 {
                     "name": "Żappka Click&Collect",
                     "highlights": [
-                        "Real time stocks in 7500+ stores",
+                        "",
                         "Uncovered missing functionalities, potential risks and dependencies by hosting Event Storming workshops",
+                        "Real time stocks in 7500+ stores",
                         "Reduced Map loading time by <strong>80%</strong> (10s ↘ 2s)",
                         "Optimized state management by removing over +1500 LOC",
                         "Enabled multiple daily releases by implementing comprehensive end-to-end testing and establishing CI/CD workflows"
@@ -143,8 +150,6 @@
                 "Node",
                 "Next",
                 "Gatsby",
-                "react-query",
-                "react-sweet-state",
                 "GSAP",
                 "Three.js",
                 "TDD",
@@ -159,7 +164,6 @@
             "startDate": "Feb 2021",
             "endDate": "Oct 2021",
             "highlights": [
-                "Led and supported a team of 6 developers",
                 "Provided emotional and technical support for 6 team members",
                 "Plan self-development roadmaps and perform quarterly evaluations",
                 "Conducting one-on-one and team meetings",
@@ -203,8 +207,7 @@
                 {
                     "name": "Chatbot Engine",
                     "highlights": [
-                        "Designed and implemented visual language for chatbot flows",
-                        "Reduced Customer Support workload by 30%"
+                        "Designed and implemented visual language for chatbot flows"
                     ]
                 }
             ],
@@ -251,14 +254,14 @@
             ],
             "skills": [
                 "React",
-                "React Native",
                 "Node",
+                "AWS",
+                "React Native",
                 "Postgres",
                 "Express",
                 "WebSockets",
                 "Cypress",
-                "DevOps",
-                "AWS"
+                "DevOps"
             ]
         },
         {
