@@ -316,8 +316,10 @@
             "startDate": "Jun 2015",
             "endDate": "Oct 2016",
             "highlights": [
-                "Focused on maintenance and enhancement of key web applications and internal tools",
-                "Gained comprehensive insights into enterprise-scale application development"
+                "Started in <strong>enterprise-scale</strong> Email Marketing platform with thousands of users",
+                "Developed marketing features: landing pages, webforms, and email campaigns",
+                "Applied software practices in high-availability environment",
+                "Used <strong>PHP</strong>, <strong>MySQL</strong>, <strong>Redis</strong>, and containerization in production"
             ],
             "skills": [
                 "PHP",
