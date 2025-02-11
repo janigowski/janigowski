@@ -268,17 +268,10 @@ export default function ResumePage({ params }: ResumePageProps) {
                             <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Interests
                             </h2>
-                            <div className="space-y-4">
-                                {resolvedResume.interests.map((interestGroup: Interest, i: number) => (
-                                    <div key={i}>
-                                        <h3 className="text-sm font-medium text-zinc-700 mb-2">{interestGroup.name}</h3>
-                                        <div className="space-y-2">
-                                            {interestGroup.keywords.map((keyword: string, j: number) => (
-                                                <div key={j} className="text-zinc-600 text-sm">
-                                                    {keyword}
-                                                </div>
-                                            ))}
-                                        </div>
+                            <div className="grid grid-rows-3 grid-flow-col gap-4">
+                                {resolvedResume.interests.map((interest: string, i: number) => (
+                                    <div key={i} className="text-zinc-600 text-xs">
+                                        {interest}
                                     </div>
                                 ))}
                             </div>
