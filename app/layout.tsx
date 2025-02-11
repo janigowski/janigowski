@@ -67,9 +67,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <body
-        className="relative min-h-screen bg-black"
+        className="relative min-h-screen bg-black print:bg-white"
       >
-        <div className="fixed inset-0 w-full h-full -z-[2]">
+        <div className="fixed inset-0 w-full h-full -z-[2] print:hidden">
           <Image
             src="/janigowski-large-wallpaper.jpg"
             alt="Background"
@@ -77,7 +77,7 @@ export default function RootLayout({
             priority
             quality={100}
             sizes="100vw"
-            className="object-cover print:hidden"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
