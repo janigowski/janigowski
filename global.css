@@ -16,3 +16,14 @@
     @apply bg-brand-lime/100 text-zinc-800;
   }
 }
+
+
+@page {
+  size: a4 portrait;
+  margin: 10mm 0;
+}
+
+@page :first {
+  padding: 0;
+  margin: 0;
+}

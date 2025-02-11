@@ -55,12 +55,9 @@ export default function ResumePage({ params }: ResumePageProps) {
 
     return (
         <div className="relative min-h-screen">
-            <article className="mx-auto bg-white" style={{
-                width: '210mm',
-                minHeight: '297mm',
-            }}>
+            <article className="mx-auto bg-white">
                 {/* Header Section */}
-                <header className="relative mb-8">
+                <header className="relative mb-8 print:break-inside-avoid">
                     <div className="relative z-10 px-10 py-6 flex justify-between items-start">
                         <div className='flex flex-col justify-between'>
                             <h1 className="text-3xl px-2 leading-none mb-6 font-bold tracking-tight text-white font-display">
@@ -156,13 +153,15 @@ export default function ResumePage({ params }: ResumePageProps) {
                             </h2>
 
                             {resolvedResume.work.map((job: Resume['work'][number], index: number) => (
-                                <Work key={index} job={job} />
+                                <div key={index}>
+                                    <Work job={job} />
+                                </div>
                             ))}
                         </section>
                     )}
 
                     {resolvedResume.mentoring && (
-                        <section className="mb-8">
+                        <section className="mb-8 print:break-inside-avoid">
                             <Line />
                             <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                 Mentoring
