@@ -67,27 +67,31 @@
             "position": "Founder",
             "startDate": "Aug 2022",
             "highlights": [
-                "Leading the development of EXØ_LAB, an innovative desktop application unifying tools for new media artists",
-                "Conceptualized and developed an integrated environment for real-time audio-visual performance",
+                "Conceptualized and developed EXØ_LAB, an innovative desktop application unifying tools for new media artists",
                 "Designed multi-channel timeline for audio, video, and visuals",
-                "Engineered real-time waveform visualization and multi-channel mixing with BPM sync",
+                "Engineered waveform visualization and multi-channel mixing with BPM sync",
                 "Integrated MIDI controls with hardware devices (mixer, controllers)"
             ],
             "projects": [
                 {
-                    "name": "EXØ_LAB: Desktop application for new media artists"
+                    "name": "EXØ_LAB",
+                    "summary": "Design and perform audio-visual performances as a new media artist"
                 },
                 {
-                    "name": "Mars Explorer: Discover the Red Planet with images from all of NASA's rovers"
+                    "name": "Mars Explorer",
+                    "summary": "Discover the Red Planet with images from all of NASA's rovers"
                 },
                 {
-                    "name": "Wikipedia Map: Explore Wikipedia articles on map"
+                    "name": "Wikipedia Map",
+                    "summary": "Explore Wikipedia articles on map"
                 },
                 {
-                    "name": "Philips Hue Remote: Control Philips Hue lights from your browser"
+                    "name": "Philips Hue Remote",
+                    "summary": "Control Philips Hue lights from your browser"
                 },
                 {
-                    "name": "Wikipedia Streams: See how fast Wikipedia articles are updated"
+                    "name": "Wikipedia Streams",
+                    "summary": "See how fast Wikipedia articles are updated"
                 }
             ],
             "skills": [

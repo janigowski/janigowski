@@ -4,6 +4,7 @@ import Company from './Company'
 type Project = {
     name: string
     highlights: string[]
+    summary?: string
 }
 
 type Work = Resume['work'][number] & {
@@ -78,7 +79,8 @@ export default function Work({ job }: { job: Work }) {
                                     <div className='space-y-1'>
                                         {job.projects.map((project: Project, index: number) => (
                                             <div key={index}>
-                                                <h5 className="text-zinc-700 ml-4">{project.name}</h5>
+                                                <h5 className="text-zinc-700 ml-4">
+                                                    <span className="italic">{project.name}</span> {project.summary ? `: ${project.summary}` : ''}</h5>
                                                 {project.highlights && project.highlights.length > 0 && (
                                                     <div className="print:break-inside-avoid">
                                                         <ul className="mt-1 mb-4 ml-8 list-disc list-outside">
