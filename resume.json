@@ -143,10 +143,11 @@
                 },
                 {
                     "name": "NFT Knowledge Hub",
+                    "summary": "3D education platform for NFT platform",
                     "highlights": [
-                        "Built 3D visualization platform for NFT education",
-                        "Implemented interactive 3D learning experience",
-                        "Developed procedural environment generation with WebGL"
+                        "Consulted and designed educational platform using <strong>3D visualization</strong>",
+                        "Built procedural environment that adapts to articles structure in real-time",
+                        "Implemented interactive experience with <strong>WebGL</strong> and <strong>Three.js</strong>"
                     ]
                 }
             ],
