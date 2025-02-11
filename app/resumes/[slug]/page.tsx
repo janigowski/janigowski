@@ -62,7 +62,7 @@ export default function ResumePage({ params }: ResumePageProps) {
             }}>
                 {/* Header Section */}
                 <header className="relative mb-8">
-                    <div className="relative z-10 p-10 flex justify-between items-start">
+                    <div className="relative z-10 px-10 py-6 flex justify-between items-start">
                         <div className='flex flex-col justify-between'>
                             <h1 className="text-3xl px-2 leading-none mb-6 font-bold tracking-tight text-white font-display">
                                 {firstName} {lastName}
