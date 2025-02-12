@@ -188,32 +188,25 @@
             "startDate": "Aug 2019",
             "endDate": "Sep 2021",
             "highlights": [
-                "Technical Leader",
-                "Delivered high-impact solutions across multiple domains",
-                "Reduced CI/CD pipeline proccessing time by 52% (40m ↘ 19m)",
-                "Enabled entire codebase updates by utilizing AST-to-AST refactoring",
-                "Developed technical roadmaps, estimations and risk registries during week-long workshops on <strong>4</strong> products",
-                "Engaged in short-term projects across FinTech, Real Estate, and NGO sectors"
+                "Led technical direction for <strong>5</strong> products in FinTech and Real Estate domains",
+                "Optimized CI/CD pipeline reducing processing time by <strong>52%</strong> (40m ↘ 19m)",
+                "Automated refactoring of <strong>100+</strong> files using AST transformations",
+                "Led technical discovery workshops for <strong>4</strong> products, delivering roadmaps, estimations and risk analysis",
+                "Recognized as Frontend Hero for active knowledge sharing and community engagement"
             ],
             "projects": [
                 {
-                    "name": "Merk Eyrise",
-                    "highlights": [
-                        "Designed and implemented high-performant product showcase using transparent videos"
-                    ]
-                },
-                {
                     "name": "tr8fin",
                     "highlights": [
-                        "Created complex form with 120+ interdependent fields",
-                        "Implemented real-time validation and conditional logic",
-                        "Optimized performance for large data sets"
+                        "Built 5-step financial calculator and inquiry creator",
+                        "Implemented complex validation system with <strong>120+</strong> interdependent fields"
                     ]
                 },
                 {
                     "name": "Chatbot Engine",
                     "highlights": [
-                        "Designed and implemented visual language for chatbot flows"
+                        "Designed customer support system handling <strong>5000+</strong> messages in <strong>10</strong> languages",
+                        "Architected control commands system for automated actions (email, human handoff)"
                     ]
                 }
             ],
@@ -232,9 +225,9 @@
             "startDate": "Jul 2017",
             "endDate": "Jul 2018",
             "highlights": [
-                "Led end-to-end development of React Native messaging app, delivering MVP in 2 months",
+                "Led end-to-end development of React Native messaging app, delivering MVP in <strong>2</strong> months",
                 "Architected real-time communication system with WebSockets and Node.js",
-                "Established CI/CD workflows and testing practices for 2 greenfield projects",
+                "Established CI/CD workflows and testing practices for <strong>2</strong> greenfield projects",
                 "Designed RESTful APIs following JSON:API specification"
             ],
             "projects": [
@@ -243,7 +236,7 @@
                     "highlights": [
                         "Delivered full-stack React Native solution with real-time messaging",
                         "Implemented comprehensive testing strategy with E2E, integration and unit tests",
-                        "Enabled rapid business validation through 2-month delivery timeline"
+                        "Enabled rapid business validation through <strong>2</strong>-month delivery timeline"
                     ]
                 }
             ],
