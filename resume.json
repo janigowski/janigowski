@@ -232,29 +232,18 @@
             "startDate": "Jul 2017",
             "endDate": "Jul 2018",
             "highlights": [
-                "Transformed startup ideas into functional applications",
-                "Developed two mobile apps and refactored existing web app",
-                "Delivered GPS-based business cards MVP in 2 weeks",
-                "Set up CI/CD workflows",
-                "Designed and built APIs following JSON:API and REST principles",
-                "Wrote E2E, integration and unit tests",
-                "Maintained code quality using automatic tools"
+                "Led end-to-end development of React Native messaging app, delivering MVP in 2 months",
+                "Architected real-time communication system with WebSockets and Node.js",
+                "Established CI/CD workflows and testing practices for 2 greenfield projects",
+                "Designed RESTful APIs following JSON:API specification"
             ],
             "projects": [
                 {
-                    "name": "Business Cards App",
+                    "name": "Elderly Centered Message App",
                     "highlights": [
-                        "Delivered GPS-based business cards MVP in 2 weeks",
-                        "Implemented real-time location tracking",
-                        "Built React Native mobile app with offline support"
-                    ]
-                },
-                {
-                    "name": "Legacy Web App Refactor",
-                    "highlights": [
-                        "Refactored existing web application to modern stack",
-                        "Improved performance and user experience",
-                        "Added comprehensive test coverage"
+                        "Delivered full-stack React Native solution with real-time messaging",
+                        "Implemented comprehensive testing strategy with E2E, integration and unit tests",
+                        "Enabled rapid business validation through 2-month delivery timeline"
                     ]
                 }
             ],
