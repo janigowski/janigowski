@@ -188,11 +188,11 @@
             "startDate": "Aug 2019",
             "endDate": "Sep 2021",
             "highlights": [
-                "Led technical direction for <strong>5</strong> products in FinTech and Real Estate domains",
+                "Led technical direction for <strong>5</strong> products",
                 "Optimized CI/CD pipeline reducing processing time by <strong>52%</strong> (40m ↘ 19m)",
                 "Automated refactoring of <strong>100+</strong> files using AST transformations",
                 "Led technical discovery workshops for <strong>4</strong> products, delivering roadmaps, estimations and risk analysis",
-                "Recognized as Frontend Hero for active knowledge sharing and community engagement"
+                "Recognized as <strong>Frontend Hero</strong> for knowledge sharing and community engagement"
             ],
             "projects": [
                 {
@@ -298,7 +298,7 @@
             "startDate": "Jun 2015",
             "endDate": "Oct 2016",
             "highlights": [
-                "Started in <strong>enterprise-scale</strong> Email Marketing platform with thousands of users",
+                "Worked on <strong>enterprise-scale</strong> Email Marketing platform with thousands of users",
                 "Developed marketing features: landing pages, webforms, and email campaigns",
                 "Applied software practices in high-availability environment",
                 "Used <strong>PHP</strong>, <strong>MySQL</strong>, <strong>Redis</strong>, and containerization in production"
