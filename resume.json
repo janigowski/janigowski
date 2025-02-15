@@ -40,27 +40,6 @@
         "Activator",
         "Individualization"
     ],
-    "mentoring": {
-        "name": "ADPList",
-        "position": "Mentor",
-        "startDate": "Mar 2024",
-        "highlights": [
-            "Recognized 4 times as Top 1% Engineering Mentor",
-            "Mentored 36 developers from 17 countries",
-            "During 107 sessions, provided 4700+ minutes",
-            "Facilitated hands-on technical sessions",
-            "Created interview preparation and career development plans",
-            "Developed personalized growth strategies"
-        ],
-        "skills": [
-            "React",
-            "TypeScript",
-            "Software Architecture",
-            "Career Development",
-            "Technical Leadership",
-            "Mentoring"
-        ]
-    },
     "work": [
         {
             "name": "janigowski.dev",
@@ -80,6 +59,10 @@
                 {
                     "name": "Mars Explorer",
                     "summary": "Discover the Red Planet with images from all of NASA's rovers"
+                },
+                {
+                    "name": "Image to Figma",
+                    "summary": "AI-based plugin to convert images to Figma designs"
                 },
                 {
                     "name": "Wikipedia Map",
@@ -103,7 +86,12 @@
                 "SQLite",
                 "Tone.js",
                 "WebAudio",
-                "WebMIDI"
+                "WebMIDI",
+                "LLM",
+                "AI",
+                "bun",
+                "Vite",
+                "Vitest"
             ]
         },
         {
@@ -192,6 +180,7 @@
                 "Optimized CI/CD pipeline reducing processing time by <strong>52%</strong> (40m ↘ 19m)",
                 "Automated refactoring of <strong>100+</strong> files using AST transformations",
                 "Led technical discovery workshops for <strong>4</strong> products, delivering roadmaps, estimations and risk analysis",
+                "Led a <strong>5-day</strong> online React workshop for <strong>24</strong> developers",
                 "Recognized as <strong>Frontend Hero</strong> for knowledge sharing and community engagement"
             ],
             "projects": [
@@ -344,6 +333,27 @@
             "location": "Człuchów, Poland"
         }
     ],
+    "mentoring": {
+        "name": "ADPList",
+        "position": "Mentor",
+        "startDate": "Mar 2024",
+        "highlights": [
+            "Recognized 4 times as Top 1% Engineering Mentor",
+            "Mentored 36 developers from 17 countries",
+            "During 107 sessions, provided 4700+ minutes",
+            "Facilitated hands-on technical sessions",
+            "Created interview preparation and career development plans",
+            "Developed personalized growth strategies"
+        ],
+        "skills": [
+            "React",
+            "TypeScript",
+            "Software Architecture",
+            "Career Development",
+            "Technical Leadership",
+            "Mentoring"
+        ]
+    },
     "talks": [
         {
             "date": "2022",
