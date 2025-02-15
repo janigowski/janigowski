@@ -85,11 +85,11 @@
                 "tRPC",
                 "SQLite",
                 "Tone.js",
+                "bun",
                 "WebAudio",
                 "WebMIDI",
                 "LLM",
                 "AI",
-                "bun",
                 "Vite",
                 "Vitest"
             ]
