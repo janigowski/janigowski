@@ -214,18 +214,17 @@
             "startDate": "Jul 2017",
             "endDate": "Jul 2018",
             "highlights": [
-                "Led end-to-end development of React Native messaging app, delivering MVP in <strong>2</strong> months",
-                "Architected real-time communication system with WebSockets and Node.js",
-                "Established CI/CD workflows and testing practices for <strong>2</strong> greenfield projects",
-                "Designed RESTful APIs following JSON:API specification"
+                "Established CI/CD workflows and testing practices for greenfield projects",
+                "Designed and implemented scalable backend architecture following JSON:API specification",
+                "Introduced comprehensive testing strategy across multiple projects"
             ],
             "projects": [
                 {
                     "name": "Elderly Centered Message App",
                     "highlights": [
-                        "Delivered full-stack React Native solution with real-time messaging",
-                        "Implemented comprehensive testing strategy with E2E, integration and unit tests",
-                        "Enabled rapid business validation through <strong>2</strong>-month delivery timeline"
+                        "Led end-to-end development delivering MVP in <strong>2</strong> months",
+                        "Built real-time messaging system with WebSockets and Node.js",
+                        "Implemented E2E, integration and unit tests enabling rapid iterations"
                     ]
                 }
             ],
