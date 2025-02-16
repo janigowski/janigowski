@@ -161,14 +161,11 @@ export default function ResumePage({ params }: ResumePageProps) {
                     )}
 
                     {resolvedResume.mentoring && (
-                        <section className="mb-8 print:break-inside-avoid">
+                        <section className="mb-2 print:break-inside-avoid">
                             <Line />
-                            <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
+                            <h2 className="text-sm font-semibold text-zinc-800 mb-2 uppercase">
                                 Mentoring
                             </h2>
-                            <h3 className="font-bold text-zinc-950 text-sm uppercase py-1">
-                                {resolvedResume.mentoring.position}
-                            </h3>
                             <div className='flex row justify-between mb-8'>
                                 <div className="grid grid-cols-[1fr,180px] gap-6 w-full">
                                     <div>

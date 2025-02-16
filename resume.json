@@ -47,15 +47,10 @@
             "startDate": "Aug 2022",
             "highlights": [
                 "Conceptualized and developed EXØ_LAB, an innovative desktop application unifying tools for new media artists",
-                "Designed multi-channel timeline for audio, video, and visuals",
-                "Engineered waveform visualization and multi-channel mixing with BPM sync",
+                "Designed multi-channel mixing timeline for audio, video, and visuals",
                 "Integrated MIDI controls with hardware devices (mixer, controllers)"
             ],
             "projects": [
-                {
-                    "name": "EXØ_LAB",
-                    "summary": "Design and perform audio-visual performances as a new media artist"
-                },
                 {
                     "name": "Mars Explorer",
                     "summary": "Discover the Red Planet with images from all of NASA's rovers"
@@ -71,10 +66,6 @@
                 {
                     "name": "Philips Hue Remote",
                     "summary": "Control Philips Hue lights from your browser"
-                },
-                {
-                    "name": "Wikipedia Streams",
-                    "summary": "See how fast Wikipedia articles are updated"
                 }
             ],
             "skills": [
@@ -84,14 +75,9 @@
                 "Node",
                 "tRPC",
                 "SQLite",
-                "Tone.js",
-                "bun",
                 "WebAudio",
                 "WebMIDI",
-                "LLM",
-                "AI",
-                "Vite",
-                "Vitest"
+                "AI"
             ]
         },
         {
@@ -306,8 +292,7 @@
             "highlights": [
                 "Developed from scratch: CMS, forums, booking systems and landing pages",
                 "Designed: websites, posters, business cards",
-                "In total I've delivered <strong>15</strong> projects for <strong>8</strong> different clients",
-                "I was so fascinated by the technology that I've created bunch of projects just for sheer curiosity 🦾"
+                "In total I've delivered <strong>15</strong> projects for <strong>8</strong> different clients"
             ],
             "skills": [
                 "PHP",
@@ -332,7 +317,6 @@
     ],
     "mentoring": {
         "name": "ADPList",
-        "position": "Mentor",
         "startDate": "Mar 2024",
         "highlights": [
             "Recognized 4 times as Top 1% Engineering Mentor",
@@ -347,8 +331,7 @@
             "TypeScript",
             "Software Architecture",
             "Career Development",
-            "Technical Leadership",
-            "Mentoring"
+            "Technical Leadership"
         ]
     },
     "talks": [
@@ -393,12 +376,6 @@
             "conference": "3cityVR",
             "place": "Gdańsk, PL",
             "title": "WebVR - Mixed Reality in web browsers without plugins?"
-        },
-        {
-            "date": "2016",
-            "conference": "GetResponse",
-            "place": "Gdańsk, PL",
-            "title": "WebGL - definition, status and examples"
         }
     ],
     "hackathons": [
