@@ -8,6 +8,10 @@ type StoredTokens = {
     username?: string
 }
 
+const APP_NAME = process.env.NODE_ENV === 'production'
+    ? 'janigowski-portfolio'
+    : 'janigowski-portfolio-dev';
+
 export class RemoteHue {
     private static instance: RemoteHue
     private accessToken: string | null = null
@@ -92,7 +96,7 @@ export class RemoteHue {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                devicetype: 'janigowski#website'
+                devicetype: APP_NAME
             })
         })
 
