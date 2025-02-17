@@ -1,4 +1,5 @@
 import { RegularHeader } from "../components/regular-header";
+import Controls from "./controls";
 
 export default function Lamp() {
 	return (
@@ -8,8 +9,7 @@ export default function Lamp() {
 				description="You can control my background lamp here. If you want to see the effect just contact to have a video call."
 			/>
 			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-
-
+				<Controls />
 			</div>
 		</>
 	);
