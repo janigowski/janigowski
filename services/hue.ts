@@ -1,10 +1,11 @@
 "use server";
 
-import { ConsoleLamp } from "./ConsoleLamp";
+import { remoteHue } from "./remoteHue";
+import { RemoteHueLamp } from "./RemoteHueLamp";
 import { Lamp, TurnValue } from "./types";
 
 function createLamp(): Lamp {
-    return new ConsoleLamp();
+    return new RemoteHueLamp(remoteHue);
 }
 
 const lamp: Lamp = createLamp();

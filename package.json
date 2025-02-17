@@ -13,6 +13,7 @@
     "@emotion/is-prop-valid": "^1.2.2",
     "@next/mdx": "^14.2.4",
     "@upstash/redis": "^1.23.3",
+    "@vercel/kv": "^3.0.0",
     "clsx": "^2.1.1",
     "contentlayer": "^0.3.4",
     "framer-motion": "^11.17.0",
