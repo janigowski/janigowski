@@ -1,17 +1,6 @@
 import { NextResponse } from "next/server"
 import { remoteHue } from "@/services/remoteHue"
-
-function getRedirectUri() {
-    const host = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : process.env.HOST
-
-    if (!host) {
-        throw new Error('Missing HOST environment variable. Please add it to your .env file (e.g. HOST=http://localhost:3000)')
-    }
-
-    return host + '/api/hue-authorize'
-}
+import { getRedirectUri } from '@/services/hue/auth'
 
 export async function GET(request: Request) {
     try {
