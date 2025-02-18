@@ -1,15 +1,22 @@
 import { NextResponse } from 'next/server'
 
 function getRedirectUri() {
-    const host = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : process.env.HOST
-
-    if (!host) {
-        throw new Error('Missing HOST environment variable. Please add it to your .env file (e.g. HOST=http://localhost:3000)')
+    const hosts = {
+        production: 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL,
+        preview: 'https://' + process.env.VERCEL_BRANCH_URL,
+        development: process.env.HOST
     }
 
-    return `${host}/api/hue-authorize`
+    const url = hosts[process.env.VERCEL_ENV as keyof typeof hosts] || process.env.HOST
+
+    if (!url) {
+        throw new Error('Missing host configuration. Please check environment variables for your environment:\n' +
+            '- Production: VERCEL_PROJECT_PRODUCTION_URL\n' +
+            '- Preview: VERCEL_BRANCH_URL\n' +
+            '- Development: HOST (e.g. HOST=http://localhost:3000)')
+    }
+
+    return url + '/api/hue-authorize'
 }
 
 export async function GET() {
