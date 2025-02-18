@@ -6,7 +6,7 @@ export default function Lamp() {
 		<>
 			<RegularHeader
 				title="Background Lamp"
-				description="You can control my background lamp here. If you want to see the effect just contact to have a video call."
+				description="You can control my background lamp here. If you want to see the effect just contact me to have a video call and see the colors flowing."
 			/>
 			<div className="container mx-auto px-4">
 				<Controls />
