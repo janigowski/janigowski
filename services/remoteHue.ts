@@ -1,5 +1,5 @@
 import { Lamp } from './types'
-import { kv } from '@vercel/kv'
+import { Redis } from '@upstash/redis'
 
 type StoredTokens = {
     accessToken: string
@@ -20,9 +20,17 @@ export class RemoteHue {
     private username: string | null = null
     private readonly baseUrl = 'https://api.meethue.com/route/clip/v2'
     private lastRequestTime: { [key: string]: number } = {}
-    private readonly throttleInterval = 250 // milliseconds between requests
+    private readonly throttleInterval = 250
+    private redis: Redis | null = null
 
-    private constructor() { }
+    private constructor() {
+        if (process.env.NODE_ENV !== 'development') {
+            this.redis = new Redis({
+                url: process.env.KV_REST_API_URL!,
+                token: process.env.KV_REST_API_TOKEN!
+            })
+        }
+    }
 
     static getInstance(): RemoteHue {
         if (!RemoteHue.instance) {
@@ -32,8 +40,24 @@ export class RemoteHue {
     }
 
     private async loadTokens() {
+        if (process.env.NODE_ENV === 'development') {
+            const { HUE_ACCESS_TOKEN, HUE_REFRESH_TOKEN, HUE_TOKEN_EXPIRES_AT, HUE_USERNAME } = process.env
+            if (HUE_ACCESS_TOKEN && HUE_REFRESH_TOKEN && HUE_TOKEN_EXPIRES_AT) {
+                this.accessToken = HUE_ACCESS_TOKEN
+                this.refreshToken = HUE_REFRESH_TOKEN
+                this.tokenExpiresAt = parseInt(HUE_TOKEN_EXPIRES_AT)
+                this.username = HUE_USERNAME || null
+                return
+            }
+            throw new Error('Missing HUE tokens in .env.local')
+        }
+
+        if (!this.redis) {
+            throw new Error('Redis client not initialized')
+        }
+
         try {
-            const tokens = await kv.get<StoredTokens>('hue_tokens')
+            const tokens = await this.redis.get<StoredTokens>('hue_tokens')
             if (tokens && 'accessToken' in tokens) {
                 this.accessToken = tokens.accessToken
                 this.refreshToken = tokens.refreshToken
@@ -42,16 +66,10 @@ export class RemoteHue {
                 return
             }
         } catch (error) {
-            console.warn('Failed to load tokens from KV')
+            console.warn('Failed to load tokens from Redis')
         }
 
-        const { HUE_ACCESS_TOKEN, HUE_REFRESH_TOKEN, HUE_TOKEN_EXPIRES_AT, HUE_USERNAME } = process.env
-        if (HUE_ACCESS_TOKEN && HUE_REFRESH_TOKEN && HUE_TOKEN_EXPIRES_AT) {
-            this.accessToken = HUE_ACCESS_TOKEN
-            this.refreshToken = HUE_REFRESH_TOKEN
-            this.tokenExpiresAt = parseInt(HUE_TOKEN_EXPIRES_AT)
-            this.username = HUE_USERNAME || null
-        }
+        throw new Error('No tokens found')
     }
 
     async setTokens(accessToken: string, refreshToken: string, expiresIn: number) {
@@ -59,15 +77,28 @@ export class RemoteHue {
         this.refreshToken = refreshToken
         this.tokenExpiresAt = Date.now() + expiresIn * 1000
 
+        if (process.env.NODE_ENV === 'development') {
+            console.info('Development mode: Add these values to your .env.local file:\n', `
+HUE_ACCESS_TOKEN=${accessToken}
+HUE_REFRESH_TOKEN=${refreshToken}
+HUE_TOKEN_EXPIRES_AT=${this.tokenExpiresAt}
+            `)
+            return
+        }
+
+        if (!this.redis) {
+            throw new Error('Redis client not initialized')
+        }
+
         try {
-            await kv.set('hue_tokens', {
+            await this.redis.set('hue_tokens', {
                 accessToken,
                 refreshToken,
                 expiresAt: this.tokenExpiresAt,
                 username: this.username
             })
         } catch (error) {
-            console.warn('Failed to save tokens to KV')
+            console.warn('Failed to save tokens to Redis')
         }
     }
 
@@ -113,16 +144,24 @@ export class RemoteHue {
 
         this.username = username
 
-        try {
-            const tokens = await kv.get<StoredTokens>('hue_tokens')
-            if (tokens) {
-                await kv.set('hue_tokens', {
-                    ...tokens,
-                    username
-                })
+        if (process.env.NODE_ENV !== 'development') {
+            if (!this.redis) {
+                throw new Error('Redis client not initialized')
             }
-        } catch (error) {
-            console.warn('Failed to save username to KV')
+
+            try {
+                const tokens = await this.redis.get<StoredTokens>('hue_tokens')
+                if (tokens) {
+                    await this.redis.set('hue_tokens', {
+                        ...tokens,
+                        username
+                    })
+                }
+            } catch (error) {
+                console.warn('Failed to save username to Redis')
+            }
+        } else {
+            console.info('Development mode: Add this value to your .env.local file:\n', `HUE_USERNAME=${username}`)
         }
 
         return username
