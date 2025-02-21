@@ -160,48 +160,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                         </section>
                     )}
 
-                    {resolvedResume.mentoring && (
-                        <section className="mb-2 print:break-inside-avoid">
-                            <Line />
-                            <h2 className="text-sm font-semibold text-zinc-800 mb-2 uppercase">
-                                Mentoring
-                            </h2>
-                            <div className='flex row justify-between mb-8'>
-                                <div className="grid grid-cols-[1fr,180px] gap-6 w-full">
-                                    <div>
-                                        <div className='flex row justify-between mb-2'>
-                                            <span className="text-zinc-500 text-xs">
-                                                {resolvedResume.mentoring.name}
-                                            </span>
-                                            <div className="text-zinc-500 text-xs">
-                                                {resolvedResume.mentoring.startDate} - Present
-                                            </div>
-                                        </div>
-                                        <div className="text-zinc-600 text-xs leading-relaxed">
-                                            <ul className="mt-2 ml-8 list-disc list-outside">
-                                                {resolvedResume.mentoring.highlights.map((highlight: string, i: number) => (
-                                                    <li key={i}>{highlight}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div className="space-y-4">
-                                        {resolvedResume.mentoring.skills && (
-                                            <div className="flex flex-wrap gap-2">
-                                                {resolvedResume.mentoring.skills.map((skill: string, i: number) => (
-                                                    <span key={i} className="inline-block px-2 py-1 text-xs bg-zinc-50 text-zinc-500 rounded">
-                                                        {skill}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    )}
-
-                    {/* Hackathons Row */}
+                    {/* Education and Interests Row */}
                     <div className="grid grid-cols-3 gap-8 mb-8">
                         {resolvedResume.education && resolvedResume.education.length > 0 && (
                             <section className="col-span-1">
@@ -220,59 +179,22 @@ export default function ResumePage({ params }: ResumePageProps) {
                                 </div>
                             </section>
                         )}
-                        {resolvedResume.hackathons && resolvedResume.hackathons.length > 0 && (
+                        {resolvedResume.interests && resolvedResume.interests.length > 0 && (
                             <section className="col-span-2">
                                 <Line />
                                 <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
-                                    Hackathons
+                                    Interests
                                 </h2>
-                                <div className="space-y-4">
-                                    <p className="text-zinc-600 text-xs">
-                                        Spent <strong>152 hours</strong> across <strong>{resolvedResume.hackathons.length}</strong> hackathons, because nothing says "I love coding" like doing it non-stop for days.
-                                    </p>
+                                <div className="grid grid-rows-3 grid-flow-col gap-4">
+                                    {resolvedResume.interests.map((interest: string, i: number) => (
+                                        <div key={i} className="text-zinc-600 text-xs">
+                                            {interest}
+                                        </div>
+                                    ))}
                                 </div>
                             </section>
                         )}
                     </div>
-
-                    {/* Talks Section */}
-                    <section className="mb-8">
-                        <Line />
-                        <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
-                            Talks
-                        </h2>
-                        <div className="space-y-4">
-                            {resolvedResume.talks.map((talk: Talk, i: number) => (
-                                <div key={i} className="flex justify-between">
-                                    <div className="flex-1">
-                                        <h3 className="font-medium text-zinc-800 text-xs">{talk.title}</h3>
-                                        <p className="text-zinc-400 text-xs">
-                                            {talk.conference} / {talk.place}
-                                        </p>
-                                    </div>
-                                    <div className="text-zinc-500  text-xs text-left tabular-nums">
-                                        {talk.date}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {resolvedResume.interests && resolvedResume.interests.length > 0 && (
-                        <section className="mb-8">
-                            <Line />
-                            <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
-                                Interests
-                            </h2>
-                            <div className="grid grid-rows-3 grid-flow-col gap-4">
-                                {resolvedResume.interests.map((interest: string, i: number) => (
-                                    <div key={i} className="text-zinc-600 text-xs">
-                                        {interest}
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    )}
                 </div>
             </article>
         </div>
