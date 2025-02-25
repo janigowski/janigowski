@@ -2,7 +2,9 @@ import "../global.css";
 import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
-import { Analytics } from "./components/analytics";
+import { CloudFlareAnalytics } from "./components/CloudFlareAnalytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import ScrollToTop from "./components/scroll-to-top";
 import Image from "next/image";
 // import LavaBackground from "./components/LavaBackground";
@@ -87,7 +89,9 @@ export default function RootLayout({
             {children}
           </main>
           <ScrollToTop />
-          <Analytics />
+          <CloudFlareAnalytics />
+          <VercelAnalytics />
+          <SpeedInsights />
         </div>
       </body>
     </html>
