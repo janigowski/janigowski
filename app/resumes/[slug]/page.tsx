@@ -3,16 +3,8 @@ import { allResumes, Resume } from 'contentlayer/generated'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Line from './Line'
-import Company from './Company'
 import Contact from './Contact'
 import Work from './Work'
-
-interface Talk {
-    date: string
-    conference: string
-    place: string
-    title: string
-}
 
 type Profile = Resume['profiles'][number]
 type Education = Resume['education'][number]
@@ -22,6 +14,16 @@ interface ResumePageProps {
     params: {
         slug: string
     }
+}
+
+function sanitizeTitle(text: string): string {
+    // Remove HTML tags, normalize whitespace, and remove special characters
+    return text
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/&[^;]+;/g, '') // Remove HTML entities
+        .replace(/[\r\n\t]+/g, ' ') // Replace newlines and tabs with spaces
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
 }
 
 export async function generateStaticParams() {
@@ -35,8 +37,11 @@ export async function generateMetadata({ params }: ResumePageProps): Promise<Met
     if (!resume?.resolvedResume) return { title: 'Resume Not Found' }
 
     const resolvedResume = resume.resolvedResume
+    const sanitizedName = sanitizeTitle(resolvedResume.name)
+    const sanitizedRole = sanitizeTitle(resolvedResume.role)
+
     return {
-        title: `${resolvedResume.name} - ${resolvedResume.role}`,
+        title: `${sanitizedName} - ${sanitizedRole}`,
         description: resolvedResume.summary
     }
 }
@@ -50,7 +55,6 @@ export default function ResumePage({ params }: ResumePageProps) {
 
     const resolvedResume = resume.resolvedResume
 
-    // Split name into first and last name
     const [firstName, lastName] = resolvedResume.name.split(' ')
 
     return (
@@ -170,7 +174,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                                 </h2>
                                 <div className="text-xs">
                                     {resolvedResume.education.map((item: Education, i: number) => (
-                                        <div key={i}>
+                                        <div key={i} className='space-y-2'>
                                             <h3 className="font-semibold text-zinc-800 ">{item.area}</h3>
                                             <p className="text-zinc-500 ">{item.institution} {item.location}</p>
                                             <p className="text-zinc-400 ">{item.year}</p>
