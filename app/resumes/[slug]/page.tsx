@@ -157,7 +157,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                             </h2>
 
                             {resolvedResume.work.map((job: Resume['work'][number], index: number) => (
-                                <div key={index}>
+                                <div key={index} className='mb-8'>
                                     <Work job={job} />
                                 </div>
                             ))}

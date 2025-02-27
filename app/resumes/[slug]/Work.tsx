@@ -51,7 +51,7 @@ export default function Work({ job }: { job: Work }) {
             >
                 {job.position}
             </h3>
-            <div className='flex row justify-between mb-8'>
+            <div className='flex row justify-between'>
                 <div className="grid grid-cols-[1fr,180px] gap-6 w-full">
                     <div>
                         <div className='flex row justify-between mb-2'>
