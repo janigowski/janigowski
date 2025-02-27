@@ -46,9 +46,9 @@
             "position": "Founder",
             "startDate": "Aug 2022",
             "highlights": [
-                "Conceptualized and developed EXØ_LAB, an innovative desktop application unifying tools for new media artists",
-                "Designed multi-channel mixing timeline for audio, video, and visuals",
-                "Integrated MIDI controls with hardware devices (mixer, controllers)"
+                "Conceptualized and developed <strong>EXØ_LAB</strong>, an innovative desktop application unifying tools for <strong>new media artists</strong>",
+                "Designed multi-channel <strong>mixing timeline</strong> for audio, video, and visuals",
+                "Integrated MIDI controls with <strong>hardware</strong> devices (mixer, controllers)"
             ],
             "projects": [
                 {
@@ -65,7 +65,7 @@
                 },
                 {
                     "name": "Philips Hue Remote",
-                    "summary": "Control Philips Hue lights from your browser"
+                    "summary": "Control Philips Hue lights from browser's extension"
                 }
             ],
             "skills": [
@@ -87,8 +87,8 @@
             "endDate": "Aug 2022",
             "highlights": [
                 "Identified <strong>architectural drivers</strong>, technical risks and business needs to deliver new set of features in time and budget",
-                "Conducted sessions on <strong>Clean Architecture</strong>, <strong>Domain Driven Design</strong>, and Team building, <strong>software architecture</strong>, <strong>soft skills</strong>, <strong>product engineering</strong>",
-                "Hosted <strong>100+</strong> Frontend Architecture Area weekly meetings for 5-10 developers",
+                "Conducted sessions on <strong>Clean Architecture</strong>, <strong>Domain Driven Design</strong>, <strong>software architecture</strong>, <strong>soft skills</strong> and <strong>product engineering</strong>",
+                "Hosted <strong>100+</strong> Frontend Architecture Area weekly meetings for <strong>5-10</strong> developers",
                 "Introduced <strong>Event Storming</strong> in a series of workshops for <strong>20+</strong> people"
             ],
             "projects": [
@@ -96,20 +96,20 @@
                     "name": "Żappka Click&Collect",
                     "summary": "Mobile app for the biggest Polish grocery store chain",
                     "highlights": [
-                        "Hosted workshops that revealed necessity for <strong>strategic refactor</strong>",
-                        "Enabled refactor by implementing unit, integration and E2E tests",
-                        "With comprehensive test coverage in place, successfully executed refactor reducing <strong>1,500</strong> LOC",
-                        "Accelerated product feedback loop by implementing <strong>daily deployment</strong> mechanism",
-                        "Achieved planned business goals in <strong>6 weeks</strong>, including <strong>80%</strong> map optimization (10s ↘ 2s) for <strong>7500+</strong> stores, unlocking strategic decisions"
+                        "Identified business-technical misalignment and need for <strong>strategic refactor</strong>",
+                        "<strong>Enabled</strong> refactor by implementing unit, integration and E2E tests",
+                        "With <strong>comprehensive tests</strong>, refactored to cut <strong>1,500</strong> LOC",
+                        "Introduced <strong>daily deployments</strong> to accelerate the <strong>product feedback loop</strong>",
+                        "Achieved planned business goals in <strong>6 weeks</strong>, including <strong>80%</strong> map optimization (<strong>10s</strong> ↘ <strong>2s</strong>) for <strong>7500+</strong> stores, unlocking strategic decisions"
                     ]
                 },
                 {
                     "name": "Empowered Product Team",
                     "summary": "Forward-thinking initiative to evolve company's offering",
                     "highlights": [
-                        "Invited as <strong>Product Engineer</strong> to shape new business strategy and service offering",
-                        "Consulted <strong>10</strong> different products, delivering insights to introduce Product Engineering services",
-                        "Led <strong>Event Storming</strong> workshops for <strong>25</strong> developers, transforming technical mindset into product thinking"
+                        "Shaped new business strategy and service offering as a <strong>Product Engineer</strong>",
+                        "Consulted <strong>10</strong> products, delivering insights to launch Product Engineering services",
+                        "Trained <strong>25</strong> developers, fostering product thinking"
                     ]
                 },
                 {
@@ -117,7 +117,7 @@
                     "summary": "3D education platform for NFT platform",
                     "highlights": [
                         "Consulted and designed educational platform using <strong>3D visualization</strong>",
-                        "Built procedural environment that adapts to articles structure in real-time",
+                        "Built <strong>procedural environment</strong> that adapts to articles structure in real-time",
                         "Implemented interactive experience with <strong>WebGL</strong> and <strong>Three.js</strong>"
                     ]
                 }
@@ -128,11 +128,12 @@
                 "Next",
                 "Gatsby",
                 "GSAP",
+                "WebGL",
                 "Three.js",
                 "TDD",
-                "WebGL",
                 "Product Engineering",
-                "Clean Architecture"
+                "Clean Architecture",
+                "Growth Mindset"
             ]
         },
         {
@@ -142,9 +143,9 @@
             "endDate": "Oct 2021",
             "highlights": [
                 "Provided technical & emotional support to <strong>6</strong> team members",
-                "Created self-development roadmaps & led quarterly evaluations",
-                "Conducting one-on-one and team meetings",
-                "Promoted a feedback culture and strong team cohesion"
+                "Created <strong>self-development roadmaps</strong> & led quarterly evaluations",
+                "Conducted <strong>one-on-one</strong> and team meetings",
+                "Promoted a <strong>feedback culture</strong> and strong team cohesion"
             ],
             "skills": [
                 "Active listening",
@@ -171,7 +172,7 @@
                 {
                     "name": "tr8fin",
                     "highlights": [
-                        "Built 5-step financial calculator and inquiry creator",
+                        "Built <strong>5</strong>-step financial calculator and inquiry creator",
                         "Implemented complex validation system with <strong>120+</strong> interdependent fields"
                     ]
                 },
@@ -198,16 +199,16 @@
             "startDate": "Jul 2017",
             "endDate": "Jul 2018",
             "highlights": [
-                "Established CI/CD workflows and testing practices for greenfield projects",
-                "Designed and implemented scalable backend architecture following JSON:API specification",
-                "Introduced comprehensive testing strategy across multiple projects"
+                "Established <strong>CI/CD</strong> workflows and testing practices for greenfield projects",
+                "Designed and implemented scalable <strong>backend architecture</strong> following <strong>JSON:API</strong> specification",
+                "Introduced comprehensive <strong>testing strategy</strong> across multiple projects"
             ],
             "projects": [
                 {
                     "name": "Elderly Centered Message App",
                     "highlights": [
                         "Led end-to-end development delivering MVP in <strong>2</strong> months",
-                        "Built real-time messaging system with WebSockets and Node.js",
+                        "Built real-time messaging system with <strong>WebSockets</strong> and Node.js",
                         "Implemented E2E, integration and unit tests enabling rapid iterations"
                     ]
                 }
@@ -265,7 +266,7 @@
             "endDate": "Oct 2016",
             "highlights": [
                 "Worked on <strong>enterprise-scale</strong> Email Marketing platform with thousands of users",
-                "Developed features on landing pages, webforms, and email campaigns editors"
+                "Developed features on <strong>landing pages</strong>, <strong>webforms</strong>, and <strong>email campaigns</strong> editors"
             ],
             "skills": [
                 "PHP",
@@ -283,7 +284,7 @@
             "endDate": "Jun 2015",
             "highlights": [
                 "In total I've delivered <strong>15</strong> projects for <strong>8</strong> different clients",
-                "Developed from scratch: CMS, forums, booking systems and landing pages"
+                "Developed from scratch: <strong>CMS</strong>, <strong>forums</strong>, <strong>booking systems</strong> and landing pages"
             ],
             "skills": [
                 "PHP",
@@ -306,9 +307,9 @@
         "name": "ADPList",
         "startDate": "Mar 2024",
         "highlights": [
-            "Recognized 4 times as Top 1% Engineering Mentor and 'Top 10 Architectural Engineering Mentor'",
-            "Mentored 36 developers from 17 countries",
-            "During 107 sessions, provided 4700+ minutes",
+            "Recognized <strong>4</strong> times as Top <strong>1%</strong> Engineering Mentor and 'Top 10 Architectural Engineering Mentor'",
+            "Mentored <strong>36</strong> developers from <strong>17</strong> countries",
+            "During <strong>107</strong> sessions, provided <strong>4700+</strong> minutes",
             "Facilitated hands-on technical sessions",
             "Created interview preparation and career development plans",
             "Developed personalized growth strategies"
