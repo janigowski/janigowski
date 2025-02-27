@@ -64,15 +64,15 @@ export default function Work({ job }: { job: Work }) {
                             </div>
                         </div>
                         <div className="text-zinc-600 text-xs leading-relaxed">
-                            <div className="print:break-inside-avoid">
-                                <ul className="mt-2 ml-8 list-disc list-outside">
-                                    {job.highlights.map((highlight: string, i: number) => (
-                                        <li key={i} dangerouslySetInnerHTML={{
-                                            __html: highlight
-                                        }} />
-                                    ))}
-                                </ul>
-                            </div>
+
+                            <ul className="mt-2 ml-8 list-disc list-outside">
+                                {job.highlights.map((highlight: string, i: number) => (
+                                    <li key={i} dangerouslySetInnerHTML={{
+                                        __html: highlight
+                                    }} />
+                                ))}
+                            </ul>
+
                             {job.projects && job.projects.length > 0 && (
                                 <div className="mt-4">
                                     <h4 className="font-medium text-zinc-600 mb-2">Projects</h4>
@@ -85,15 +85,13 @@ export default function Work({ job }: { job: Work }) {
                                                         : ''
                                                     }</h5>
                                                 {project.highlights && project.highlights.length > 0 && (
-                                                    <div className="print:break-inside-avoid">
-                                                        <ul className="mt-1 mb-4 ml-8 list-disc list-outside">
-                                                            {project.highlights.map((highlight: string, i: number) => (
-                                                                <li key={i} dangerouslySetInnerHTML={{
-                                                                    __html: highlight
-                                                                }} />
-                                                            ))}
-                                                        </ul>
-                                                    </div>
+                                                    <ul className="mt-1 mb-4 ml-8 list-disc list-outside">
+                                                        {project.highlights.map((highlight: string, i: number) => (
+                                                            <li key={i} dangerouslySetInnerHTML={{
+                                                                __html: highlight
+                                                            }} />
+                                                        ))}
+                                                    </ul>
                                                 )}
                                             </div>
                                         ))}

@@ -87,21 +87,19 @@
             "endDate": "Aug 2022",
             "highlights": [
                 "Identified <strong>architectural drivers</strong>, technical risks and business needs to deliver new set of features in time and budget",
-                "Conducted sessions on <strong>Clean Architecture</strong>, <strong>Domain Driven Design</strong>, and Team building",
+                "Conducted sessions on <strong>Clean Architecture</strong>, <strong>Domain Driven Design</strong>, and Team building, <strong>software architecture</strong>, <strong>soft skills</strong>, <strong>product engineering</strong>",
                 "Hosted <strong>100+</strong> Frontend Architecture Area weekly meetings for 5-10 developers",
-                "Introduced <strong>Event Storming</strong> in a series of workshops for <strong>20+</strong> people",
-                "Led knowledge sharing sessions on <strong>software architecture</strong>, soft skills, <strong>product engineering</strong>",
-                "Conducted technical interviews and screening"
+                "Introduced <strong>Event Storming</strong> in a series of workshops for <strong>20+</strong> people"
             ],
             "projects": [
                 {
                     "name": "Żappka Click&Collect",
                     "summary": "Mobile app for the biggest Polish grocery store chain",
                     "highlights": [
-                        "Led Event storming sessions that revealed necessity for <strong>strategic refactor</strong>",
-                        "Unblocked refactor by implementing unit and integration tests, followed by moving state to URL to enable E2E testing",
+                        "Hosted workshops that revealed necessity for <strong>strategic refactor</strong>",
+                        "Enabled refactor by implementing unit, integration and E2E tests",
                         "With comprehensive test coverage in place, successfully executed refactor reducing <strong>1,500</strong> LOC",
-                        "Implemented <strong>daily deployment</strong> mechanism, accelerating team's ability to experiment and deliver features",
+                        "Accelerated product feedback loop by implementing <strong>daily deployment</strong> mechanism",
                         "Achieved planned business goals in <strong>6 weeks</strong>, including <strong>80%</strong> map optimization (10s ↘ 2s) for <strong>7500+</strong> stores, unlocking strategic decisions"
                     ]
                 },
@@ -166,7 +164,8 @@
                 "Automated refactoring of <strong>100+</strong> files using AST transformations",
                 "Led technical discovery workshops for <strong>4</strong> products, delivering roadmaps, estimations and risk analysis",
                 "Led a <strong>5-day</strong> online React workshop for <strong>24</strong> developers",
-                "Recognized as <strong>Frontend Hero</strong> for knowledge sharing and community engagement"
+                "Recognized as <strong>Frontend Hero</strong> for community engagement",
+                "Conducted <strong>technical interviews</strong> and screening"
             ],
             "projects": [
                 {

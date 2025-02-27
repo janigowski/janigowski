@@ -113,7 +113,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                 {/* Main Content */}
                 <div className="px-12">
                     {/* About Me and Clifton Strengths Row */}
-                    <div className="grid grid-cols-[1fr,180px] gap-8 mb-8">
+                    <div className="grid grid-cols-[1fr,180px] gap-8 mb-4">
                         {resolvedResume.summary && (
                             <section>
                                 <Line />
