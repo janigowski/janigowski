@@ -1,4 +1,5 @@
 import React from "react";
+import Balancer from "react-wrap-balancer";
 
 export const Header: React.FC = () => {
     return (
@@ -7,10 +8,10 @@ export const Header: React.FC = () => {
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
                     <div className="mx-auto max-w-2xl lg:mx-0">
                         <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl font-display">
-                            Mentoring
+                            <Balancer>Mentoring</Balancer>
                         </h1>
                         <p className="mt-6 text-lg leading-8 text-zinc-400">
-                            Elevate your craft through personalized guidance and collaborative problem-solving
+                            <Balancer>Elevate your craft through personalized guidance and collaborative problem-solving</Balancer>
                         </p>
                     </div>
                 </div>
