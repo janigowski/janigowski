@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import resumeData from "../../resume.json";
-import generalData from "../../content/resumes/general.json";
 import Balancer from "react-wrap-balancer";
 
 export const metadata: Metadata = {
@@ -58,7 +57,7 @@ export default function ProfilePage() {
                     <div className="mb-16 grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-12">
                         <div>
                             <h2 className="text-2xl font-bold text-zinc-100 mb-6">About Me</h2>
-                            <div className="text-lg text-zinc-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: generalData.summary }} />
+                            <div className="text-lg text-zinc-300 leading-relaxed" dangerouslySetInnerHTML={{ __html: resumeData.summary }} />
                         </div>
                         <StrengthsSection strengths={cliftonStrengths} />
                     </div>
