@@ -5,7 +5,7 @@ import Balancer from "react-wrap-balancer";
 interface Project {
     name: string;
     summary?: string;
-    highlights?: string[];
+    highlights?: Array<string>;
 }
 
 interface WorkExperience {
@@ -13,9 +13,9 @@ interface WorkExperience {
     position: string;
     startDate: string;
     endDate?: string;
-    highlights: string[];
-    projects?: Project[];
-    skills: string[];
+    highlights: Array<string>;
+    projects?: Array<Project>;
+    skills: Array<string>;
 }
 
 interface Education {
@@ -118,13 +118,13 @@ export default function ProfilePage() {
                                             <div className="mb-6">
                                                 <h4 className="text-xl font-semibold text-zinc-200 mb-4">Projects</h4>
                                                 <div className="space-y-6">
-                                                    {experience.projects.map((project, index) => (
+                                                    {experience.projects.map((project: Project, index: number) => (
                                                         <div key={index} className="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700/50">
                                                             <h5 className="text-lg font-medium text-zinc-100 mb-2">{project.name}</h5>
                                                             {project.summary && <p className="text-zinc-400 mb-6">{project.summary}</p>}
                                                             {project.highlights && (
                                                                 <ul className="space-y-2 list-disc pl-5">
-                                                                    {project.highlights.map((highlight, idx) => (
+                                                                    {project.highlights.map((highlight: string, idx: number) => (
                                                                         <li key={idx} className="text-zinc-300" dangerouslySetInnerHTML={{ __html: highlight }} />
                                                                     ))}
                                                                 </ul>
