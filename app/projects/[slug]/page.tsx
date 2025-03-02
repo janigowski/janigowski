@@ -47,7 +47,6 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
       <Header project={project} />
       <article className="px-4 pb-12 mx-auto prose prose-quoteless">
         <Mdx code={project.body.code} />
