@@ -52,7 +52,7 @@ export default function Article({ book }: { book: Book }) {
 					<span className="bg-brand-purple-darker/10 px-2 py-1 text-xs font-medium text-brand-olive rounded-md">
 						{book.bookType}
 					</span>
-					<Link href={`/library/mock/${book.slug}`}>_</Link>
+					<Link href={`/library/mock/${book.slug}`}> _ </Link>
 					{hasReview && (
 						<Link
 							href={`/library/${book.slug}`}
