@@ -24,7 +24,10 @@ function useMainColor(src: string) {
     useEffect(() => {
         async function assingColor() {
             const color = await getMainColor(src)
-            setColor(color)
+
+            if (color) {
+                setColor(color)
+            }
         }
 
         assingColor()
