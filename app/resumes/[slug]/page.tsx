@@ -165,7 +165,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                     )}
 
                     {/* Education, Interests and Certifications Row */}
-                    <div className="grid grid-cols-2 gap-8 mb-8">
+                    <div className="grid grid-cols-2 gap-8">
                         <div className="space-y-8">
                             {resolvedResume.education && resolvedResume.education.length > 0 && (
                                 <section>
@@ -206,13 +206,13 @@ export default function ResumePage({ params }: ResumePageProps) {
                                 <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
                                     Courses
                                 </h2>
-                                <div className="space-y-2">
+                                <ul className="list-disc list-outside ml-6 space-y-2">
                                     {resolvedResume.courses.map((course: string, i: number) => (
-                                        <div key={i} className="text-zinc-600 text-xs">
+                                        <li key={i} className="text-zinc-600 text-xs">
                                             {course}
-                                        </div>
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
                             </section>
                         )}
                     </div>
