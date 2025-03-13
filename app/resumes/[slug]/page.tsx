@@ -164,35 +164,52 @@ export default function ResumePage({ params }: ResumePageProps) {
                         </section>
                     )}
 
-                    {/* Education and Interests Row */}
-                    <div className="grid grid-cols-3 gap-8 mb-8">
-                        {resolvedResume.education && resolvedResume.education.length > 0 && (
-                            <section className="col-span-1">
+                    {/* Education, Interests and Certifications Row */}
+                    <div className="grid grid-cols-2 gap-8 mb-8">
+                        <div className="space-y-8">
+                            {resolvedResume.education && resolvedResume.education.length > 0 && (
+                                <section>
+                                    <Line />
+                                    <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
+                                        Education
+                                    </h2>
+                                    <div className="text-xs">
+                                        {resolvedResume.education.map((item: Education, i: number) => (
+                                            <div key={i} className='space-y-2'>
+                                                <h3 className="font-semibold text-zinc-800 ">{item.area}</h3>
+                                                <p className="text-zinc-500 ">{item.institution} {item.location}</p>
+                                                <p className="text-zinc-400 ">{item.year}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+                            {resolvedResume.interests && resolvedResume.interests.length > 0 && (
+                                <section>
+                                    <Line />
+                                    <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
+                                        Interests
+                                    </h2>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {resolvedResume.interests.map((interest: string, i: number) => (
+                                            <div key={i} className="text-zinc-600 text-xs">
+                                                {interest}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+                        </div>
+                        {resolvedResume.courses && resolvedResume.courses.length > 0 && (
+                            <section>
                                 <Line />
                                 <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
-                                    Education
+                                    Courses
                                 </h2>
-                                <div className="text-xs">
-                                    {resolvedResume.education.map((item: Education, i: number) => (
-                                        <div key={i} className='space-y-2'>
-                                            <h3 className="font-semibold text-zinc-800 ">{item.area}</h3>
-                                            <p className="text-zinc-500 ">{item.institution} {item.location}</p>
-                                            <p className="text-zinc-400 ">{item.year}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
-                        {resolvedResume.interests && resolvedResume.interests.length > 0 && (
-                            <section className="col-span-2">
-                                <Line />
-                                <h2 className="text-sm font-semibold text-zinc-800 mb-4 uppercase">
-                                    Interests
-                                </h2>
-                                <div className="grid grid-rows-3 grid-flow-col gap-4">
-                                    {resolvedResume.interests.map((interest: string, i: number) => (
+                                <div className="space-y-2">
+                                    {resolvedResume.courses.map((course: string, i: number) => (
                                         <div key={i} className="text-zinc-600 text-xs">
-                                            {interest}
+                                            {course}
                                         </div>
                                     ))}
                                 </div>

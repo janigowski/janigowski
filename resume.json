@@ -392,7 +392,16 @@
         "Bouldering",
         "Running",
         "Psychology",
-        "Neuroscience",
-        "Philosophy"
+        "Neuroscience"
+    ],
+    "courses": [
+        "AI Agent Development & Multimodal AI Systems",
+        "Modern Software Architecture and Domain-Driven Design",
+        "Event Storming: Preparing Modelers and Facilitators",
+        "Advanced Frontend Architecture with Type Safety, State Management and Testing",
+        "Three.js Journey: Comprehensive WebGL and Three.js Development",
+        "Advanced Creative Coding with Canvas, WebGL & Shaders",
+        "GraphQL in React and Node.js",
+        "Visual Facilitation & Storytelling  – Advanced Level"
     ]
 }
