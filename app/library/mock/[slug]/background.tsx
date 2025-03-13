@@ -66,7 +66,7 @@ export async function getMainColor(src: string) {
 
 }
 
-function loadImage(src: string): Awaited<HTMLImageElement> {
+function loadImage(src: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.addEventListener('load', () => resolve(img));
