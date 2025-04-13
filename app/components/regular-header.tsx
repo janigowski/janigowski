@@ -1,6 +1,6 @@
 interface RegularHeaderProps {
     title: string;
-    description: string;
+    description: React.ReactNode;
 }
 
 export function RegularHeader({ title, description }: RegularHeaderProps) {
@@ -10,7 +10,7 @@ export function RegularHeader({ title, description }: RegularHeaderProps) {
                 <h2 className="text-4xl font-bold tracking-tight text-white sm:text-7xl font-display">
                     {title}
                 </h2>
-                <p className="mt-10 text-zinc-400">{description}</p>
+                <div className="mt-10 text-zinc-400">{description}</div>
             </div>
             <div className="w-full h-px bg-zinc-700" />
         </>
