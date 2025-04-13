@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Keyword } from '../components/keyword'
 import { CallToAction } from '../components/call-to-action'
+import AnimatedTitle from '../components/AnimatedTitle'
 
 export const metadata: Metadata = {
     title: 'Speaking'
@@ -16,9 +17,7 @@ export default function Speaking() {
                 <div className="container mx-auto relative isolate overflow-hidden py-24 sm:py-32">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
                         <div className="mx-auto max-w-2xl lg:mx-0">
-                            <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl font-display">
-                                Speaking
-                            </h1>
+                            <AnimatedTitle text="Speaking" />
                             <p className="mt-6 text-lg leading-8 text-zinc-400">
                                 Passionate about sharing knowledge and empowering others through engaging talks and discussions. From international conferences to intimate meetups, I bring complex technical concepts to life with practical insights and real-world experiences.
                             </p>

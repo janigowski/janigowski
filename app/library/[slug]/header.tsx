@@ -1,4 +1,5 @@
 import React from "react";
+import AnimatedTitle from "../../components/AnimatedTitle";
 
 type Props = {
 	book: {
@@ -44,9 +45,7 @@ export const Header: React.FC<Props> = ({ book }) => {
 								</span>
 							)}
 						</div>
-						<h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-							{book.title}
-						</h1>
+						<AnimatedTitle text={book.title} />
 						<p className="mt-4 text-lg font-medium text-brand-olive">
 							{book.author}
 						</p>

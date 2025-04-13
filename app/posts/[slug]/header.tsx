@@ -1,12 +1,13 @@
 import React from "react";
+import AnimatedTitle from "../../components/AnimatedTitle";
 
-type Props = {
+interface Props {
 	post: {
 		title: string;
-		description: string;
 		date?: string;
+		description: string;
 	};
-};
+}
 
 export const Header: React.FC<Props> = ({ post }) => {
 	const formattedDate = post.date
@@ -22,9 +23,7 @@ export const Header: React.FC<Props> = ({ post }) => {
 			<div className="container mx-auto relative isolate overflow-hidden py-24 sm:py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
 					<div className="mx-auto max-w-2xl lg:mx-0">
-						<h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl font-display">
-							{post.title}
-						</h1>
+						<AnimatedTitle text={post.title} />
 						{formattedDate && (
 							<time className="mt-4 block text-sm text-zinc-400" dateTime={post.date}>
 								{formattedDate}

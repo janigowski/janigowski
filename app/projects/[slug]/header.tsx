@@ -1,14 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import AnimatedTitle from "../../components/AnimatedTitle";
 
-type Props = {
+interface Props {
 	project: {
-		url?: string;
 		title: string;
 		description: string;
 		repository?: string;
+		url?: string;
 	};
-};
+}
 
 export const Header: React.FC<Props> = ({ project }) => {
 	const links: { label: string; href: string }[] = [];
@@ -30,9 +31,7 @@ export const Header: React.FC<Props> = ({ project }) => {
 			<div className="container mx-auto relative isolate overflow-hidden py-32">
 				<div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
 					<div className="mx-auto max-w-2xl lg:mx-0">
-						<h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-6xl font-display">
-							{project.title}
-						</h1>
+						<AnimatedTitle text={project.title} />
 						<p className="mt-6 text-lg leading-8 text-zinc-400">
 							{project.description}
 						</p>
@@ -52,4 +51,4 @@ export const Header: React.FC<Props> = ({ project }) => {
 			</div>
 		</header>
 	);
-}
+};
