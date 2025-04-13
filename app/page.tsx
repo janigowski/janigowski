@@ -29,7 +29,7 @@ export default function Home() {
         title="janigowski"
         description={
           <>
-            <p className="mt-2 text-sm text-zinc-500">yah-nee-gov-ski</p>
+            <p className="mt-2 text-xl text-zinc-400 italic">yah-nee-gov-ski</p>
           </>
         }
       />
