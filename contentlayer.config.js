@@ -128,7 +128,8 @@ const Work = {
 	teaching: { type: "json" },
 	product_design: { type: "json" },
 	projects: { type: "json" },
-	other_achievements: { type: "json" }
+	other_achievements: { type: "json" },
+	projectsStyles: { type: "json" }
 };
 
 const Education = {

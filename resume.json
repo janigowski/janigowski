@@ -207,6 +207,9 @@
                 "Designed and implemented scalable <strong>backend architecture</strong> following <strong>JSON:API</strong> specification",
                 "Introduced comprehensive <strong>testing strategy</strong> across multiple projects"
             ],
+            "projectsStyles": {
+                "paddingTop": "50px"
+            },
             "projects": [
                 {
                     "name": "Elderly Centered Message App",

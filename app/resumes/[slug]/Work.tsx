@@ -9,7 +9,9 @@ type Project = {
     styles?: CSSProperties
 }
 
-type Work = Resume['work'][number]
+type Work = Resume['work'][number] & {
+    projectsStyles?: CSSProperties
+}
 
 type WorkProps = {
     job: Work
@@ -76,7 +78,7 @@ export default function Work({ job }: WorkProps) {
                             </ul>
 
                             {job.projects && job.projects.length > 0 && (
-                                <div className="mt-4">
+                                <div className="mt-4" style={job.projectsStyles}>
                                     <h4 className="font-medium text-zinc-600 mb-2">Projects</h4>
                                     <div className='space-y-1'>
                                         {job.projects.map((project: Project, index: number) => (
