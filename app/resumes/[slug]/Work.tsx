@@ -1,14 +1,18 @@
 import { Resume } from 'contentlayer/generated'
 import Company from './Company'
+import { CSSProperties } from 'react'
 
 type Project = {
     name: string
     highlights: string[]
     summary?: string
+    styles?: CSSProperties
 }
 
-type Work = Resume['work'][number] & {
-    projects?: Project[]
+type Work = Resume['work'][number]
+
+type WorkProps = {
+    job: Work
 }
 
 const companyToColor = (name: string): { mainColor: string, textColor: string, logo: string } => {
@@ -43,7 +47,7 @@ const companyToColor = (name: string): { mainColor: string, textColor: string, l
     return companies[name as keyof typeof companies] || '#4a4a4a'
 }
 
-export default function Work({ job }: { job: Work }) {
+export default function Work({ job }: WorkProps) {
     return (
         <>
             <h3
@@ -55,7 +59,6 @@ export default function Work({ job }: { job: Work }) {
                 <div className="grid grid-cols-[1fr,180px] gap-6 w-full">
                     <div>
                         <div className='flex row justify-between mb-2'>
-                            {/* <Company name={job.name} /> */}
                             <span className="text-zinc-500 text-xs ">
                                 {job.name}
                             </span>
@@ -64,7 +67,6 @@ export default function Work({ job }: { job: Work }) {
                             </div>
                         </div>
                         <div className="text-zinc-600 text-xs leading-relaxed">
-
                             <ul className="mt-2 ml-8 list-disc list-outside">
                                 {job.highlights.map((highlight: string, i: number) => (
                                     <li key={i} dangerouslySetInnerHTML={{
@@ -78,7 +80,7 @@ export default function Work({ job }: { job: Work }) {
                                     <h4 className="font-medium text-zinc-600 mb-2">Projects</h4>
                                     <div className='space-y-1'>
                                         {job.projects.map((project: Project, index: number) => (
-                                            <div key={index}>
+                                            <div key={index} style={project.styles}>
                                                 <h5 className="text-zinc-700 ml-4">
                                                     <span className="italic">{project.name}</span> {project.summary ?
                                                         <span className="text-zinc-500 text-xs">: {project.summary}</span>
@@ -101,7 +103,6 @@ export default function Work({ job }: { job: Work }) {
                         </div>
                     </div>
                     <div className="space-y-4">
-
                         {job.skills && (
                             <div className="flex flex-wrap gap-2">
                                 {job.skills.map((skill: string, i: number) => (

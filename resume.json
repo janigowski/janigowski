@@ -106,6 +106,9 @@
                 {
                     "name": "Empowered Product Team",
                     "summary": "Forward-thinking initiative to evolve company's offering",
+                    "styles": {
+                        "paddingTop": "40px"
+                    },
                     "highlights": [
                         "Shaped new business strategy and service offering as a <strong>Product Engineer</strong>",
                         "Consulted <strong>10</strong> products, delivering insights to launch Product Engineering services",
