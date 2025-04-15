@@ -7,6 +7,7 @@ import { BookFilters } from "./filters";
 import { Metadata } from "next";
 import { RegularHeader } from "../components/regular-header";
 import { LibraryStats } from "../components/library-stats";
+import StaggeredAnimation from "../components/StaggeredAnimation";
 
 export const metadata: Metadata = {
   title: "Library"
@@ -99,37 +100,39 @@ export default async function LibraryPage({
         description="A curated collection of books that have shaped my perspective"
       />
 
-      <LibraryStats stats={stats} />
+      <StaggeredAnimation staggerDelay={0.3} animationDuration={0.6}>
+        <LibraryStats stats={stats} />
 
-      {/* Filters */}
-      <div className="mb-24">
-        <BookFilters
-          types={types}
-          tags={tags}
-          selectedType={selectedType}
-          selectedTag={selectedTag}
-        />
-      </div>
+        {/* Filters */}
+        <div className="mb-24">
+          <BookFilters
+            types={types}
+            tags={tags}
+            selectedType={selectedType}
+            selectedTag={selectedTag}
+          />
+        </div>
 
-      {/* Books Grid */}
-      <div className="grid auto-rows-min	divide-y divide-brand-olive/10 min-h-[100vh]">
-        {filteredBooks.map((book) => (
-          <Article key={book.slug} book={book} />
-        ))}
+        {/* Books Grid */}
+        <div className="grid auto-rows-min divide-y divide-brand-olive/10 min-h-[100vh]">
+          {filteredBooks.map((book) => (
+            <Article key={book.slug} book={book} />
+          ))}
 
-        {filteredBooks.length === 0 && (
-          <div className="text-center py-32">
-            <p className="text-brand-olive text-lg">No books found matching your filters.</p>
-            <Link
-              href="/library"
-              scroll={false}
-              className="inline-block mt-4 text-sm text-brand-olive/80 hover:text-brand-lime transition-colors duration-200"
-            >
-              Clear filters
-            </Link>
-          </div>
-        )}
-      </div>
+          {filteredBooks.length === 0 && (
+            <div className="text-center py-32">
+              <p className="text-brand-olive text-lg">No books found matching your filters.</p>
+              <Link
+                href="/library"
+                scroll={false}
+                className="inline-block mt-4 text-sm text-brand-olive/80 hover:text-brand-lime transition-colors duration-200"
+              >
+                Clear filters
+              </Link>
+            </div>
+          )}
+        </div>
+      </StaggeredAnimation>
     </>
   );
 }
