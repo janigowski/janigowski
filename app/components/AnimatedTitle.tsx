@@ -8,30 +8,20 @@ export default function AnimatedTitle({ text }: { text: string }) {
     let index = 0;
 
     return (
-        <h1 className="text-4xl font-bold tracking-tight text-transparent sm:text-7xl font-display sm:leading-[1.5] bg-gradient-to-b from-white to-zinc-400 bg-clip-text">
+        <motion.h1 className="text-4xl font-bold tracking-tight text-transparent sm:text-7xl font-display sm:leading-[1.5] bg-gradient-to-b from-white to-zinc-400 bg-clip-text"
+            initial={{
+                y: 5,
+                opacity: 0
+            }}
+            animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                    ease: 'easeInOut',
+                    duration: 0.4
+                }
+            }}>
             {text}
-            {/* {words.map((word, i) => (
-                <motion.span key={i} className="inline-block mr-8 break-keep">
-                    {word.split("").map((c, j) => (
-                        <motion.span
-                            key={`${c}-${j}`}
-                            className="inline-block"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{
-                                y: 0,
-                                opacity: 1,
-                                transition: {
-                                    ease: "easeInOut",
-                                    delay: index++ * 0.04,
-                                    duration: 0.4,
-                                },
-                            }}
-                        >
-                            {c}
-                        </motion.span>
-                    ))}
-                </motion.span>
-            ))} */}
-        </h1>
+        </motion.h1>
     );
 }
