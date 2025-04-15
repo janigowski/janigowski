@@ -8,8 +8,9 @@ export default function AnimatedTitle({ text }: { text: string }) {
     let index = 0;
 
     return (
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-7xl font-display">
-            {words.map((word, i) => (
+        <h1 className="text-4xl font-bold tracking-tight text-transparent sm:text-7xl font-display sm:leading-[1.5] bg-gradient-to-b from-white to-zinc-400 bg-clip-text">
+            {text}
+            {/* {words.map((word, i) => (
                 <motion.span key={i} className="inline-block mr-8 break-keep">
                     {word.split("").map((c, j) => (
                         <motion.span
@@ -30,7 +31,7 @@ export default function AnimatedTitle({ text }: { text: string }) {
                         </motion.span>
                     ))}
                 </motion.span>
-            ))}
+            ))} */}
         </h1>
     );
 }
