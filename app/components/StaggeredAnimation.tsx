@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 interface StaggeredAnimationProps {
     children: ReactNode;
     className?: string;
+    delay?: number;
     staggerDelay?: number;
     animationDuration?: number;
 }
@@ -13,6 +14,7 @@ interface StaggeredAnimationProps {
 export default function StaggeredAnimation({
     children,
     className = "",
+    delay = 0,
     staggerDelay = 0.15,
     animationDuration = 0.4
 }: StaggeredAnimationProps) {
@@ -41,7 +43,9 @@ export default function StaggeredAnimation({
                             visible: {
                                 y: 0,
                                 opacity: 1,
+
                                 transition: {
+                                    delay,
                                     ease: 'easeInOut',
                                     duration: animationDuration
                                 }
