@@ -4,6 +4,7 @@ import { turn, setColor } from "@/services/hue";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
 import { useRouter } from "next/navigation";
+import StaggeredAnimation from "../components/StaggeredAnimation";
 
 const PRESETS = [
     // Warm colors
@@ -161,7 +162,8 @@ export default function Controls() {
                     </button>
                 </div>
             )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <StaggeredAnimation className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" delay={0.3} staggerDelay={0.3} animationDuration={0.6}>
                 <div className="bg-brand-purple-dark/5 p-6 rounded-lg">
                     <h3 className="text-lg font-medium text-white mb-4">Power</h3>
                     <div className="grid grid-cols-2 gap-4">
@@ -216,7 +218,7 @@ export default function Controls() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </StaggeredAnimation>
         </div>
     );
 }
