@@ -5,6 +5,7 @@ import { Card } from "../components/card";
 import { Article } from "./article";
 import { Metadata } from "next";
 import { RegularHeader } from "../components/regular-header";
+import StaggeredAnimation from "../components/StaggeredAnimation";
 
 export const revalidate = 60;
 
@@ -37,7 +38,8 @@ export default async function ProjectsPage() {
         description="Things I've built"
       />
 
-      <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
+
+      <StaggeredAnimation delay={0.6} staggerDelay={0.3} animationDuration={0.6} className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
         <Card>
           <Link href={`/projects/${featured.slug}`}>
             <article className="relative w-full h-full p-4 md:p-8">
@@ -77,38 +79,41 @@ export default async function ProjectsPage() {
             </Card>
           ))}
         </div>
-      </div>
-      <div className="hidden w-full h-px md:block bg-zinc-800" />
+      </StaggeredAnimation>
 
-      <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-        <div className="grid grid-cols-1 gap-4">
-          {sorted
-            .filter((_, i) => i % 3 === 0)
-            .map((project) => (
-              <Card key={project.slug}>
-                <Article project={project} />
-              </Card>
-            ))}
+      <StaggeredAnimation delay={0.9} animationDuration={0.6}>
+        <div className="hidden w-full h-px md:block bg-zinc-800" />
+
+        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4">
+            {sorted
+              .filter((_, i) => i % 3 === 0)
+              .map((project) => (
+                <Card key={project.slug}>
+                  <Article project={project} />
+                </Card>
+              ))}
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {sorted
+              .filter((_, i) => i % 3 === 1)
+              .map((project) => (
+                <Card key={project.slug}>
+                  <Article project={project} />
+                </Card>
+              ))}
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {sorted
+              .filter((_, i) => i % 3 === 2)
+              .map((project) => (
+                <Card key={project.slug}>
+                  <Article project={project} />
+                </Card>
+              ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 gap-4">
-          {sorted
-            .filter((_, i) => i % 3 === 1)
-            .map((project) => (
-              <Card key={project.slug}>
-                <Article project={project} />
-              </Card>
-            ))}
-        </div>
-        <div className="grid grid-cols-1 gap-4">
-          {sorted
-            .filter((_, i) => i % 3 === 2)
-            .map((project) => (
-              <Card key={project.slug}>
-                <Article project={project} />
-              </Card>
-            ))}
-        </div>
-      </div>
+      </StaggeredAnimation>
     </>
   );
 }
