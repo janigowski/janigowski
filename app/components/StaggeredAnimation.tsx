@@ -14,7 +14,7 @@ interface StaggeredAnimationProps {
 export default function StaggeredAnimation({
     children,
     className = "",
-    delay = 0,
+    delay = 0.3,
     staggerDelay = 0.15,
     animationDuration = 0.4
 }: StaggeredAnimationProps) {
