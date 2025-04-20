@@ -8,28 +8,13 @@ import { Metadata } from "next";
 import { RegularHeader } from "../components/regular-header";
 import { LibraryStats } from "../components/library-stats";
 import StaggeredAnimation from "../components/StaggeredAnimation";
+import { sortBooks } from "../utils/books";
 
 export const metadata: Metadata = {
   title: "Library"
 };
 
 export const revalidate = 60;
-
-function sortBooks(books: typeof allBooks) {
-  return books
-    .filter((b) => b.published)
-    .sort((a, b) => {
-      // If both books have dates, sort by date (newest first)
-      if (a.date && b.date) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      }
-      // If only one book has a date, the one with date comes first
-      if (a.date) return -1;
-      if (b.date) return 1;
-      // If neither has a date (waiting status), sort by title
-      return a.title.localeCompare(b.title);
-    });
-}
 
 function getStatistics(books: typeof allBooks) {
   const publishedBooks = books.filter(b => b.published);
