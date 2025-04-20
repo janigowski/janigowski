@@ -7,22 +7,18 @@ import { RegularHeader } from "./components/regular-header";
 import ContentLayout from "./components/content-layout";
 import Link from "next/link";
 import StaggeredAnimation from "./components/StaggeredAnimation";
+import { getLatestBooks } from "./utils/books";
+import { getLatestPosts } from "./utils/posts";
+import { getRandomProjects } from "./utils/projects";
 
 export default function Home() {
-  const latestBooks = allBooks
-    .filter((b) => b.published)
-    .sort((a, b) => new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() - new Date(a.date ?? Number.POSITIVE_INFINITY).getTime())
-    .slice(0, 3);
+  const latestBooks = getLatestBooks(allBooks, 3);
 
-  const randomProjects = allProjects
-    .filter((p) => p.published)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+  console.log({ latestBooks })
 
-  const latestPosts = allPosts
-    .filter((p) => p.published)
-    .sort((a, b) => new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() - new Date(a.date ?? Number.POSITIVE_INFINITY).getTime())
-    .slice(0, 3);
+  const randomProjects = getRandomProjects(allProjects, 3);
+
+  const latestPosts = getLatestPosts(allPosts, 3);
 
   return (
     <ContentLayout>
