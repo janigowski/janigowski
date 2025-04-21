@@ -83,6 +83,15 @@ export default function RootLayout({
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
+
+        <div
+          className="fixed inset-0 w-full h-full pointer-events-none z-[100] print:hidden"
+          style={{
+            backgroundImage: "url('/film-grain.svg')",
+            backgroundRepeat: "repeat",
+            opacity: 0.18
+          }}
+        />
         {/* <LavaBackground /> */}
         <div className="relative min-h-screen flex flex-col">
           <main className="flex-1">
