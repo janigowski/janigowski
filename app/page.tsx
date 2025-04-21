@@ -13,11 +13,7 @@ import { getRandomProjects } from "./utils/projects";
 
 export default function Home() {
   const latestBooks = getLatestBooks(allBooks, 3);
-
-  console.log({ latestBooks })
-
   const randomProjects = getRandomProjects(allProjects, 3);
-
   const latestPosts = getLatestPosts(allPosts, 3);
 
   return (
