@@ -15,6 +15,7 @@ export default function Home() {
   const latestBooks = getLatestBooks(allBooks, 3);
   const randomProjects = getRandomProjects(allProjects, 3);
   const latestPosts = getLatestPosts(allPosts, 3);
+  const bookReviews = allBooks.filter(book => book.body.raw.trim().length > 0).slice(0, 3);
 
   return (
     <ContentLayout>
@@ -43,7 +44,38 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-zinc-100">Latest Reads</h2>
+                  <h2 className="text-2xl font-bold text-zinc-100">Projects</h2>
+                  <Link href="/projects" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
+                    All projects →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  {randomProjects.map((project) => (
+                    <ProjectArticle key={project.slug} project={project} />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold text-zinc-100">Posts</h2>
+                  <Link href="/posts" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
+                    All posts →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  {latestPosts.map((post) => (
+                    <PostArticle key={post.slug} post={post} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Books Grid */}
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold text-zinc-100">Reads</h2>
                   <Link href="/library" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
                     All reads →
                   </Link>
@@ -57,46 +89,16 @@ export default function Home() {
 
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-zinc-100">Featured Projects</h2>
-                  <Link href="/projects" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
-                    All projects →
+                  <h2 className="text-2xl font-bold text-zinc-100">Reviews</h2>
+                  <Link href="/library" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
+                    All reviews →
                   </Link>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
-                  {randomProjects.map((project) => (
-                    <ProjectArticle key={project.slug} project={project} />
+                  {bookReviews.map((book) => (
+                    <Article key={book.slug} book={book} />
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Latest Posts */}
-            <div className="mt-16">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-zinc-100">Latest Posts</h2>
-                <Link href="/posts" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
-                  All posts →
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 gap-4">
-                {latestPosts.map((post) => (
-                  <PostArticle key={post.slug} post={post} />
-                ))}
-              </div>
-            </div>
-
-            {/* Book Reviews */}
-            <div className="mt-16">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-zinc-100">Book Reviews</h2>
-                <Link href="/library" className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors">
-                  All reviews →
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 gap-4">
-                {allBooks.filter(book => book.body.raw.trim().length > 0).slice(0, 3).map((book) => (
-                  <Article key={book.slug} book={book} />
-                ))}
               </div>
             </div>
           </StaggeredAnimation>
