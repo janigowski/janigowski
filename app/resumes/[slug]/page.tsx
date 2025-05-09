@@ -165,7 +165,7 @@ export default function ResumePage({ params }: ResumePageProps) {
                     )}
 
                     {/* Education, Interests and Certifications Row */}
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid grid-cols-[47%_53%] gap-8">
                         <div className="space-y-8">
                             {resolvedResume.education && resolvedResume.education.length > 0 && (
                                 <section>
