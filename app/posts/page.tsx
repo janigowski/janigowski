@@ -1,8 +1,6 @@
 import React from "react";
 import { allPosts, allBooks } from "contentlayer/generated";
 import { Item } from "./item";
-import { Post } from "./post";
-import BookArticle from "../library/article";
 import { Metadata } from "next";
 import { RegularHeader } from "../components/regular-header";
 import StaggeredAnimation from "../components/StaggeredAnimation";
@@ -46,13 +44,7 @@ export default async function postsPage() {
         <div className="flex flex-col space-y-4 mx-auto lg:mx-0 md:grid-cols-3">
           <div className="grid grid-cols-1 gap-4">
             {allContent.map((item) => (
-              <Item key={item.slug} slug={item.slug}>
-                {item.type === "Post" ? (
-                  <Post post={item} />
-                ) : (
-                  <BookArticle book={item} />
-                )}
-              </Item>
+              <Item key={item.slug} item={item} />
             ))}
           </div>
         </div>
