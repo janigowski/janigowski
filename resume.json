@@ -46,22 +46,24 @@
             "position": "Founder",
             "startDate": "Aug 2022",
             "highlights": [
-                "Conceptualized and developed <strong>EXØ_LAB</strong>, an innovative desktop application unifying tools for <strong>new media artists</strong>",
+                "Conceptualized and developed <strong><a href=\"https://janigowski.dev/projects/exo-lab\" class=\"text-zinc-500 hover:text-zinc-400 underline underline-offset-4\">EXØ_LAB</a></strong>, an innovative desktop application unifying tools for <strong>new media artists</strong>",
                 "Designed multi-channel <strong>mixing timeline</strong> for audio, video, and visuals",
                 "Integrated MIDI controls with <strong>hardware</strong> devices (mixer, controllers)"
             ],
             "projects": [
                 {
                     "name": "Allen&Heath K2 MIDI Client",
-                    "summary": "Web & Node.js to control <strong>Allen&Heath K2</strong> MIDI Controller"
+                    "summary": "Web & Node.js to control Allen&Heath K2 MIDI Controller",
+                    "anchor": "https://www.npmjs.com/package/k2"
                 },
                 {
-                    "name": "Philips Hue Remote",
+                    "name": "Philips Hue Remote (prototype)",
                     "summary": "Control Philips Hue lights from Chrome Browser's extension"
                 },
                 {
                     "name": "Mars Explorer",
-                    "summary": "Discover the Red Planet with images from all of NASA's rovers"
+                    "summary": "Discover the Red Planet with images from all of NASA's rovers",
+                    "anchor": "https://mars-explorer.netlify.app"
                 },
                 {
                     "name": "Image to Figma",
