@@ -52,20 +52,20 @@
             ],
             "projects": [
                 {
+                    "name": "Allen&Heath K2 MIDI Client",
+                    "summary": "Web & Node.js to control <strong>Allen&Heath K2</strong> MIDI Controller"
+                },
+                {
+                    "name": "Philips Hue Remote",
+                    "summary": "Control Philips Hue lights from Chrome Browser's extension"
+                },
+                {
                     "name": "Mars Explorer",
                     "summary": "Discover the Red Planet with images from all of NASA's rovers"
                 },
                 {
                     "name": "Image to Figma",
                     "summary": "AI-based plugin to convert images to Figma designs"
-                },
-                {
-                    "name": "Wikipedia Map",
-                    "summary": "Explore Wikipedia articles on map"
-                },
-                {
-                    "name": "Philips Hue Remote",
-                    "summary": "Control Philips Hue lights from browser's extension"
                 }
             ],
             "skills": [
@@ -77,7 +77,9 @@
                 "SQLite",
                 "WebAudio",
                 "WebMIDI",
-                "AI"
+                "AI",
+                "LLM",
+                "Chrome Extension"
             ]
         },
         {
