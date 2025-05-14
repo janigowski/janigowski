@@ -7,6 +7,7 @@ interface Project {
     name: string;
     summary?: string;
     highlights?: Array<string>;
+    anchor?: string;
 }
 
 interface WorkExperience {
@@ -119,7 +120,13 @@ export default function ProfilePage() {
                                                 <div className="space-y-6">
                                                     {experience.projects.map((project: Project, index: number) => (
                                                         <div key={index} className="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700/50">
-                                                            <h5 className="text-lg font-medium text-zinc-100 mb-2">{project.name}</h5>
+                                                            <h5 className="text-lg font-medium text-zinc-100 mb-2">
+                                                                {project.anchor ? (
+                                                                    <a href={project.anchor} className="hover:text-zinc-300 transition-colors duration-200">{project.name}</a>
+                                                                ) : (
+                                                                    project.name
+                                                                )}
+                                                            </h5>
                                                             {project.summary && <p className="text-zinc-400 mb-6">{project.summary}</p>}
                                                             {project.highlights && (
                                                                 <ul className="space-y-2 list-disc pl-5">

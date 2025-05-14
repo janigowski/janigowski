@@ -7,6 +7,7 @@ type Project = {
     highlights: string[]
     summary?: string
     styles?: CSSProperties
+    anchor?: string
 }
 
 type Work = Resume['work'][number] & {
@@ -84,7 +85,13 @@ export default function Work({ job }: WorkProps) {
                                         {job.projects.map((project: Project, index: number) => (
                                             <div key={index} style={project.styles}>
                                                 <h5 className="text-zinc-700 ml-4">
-                                                    <span className="italic">{project.name}</span> {project.summary ?
+                                                    <span className="italic">
+                                                        {project.anchor ? (
+                                                            <a href={project.anchor} className="underline underline-offset-2">{project.name}</a>
+                                                        ) : (
+                                                            project.name
+                                                        )}
+                                                    </span> {project.summary ?
                                                         <span className="text-zinc-500 text-xs">: {project.summary}</span>
                                                         : ''
                                                     }</h5>
