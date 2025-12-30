@@ -1,0 +1,52 @@
+---
+title: "Array.with() - Intent Over Implementation"
+description: "A cleaner way to replace items in arrays that communicates what, not how"
+date: "2025-12-30"
+published: true
+---
+
+I recently stumbled upon a neat JavaScript method: `Array.with()`.
+
+It creates a new array with one item replaced.
+Shorter to write, but more importantly - <Keyword>easier to understand</Keyword>.
+
+Its design clearly communicates <Keyword>what will happen</Keyword>, not <Keyword>how it's implemented</Keyword>.
+That's a big difference compared to manual array copying with the spread operator.
+
+Nice. Simple. Useful.
+
+---
+
+## Before
+
+```javascript
+case "CLEAR_FIELD": {
+  const next = [...state]
+  const item = next[action.bookingIndex]
+ 
+  next[action.bookingIndex] = {
+    ...item,
+    [action.fieldName]: null,
+  }
+
+  return next
+}
+```
+
+## After
+
+```javascript
+case "CLEAR_FIELD": {
+  const item = state[action.bookingIndex]
+ 
+  return state.with(action.bookingIndex, {
+    ...item,
+    [action.fieldName]: null,
+  })
+}
+```
+
+---
+
+I came across it while Cursor was suggesting a cleaner way to write a reducer.
+
