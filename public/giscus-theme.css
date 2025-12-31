@@ -160,6 +160,8 @@ main .gsc-loading-image {
 .gsc-reactions-menu {
   border-radius: 0.5rem !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  z-index: 100 !important;
+  position: relative !important;
 }
 
 /* Style reaction summary */
