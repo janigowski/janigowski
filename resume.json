@@ -1,8 +1,6 @@
 {
     "name": "Dawid Janiga",
     "role": "Software Architect Frontend <span class='text-brand-lime'>//</span> Product Engineer",
-    "experience_years": "10+",
-    "products_contributed": "24+",
     "email": "dawidjaniga@gmail.com",
     "url": "https://janigowski.dev",
     "summary": "I design scalable systems, work across teams, and bridge engineering with real-world impact. Clear thinking, strong execution, and a product mindset drive everything I do. I'm grateful for the opportunity to share knowledge through <a href=\"https://janigowski.dev/speaking\" class=\"text-zinc-500 hover:text-zinc-400 underline underline-offset-4\">speaking</a> and <a href=\"https://janigowski.dev/mentoring\" class=\"text-zinc-500 hover:text-zinc-400 underline underline-offset-4\">mentoring</a>.",
@@ -29,8 +27,8 @@
             "Leadership"
         ],
         "numbers": {
-            "experience_years": "10+",
-            "products_contributed": "24+"
+            "experience_years": "11+",
+            "products_contributed": "25+"
         }
     },
     "clifton_strengths": [
@@ -42,6 +40,22 @@
     ],
     "work": [
         {
+            "name": "Candis",
+            "position": "Senior Frontend Engineer",
+            "startDate": "Jun 2025",
+            "highlights": [
+                "AI Team: Introduced <strong>AI Suggestions</strong>, enabling rapid iteration so customers could benefit from them early",
+                "Platform Team: Migrated <strong>react-router</strong> from version <strong>5</strong> to <strong>7</strong> across the entire codebase: <strong>600+</strong> files"
+            ],
+            "projects": [],
+            "skills": [
+                "React",
+                "TypeScript",
+                "Graphql",
+                "Product Engineering"
+            ]
+        },
+        {
             "name": "janigowski.dev",
             "position": "Founder",
             "startDate": "Aug 2022",
@@ -49,26 +63,6 @@
                 "Conceptualized and developed <strong><a href=\"https://janigowski.dev/projects/exo-lab\" class=\"text-zinc-500 hover:text-zinc-400 underline underline-offset-4\">EXØ_LAB</a></strong>, an innovative desktop application unifying tools for <strong>new media artists</strong>",
                 "Designed multi-channel <strong>mixing timeline</strong> for audio, video, and visuals",
                 "Integrated MIDI controls with <strong>hardware</strong> devices (mixer, controllers)"
-            ],
-            "projects": [
-                {
-                    "name": "Allen&Heath K2 MIDI Client",
-                    "summary": "Web & Node.js to control Allen&Heath K2 MIDI Controller",
-                    "anchor": "https://www.npmjs.com/package/k2"
-                },
-                {
-                    "name": "Philips Hue Remote (prototype)",
-                    "summary": "Control Philips Hue lights from Chrome Browser's extension"
-                },
-                {
-                    "name": "Mars Explorer",
-                    "summary": "Discover the Red Planet with images from all of NASA's rovers",
-                    "anchor": "https://mars-explorer.netlify.app"
-                },
-                {
-                    "name": "Image to Figma",
-                    "summary": "AI-based plugin to convert images to Figma designs"
-                }
             ],
             "skills": [
                 "Electron",
@@ -80,8 +74,7 @@
                 "WebAudio",
                 "WebMIDI",
                 "AI",
-                "LLM",
-                "Chrome Extension"
+                "LLM"
             ]
         },
         {
