@@ -1,1 +1,16 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@font-face { font-family: 'CalSans'; src: url('/fonts/CalSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@theme { --font-sans: Inter, ui-sans-serif, system-ui, sans-serif; --font-display: CalSans, ui-sans-serif, system-ui, sans-serif; --color-brand-lime: #bbdf32; --color-brand-olive: #595e44; --color-brand-purple-dark: #5e445e; --color-brand-purple-darker: #4c445e; --color-brand-indigo: #6831de; --color-brand-pink: #d931de; --color-code-bg: #1c1c1c; --color-code-fg: #f5f5f5; --color-code-accent: #bbdf32; }
+html, body { margin: 0; min-height: 100vh; background: #000; color: #f4f4f5; }
+::selection { background: #bbdf32; color: #000; }
+.prose { color: #d4d4d8; }
+.prose :where(h1, h2, h3, h4, strong) { color: #fff; }
+.prose a { color: #bbdf32; text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+.prose pre { background: #1c1c1c; color: #f5f5f5; border-radius: .5rem; padding: 1rem; overflow-x: auto; }
+.prose code { color: #bbdf32; }
+.prose code::before, .prose code::after { content: ''; }
+.prose blockquote { border-left-color: #bbdf32; color: #f4f4f5; }
+@media print { @page { size: A4; margin: 0; } body { background: white; } }

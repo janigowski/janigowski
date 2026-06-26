@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import ContentLayout from '$components/ContentLayout.svelte';
+	import Header from '$components/Header.svelte';
+	import ArticleCard from '$components/ArticleCard.svelte';
+	import Card from '$components/Card.svelte';
+	let { data } = $props();
+</script>
+<ContentLayout><Header title="janigowski" description="yah-nee-gov-ski" /><section class="space-y-4 text-zinc-300"><p>I help teams build better products by combining technical expertise with product thinking. Through mentoring and speaking, I share insights on software architecture, product development, and the intersection of technology and business.</p><p class="text-lg text-zinc-200">Product Engineer · Software Architect · Mentor · Speaker · Creator</p></section><div class="grid gap-12 md:grid-cols-2"><section><div class="mb-4 flex items-center justify-between"><h2 class="text-2xl font-semibold">Projects</h2><a href="/projects" class="text-sm text-zinc-400">All projects</a></div><div class="grid gap-4">{#each data.randomProjects as item}<Card><ArticleCard {item} /></Card>{/each}</div></section><section><div class="mb-4 flex items-center justify-between"><h2 class="text-2xl font-semibold">Posts</h2><a href="/posts" class="text-sm text-zinc-400">All posts</a></div><div class="grid gap-4">{#each data.latestPosts as item}<Card><ArticleCard {item} /></Card>{/each}</div></section><section><div class="mb-4 flex items-center justify-between"><h2 class="text-2xl font-semibold">Reads</h2><a href="/library" class="text-sm text-zinc-400">All reads</a></div><div class="divide-y divide-white/10 rounded-2xl border border-white/10 bg-zinc-900/50">{#each data.latestBooks as item}<ArticleCard {item} />{/each}</div></section><section><div class="mb-4 flex items-center justify-between"><h2 class="text-2xl font-semibold">Reviews</h2><a href="/library" class="text-sm text-zinc-400">All reviews</a></div><div class="grid gap-4">{#each data.bookReviews as item}<Card><ArticleCard {item} /></Card>{/each}</div></section></div></ContentLayout>

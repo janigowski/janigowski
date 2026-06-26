@@ -1,0 +1,6 @@
+<script lang="ts">
+	import { Hexagon, Menu, X } from 'lucide-svelte';
+	const links = [{ href: '/', label: 'Index' }, { href: '/projects', label: 'Projects' }, { href: '/profile', label: 'Profile' }, { href: '/posts', label: 'Posts' }, { href: '/library', label: 'Library' }, { href: '/speaking', label: 'Speaking' }, { href: '/mentoring', label: 'Mentoring' }, { href: '/lamp', label: 'Lamp' }, { href: '/contact', label: 'Contact' }];
+	let isMenuOpen = $state(false);
+</script>
+<header><nav class="fixed left-4 right-4 top-4 z-50 mx-auto rounded-2xl border border-white/10 bg-zinc-900/80 p-4 shadow backdrop-blur sm:container"><div class="flex items-center justify-between gap-6"><a href="/" class="text-zinc-300 hover:text-white" aria-label="Home"><Hexagon class="h-6 w-6" /></a><div class="hidden gap-6 text-sm md:flex">{#each links as link}<a href={link.href} class="text-zinc-400 hover:text-white">{link.label}</a>{/each}</div><button class="text-zinc-300 md:hidden" aria-label="Toggle menu" onclick={() => (isMenuOpen = !isMenuOpen)}>{#if isMenuOpen}<X class="h-6 w-6" />{:else}<Menu class="h-6 w-6" />{/if}</button></div>{#if isMenuOpen}<div class="mt-6 grid gap-4 text-sm md:hidden">{#each links as link}<a href={link.href} class="text-zinc-400 hover:text-white" onclick={() => (isMenuOpen = false)}>{link.label}</a>{/each}</div>{/if}</nav></header>

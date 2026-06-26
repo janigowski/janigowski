@@ -1,0 +1,4 @@
+import { error } from '@sveltejs/kit';
+import { exchangeCodeForToken } from '$server/hue';
+
+export async function GET({ url }) { const code = url.searchParams.get('code'); if (!code) error(400, 'No code provided'); const token = await exchangeCodeForToken(code); return new Response(`<html><body style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; padding: 2rem;"><h1>Authorization Successful!</h1><p>Your Philips Hue lights are now connected to your portfolio.</p><p><a href="/lamp">Go to Lamp Controls</a></p>${process.env.NODE_ENV === 'development' ? `<pre>HUE_ACCESS_TOKEN=${token.access_token}\nHUE_REFRESH_TOKEN=${token.refresh_token}\nHUE_TOKEN_EXPIRES_AT=${Date.now() + token.expires_in * 1000}</pre>` : ''}</body></html>`, { headers: { 'Content-Type': 'text/html' } }); }
