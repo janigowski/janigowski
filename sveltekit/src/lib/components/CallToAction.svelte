@@ -1,4 +1,9 @@
 <script lang="ts">
-	let { href, children } = $props<{ href: string; children: any }>();
+	import type { Snippet } from 'svelte';
+
+	let { href, children } = $props<{ href: string; children: Snippet }>();
 </script>
-<a class="inline-flex rounded-full bg-brand-lime px-5 py-3 font-medium text-black hover:bg-white" {href}>{@render children()}</a>
+
+<a class="text-brand-lime transition-colors duration-200 hover:text-brand-lime/80" {href}>
+	{@render children()} →
+</a>

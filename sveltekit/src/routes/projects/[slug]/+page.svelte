@@ -1,7 +1,49 @@
 <script lang="ts">
-	import ContentLayout from '$components/ContentLayout.svelte';
+	import AnimatedTitle from '$components/AnimatedTitle.svelte';
 	import Comments from '$components/Comments.svelte';
+	import Nav from '$components/Nav.svelte';
 	let { data } = $props();
 	let item = $derived(data.item);
 </script>
-<svelte:head><title>{item.title} :: janigowski.dev</title></svelte:head><ContentLayout><header class="max-w-3xl"><p class="text-sm uppercase tracking-wide text-zinc-500">project</p><h1 class="mt-3 font-display text-4xl font-bold text-zinc-100 sm:text-6xl">{item.title}</h1>{#if item.description}<p class="mt-6 text-lg text-zinc-400">{item.description}</p>{/if}{#if item.date}<time class="mt-4 block text-sm text-zinc-500" datetime={item.date}>{new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(new Date(item.date))}</time>{/if}</header><article class="prose prose-invert max-w-3xl">{@html item.html}</article><Comments /></ContentLayout>
+
+<svelte:head><title>{item.title} :: janigowski.dev</title></svelte:head>
+
+<div class="min-h-screen">
+	<Nav />
+	<header class="relative isolate mt-20 overflow-hidden">
+		<div class="container relative isolate mx-auto overflow-hidden py-32">
+			<div class="mx-auto flex max-w-7xl flex-col items-center px-6 text-center lg:px-8">
+				<div class="mx-auto max-w-2xl lg:mx-0">
+					<AnimatedTitle text={item.title} />
+					<p class="mt-6 text-lg leading-8 text-zinc-400">{item.description}</p>
+				</div>
+				{#if item.repository || item.url}
+					<div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+						<div
+							class="grid grid-cols-1 gap-x-8 gap-y-6 text-base leading-7 font-semibold text-zinc-100 sm:grid-cols-2 md:flex lg:gap-x-10"
+						>
+							{#if item.repository}
+								<a
+									target="_blank"
+									rel="noreferrer"
+									href={`https://github.com/${item.repository}`}
+								>
+									GitHub <span aria-hidden="true">→</span>
+								</a>
+							{/if}
+							{#if item.url}
+								<a target="_blank" rel="noreferrer" href={item.url}>
+									Website <span aria-hidden="true">→</span>
+								</a>
+							{/if}
+						</div>
+					</div>
+				{/if}
+			</div>
+		</div>
+	</header>
+	<article class="prose prose-quoteless mx-auto px-4 pb-12">
+		{@html item.html}
+		<Comments />
+	</article>
+</div>

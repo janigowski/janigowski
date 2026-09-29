@@ -33,9 +33,11 @@ async function readCollection<T extends ContentBase>(
 ): Promise<T[]> {
 	return Promise.all(
 		Object.entries(metadataModules).map(async ([file, module]) => {
-			const body = matter(rawModules[file] ?? '').content.trim();
+			const parsed = matter(rawModules[file] ?? '');
+			const body = parsed.content.trim();
 			return {
 				...module.metadata,
+				...parsed.data,
 				slug: slugFor(file),
 				path: `/${flattenedPath(file)}`,
 				body,

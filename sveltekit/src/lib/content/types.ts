@@ -55,7 +55,12 @@ export type Work = {
 	leadership?: unknown;
 	teaching?: unknown;
 	product_design?: unknown;
-	projects?: unknown;
+	projects?: {
+		name: string;
+		summary?: string;
+		highlights?: string[];
+		anchor?: string;
+	}[];
 	other_achievements?: unknown;
 	projectsStyles?: unknown;
 };
@@ -63,6 +68,7 @@ export type Work = {
 export type Education = {
 	institution: string;
 	area: string;
+	year?: string;
 	location: string;
 };
 
@@ -80,6 +86,7 @@ export type Hackathon = {
 
 export type Resume = {
 	slug?: string;
+	label?: string;
 	name: string;
 	role: string;
 	experience_years?: string;
@@ -90,12 +97,19 @@ export type Resume = {
 	locationCity: string;
 	locationCountryCode: string;
 	profiles: Profile[];
-	highlights?: unknown;
+	highlights?: {
+		technical?: string[];
+		numbers?: {
+			experience_years?: string;
+			products_contributed?: string;
+		};
+	};
 	clifton_strengths: string[];
 	mentoring?: unknown;
 	work: Work[];
 	education: Education[];
-	interests?: unknown;
+	interests?: string[];
+	courses?: string[];
 	talks: Talk[];
 	hackathons: Hackathon[];
 };
