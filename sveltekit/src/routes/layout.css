@@ -49,9 +49,16 @@ html,
 body {
 	margin: 0;
 	min-height: 100vh;
-	background: #000;
 	color: #f4f4f5;
 	font-family: var(--font-sans);
+}
+
+html {
+	background: #000;
+}
+
+body {
+	background: transparent;
 }
 
 ::selection {
