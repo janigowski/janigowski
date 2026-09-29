@@ -3,11 +3,9 @@
 	const links = [
 		{ href: '/', label: 'Index' },
 		{ href: '/projects', label: 'Projects' },
-		{ href: '/profile', label: 'Profile' },
 		{ href: '/posts', label: 'Posts' },
 		{ href: '/library', label: 'Library' },
 		{ href: '/speaking', label: 'Speaking' },
-		{ href: '/mentoring', label: 'Mentoring' },
 		{ href: '/lamp', label: 'Lamp' },
 		{ href: '/contact', label: 'Contact' }
 	];
