@@ -55,7 +55,27 @@ export async function getPost(slug: string) { return (await getPosts()).find((po
 export async function getProject(slug: string) { return (await getProjects()).find((project) => project.slug === slug); }
 export async function getBook(slug: string) { return (await getBooks()).find((book) => book.slug === slug); }
 export function sortByDate<T extends { published?: boolean; date?: string; title: string }>(items: T[]) { return items.filter((item) => item.published).sort((a, b) => { if (a.date && b.date) return new Date(b.date).getTime() - new Date(a.date).getTime(); if (a.date) return -1; if (b.date) return 1; return a.title.localeCompare(b.title); }); }
-export function sortBooks(books: Book[]) { return sortByDate(books); }
+const bookStatusOrder: Record<Book['status'], number> = {
+	reading: 0,
+	listening: 0,
+	read: 1,
+	listened: 1,
+	waiting: 2,
+	paused: 2
+};
+
+export function sortBooks(books: Book[]) {
+	return books
+		.filter((book) => book.published)
+		.sort((a, b) => {
+			const statusDiff = bookStatusOrder[a.status] - bookStatusOrder[b.status];
+			if (statusDiff !== 0) return statusDiff;
+			if (a.date && b.date) return new Date(b.date).getTime() - new Date(a.date).getTime();
+			if (a.date) return -1;
+			if (b.date) return 1;
+			return a.title.localeCompare(b.title);
+		});
+}
 export function getLatestPosts(posts: Post[], limit = 3) { return sortByDate(posts).slice(0, limit); }
 export function getLatestBooks(books: Book[], limit = 10) { return sortBooks(books).slice(0, limit); }
 export function getRandomProjects(projects: Project[], limit = 3) { return projects.filter((project) => project.published).sort(() => Math.random() - 0.5).slice(0, limit); }
