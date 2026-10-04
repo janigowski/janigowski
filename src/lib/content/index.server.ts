@@ -79,7 +79,25 @@ export function sortBooks(books: Book[]) {
 export function getLatestPosts(posts: Post[], limit = 3) { return sortByDate(posts).slice(0, limit); }
 export function getLatestBooks(books: Book[], limit = 10) { return sortBooks(books).slice(0, limit); }
 export function getRandomProjects(projects: Project[], limit = 3) { return projects.filter((project) => project.published).sort(() => Math.random() - 0.5).slice(0, limit); }
-export function getLibraryStats(books: Book[]) { const publishedBooks = books.filter((book) => book.published); const readBooks = publishedBooks.filter((book) => book.status === 'read' || book.status === 'listened'); const readingBooks = publishedBooks.filter((book) => book.status === 'reading' || book.status === 'listening'); const waitingBooks = publishedBooks.filter((book) => book.status === 'waiting' || book.status === 'paused'); const counts = readBooks.reduce<Record<string, number>>((acc, book) => ({ ...acc, [book.tag]: (acc[book.tag] || 0) + 1 }), {}); const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]; return { total: publishedBooks.length, read: readBooks.length, reading: readingBooks.length, waiting: waitingBooks.length, mostReadCategory: top ? `${top[0]} (${top[1]})` : 'None', completionRate: publishedBooks.length ? Math.round((readBooks.length / publishedBooks.length) * 100) : 0 }; }
+export function getLibraryStats(books: Book[]) {
+	const publishedBooks = books.filter((book) => book.published);
+	const readBooks = publishedBooks.filter((book) => book.status === 'read' || book.status === 'listened');
+	const readingBooks = publishedBooks.filter((book) => book.status === 'reading' || book.status === 'listening');
+	const waitingBooks = publishedBooks.filter((book) => book.status === 'waiting' || book.status === 'paused');
+	const counts = publishedBooks.reduce<Record<string, number>>(
+		(acc, book) => ({ ...acc, [book.tag]: (acc[book.tag] || 0) + 1 }),
+		{}
+	);
+	const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+	return {
+		total: publishedBooks.length,
+		read: readBooks.length,
+		reading: readingBooks.length,
+		waiting: waitingBooks.length,
+		mostReadCategory: top ? `${top[0]} (${top[1]})` : 'None',
+		completionRate: publishedBooks.length ? Math.round((readBooks.length / publishedBooks.length) * 100) : 0
+	};
+}
 export async function getBaseResume(): Promise<Resume> { return structuredClone(baseResume); }
 export async function getResumes(): Promise<ResumeVariant[]> { const base = await getBaseResume(); const variants = Object.entries(resumeVariants).map(([file, module]) => { const variant = module.default; const slug = variant.slug ?? slugFor(file); const resolvedResume = mergeWith({}, base, variant, (objValue, srcValue) => { if (srcValue === undefined || srcValue === null) return objValue; if (Array.isArray(srcValue)) return srcValue; return undefined; }); return { slug, resolvedResume }; }); return variants.sort((a, b) => a.slug.localeCompare(b.slug)); }
 export async function getResume(slug: string) { return (await getResumes()).find((resume) => resume.slug === slug); }
