@@ -4,7 +4,7 @@ const path = require('path')
 const https = require('https')
 
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'library')
-const IMAGES_DIR = path.join(process.cwd(), 'public', 'books')
+const IMAGES_DIR = path.join(process.cwd(), 'static', 'books')
 
 // Ensure directories exist
 async function ensureDirectories() {
