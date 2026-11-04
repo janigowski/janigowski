@@ -34,6 +34,8 @@ export type Book = ContentBase & {
 	bookType: BookType;
 	tag: string;
 	cover: string;
+	pagesRead?: number;
+	totalPages?: number;
 };
 
 export type Profile = {

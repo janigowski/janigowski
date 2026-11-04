@@ -26,6 +26,13 @@
 		(book.status === 'read' || book.status === 'listened') && book.body.trim().length > 0
 	);
 	let isInProgress = $derived(book.status === 'reading' || book.status === 'listening');
+	let readPercent = $derived.by(() => {
+		const { pagesRead, totalPages } = book;
+		if (typeof pagesRead !== 'number' || typeof totalPages !== 'number') return undefined;
+		if (!Number.isFinite(pagesRead) || !Number.isFinite(totalPages) || totalPages <= 0) return undefined;
+		return Math.round((pagesRead / totalPages) * 100);
+	});
+	let barWidth = $derived(readPercent === undefined ? 0 : Math.min(100, Math.max(0, readPercent)));
 </script>
 
 <article
@@ -79,6 +86,22 @@
 				</a>
 			{/if}
 		</div>
+		{#if readPercent !== undefined}
+			<div class="mt-4 flex items-center gap-3">
+				<div
+					class="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-brand-olive/25"
+					role="progressbar"
+					aria-valuenow={readPercent}
+					aria-valuemin={0}
+					aria-valuemax={100}
+					aria-valuetext="{readPercent}% read"
+					aria-label="Reading progress"
+				>
+					<div class="h-full rounded-full bg-brand-lime" style:width="{barWidth}%"></div>
+				</div>
+				<span class="shrink-0 text-xs font-medium text-brand-lime tabular-nums">{readPercent}%</span>
+			</div>
+		{/if}
 	</div>
 </article>
 
