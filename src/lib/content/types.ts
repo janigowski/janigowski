@@ -1,4 +1,4 @@
-export type ContentKind = 'post' | 'project' | 'book';
+export type ContentKind = 'post' | 'project' | 'book' | 'bookmark';
 
 export type ContentBase = {
 	slug: string;
@@ -36,6 +36,17 @@ export type Book = ContentBase & {
 	cover: string;
 	pagesRead?: number;
 	totalPages?: number;
+};
+
+export type BookmarkType = 'article' | 'video' | 'podcast' | 'link';
+
+export type Bookmark = ContentBase & {
+	kind: 'bookmark';
+	url: string;
+	author?: string;
+	bookmarkType: BookmarkType;
+	tags: string[];
+	sourceDate?: string;
 };
 
 export type Profile = {

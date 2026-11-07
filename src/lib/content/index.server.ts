@@ -2,7 +2,8 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 import mergeWith from 'lodash/mergeWith';
 import baseResume from '../../../resume.json';
-import type { Book, ContentBase, ContentKind, Post, Project, Resume, ResumeInput, ResumeVariant } from './types';
+import { normalizeTags, sortBookmarks } from './bookmarks';
+import type { Book, Bookmark, ContentBase, ContentKind, Post, Project, Resume, ResumeInput, ResumeVariant } from './types';
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -13,9 +14,11 @@ type ResumeModule = { default: ResumeInput };
 const postMetadata = import.meta.glob<ContentModule<Partial<Post>>>('../../../content/posts/**/*.mdx', { eager: true });
 const projectMetadata = import.meta.glob<ContentModule<Partial<Project>>>('../../../content/projects/**/*.mdx', { eager: true });
 const bookMetadata = import.meta.glob<ContentModule<Partial<Book>>>('../../../content/library/**/*.mdx', { eager: true });
+const bookmarkMetadata = import.meta.glob<ContentModule<Partial<Bookmark>>>('../../../content/bookmarks/**/*.mdx', { eager: true });
 const postRaw = import.meta.glob<string>('../../../content/posts/**/*.mdx', { eager: true, query: '?raw', import: 'default' });
 const projectRaw = import.meta.glob<string>('../../../content/projects/**/*.mdx', { eager: true, query: '?raw', import: 'default' });
 const bookRaw = import.meta.glob<string>('../../../content/library/**/*.mdx', { eager: true, query: '?raw', import: 'default' });
+const bookmarkRaw = import.meta.glob<string>('../../../content/bookmarks/**/*.mdx', { eager: true, query: '?raw', import: 'default' });
 const resumeVariants = import.meta.glob<ResumeModule>('../../../content/resumes/**/*.json', { eager: true });
 
 function flattenedPath(file: string) {
@@ -51,9 +54,14 @@ async function readCollection<T extends ContentBase>(
 export async function getPosts() { return sortByDate(await readCollection<Post>(postMetadata, postRaw, 'post')); }
 export async function getProjects() { return sortByDate(await readCollection<Project>(projectMetadata, projectRaw, 'project')); }
 export async function getBooks() { return sortBooks(await readCollection<Book>(bookMetadata, bookRaw, 'book')); }
+export async function getBookmarks() {
+	const bookmarks = await readCollection<Bookmark>(bookmarkMetadata, bookmarkRaw, 'bookmark');
+	return sortBookmarks(bookmarks.map((bookmark) => ({ ...bookmark, tags: normalizeTags(bookmark.tags) })));
+}
 export async function getPost(slug: string) { return (await getPosts()).find((post) => post.slug === slug); }
 export async function getProject(slug: string) { return (await getProjects()).find((project) => project.slug === slug); }
 export async function getBook(slug: string) { return (await getBooks()).find((book) => book.slug === slug); }
+export async function getBookmark(slug: string) { return (await getBookmarks()).find((bookmark) => bookmark.slug === slug); }
 export function sortByDate<T extends { published?: boolean; date?: string; title: string }>(items: T[]) { return items.filter((item) => item.published).sort((a, b) => { if (a.date && b.date) return new Date(b.date).getTime() - new Date(a.date).getTime(); if (a.date) return -1; if (b.date) return 1; return a.title.localeCompare(b.title); }); }
 const bookStatusOrder: Record<Book['status'], number> = {
 	reading: 0,
