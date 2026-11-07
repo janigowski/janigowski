@@ -2,11 +2,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import matter from 'gray-matter';
 import {
+	bookmarkImage,
 	bookmarkSourceHref,
 	formatCalendarDate,
 	hasNote,
 	normalizeTags,
 	selectBookmarks,
+	showBookmarkImage,
 	sortBookmarks
 } from '../src/lib/content/bookmarks.ts';
 
@@ -188,6 +190,20 @@ test('keeps UTM values already present on the source URL', () => {
 	assert.equal(bookmarkSourceHref('not a url'), 'not a url');
 });
 
+test('uses a remote thumbnail only when the stored image URL can load', () => {
+	const present = 'https://martinfowler.com/articles/modularizing-react-apps/evolution-5.png';
+	assert.equal(bookmarkImage(present), present);
+	assert.equal(showBookmarkImage(present, undefined), true);
+	assert.equal(bookmarkImage(undefined), undefined);
+	assert.equal(bookmarkImage(''), undefined);
+	assert.equal(bookmarkImage('   '), undefined);
+	assert.equal(bookmarkImage('not a url'), undefined);
+	assert.equal(showBookmarkImage(undefined, undefined), false);
+	const broken = 'https://example.com/missing-thumbnail.png';
+	assert.equal(showBookmarkImage(broken, broken), false);
+	assert.equal(showBookmarkImage(present, broken), true);
+});
+
 test('seed bookmark matches the source article and has no note', () => {
 	const file = readFileSync(new URL('../content/bookmarks/modularizing-react-apps.mdx', import.meta.url), 'utf8');
 	const parsed = matter(file);
@@ -195,6 +211,11 @@ test('seed bookmark matches the source article and has no note', () => {
 	assert.equal(parsed.data.title, 'Modularizing React Applications with Established UI Patterns');
 	assert.equal(parsed.data.author, 'Juntao QIU | 邱俊涛');
 	assert.equal(parsed.data.url, 'https://martinfowler.com/articles/modularizing-react-apps.html');
+	assert.equal(
+		parsed.data.image,
+		'https://martinfowler.com/articles/modularizing-react-apps/evolution-5.png'
+	);
+	assert.equal(bookmarkImage(parsed.data.image), parsed.data.image);
 	assert.equal(parsed.data.bookmarkType, 'article');
 	assert.equal(parsed.data.date, '2026-10-07');
 	assert.equal(parsed.data.sourceDate, '2023-02-16');

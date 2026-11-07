@@ -22,6 +22,23 @@ export function hasNote(body: string) {
 	return body.trim().length > 0;
 }
 
+export function bookmarkImage(value: unknown) {
+	if (typeof value !== 'string') return undefined;
+	const trimmed = value.trim();
+	if (!trimmed) return undefined;
+	try {
+		const url = new URL(trimmed);
+		if (url.protocol !== 'http:' && url.protocol !== 'https:') return undefined;
+		return url.toString();
+	} catch {
+		return undefined;
+	}
+}
+
+export function showBookmarkImage(src: string | undefined, failedSrc: string | undefined) {
+	return Boolean(src) && failedSrc !== src;
+}
+
 const bookmarkUtm = {
 	utm_source: 'janigowski.dev',
 	utm_medium: 'referral',

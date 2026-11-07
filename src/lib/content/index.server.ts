@@ -2,7 +2,7 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 import mergeWith from 'lodash/mergeWith';
 import baseResume from '../../../resume.json';
-import { normalizeTags, sortBookmarks } from './bookmarks';
+import { bookmarkImage, normalizeTags, sortBookmarks } from './bookmarks';
 import type { Book, Bookmark, ContentBase, ContentKind, Post, Project, Resume, ResumeInput, ResumeVariant } from './types';
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -56,7 +56,13 @@ export async function getProjects() { return sortByDate(await readCollection<Pro
 export async function getBooks() { return sortBooks(await readCollection<Book>(bookMetadata, bookRaw, 'book')); }
 export async function getBookmarks() {
 	const bookmarks = await readCollection<Bookmark>(bookmarkMetadata, bookmarkRaw, 'bookmark');
-	return sortBookmarks(bookmarks.map((bookmark) => ({ ...bookmark, tags: normalizeTags(bookmark.tags) })));
+	return sortBookmarks(
+		bookmarks.map((bookmark) => ({
+			...bookmark,
+			tags: normalizeTags(bookmark.tags),
+			image: bookmarkImage(bookmark.image)
+		}))
+	);
 }
 export async function getPost(slug: string) { return (await getPosts()).find((post) => post.slug === slug); }
 export async function getProject(slug: string) { return (await getProjects()).find((project) => project.slug === slug); }
