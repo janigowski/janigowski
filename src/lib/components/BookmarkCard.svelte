@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { formatCalendarDate, hasNote } from '$content/bookmarks';
+	import { bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
 	import type { Bookmark } from '$content/types';
 
 	let { bookmark }: { bookmark: Bookmark } = $props();
 	let saved = $derived(formatCalendarDate(bookmark.date));
 	let note = $derived(hasNote(bookmark.body));
+	let sourceHref = $derived(bookmarkSourceHref(bookmark.url));
 </script>
 
 <article class="article-enter group relative py-10 first:pt-0 last:pb-0">
@@ -27,7 +28,7 @@
 	</div>
 	<h2 class="mt-4 text-xl leading-tight font-medium text-white">
 		<a
-			href={bookmark.url}
+			href={sourceHref}
 			target="_blank"
 			rel="noreferrer"
 			class="transition-colors duration-300 hover:text-zinc-200"

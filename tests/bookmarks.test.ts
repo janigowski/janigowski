@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import matter from 'gray-matter';
 import {
+	bookmarkSourceHref,
 	formatCalendarDate,
 	hasNote,
 	normalizeTags,
@@ -154,6 +155,37 @@ test('drops type and tag values that would match nothing', () => {
 	const unknownType = selectBookmarks(published, 'link', 'testing');
 	assert.equal(unknownType.selectedTag, undefined);
 	assert.equal(unknownType.selectedType, 'link');
+});
+
+test('adds bookmark attribution without dropping queries or fragments', () => {
+	assert.equal(
+		bookmarkSourceHref('https://martinfowler.com/articles/modularizing-react-apps.html'),
+		'https://martinfowler.com/articles/modularizing-react-apps.html?utm_source=janigowski.dev&utm_medium=referral&utm_campaign=bookmarks'
+	);
+	assert.equal(
+		bookmarkSourceHref('https://example.com/watch?id=42&list=design#notes'),
+		'https://example.com/watch?id=42&list=design&utm_source=janigowski.dev&utm_medium=referral&utm_campaign=bookmarks#notes'
+	);
+});
+
+test('keeps UTM values already present on the source URL', () => {
+	const href = bookmarkSourceHref(
+		'https://example.com/post?utm_source=newsletter&id=9&utm_medium=email#section'
+	);
+	const url = new URL(href);
+	assert.equal(url.searchParams.get('utm_source'), 'newsletter');
+	assert.equal(url.searchParams.get('utm_medium'), 'email');
+	assert.equal(url.searchParams.get('utm_campaign'), 'bookmarks');
+	assert.equal(url.searchParams.get('id'), '9');
+	assert.equal(url.hash, '#section');
+	assert.equal(url.searchParams.getAll('utm_source').length, 1);
+	assert.deepEqual(
+		new URL(bookmarkSourceHref('https://example.com/post?utm_source=one&utm_source=two')).searchParams.getAll(
+			'utm_source'
+		),
+		['one', 'two']
+	);
+	assert.equal(bookmarkSourceHref('not a url'), 'not a url');
 });
 
 test('seed bookmark matches the source article and has no note', () => {

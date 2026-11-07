@@ -22,6 +22,25 @@ export function hasNote(body: string) {
 	return body.trim().length > 0;
 }
 
+const bookmarkUtm = {
+	utm_source: 'janigowski.dev',
+	utm_medium: 'referral',
+	utm_campaign: 'bookmarks'
+} as const;
+
+export function bookmarkSourceHref(href: string) {
+	let url: URL;
+	try {
+		url = new URL(href);
+	} catch {
+		return href;
+	}
+	for (const [key, value] of Object.entries(bookmarkUtm)) {
+		if (!url.searchParams.has(key)) url.searchParams.set(key, value);
+	}
+	return url.toString();
+}
+
 export function formatCalendarDate(isoDate?: string) {
 	if (!isoDate) return undefined;
 	const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(isoDate);

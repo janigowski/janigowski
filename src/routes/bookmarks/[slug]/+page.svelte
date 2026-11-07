@@ -2,7 +2,7 @@
 	import AnimatedTitle from '$components/AnimatedTitle.svelte';
 	import Comments from '$components/Comments.svelte';
 	import Nav from '$components/Nav.svelte';
-	import { formatCalendarDate, hasNote } from '$content/bookmarks';
+	import { bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
 	import type { BookmarkType } from '$content/types';
 
 	let { data } = $props();
@@ -10,6 +10,7 @@
 	let saved = $derived(formatCalendarDate(bookmark.date));
 	let source = $derived(formatCalendarDate(bookmark.sourceDate));
 	let note = $derived(hasNote(bookmark.body));
+	let sourceHref = $derived(bookmarkSourceHref(bookmark.url));
 	const labels: Record<BookmarkType, string> = {
 		article: 'Read article',
 		video: 'Watch',
@@ -54,7 +55,7 @@
 						<p class="mt-1 text-sm text-brand-olive/60">Source {source.label}</p>
 					{/if}
 					<a
-						href={bookmark.url}
+						href={sourceHref}
 						target="_blank"
 						rel="noreferrer"
 						class="mt-8 inline-block text-base font-semibold text-zinc-100"
