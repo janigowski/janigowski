@@ -3,6 +3,7 @@
 	import Comments from '$components/Comments.svelte';
 	import Nav from '$components/Nav.svelte';
 	import { bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
+	import { recordBookmarkClick } from '$lib/events/record';
 	import type { BookmarkType } from '$content/types';
 
 	let { data } = $props();
@@ -59,6 +60,7 @@
 						target="_blank"
 						rel="noreferrer"
 						class="mt-8 inline-block text-base font-semibold text-zinc-100"
+						onclick={() => recordBookmarkClick(bookmark.slug)}
 					>
 						{linkLabel} <span aria-hidden="true">→</span>
 					</a>

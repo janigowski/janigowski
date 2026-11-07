@@ -1,0 +1,20 @@
+name: Refresh click counts
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the Netlify build
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then
+            echo "NETLIFY_BUILD_HOOK is not set. Skipping the daily rebuild."
+            exit 0
+          fi
+          curl --fail --silent --show-error --request POST --output /dev/null "$NETLIFY_BUILD_HOOK"

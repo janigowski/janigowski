@@ -1,6 +1,8 @@
 <script lang="ts">
 	import BookmarkThumbnail from '$components/BookmarkThumbnail.svelte';
 	import { bookmarkDestinationLabel, bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
+	import { clickCount, formatClickCount } from '$lib/events/counts';
+	import { recordBookmarkClick } from '$lib/events/record';
 	import type { Bookmark } from '$content/types';
 
 	let { bookmark }: { bookmark: Bookmark } = $props();
@@ -8,6 +10,7 @@
 	let note = $derived(hasNote(bookmark.body));
 	let sourceHref = $derived(bookmarkSourceHref(bookmark.url));
 	let destination = $derived(bookmarkDestinationLabel(bookmark.url));
+	let clicks = $derived(formatClickCount(clickCount(bookmark.slug)));
 </script>
 
 <article class="article-enter group relative flex flex-col gap-6 py-10 first:pt-0 last:pb-0 sm:flex-row sm:gap-8">
@@ -36,6 +39,7 @@
 				target="_blank"
 				rel="noreferrer"
 				class="transition-colors duration-300 hover:text-zinc-200"
+				onclick={() => recordBookmarkClick(bookmark.slug)}
 			>
 				{bookmark.title}
 				<span aria-hidden="true">↗</span>
@@ -46,6 +50,7 @@
 			target="_blank"
 			rel="noreferrer"
 			class="mt-2 block max-w-full text-sm break-all text-zinc-500 transition-colors duration-300 hover:text-zinc-300"
+			onclick={() => recordBookmarkClick(bookmark.slug)}
 		>
 			{destination}
 		</a>
@@ -59,6 +64,7 @@
 			{#if saved}
 				<time class="text-sm text-brand-olive/80" datetime={saved.iso}>{saved.label}</time>
 			{/if}
+			<span class="text-xs text-zinc-500">{clicks}</span>
 			{#each bookmark.tags as tag (tag)}
 				<a
 					href="/bookmarks?tag={encodeURIComponent(tag)}"
