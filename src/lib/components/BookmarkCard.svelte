@@ -1,12 +1,13 @@
 <script lang="ts">
 	import BookmarkThumbnail from '$components/BookmarkThumbnail.svelte';
-	import { bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
+	import { bookmarkDestinationLabel, bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
 	import type { Bookmark } from '$content/types';
 
 	let { bookmark }: { bookmark: Bookmark } = $props();
 	let saved = $derived(formatCalendarDate(bookmark.date));
 	let note = $derived(hasNote(bookmark.body));
 	let sourceHref = $derived(bookmarkSourceHref(bookmark.url));
+	let destination = $derived(bookmarkDestinationLabel(bookmark.url));
 </script>
 
 <article class="article-enter group relative flex flex-col gap-6 py-10 first:pt-0 last:pb-0 sm:flex-row sm:gap-8">
@@ -40,6 +41,14 @@
 				<span aria-hidden="true">↗</span>
 			</a>
 		</h2>
+		<a
+			href={sourceHref}
+			target="_blank"
+			rel="noreferrer"
+			class="mt-2 block max-w-full text-sm break-all text-zinc-500 transition-colors duration-300 hover:text-zinc-300"
+		>
+			{destination}
+		</a>
 		{#if bookmark.author}
 			<p class="mt-2 text-base text-brand-olive">{bookmark.author}</p>
 		{/if}

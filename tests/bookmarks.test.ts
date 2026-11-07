@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import matter from 'gray-matter';
 import {
+	bookmarkDestinationLabel,
 	bookmarkImage,
 	bookmarkSourceHref,
 	formatCalendarDate,
@@ -157,6 +158,21 @@ test('drops type and tag values that would match nothing', () => {
 	const unknownType = selectBookmarks(published, 'link', 'testing');
 	assert.equal(unknownType.selectedTag, undefined);
 	assert.equal(unknownType.selectedType, 'link');
+});
+
+test('shows the stored host and path without added tracking parameters', () => {
+	const stored = 'https://martinfowler.com/articles/modularizing-react-apps.html';
+	const long =
+		'https://example.com/a/very/long/path/that-would-overflow-a-narrow-bookmark-card/item?id=42#notes';
+	assert.equal(bookmarkDestinationLabel(stored), 'martinfowler.com/articles/modularizing-react-apps.html');
+	assert.equal(bookmarkDestinationLabel(stored).includes('utm_'), false);
+	assert.equal(
+		bookmarkDestinationLabel(long),
+		'example.com/a/very/long/path/that-would-overflow-a-narrow-bookmark-card/item?id=42#notes'
+	);
+	assert.equal(bookmarkDestinationLabel('https://example.com'), 'example.com');
+	assert.equal(bookmarkDestinationLabel('not a url'), 'not a url');
+	assert.equal(bookmarkSourceHref(stored).includes('utm_source=janigowski.dev'), true);
 });
 
 test('adds bookmark attribution without dropping queries or fragments', () => {

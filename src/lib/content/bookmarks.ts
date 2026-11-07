@@ -45,6 +45,16 @@ const bookmarkUtm = {
 	utm_campaign: 'bookmarks'
 } as const;
 
+export function bookmarkDestinationLabel(href: string) {
+	try {
+		const url = new URL(href);
+		const path = `${url.pathname}${url.search}${url.hash}`;
+		return path === '/' ? url.host : `${url.host}${path}`;
+	} catch {
+		return href;
+	}
+}
+
 export function bookmarkSourceHref(href: string) {
 	let url: URL;
 	try {
