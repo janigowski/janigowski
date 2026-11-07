@@ -5,6 +5,7 @@
 		{ href: '/projects', label: 'Projects' },
 		{ href: '/posts', label: 'Posts' },
 		{ href: '/library', label: 'Library' },
+		{ href: '/bookmarks', label: 'Bookmarks' },
 		{ href: '/speaking', label: 'Speaking' },
 		{ href: '/lamp', label: 'Lamp' },
 		{ href: '/contact', label: 'Contact' }

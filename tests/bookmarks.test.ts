@@ -1,0 +1,245 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import matter from 'gray-matter';
+import {
+	bookmarkDestinationLabel,
+	bookmarkImage,
+	bookmarkSourceHref,
+	formatCalendarDate,
+	hasNote,
+	normalizeTags,
+	selectBookmarks,
+	showBookmarkImage,
+	sortBookmarks
+} from '../src/lib/content/bookmarks.ts';
+
+type Fixture = {
+	title: string;
+	date?: string;
+	published?: boolean;
+	bookmarkType: string;
+	tags: string[];
+	body: string;
+};
+
+const items: Fixture[] = [
+	{
+		title: 'Older article',
+		date: '2026-09-01',
+		published: true,
+		bookmarkType: 'article',
+		tags: ['React', 'front-end'],
+		body: 'A note'
+	},
+	{
+		title: 'Saved article',
+		date: '2026-10-07',
+		published: true,
+		bookmarkType: 'article',
+		tags: ['React', 'application architecture', 'React'],
+		body: ''
+	},
+	{
+		title: 'Newest video',
+		date: '2026-11-01',
+		published: true,
+		bookmarkType: 'video',
+		tags: ['React'],
+		body: '   '
+	},
+	{
+		title: 'Podcast',
+		date: '2026-08-01',
+		published: true,
+		bookmarkType: 'podcast',
+		tags: ['testing'],
+		body: 'Show notes'
+	},
+	{
+		title: 'Hidden link',
+		date: '2026-12-01',
+		published: false,
+		bookmarkType: 'link',
+		tags: ['React'],
+		body: ''
+	},
+	{
+		title: 'Alpha',
+		date: '2026-10-07',
+		published: true,
+		bookmarkType: 'link',
+		tags: ['front-end'],
+		body: ''
+	}
+];
+
+const published = sortBookmarks(items);
+
+function test(name: string, fn: () => void) {
+	try {
+		fn();
+		console.log(`ok ${name}`);
+	} catch (error) {
+		console.error(`fail ${name}`);
+		throw error;
+	}
+}
+
+test('sorts newest saved date first and drops unpublished entries', () => {
+	assert.deepEqual(
+		published.map((item) => item.title),
+		['Newest video', 'Alpha', 'Saved article', 'Older article', 'Podcast']
+	);
+});
+
+test('breaks date ties by title', () => {
+	assert.ok(published.findIndex((item) => item.title === 'Alpha') < published.findIndex((item) => item.title === 'Saved article'));
+});
+
+test('treats empty and whitespace notes as absent', () => {
+	assert.equal(hasNote(''), false);
+	assert.equal(hasNote(' \n\t'), false);
+	assert.equal(hasNote('A note'), true);
+});
+
+test('normalizes tags', () => {
+	assert.deepEqual(normalizeTags([' React ', 'React', '', 'front-end']), ['React', 'front-end']);
+	assert.deepEqual(normalizeTags('architecture'), ['architecture']);
+	assert.deepEqual(normalizeTags(undefined), []);
+});
+
+test('formats calendar dates without shifting the day', () => {
+	assert.deepEqual(formatCalendarDate('2026-10-07'), { iso: '2026-10-07', label: 'October 7, 2026' });
+	assert.equal(formatCalendarDate('2026-02-31'), undefined);
+	assert.equal(formatCalendarDate(undefined), undefined);
+});
+
+test('combines one type and one tag', () => {
+	const selected = selectBookmarks(published, 'article', 'React');
+	assert.deepEqual(
+		selected.bookmarks.map((item) => item.title),
+		['Saved article', 'Older article']
+	);
+	assert.equal(selected.selectedType, 'article');
+	assert.equal(selected.selectedTag, 'React');
+});
+
+test('counts tags inside the selected type and types inside the selected tag', () => {
+	const byType = selectBookmarks(published, 'article', null);
+	assert.deepEqual(byType.tagCounts, { React: 2, 'front-end': 1, 'application architecture': 1 });
+	assert.equal(byType.tagTotal, 2);
+	assert.equal(byType.tags.includes('testing'), false);
+	assert.deepEqual(byType.typeCounts, { article: 2, video: 1, link: 1, podcast: 1 });
+
+	const byTag = selectBookmarks(published, null, 'React');
+	assert.deepEqual(byTag.typeCounts, { article: 2, video: 1 });
+	assert.equal(byTag.typeTotal, 3);
+	assert.equal(byTag.types.includes('podcast'), false);
+	assert.equal(byTag.types.includes('link'), false);
+	assert.equal(byTag.tagCounts.React, 3);
+	assert.equal(byTag.tagCounts['front-end'], 2);
+});
+
+test('drops type and tag values that would match nothing', () => {
+	const unknown = selectBookmarks(published, 'nope', 'missing');
+	assert.equal(unknown.selectedType, undefined);
+	assert.equal(unknown.selectedTag, undefined);
+	assert.equal(unknown.bookmarks.length, published.length);
+
+	const mismatched = selectBookmarks(published, 'video', 'front-end');
+	assert.equal(mismatched.selectedType, 'video');
+	assert.equal(mismatched.selectedTag, undefined);
+	assert.deepEqual(
+		mismatched.bookmarks.map((item) => item.title),
+		['Newest video']
+	);
+	assert.deepEqual(mismatched.tags, ['React']);
+
+	const unknownType = selectBookmarks(published, 'link', 'testing');
+	assert.equal(unknownType.selectedTag, undefined);
+	assert.equal(unknownType.selectedType, 'link');
+});
+
+test('shows the stored host and path without added tracking parameters', () => {
+	const stored = 'https://martinfowler.com/articles/modularizing-react-apps.html';
+	const long =
+		'https://example.com/a/very/long/path/that-would-overflow-a-narrow-bookmark-card/item?id=42#notes';
+	assert.equal(bookmarkDestinationLabel(stored), 'martinfowler.com/articles/modularizing-react-apps.html');
+	assert.equal(bookmarkDestinationLabel(stored).includes('utm_'), false);
+	assert.equal(
+		bookmarkDestinationLabel(long),
+		'example.com/a/very/long/path/that-would-overflow-a-narrow-bookmark-card/item?id=42#notes'
+	);
+	assert.equal(bookmarkDestinationLabel('https://example.com'), 'example.com');
+	assert.equal(bookmarkDestinationLabel('not a url'), 'not a url');
+	assert.equal(bookmarkSourceHref(stored).includes('utm_source=janigowski.dev'), true);
+});
+
+test('adds bookmark attribution without dropping queries or fragments', () => {
+	assert.equal(
+		bookmarkSourceHref('https://martinfowler.com/articles/modularizing-react-apps.html'),
+		'https://martinfowler.com/articles/modularizing-react-apps.html?utm_source=janigowski.dev&utm_medium=referral&utm_campaign=bookmarks'
+	);
+	assert.equal(
+		bookmarkSourceHref('https://example.com/watch?id=42&list=design#notes'),
+		'https://example.com/watch?id=42&list=design&utm_source=janigowski.dev&utm_medium=referral&utm_campaign=bookmarks#notes'
+	);
+});
+
+test('keeps UTM values already present on the source URL', () => {
+	const href = bookmarkSourceHref(
+		'https://example.com/post?utm_source=newsletter&id=9&utm_medium=email#section'
+	);
+	const url = new URL(href);
+	assert.equal(url.searchParams.get('utm_source'), 'newsletter');
+	assert.equal(url.searchParams.get('utm_medium'), 'email');
+	assert.equal(url.searchParams.get('utm_campaign'), 'bookmarks');
+	assert.equal(url.searchParams.get('id'), '9');
+	assert.equal(url.hash, '#section');
+	assert.equal(url.searchParams.getAll('utm_source').length, 1);
+	assert.deepEqual(
+		new URL(bookmarkSourceHref('https://example.com/post?utm_source=one&utm_source=two')).searchParams.getAll(
+			'utm_source'
+		),
+		['one', 'two']
+	);
+	assert.equal(bookmarkSourceHref('not a url'), 'not a url');
+});
+
+test('uses a remote thumbnail only when the stored image URL can load', () => {
+	const present = 'https://martinfowler.com/articles/modularizing-react-apps/evolution-5.png';
+	assert.equal(bookmarkImage(present), present);
+	assert.equal(showBookmarkImage(present, undefined), true);
+	assert.equal(bookmarkImage(undefined), undefined);
+	assert.equal(bookmarkImage(''), undefined);
+	assert.equal(bookmarkImage('   '), undefined);
+	assert.equal(bookmarkImage('not a url'), undefined);
+	assert.equal(showBookmarkImage(undefined, undefined), false);
+	const broken = 'https://example.com/missing-thumbnail.png';
+	assert.equal(showBookmarkImage(broken, broken), false);
+	assert.equal(showBookmarkImage(present, broken), true);
+});
+
+test('seed bookmark matches the source article and has no note', () => {
+	const file = readFileSync(new URL('../content/bookmarks/modularizing-react-apps.mdx', import.meta.url), 'utf8');
+	const parsed = matter(file);
+	assert.equal(parsed.content.trim(), '');
+	assert.equal(parsed.data.title, 'Modularizing React Applications with Established UI Patterns');
+	assert.equal(parsed.data.author, 'Juntao QIU | 邱俊涛');
+	assert.equal(parsed.data.url, 'https://martinfowler.com/articles/modularizing-react-apps.html');
+	assert.equal(
+		parsed.data.image,
+		'https://martinfowler.com/articles/modularizing-react-apps/evolution-5.png'
+	);
+	assert.equal(bookmarkImage(parsed.data.image), parsed.data.image);
+	assert.equal(parsed.data.bookmarkType, 'article');
+	assert.equal(parsed.data.date, '2026-10-07');
+	assert.equal(parsed.data.sourceDate, '2023-02-16');
+	assert.equal(parsed.data.published, true);
+	assert.equal(
+		parsed.data.description,
+		'Learn how to apply established UI patterns for a more organized and maintainable codebase and discover the benefits of layering architecture in React development'
+	);
+	assert.deepEqual(normalizeTags(parsed.data.tags), ['React', 'application architecture', 'front-end']);
+	assert.equal(hasNote(parsed.content), false);
+});
