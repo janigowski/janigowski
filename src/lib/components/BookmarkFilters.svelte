@@ -7,8 +7,7 @@
 		typeTotal,
 		tagTotal,
 		selectedType,
-		selectedTag,
-		layout
+		selectedTag
 	}: {
 		types: string[];
 		tags: string[];
@@ -18,12 +17,10 @@
 		tagTotal: number;
 		selectedType?: string;
 		selectedTag?: string;
-		layout?: 'a' | 'b' | 'c';
 	} = $props();
 
 	const hrefFor = (type?: string, tag?: string) => {
 		const params = new URLSearchParams();
-		if (layout) params.set('layout', layout);
 		if (type) params.set('type', type);
 		if (tag) params.set('tag', tag);
 		const query = params.toString();
