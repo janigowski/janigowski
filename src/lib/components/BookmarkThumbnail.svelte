@@ -7,21 +7,21 @@
 	let visible = $derived(showBookmarkImage(src, failedSrc));
 </script>
 
-<div class="relative aspect-video w-40 shrink-0 overflow-hidden rounded-md border border-white/10 bg-zinc-950/50 sm:w-48">
+<div class="relative aspect-video w-40 shrink-0 overflow-hidden rounded-lg border border-white/10 bg-zinc-950/50 sm:w-48">
 	{#if src && visible}
 		<img
 			{src}
 			{alt}
-			width="384"
-			height="216"
+			width="640"
+			height="360"
 			loading="lazy"
 			decoding="async"
-			class="absolute inset-0 h-full w-full object-cover"
+			class="absolute inset-0 h-full w-full object-contain"
 			onerror={() => (failedSrc = src)}
 		/>
 	{:else}
-		<div class="absolute inset-0 flex items-center justify-center text-zinc-300" aria-hidden="true">
-			<ImageOff class="h-4 w-4" />
+		<div class="absolute inset-0 flex items-center justify-center text-brand-olive/80" aria-hidden="true">
+			<ImageOff class="h-6 w-6" />
 		</div>
 	{/if}
 </div>

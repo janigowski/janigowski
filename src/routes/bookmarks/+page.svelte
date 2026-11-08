@@ -28,7 +28,7 @@
 		{/each}
 		{#if data.bookmarks.length === 0}
 			<div class="py-32 text-center">
-				<p class="text-lg text-zinc-200">No bookmarks yet.</p>
+				<p class="text-lg text-brand-olive">No bookmarks yet.</p>
 			</div>
 		{/if}
 	</div>
