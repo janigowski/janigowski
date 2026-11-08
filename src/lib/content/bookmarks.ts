@@ -55,6 +55,14 @@ export function bookmarkDestinationLabel(href: string) {
 	}
 }
 
+export function bookmarkDomain(href: string) {
+	try {
+		return new URL(href).hostname.replace(/^www\./, '');
+	} catch {
+		return href;
+	}
+}
+
 export function bookmarkSourceHref(href: string) {
 	let url: URL;
 	try {
