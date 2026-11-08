@@ -61,7 +61,7 @@
 						rel="noreferrer"
 						class="mt-8 inline-flex items-center gap-2 text-base font-semibold text-zinc-100"
 					>
-						<BookmarkFavicon src={bookmark.favicon} />
+						<BookmarkFavicon url={bookmark.url} />
 						{linkLabel} <span aria-hidden="true">→</span>
 					</a>
 				</div>

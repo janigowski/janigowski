@@ -1,21 +1,28 @@
 <script lang="ts">
-	import { faviconDisplay } from '$content/favicon';
+	let { url }: { url: string } = $props();
+	let failed = $state(false);
 
-	let { src }: { src?: string } = $props();
-	let failedSrc = $state<string | undefined>(undefined);
-	let display = $derived(faviconDisplay(src, failedSrc));
+	function faviconSrc(pageUrl: string) {
+		try {
+			const domain = new URL(pageUrl).hostname;
+			return domain ? `https://favicone.com/${domain}?s=64` : undefined;
+		} catch {
+			return undefined;
+		}
+	}
+
+	let src = $derived(faviconSrc(url));
 </script>
 
-{#if display}
+{#if src && !failed}
 	<img
-		src={display.src}
+		{src}
 		alt=""
-		width={display.width}
-		height={display.height}
-		style="width: {display.width}px; height: {display.height}px; max-width: {display.max}px; max-height: {display.max}px;"
+		width="32"
+		height="32"
 		loading="lazy"
 		decoding="async"
-		class="shrink-0 object-contain"
-		onerror={() => (failedSrc = src)}
+		class="size-8 shrink-0 object-contain"
+		onerror={() => (failed = true)}
 	/>
 {/if}

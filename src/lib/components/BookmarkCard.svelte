@@ -38,7 +38,7 @@
 				rel="noreferrer"
 				class="flex min-w-0 items-center gap-3 transition-colors duration-300 hover:text-zinc-200"
 			>
-				<BookmarkFavicon src={bookmark.favicon} />
+				<BookmarkFavicon url={bookmark.url} />
 				<span class="min-w-0">
 					{bookmark.title}
 					<span aria-hidden="true">↗</span>

@@ -2,9 +2,7 @@ import matter from 'gray-matter';
 import { marked } from 'marked';
 import mergeWith from 'lodash/mergeWith';
 import baseResume from '../../../resume.json';
-import faviconMap from 'virtual:bookmark-favicons';
 import { bookmarkImage, normalizeTags, sortBookmarks } from './bookmarks';
-import { faviconForBookmark } from './favicon';
 import type { Book, Bookmark, ContentBase, ContentKind, Post, Project, Resume, ResumeInput, ResumeVariant } from './types';
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -62,8 +60,7 @@ export async function getBookmarks() {
 		bookmarks.map((bookmark) => ({
 			...bookmark,
 			tags: normalizeTags(bookmark.tags),
-			image: bookmarkImage(bookmark.image),
-			favicon: faviconForBookmark(bookmark.url, faviconMap)
+			image: bookmarkImage(bookmark.image)
 		}))
 	);
 }
