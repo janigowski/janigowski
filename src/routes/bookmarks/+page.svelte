@@ -9,7 +9,10 @@
 
 <svelte:head><title>Bookmarks :: janigowski.dev</title></svelte:head>
 <ContentLayout>
-	<Header title="Bookmarks" description="Articles, videos, podcasts, and other links." />
+	<Header
+		title="Bookmarks"
+		description="Materials I've learned from over the years and found useful. I keep them here so I can find them again easily, and share them in case they help you too."
+	/>
 	<div class="mb-24">
 		<BookmarkFilters
 			types={data.types}
