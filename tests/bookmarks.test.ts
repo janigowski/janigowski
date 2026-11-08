@@ -336,7 +336,7 @@ const tedPlaylist = [
 	['P6FORpg0KVo', '2023-10-26', '2023-10-26'],
 	['TaQ3jQSGeIE', '2023-10-26', '2023-01-09'],
 	['TK1mBqKvIyU', '2023-10-26', '2015-07-22'],
-	['H14bBuluwB8', '2023-10-26', '2013-05-09']
+	['H14bBuluwB8', '2026-11-08', '2013-05-09']
 ] as const;
 
 test('TED playlist bookmarks keep one TED tag, playlist dates, and no note', () => {
