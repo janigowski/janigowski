@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BookmarkCard from '$components/BookmarkCard.svelte';
 	import BookmarkFilters from '$components/BookmarkFilters.svelte';
+	import BookmarkRow from '$components/BookmarkRow.svelte';
 	import ContentLayout from '$components/ContentLayout.svelte';
 	import Header from '$components/Header.svelte';
 
@@ -9,7 +9,10 @@
 
 <svelte:head><title>Bookmarks :: janigowski.dev</title></svelte:head>
 <ContentLayout>
-	<Header title="Bookmarks" description="Articles, videos, podcasts, and other links." />
+	<Header
+		title="Bookmarks"
+		description="Materials I've learned from over the years and found useful. I keep them here so I can find them again easily, and share them in case they help you too."
+	/>
 	<div class="mb-24">
 		<BookmarkFilters
 			types={data.types}
@@ -22,9 +25,9 @@
 			selectedTag={data.selectedTag}
 		/>
 	</div>
-	<div class="grid min-h-screen auto-rows-min divide-y divide-brand-olive/10">
+	<div class="flex min-h-screen flex-col gap-12 divide-y divide-brand-olive/10 sm:gap-16">
 		{#each data.bookmarks as bookmark (bookmark.slug)}
-			<BookmarkCard {bookmark} />
+			<BookmarkRow {bookmark} />
 		{/each}
 		{#if data.bookmarks.length === 0}
 			<div class="py-32 text-center">
