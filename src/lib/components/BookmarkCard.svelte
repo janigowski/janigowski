@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BookmarkFavicon from '$components/BookmarkFavicon.svelte';
 	import BookmarkThumbnail from '$components/BookmarkThumbnail.svelte';
 	import { bookmarkDestinationLabel, bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
 	import type { Bookmark } from '$content/types';
@@ -35,10 +36,13 @@
 				href={sourceHref}
 				target="_blank"
 				rel="noreferrer"
-				class="transition-colors duration-300 hover:text-zinc-200"
+				class="flex min-w-0 items-center gap-3 transition-colors duration-300 hover:text-zinc-200"
 			>
-				{bookmark.title}
-				<span aria-hidden="true">↗</span>
+				<BookmarkFavicon url={bookmark.url} />
+				<span class="min-w-0">
+					{bookmark.title}
+					<span aria-hidden="true">↗</span>
+				</span>
 			</a>
 		</h2>
 		<a
