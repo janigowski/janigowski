@@ -48,6 +48,7 @@ export type Bookmark = ContentBase & {
 	tags: string[];
 	sourceDate?: string;
 	image?: string;
+	favicon?: string;
 };
 
 export type Profile = {

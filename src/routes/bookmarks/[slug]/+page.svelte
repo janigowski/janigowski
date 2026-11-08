@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AnimatedTitle from '$components/AnimatedTitle.svelte';
+	import BookmarkFavicon from '$components/BookmarkFavicon.svelte';
 	import Comments from '$components/Comments.svelte';
 	import Nav from '$components/Nav.svelte';
 	import { bookmarkSourceHref, formatCalendarDate, hasNote } from '$content/bookmarks';
@@ -58,8 +59,9 @@
 						href={sourceHref}
 						target="_blank"
 						rel="noreferrer"
-						class="mt-8 inline-block text-base font-semibold text-zinc-100"
+						class="mt-8 inline-flex items-center gap-2 text-base font-semibold text-zinc-100"
 					>
+						<BookmarkFavicon src={bookmark.favicon} />
 						{linkLabel} <span aria-hidden="true">→</span>
 					</a>
 				</div>
