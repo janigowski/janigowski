@@ -22,7 +22,7 @@
 			selectedTag={data.selectedTag}
 		/>
 	</div>
-	<div class="flex min-h-screen flex-col gap-12 sm:gap-16">
+	<div class="flex min-h-screen flex-col gap-12 divide-y divide-brand-olive/10 sm:gap-16">
 		{#each data.bookmarks as bookmark (bookmark.slug)}
 			<BookmarkRow {bookmark} />
 		{/each}
