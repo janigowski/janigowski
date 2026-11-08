@@ -243,3 +243,34 @@ test('seed bookmark matches the source article and has no note', () => {
 	assert.deepEqual(normalizeTags(parsed.data.tags), ['React', 'application architecture', 'front-end']);
 	assert.equal(hasNote(parsed.content), false);
 });
+
+const tedTalks = [
+	['the-mind-behind-linux.mdx', 'https://www.youtube.com/watch?v=o8NPllzkFhE'],
+	['why-work-doesnt-happen-at-work.mdx', 'https://www.youtube.com/watch?v=5XD2kNopsUs'],
+	['programming-as-performance.mdx', 'https://www.youtube.com/watch?v=TK1mBqKvIyU'],
+	['scrum-how-to-do-twice-as-much-in-half-the-time.mdx', 'https://www.youtube.com/watch?v=s4thQcgLCqk'],
+	['the-puzzle-of-motivation.mdx', 'https://www.youtube.com/watch?v=rrkrvAUbU9Y'],
+	['3-cybersecurity-myths.mdx', 'https://www.youtube.com/watch?v=wDGAkp1sHM4'],
+	['inside-the-mind-of-a-master-procrastinator.mdx', 'https://www.youtube.com/watch?v=arj7oStGLkU'],
+	['agile-programming-for-your-family.mdx', 'https://www.youtube.com/watch?v=J6oMG7u9HGE']
+] as const;
+
+test('TED video bookmarks keep a single TED tag and no note', () => {
+	assert.deepEqual(normalizeTags([' TED ', 'TED']), ['TED']);
+	assert.deepEqual(normalizeTags('TED'), ['TED']);
+	for (const [file, url] of tedTalks) {
+		const parsed = matter(readFileSync(new URL(`../content/bookmarks/${file}`, import.meta.url), 'utf8'));
+		const id = new URL(url).searchParams.get('v');
+		assert.equal(parsed.content.trim(), '');
+		assert.equal(hasNote(parsed.content), false);
+		assert.equal(parsed.data.url, url);
+		assert.equal(parsed.data.image, `https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+		assert.equal(bookmarkImage(parsed.data.image), parsed.data.image);
+		assert.equal(parsed.data.bookmarkType, 'video');
+		assert.equal(parsed.data.date, '2026-11-08');
+		assert.equal(parsed.data.published, true);
+		assert.equal(typeof parsed.data.description, 'string');
+		assert.equal(String(parsed.data.description).length > 0, true);
+		assert.deepEqual(normalizeTags(parsed.data.tags), ['TED']);
+	}
+});
