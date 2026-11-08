@@ -10,24 +10,29 @@
 	let domain = $derived(bookmarkDomain(bookmark.url));
 
 	const linkClass =
-		'cursor-pointer rounded-sm text-inherit underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+		'cursor-pointer rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+	const titleLinkClass = `${linkClass} text-inherit`;
+	const domainLinkClass = `${linkClass} break-all text-inherit underline-offset-4 hover:underline focus-visible:underline`;
 </script>
 
-<article class="article-enter">
+<article class="article-enter pb-4">
 	<div class="bookmark-row flex flex-col gap-5">
 		<h2 class="text-xl leading-tight font-medium text-white sm:hidden">
-			<a href={sourceHref} target="_blank" rel="noreferrer" class={linkClass}>
+			<a href={sourceHref} target="_blank" rel="noreferrer" class={titleLinkClass}>
 				{bookmark.title}
 				<span aria-hidden="true">↗</span>
 				<span class="sr-only"> (opens in a new tab)</span>
 			</a>
 		</h2>
 		<div class="flex items-start gap-4 sm:gap-6">
-			<BookmarkThumbnail src={bookmark.image} alt={bookmark.title} />
+			<a href={sourceHref} target="_blank" rel="noreferrer" class="{linkClass} shrink-0">
+				<BookmarkThumbnail src={bookmark.image} alt={bookmark.title} />
+				<span class="sr-only"> (opens in a new tab)</span>
+			</a>
 			<div class="flex min-w-0 flex-1 flex-col gap-3 sm:gap-4">
 				<div class="hidden items-start justify-between gap-8 sm:flex">
 					<h2 class="min-w-0 flex-1 text-xl leading-tight font-medium text-white">
-						<a href={sourceHref} target="_blank" rel="noreferrer" class={linkClass}>
+						<a href={sourceHref} target="_blank" rel="noreferrer" class={titleLinkClass}>
 							{bookmark.title}
 							<span aria-hidden="true">↗</span>
 							<span class="sr-only"> (opens in a new tab)</span>
@@ -44,9 +49,9 @@
 				{#if bookmark.author}
 					<p class="text-sm leading-6 text-zinc-200 sm:hidden">{bookmark.author}</p>
 				{/if}
-				<p class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm leading-6 text-zinc-200">
+				<p class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm leading-6 text-zinc-200 sm:-mt-2">
 					<BookmarkFavicon url={bookmark.url} size={16} />
-					<a href={sourceHref} target="_blank" rel="noreferrer" class="{linkClass} break-all">
+					<a href={sourceHref} target="_blank" rel="noreferrer" class={domainLinkClass}>
 						{domain}
 						<span class="sr-only"> (opens in a new tab)</span>
 					</a>

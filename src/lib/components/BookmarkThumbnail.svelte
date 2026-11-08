@@ -16,7 +16,7 @@
 			height="360"
 			loading="lazy"
 			decoding="async"
-			class="absolute inset-0 h-full w-full object-contain"
+			class="absolute inset-0 h-full w-full object-cover"
 			onerror={() => (failedSrc = src)}
 		/>
 	{:else}
