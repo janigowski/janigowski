@@ -5,6 +5,13 @@ date: "2026-11-09"
 published: true
 ---
 
+<script>
+	import FileGraph from '$components/FileGraph.svelte';
+	import BigNumbers from '$components/BigNumbers.svelte';
+	import PromptLines from '$components/PromptLines.svelte';
+	import Callout from '$components/Callout.svelte';
+</script>
+
 Your dead code check says every file is used. It may be wrong.
 
 I ran [Graphify](https://graphify.com) on a large React codebase. It builds a graph of files and imports, and you can ask an LLM questions about it.
@@ -19,11 +26,41 @@ The smallest one is two files: a component and its test. The test imports the co
 
 `useElementSize.ts` is 52 lines. The only file that imports it is `useElementSize.test.ts`, 252 lines.
 
+<FileGraph
+	compact
+	label="Smallest island"
+	nodes={[
+		{ id: 'size-test', file: 'useElementSize.test.ts', kind: 'test', column: 1, row: 1 },
+		{ id: 'size', file: 'useElementSize.ts', kind: 'code', column: 2, row: 1 }
+	]}
+	edges={[{ from: 'size-test', to: 'size' }]}
+/>
+
 ## One example
 
 6 files in 3 folders. A container, the button it renders, two test files and two test mocks. 467 lines, and only 168 of them are product code. Nothing in the app had used it for about a year.
 
-![Infographic of a dead island. InvoiceMenu.test.tsx and InvoiceMenu.export.test.tsx import InvoiceMenu.tsx, which renders MenuItem.tsx, along with the mocks csvFile.mock.ts and zipFile.mock.ts. The six files import 28 files from the app, and the app imports none back. 119 files and about 5,700 lines of dead code.](/images/dead-islands.png)
+<FileGraph
+	label="Dead island"
+	caption="6 files, 467 lines, unused for about a year."
+	importsFromApp={28}
+	importsBack={0}
+	nodes={[
+		{ id: 'export-test', folder: 'Invoices', file: 'InvoiceMenu.export.test.tsx', kind: 'test', column: 1, row: 1 },
+		{ id: 'test', folder: 'Invoices', file: 'InvoiceMenu.test.tsx', kind: 'test', column: 1, row: 2 },
+		{ id: 'menu', folder: 'Invoices', file: 'InvoiceMenu.tsx', kind: 'code', column: 2, row: 1 },
+		{ id: 'item', folder: 'shared', file: 'MenuItem.tsx', kind: 'code', column: 3, row: 1 },
+		{ id: 'csv', folder: 'mocks', file: 'csvFile.mock.ts', kind: 'mock', column: 2, row: 2 },
+		{ id: 'zip', folder: 'mocks', file: 'zipFile.mock.ts', kind: 'mock', column: 2, row: 3 }
+	]}
+	edges={[
+		{ from: 'export-test', to: 'menu' },
+		{ from: 'test', to: 'menu' },
+		{ from: 'test', to: 'csv' },
+		{ from: 'test', to: 'zip' },
+		{ from: 'menu', to: 'item' }
+	]}
+/>
 
 `InvoiceMenu.test.tsx` and `InvoiceMenu.export.test.tsx` import `InvoiceMenu.tsx`, which renders `MenuItem.tsx`. The tests also import two mocks: `csvFile.mock.ts` and `zipFile.mock.ts`.
 
@@ -37,19 +74,33 @@ Every refactor, codemod, search and AI agent run reads them, and often changes t
 
 ## Results
 
-119 files. About 5,700 lines of dead code, in one repository.
+<BigNumbers
+	stats={[
+		{ value: '119', label: 'files' },
+		{ value: '~5,700', label: 'lines' }
+	]}
+	note="Dead code, in one repository."
+/>
 
 ## Try it on your codebase
 
 After building the import graph, ask:
 
-- List dead files and dead islands.
-- What insights do you have about the dead islands?
-- Sort dead files by last change, oldest first. The oldest are most likely leftovers.
-- Find the pull request that made this island dead. Gather the clues and share hypotheses about why.
-- Which tests and mocks only cover code that nothing else imports?
+<PromptLines
+	prompts={[
+		'List dead files and dead islands.',
+		'What insights do you have about the dead islands?',
+		'Sort dead files by last change, oldest first. The oldest are most likely leftovers.',
+		'Find the pull request that made this island dead. Gather the clues and share hypotheses about why.',
+		'Which tests and mocks only cover code that nothing else imports?'
+	]}
+/>
+
+<Callout label="Example insight">
 
 The PR that removed a feature flag left the old code path behind. The fix is in the process: add "remove the dead code" to the feature flag cleanup checklist.
+
+</Callout>
 
 Found with a file-import graph (Graphify). The idea is general, not tied to one tool.
 
