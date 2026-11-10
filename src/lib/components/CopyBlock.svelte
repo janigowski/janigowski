@@ -32,7 +32,7 @@
 		<p class="text-xs font-medium uppercase tracking-[0.14em] text-zinc-500">{title}</p>
 		<button
 			type="button"
-			class="min-h-11 rounded-md px-3 text-sm font-medium text-brand-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-lime"
+			class="min-h-11 cursor-pointer rounded-md px-3 text-sm font-medium text-brand-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-lime"
 			aria-label={copied ? 'Copied' : `Copy ${title.toLowerCase()}`}
 			onclick={copy}
 		>
