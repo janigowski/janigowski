@@ -10,6 +10,18 @@ published: true
 	import BigNumbers from '$components/BigNumbers.svelte';
 	import PromptLines from '$components/PromptLines.svelte';
 	import Callout from '$components/Callout.svelte';
+	import CopyBlock from '$components/CopyBlock.svelte';
+
+	const deadIslandPrompt = `Install Graphify, build a file/import graph of this repo, then find dead islands.
+
+1. Run: uv tool install graphifyy
+2. From the repo root, run: graphify extract . --code-only
+3. A similar tool is fine if it builds a file/import graph you can query
+
+From that graph, report:
+- Files that only import each other, or that are reachable only from tests
+- Each file and its line count
+- Ignore feature-flag cases. The fix is in the process: add "remove the dead code" to the feature-flag cleanup checklist`;
 </script>
 
 Files that only import each other. Dead code checks might miss them. A file graph with an LLM helps find them.
@@ -111,6 +123,10 @@ Then ask the LLM:
 		'Which tests and mocks only cover code that nothing else imports?'
 	]}
 />
+
+If you want it in one go, paste this into Cursor, Claude Code, or another coding agent.
+
+<CopyBlock title="Prompt" text={deadIslandPrompt} />
 
 <Callout label="Example insight">
 
