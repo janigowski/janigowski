@@ -1,4 +1,9 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import css from '../../../../static/giscus-theme.css?raw';
 
-export async function GET() { const css = await readFile(join(process.cwd(), 'static/giscus-theme.css'), 'utf8'); return new Response(css, { headers: { 'Content-Type': 'text/css' } }); }
+export function GET() {
+	return new Response(css, {
+		headers: {
+			'Content-Type': 'text/css'
+		}
+	});
+}
