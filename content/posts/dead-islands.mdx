@@ -1,6 +1,6 @@
 ---
 title: "Dead islands"
-description: "Files that import each other but are never used by the real app."
+description: "Files that only import each other."
 date: "2026-11-09"
 published: true
 ---
@@ -12,17 +12,19 @@ published: true
 	import Callout from '$components/Callout.svelte';
 </script>
 
-Your dead code check says every file is used. It may be wrong.
+Files that only import each other. Dead code checks might miss them. A file graph with an LLM helps find them.
 
-I ran [Graphify](https://graphify.com) on a large React codebase. It builds a graph of files and imports, and you can ask an LLM questions about it.
+Tools like Knip treat tests and stories as entry points, so they can miss them.
+
+I used [Graphify](https://graphify.com). It builds a graph of files and imports, and you can ask an LLM questions about it. The idea is general, not tied to one tool.
 
 I asked for files that nothing imports. It found them. But it also found something I didn't ask for: dead islands.
 
 ## A dead island
 
-A dead island is a group of files that import each other, while nothing outside the group imports them. They are never used by the real app.
+A dead island is a group of files that only import each other. Nothing outside the group imports them.
 
-The smallest one is two files: a component and its test. The test imports the component, so the component looks used. Tools like Knip treat tests and stories as entry points, so they don't report it.
+The smallest one is two files: a component and its test. The test imports the component, so the component looks used.
 
 `useElementSize.ts` is 52 lines. The only file that imports it is `useElementSize.test.ts`, 252 lines.
 
@@ -42,16 +44,15 @@ The smallest one is two files: a component and its test. The test imports the co
 
 <FileGraph
 	label="Dead island"
-	caption="6 files, 467 lines, unused for about a year."
 	importsFromApp={28}
 	importsBack={0}
 	nodes={[
-		{ id: 'export-test', folder: 'Invoices', file: 'InvoiceMenu.export.test.tsx', kind: 'test', column: 1, row: 1 },
-		{ id: 'test', folder: 'Invoices', file: 'InvoiceMenu.test.tsx', kind: 'test', column: 1, row: 2 },
-		{ id: 'menu', folder: 'Invoices', file: 'InvoiceMenu.tsx', kind: 'code', column: 2, row: 1 },
-		{ id: 'item', folder: 'shared', file: 'MenuItem.tsx', kind: 'code', column: 3, row: 1 },
-		{ id: 'csv', folder: 'mocks', file: 'csvFile.mock.ts', kind: 'mock', column: 2, row: 2 },
-		{ id: 'zip', folder: 'mocks', file: 'zipFile.mock.ts', kind: 'mock', column: 2, row: 3 }
+		{ id: 'export-test', folder: 'invoices', file: 'InvoiceMenu.export.test.tsx', lines: 85, kind: 'test', column: 1, row: 1 },
+		{ id: 'test', folder: 'invoices', file: 'InvoiceMenu.test.tsx', lines: 188, kind: 'test', column: 1, row: 2 },
+		{ id: 'menu', folder: 'invoices', file: 'InvoiceMenu.tsx', lines: 103, kind: 'code', column: 2, row: 1 },
+		{ id: 'item', folder: 'shared', file: 'MenuItem.tsx', lines: 65, kind: 'code', column: 3, row: 1 },
+		{ id: 'csv', folder: 'mocks', file: 'csvFile.mock.ts', lines: 16, kind: 'mock', column: 2, row: 2 },
+		{ id: 'zip', folder: 'mocks', file: 'zipFile.mock.ts', lines: 10, kind: 'mock', column: 2, row: 3 }
 	]}
 	edges={[
 		{ from: 'export-test', to: 'menu' },
@@ -70,7 +71,7 @@ The island imports 28 files from the app. The app imports none back.
 
 Software hygiene. Dead files are not free.
 
-Every refactor, codemod, search and AI agent run reads them, and often changes them. You keep maintaining code nobody uses. Fewer files means less to read, for people and for agents.
+Every refactor, codemod, search and AI agent run reads them, and often changes them. You keep maintaining code nobody uses. Less code to maintain, for people and for agents.
 
 ## Results
 
@@ -79,7 +80,11 @@ Every refactor, codemod, search and AI agent run reads them, and often changes t
 		{ value: '119', label: 'files' },
 		{ value: '~5,700', label: 'lines' }
 	]}
-	note="Dead code, in one repository."
+	note="real world example of unused code found"
+	details={[
+		{ files: '48', lines: '~2,870', label: 'already removed in 16 PRs' },
+		{ files: '71', lines: '~2,800', label: 'still to go' }
+	]}
 />
 
 ## Try it on your codebase
