@@ -7,7 +7,6 @@
 		{ href: '/library', label: 'Library' },
 		{ href: '/bookmarks', label: 'Bookmarks' },
 		{ href: '/speaking', label: 'Speaking' },
-		{ href: '/lamp', label: 'Lamp' },
 		{ href: '/contact', label: 'Contact' }
 	];
 	let isMenuOpen = $state(false);
