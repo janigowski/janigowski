@@ -81,22 +81,33 @@ Every refactor, codemod, search and AI agent run reads them, and often changes t
 		{ value: '~5,700', label: 'lines' }
 	]}
 	note="real world example of unused code found"
-	details={[
-		{ files: '48', lines: '~2,870', label: 'already removed in 16 PRs' },
-		{ files: '71', lines: '~2,800', label: 'still to go' }
-	]}
 />
 
 ## Try it on your codebase
 
-After building the import graph, ask:
+### 1. Build the graph
+
+Build a graph of your codebase: files and their imports. I used [Graphify](https://graphify.com).
+
+```bash
+uv tool install graphifyy
+graphify extract . --code-only
+```
+
+The package is `graphifyy`. The command is `graphify`. Run it from the repo. `--code-only` reads the code on your machine and needs no API key.
+
+Similar tools should work the same, if they build a file/import graph you can query with an LLM.
+
+### 2. Ask
+
+Then ask the LLM:
 
 <PromptLines
 	prompts={[
-		'List dead files and dead islands.',
+		'List dead files and dead islands',
 		'What insights do you have about the dead islands?',
-		'Sort dead files by last change, oldest first. The oldest are most likely leftovers.',
-		'Find the pull request that made this island dead. Gather the clues and share hypotheses about why.',
+		'Sort dead files by last change, oldest first. The oldest are most likely leftovers',
+		'Find the pull request that made this island dead. Gather the clues and share hypotheses about why',
 		'Which tests and mocks only cover code that nothing else imports?'
 	]}
 />
