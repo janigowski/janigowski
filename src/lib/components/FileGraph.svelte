@@ -8,6 +8,7 @@
 		kind: NodeKind;
 		column: number;
 		row: number;
+		lines?: number;
 	};
 
 	type GraphEdge = {
@@ -137,6 +138,9 @@
 							{#if index > 0}<wbr />{/if}{part}
 						{/each}
 					</p>
+					{#if node.lines !== undefined}
+						<p class="count">{node.lines} lines</p>
+					{/if}
 					{#if importsOf[node.id]}
 						<ul class="imports">
 							{#each importsOf[node.id] as file (file)}
@@ -263,6 +267,13 @@
 		overflow-wrap: break-word;
 	}
 
+	.count {
+		margin: 0.3rem 0 0;
+		color: #a1a1aa;
+		font-size: 0.75rem;
+		line-height: 1.2;
+	}
+
 	.imports {
 		margin: 0.55rem 0 0;
 		padding: 0;
@@ -373,7 +384,7 @@
 		.board {
 			display: grid;
 			grid-template-columns: var(--template);
-			grid-template-rows: repeat(var(--rows), 7.25rem);
+			grid-template-rows: repeat(var(--rows), 8.25rem);
 			align-items: stretch;
 			column-gap: 0;
 			row-gap: 0;
