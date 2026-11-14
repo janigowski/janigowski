@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ReadingProgressChart from '$components/ReadingProgressChart.svelte';
 	import type { Book, BookStatus } from '$content/types';
 
 	let { book }: { book: Book } = $props();
@@ -25,7 +26,6 @@
 	let hasReview = $derived(
 		(book.status === 'read' || book.status === 'listened') && book.body.trim().length > 0
 	);
-	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
 	let isInProgress = $derived(book.status === 'reading' || book.status === 'listening');
 	let readPercent = $derived.by(() => {
 		const { pagesRead, totalPages } = book;
@@ -37,10 +37,11 @@
 </script>
 
 <article
-	class="article-enter group relative flex items-start gap-8 py-10 first:pt-0 last:pb-0 {hasReview
+	class="article-enter group relative flex flex-col gap-5 py-10 first:pt-0 last:pb-0 {hasReview
 		? '-mx-6 rounded-2xl bg-brand-purple-dark/5 px-6'
 		: ''}"
 >
+	<div class="flex items-start gap-8">
 	<div class="relative aspect-2/3 w-28 flex-none overflow-hidden rounded-lg">
 		<img
 			src={book.cover}
@@ -68,14 +69,6 @@
 					class="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-brand-lime transition-colors duration-300 hover:text-brand-lime/80"
 				>
 					Read review
-					<span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-				</a>
-			{:else if hasHistory}
-				<a
-					{href}
-					class="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-brand-lime transition-colors duration-300 hover:text-brand-lime/80"
-				>
-					Progress
 					<span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
 				</a>
 			{/if}
@@ -112,6 +105,15 @@
 			</div>
 		{/if}
 	</div>
+	</div>
+	{#if book.readingHistory?.length}
+		<ReadingProgressChart
+			inline
+			history={book.readingHistory}
+			totalPages={book.totalPages}
+			title={book.title}
+		/>
+	{/if}
 </article>
 
 <style>

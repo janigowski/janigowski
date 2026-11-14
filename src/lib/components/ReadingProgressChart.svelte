@@ -10,11 +10,13 @@
 	let {
 		history: historyProp,
 		totalPages,
-		title
+		title,
+		inline = false
 	}: {
 		history: ReadingHistoryEntry[];
 		totalPages?: number;
 		title?: string;
+		inline?: boolean;
 	} = $props();
 
 	const uid = $props.id();
@@ -28,7 +30,7 @@
 	let tabStop = $state(0);
 
 	let history = $derived(normalizeReadingHistory(historyProp) ?? []);
-	let layout = $derived(width > 0 ? layoutReadingChart(history, width, totalPages) : undefined);
+	let layout = $derived(width > 0 ? layoutReadingChart(history, width, totalPages, inline) : undefined);
 	let summary = $derived(readingHistorySummary(history));
 	let tabIndex = $derived(history.length ? Math.min(tabStop, history.length - 1) : 0);
 	let activePoint = $derived(
@@ -179,8 +181,8 @@
 <svelte:window onpointerdown={onWindowPointerDown} />
 
 {#if history.length}
-	<section class="reading" aria-labelledby="{uid}-label">
-		<h2 id="{uid}-label" class="kicker">
+	<section class={['reading', inline && 'inline', open && 'front']} aria-labelledby="{uid}-label">
+		<h2 id="{uid}-label" class={inline ? 'sr-only' : 'kicker'}>
 			Reading progress
 			{#if title}<span class="sr-only"> for {title}</span>{/if}
 		</h2>
@@ -197,7 +199,7 @@
 		>
 			{#if layout}
 				<svg
-					class={layout.width < 460 ? 'compact' : undefined}
+					class={inline || layout.width < 460 ? 'compact' : undefined}
 					width={layout.width}
 					height={layout.height}
 					viewBox="0 0 {layout.width} {layout.height}"
@@ -229,7 +231,7 @@
 						<text class="tick" x={layout.plot.left - 8} y={tick.y} text-anchor="end">{tick.label}</text>
 					{/each}
 					{#each layout.xTicks as tick (`${tick.label}-${tick.x}`)}
-						<text class="tick axis" x={tick.x} y={layout.plot.bottom + 18} text-anchor={tick.anchor}>
+						<text class="tick axis" x={tick.x} y={layout.plot.bottom + (inline ? 12 : 18)} text-anchor={tick.anchor}>
 							{tick.label}
 						</text>
 					{/each}
@@ -282,7 +284,7 @@
 				</div>
 				{#if shown && activePoint}
 					<div
-						class={['tooltip', open && 'open', activePoint.y < 76 && 'below', moving && 'instant']}
+						class={['tooltip', open && 'open', activePoint.y < (inline ? 48 : 76) && 'below', moving && 'instant']}
 						style:--x="{activePoint.x}px"
 						style:--y="{activePoint.y}px"
 						style:--shift="{shift}px"
@@ -298,7 +300,16 @@
 
 <style>
 	.reading {
+		position: relative;
 		width: 100%;
+	}
+
+	.reading.front {
+		z-index: 4;
+	}
+
+	.reading.inline .stage {
+		min-height: 136px;
 	}
 
 	.kicker {

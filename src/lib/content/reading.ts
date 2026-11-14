@@ -124,25 +124,26 @@ export function readingHistorySummary(entries: ReadingHistoryEntry[]): string {
 export function layoutReadingChart(
 	entries: ReadingHistoryEntry[],
 	width: number,
-	totalPages?: number
+	totalPages?: number,
+	inline = false
 ): ReadingChartLayout | undefined {
 	const history = normalizeReadingHistory(entries);
-	if (!history || width < 160) return undefined;
-	const compact = width < 460;
-	const height = compact ? 220 : 252;
+	if (!history || width < (inline ? 128 : 160)) return undefined;
+	const narrow = inline || width < 460;
+	const height = inline ? 136 : narrow ? 220 : 252;
 	const peak = Math.max(...history.map((entry) => entry.page));
 	const yMax = chartCeiling(peak, totalPages);
-	const yLabelWidth = Math.ceil(formatPage(yMax).length * (compact ? 6.6 : 7.2));
-	const gutter = Math.max(28, yLabelWidth + 14);
-	const top = 16;
-	const bottom = compact ? 32 : 36;
+	const yLabelWidth = Math.ceil(formatPage(yMax).length * (narrow ? 6.4 : 7.2));
+	const gutter = Math.max(inline ? 24 : 28, yLabelWidth + (inline ? 10 : 14));
+	const top = inline ? 8 : 16;
+	const bottom = inline ? 26 : narrow ? 32 : 36;
 	const plot = {
 		left: gutter,
-		right: width - 22,
+		right: width - (inline ? 8 : 22),
 		top,
 		bottom: height - bottom
 	};
-	if (plot.right - plot.left < 48) return undefined;
+	if (plot.right - plot.left < (inline ? 36 : 48)) return undefined;
 	const plotWidth = plot.right - plot.left;
 	const plotHeight = plot.bottom - plot.top;
 	const dated = history.map((entry) => ({ ...entry, time: parseCalendarDate(entry.date)!.time }));
@@ -160,9 +161,9 @@ export function layoutReadingChart(
 		dateLabel: fullDate(entry.date),
 		axisLabel: axisDate(entry.time, withYear)
 	}));
-	const labelWidth = withYear ? (compact ? 76 : 88) : compact ? 48 : 58;
+	const labelWidth = withYear ? (narrow ? 72 : 88) : inline ? 44 : narrow ? 48 : 58;
 	const xTicks = dateTicks(t0, t1, xAt, Math.max(2, Math.floor(plotWidth / labelWidth)), labelWidth * 0.82, withYear);
-	const yTicks = pageTicks(yMax, yAt, plotHeight < 150 ? 2 : 4);
+	const yTicks = pageTicks(yMax, yAt, inline || plotHeight < 150 ? 2 : 4);
 	return {
 		width,
 		height,
