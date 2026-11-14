@@ -208,8 +208,15 @@ export function layoutReadingChart(
 		dateLabel: fullDate(entry.date),
 		axisLabel: axisDate(entry.time, withYear)
 	}));
-	const labelWidth = withYear ? (narrow ? 72 : 88) : inline ? 44 : narrow ? 48 : 58;
-	const xTicks = dateTicks(t0, t1, xAt, Math.max(2, Math.floor(plotWidth / labelWidth)), labelWidth * 0.82, withYear);
+	const labelSlot = withYear ? (narrow ? 84 : 100) : narrow ? 52 : 64;
+	const xTicks = dateTicks(
+		t0,
+		t1,
+		xAt,
+		Math.max(2, Math.floor(plotWidth / labelSlot)),
+		withYear,
+		narrow
+	);
 	const yTicks = pageTicks(yMax, yAt, inline || plotHeight < 150 ? 2 : 4);
 	return {
 		width,
@@ -266,32 +273,53 @@ function pageTicks(yMax: number, yAt: (page: number) => number, maxSteps: number
 	}));
 }
 
+const AXIS_LABEL_GAP = 8;
+
+export function axisLabelWidth(label: string, compact: boolean) {
+	return Math.ceil(label.length * (compact ? 6.8 : 7.4));
+}
+
+function labelBounds(x: number, anchor: ReadingChartTick['anchor'], width: number): [number, number] {
+	if (anchor === 'start') return [x, x + width];
+	if (anchor === 'end') return [x - width, x];
+	return [x - width / 2, x + width / 2];
+}
+
+function labelsCollide(
+	a: { x: number; anchor: ReadingChartTick['anchor']; width: number },
+	b: { x: number; anchor: ReadingChartTick['anchor']; width: number }
+) {
+	const [a0, a1] = labelBounds(a.x, a.anchor, a.width);
+	const [b0, b1] = labelBounds(b.x, b.anchor, b.width);
+	return a0 < b1 + AXIS_LABEL_GAP && b0 < a1 + AXIS_LABEL_GAP;
+}
+
 function dateTicks(
 	t0: number,
 	t1: number,
 	xAt: (time: number) => number,
 	maxTicks: number,
-	minPx: number,
-	withYear: boolean
+	withYear: boolean,
+	compact: boolean
 ): ReadingChartTick[] {
-	const times = t1 <= t0 ? [t0] : [t0, ...interiorTicks(t0, t1, maxTicks), t1];
-	const kept: number[] = [];
-	for (const time of times) {
-		if (!kept.length) {
-			kept.push(time);
-			continue;
-		}
-		if (time !== t1 && xAt(time) - xAt(kept[kept.length - 1]) < minPx) continue;
-		if (time !== t1 && xAt(t1) - xAt(time) < minPx) continue;
-		if (time === t1 && kept.length > 1 && xAt(time) - xAt(kept[kept.length - 1]) < minPx) kept.pop();
-		kept.push(time);
+	const place = (time: number, anchor: ReadingChartTick['anchor']) => {
+		const label = axisDate(time, withYear);
+		return { time, x: xAt(time), label, anchor, width: axisLabelWidth(label, compact) };
+	};
+	if (t1 <= t0) {
+		const only = place(t0, 'middle');
+		return [{ x: only.x, y: 0, label: only.label, anchor: only.anchor }];
 	}
-	return kept.map((time, index) => ({
-		x: xAt(time),
-		y: 0,
-		label: axisDate(time, withYear),
-		anchor: kept.length === 1 ? 'middle' : index === 0 ? 'start' : index === kept.length - 1 ? 'end' : 'middle'
-	}));
+	const first = place(t0, 'start');
+	const last = place(t1, 'end');
+	const kept = [first];
+	for (const time of interiorTicks(t0, t1, Math.max(maxTicks * 3, maxTicks + 4))) {
+		const tick = place(time, 'middle');
+		if (kept.some((item) => labelsCollide(item, tick)) || labelsCollide(tick, last)) continue;
+		kept.push(tick);
+	}
+	kept.push(last);
+	return kept.map(({ x, label, anchor }) => ({ x, y: 0, label, anchor }));
 }
 
 function interiorTicks(t0: number, t1: number, maxTicks: number) {
