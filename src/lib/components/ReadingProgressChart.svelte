@@ -36,6 +36,11 @@
 	let activePoint = $derived(
 		layout && pointIndex !== null ? layout.points[pointIndex] : undefined
 	);
+	let activePercent = $derived(
+		activePoint && typeof totalPages === 'number' && totalPages > 0
+			? Math.round((activePoint.page / totalPages) * 100)
+			: undefined
+	);
 	let shift = $derived.by(() => {
 		if (!activePoint || !layout) return 0;
 		const half = 110;
@@ -274,7 +279,7 @@
 							data-index={index}
 							style:left="{point.x}px"
 							style:top="{point.y}px"
-							aria-label="{point.dateLabel}, page {formatPage(point.page)}"
+							aria-label="{point.dateLabel}, page {formatPage(point.page)}{typeof totalPages === 'number' && totalPages > 0 ? `, ${Math.round((point.page / totalPages) * 100)} percent` : ''}"
 							tabindex={index === tabIndex ? 0 : -1}
 							onfocus={() => onFocus(index)}
 							onblur={onBlur}
@@ -289,7 +294,10 @@
 						style:--y="{activePoint.y}px"
 						style:--shift="{shift}px"
 					>
-						<p class="num"><span class="unit">p.</span> {formatPage(activePoint.page)}</p>
+						<p class="num">
+							<span class="unit">p.</span> {formatPage(activePoint.page)}
+							{#if activePercent !== undefined}<span class="pct">{activePercent}%</span>{/if}
+						</p>
 						<p class="when">{activePoint.dateLabel}</p>
 					</div>
 				{/if}
@@ -479,6 +487,13 @@
 		font-weight: 500;
 		letter-spacing: 0.04em;
 		opacity: 0.8;
+	}
+
+	.pct {
+		margin-left: 0.45rem;
+		color: #e4e4e7;
+		font-size: 0.75rem;
+		font-weight: 500;
 	}
 
 	.when {

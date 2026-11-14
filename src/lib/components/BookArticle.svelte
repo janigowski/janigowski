@@ -34,15 +34,16 @@
 		return Math.round((pagesRead / totalPages) * 100);
 	});
 	let barWidth = $derived(readPercent === undefined ? 0 : Math.min(100, Math.max(0, readPercent)));
+	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
 </script>
 
 <article
-	class="article-enter group relative flex flex-col gap-5 py-10 first:pt-0 last:pb-0 {hasReview
-		? '-mx-6 rounded-2xl bg-brand-purple-dark/5 px-6'
-		: ''}"
+	class="article-enter group relative grid grid-cols-1 items-start gap-y-5 py-10 first:pt-0 last:pb-0 md:items-center {hasHistory
+		? 'md:grid-cols-2 md:gap-x-8'
+		: ''} {hasReview ? '-mx-6 rounded-2xl bg-brand-purple-dark/5 px-6' : ''}"
 >
-	<div class="flex items-start gap-8">
-	<div class="relative aspect-2/3 w-28 flex-none overflow-hidden rounded-lg">
+	<div class="flex min-w-0 items-start gap-6 sm:gap-8">
+	<div class="relative aspect-2/3 w-24 flex-none overflow-hidden rounded-lg sm:w-28">
 		<img
 			src={book.cover}
 			alt={book.title}
@@ -88,7 +89,7 @@
 				</a>
 			{/if}
 		</div>
-		{#if readPercent !== undefined}
+		{#if readPercent !== undefined && !hasHistory}
 			<div class="mt-4 flex items-center gap-3">
 				<div
 					class="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-brand-olive/25"
@@ -106,13 +107,15 @@
 		{/if}
 	</div>
 	</div>
-	{#if book.readingHistory?.length}
-		<ReadingProgressChart
-			inline
-			history={book.readingHistory}
-			totalPages={book.totalPages}
-			title={book.title}
-		/>
+	{#if hasHistory}
+		<div class="min-w-0">
+			<ReadingProgressChart
+				inline
+				history={book.readingHistory ?? []}
+				totalPages={book.totalPages}
+				title={book.title}
+			/>
+		</div>
 	{/if}
 </article>
 
