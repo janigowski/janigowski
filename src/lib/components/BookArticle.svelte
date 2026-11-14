@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ListeningDays from '$components/ListeningDays.svelte';
 	import ReadingProgressChart from '$components/ReadingProgressChart.svelte';
-	import { listeningDayCount } from '$content/reading';
+	import { listeningDayCount, readingDayLabel, warsawToday } from '$content/reading';
 	import type { Book, BookStatus } from '$content/types';
 
 	let { book }: { book: Book } = $props();
@@ -39,6 +39,9 @@
 	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
 	let listeningDays = $derived(listeningDayCount(book.listening));
 	let showChart = $derived(hasHistory && listeningDays === undefined);
+	let readingLabel = $derived(
+		showChart ? readingDayLabel(book.readingHistory, book.status, warsawToday()) : undefined
+	);
 </script>
 
 <article
@@ -117,7 +120,12 @@
 			<ListeningDays days={listeningDays} />
 		</div>
 	{:else if showChart}
-		<div class="min-w-0">
+		<div class="flex min-w-0 flex-col gap-2">
+			{#if readingLabel}
+				<div class="md:text-right">
+					<ListeningDays label={readingLabel} />
+				</div>
+			{/if}
 			<ReadingProgressChart
 				inline
 				history={book.readingHistory ?? []}

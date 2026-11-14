@@ -115,13 +115,42 @@ export function normalizeListening(value: unknown): ListeningSpan | undefined {
 	return { start: start.iso, end: end.iso };
 }
 
+export function inclusiveDays(startIso: string, endIso: string): number | undefined {
+	const start = parseCalendarDate(startIso);
+	const end = parseCalendarDate(endIso);
+	if (!start || !end || end.time < start.time) return undefined;
+	return Math.round((end.time - start.time) / DAY) + 1;
+}
+
+export function warsawToday(now = new Date()): string {
+	const formatted = new Intl.DateTimeFormat('en-CA', {
+		timeZone: 'Europe/Warsaw',
+		year: 'numeric',
+		month: '2-digit',
+		day: '2-digit'
+	}).format(now);
+	return parseCalendarDate(formatted)?.iso ?? formatted.slice(0, 10);
+}
+
 export function listeningDayCount(listening?: ListeningSpan): number | undefined {
 	const span = normalizeListening(listening);
 	if (!span) return undefined;
-	const start = parseCalendarDate(span.start);
-	const end = parseCalendarDate(span.end);
-	if (!start || !end) return undefined;
-	return Math.round((end.time - start.time) / DAY) + 1;
+	return inclusiveDays(span.start, span.end);
+}
+
+export function readingDayLabel(
+	entries: ReadingHistoryEntry[] | undefined,
+	status: string,
+	today = warsawToday()
+): string | undefined {
+	if (status !== 'read' && status !== 'reading') return undefined;
+	const history = normalizeReadingHistory(entries);
+	if (!history) return undefined;
+	const end = status === 'read' ? history[history.length - 1].date : today;
+	const days = inclusiveDays(history[0].date, end);
+	if (days === undefined || days < 2) return undefined;
+	if (status === 'reading') return `Reading for ${days} days`;
+	return `Read in ${days} days`;
 }
 
 export function formatPage(value: number): string {

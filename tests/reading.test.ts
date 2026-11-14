@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict';
 import matter from 'gray-matter';
 import {
+	inclusiveDays,
 	layoutReadingChart,
 	listeningDayCount,
 	normalizeListening,
 	normalizeReadingHistory,
-	readingHistorySummary
+	readingDayLabel,
+	readingHistorySummary,
+	warsawToday
 } from '../src/lib/content/reading.ts';
 
 function test(name: string, fn: () => void) {
@@ -139,6 +142,25 @@ test('counts listening days inclusively from calendar dates', () => {
 	assert.equal(listeningDayCount({ start: '2026-10-06', end: '2026-10-17' }), 12);
 	assert.equal(listeningDayCount({ start: '2026-06-23', end: '2026-07-21' }), 29);
 	assert.equal(listeningDayCount(normalizeListening({ start: '2026-10-18', end: '2026-10-17' })), undefined);
+	assert.equal(inclusiveDays('2026-10-01', '2026-11-08'), 39);
+});
+
+test('labels a finished reading span and an open one through today', () => {
+	const span = [
+		{ date: '2026-10-01', page: 190 },
+		{ date: '2026-11-08', page: 736 }
+	];
+	assert.equal(readingDayLabel(span, 'read', '2026-11-14'), 'Read in 39 days');
+	assert.equal(
+		readingDayLabel([{ date: '2026-11-11', page: 34 }, { date: '2026-11-13', page: 112 }], 'reading', '2026-11-14'),
+		'Reading for 4 days'
+	);
+	assert.equal(readingDayLabel([{ date: '2026-11-01', page: 10 }], 'reading', '2026-11-14'), 'Reading for 14 days');
+	assert.equal(readingDayLabel([{ date: '2018-12-01', page: 400 }], 'read', '2026-11-14'), undefined);
+	assert.equal(readingDayLabel([{ date: '2026-11-14', page: 12 }], 'reading', '2026-11-14'), undefined);
+	assert.equal(readingDayLabel(span, 'paused', '2026-11-14'), undefined);
+	assert.equal(warsawToday(new Date('2026-11-14T23:30:00Z')), '2026-11-15');
+	assert.equal(warsawToday(new Date('2026-11-14T22:30:00Z')), '2026-11-14');
 });
 
 test('describes the series without mentioning empty days as data', () => {
