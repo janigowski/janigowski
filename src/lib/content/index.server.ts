@@ -3,6 +3,7 @@ import { marked } from 'marked';
 import mergeWith from 'lodash/mergeWith';
 import baseResume from '../../../resume.json';
 import { bookmarkImage, normalizeTags, sortBookmarks } from './bookmarks';
+import { normalizeReadingHistory } from './reading';
 import type { Book, Bookmark, ContentBase, ContentKind, Post, Project, Resume, ResumeInput, ResumeVariant } from './types';
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -53,7 +54,14 @@ async function readCollection<T extends ContentBase>(
 
 export async function getPosts() { return sortByDate(await readCollection<Post>(postMetadata, postRaw, 'post')); }
 export async function getProjects() { return sortByDate(await readCollection<Project>(projectMetadata, projectRaw, 'project')); }
-export async function getBooks() { return sortBooks(await readCollection<Book>(bookMetadata, bookRaw, 'book')); }
+export async function getBooks() {
+	return sortBooks(
+		(await readCollection<Book>(bookMetadata, bookRaw, 'book')).map((book) => ({
+			...book,
+			readingHistory: normalizeReadingHistory(book.readingHistory)
+		}))
+	);
+}
 export async function getBookmarks() {
 	const bookmarks = await readCollection<Bookmark>(bookmarkMetadata, bookmarkRaw, 'bookmark');
 	return sortBookmarks(

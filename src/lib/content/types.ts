@@ -27,6 +27,11 @@ export type Project = ContentBase & {
 export type BookStatus = 'read' | 'reading' | 'waiting' | 'paused' | 'listened' | 'listening';
 export type BookType = 'paper' | 'audiobook' | 'ebook';
 
+export type ReadingHistoryEntry = {
+	date: string;
+	page: number;
+};
+
 export type Book = ContentBase & {
 	kind: 'book';
 	author: string;
@@ -36,6 +41,7 @@ export type Book = ContentBase & {
 	cover: string;
 	pagesRead?: number;
 	totalPages?: number;
+	readingHistory?: ReadingHistoryEntry[];
 };
 
 export type BookmarkType = 'article' | 'video' | 'podcast' | 'link';

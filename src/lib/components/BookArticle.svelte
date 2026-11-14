@@ -25,6 +25,7 @@
 	let hasReview = $derived(
 		(book.status === 'read' || book.status === 'listened') && book.body.trim().length > 0
 	);
+	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
 	let isInProgress = $derived(book.status === 'reading' || book.status === 'listening');
 	let readPercent = $derived.by(() => {
 		const { pagesRead, totalPages } = book;
@@ -67,6 +68,14 @@
 					class="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-brand-lime transition-colors duration-300 hover:text-brand-lime/80"
 				>
 					Read review
+					<span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+				</a>
+			{:else if hasHistory}
+				<a
+					{href}
+					class="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-brand-lime transition-colors duration-300 hover:text-brand-lime/80"
+				>
+					Progress
 					<span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
 				</a>
 			{/if}
