@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import matter from 'gray-matter';
-import { layoutReadingChart, normalizeReadingHistory, readingHistorySummary } from '../src/lib/content/reading.ts';
+import { cumulativeBooks, layoutCumulativeChart, layoutReadingChart, normalizeReadingHistory, readingHistorySummary } from '../src/lib/content/reading.ts';
 
 function test(name: string, fn: () => void) {
 	try {
@@ -126,6 +126,90 @@ test('places axis dates on the real timeline', () => {
 	const tick = ticks.find((item) => item.label === 'Jan 7');
 	assert.ok(tick);
 	assert.ok(Math.abs(tick.x - expected) < 0.2);
+});
+
+test('counts finished books from 2016 and keeps earlier ones in the opening total', () => {
+	const series = cumulativeBooks(
+		[
+			{ tag: 'Technology', status: 'read', date: '2014-06-01' },
+			{ tag: 'Technology', status: 'read', date: '2018-03-01' },
+			{ tag: 'History', status: 'listened', date: '2020-01-01' }
+		],
+		new Date('2020-06-01T12:00:00Z')
+	);
+	assert.ok(series);
+	assert.equal(series.from, '2016-01-01');
+	assert.equal(series.to, '2020-06-01');
+	assert.deepEqual(series.categories, ['Technology', 'History']);
+	assert.equal(series.values[0][0], 1);
+	assert.equal(series.values[0][series.values[0].length - 1], 2);
+	assert.equal(series.values[1][series.values[1].length - 1], 1);
+	assert.equal(series.total, 3);
+	const layout = layoutCumulativeChart(series, 800);
+	assert.ok(layout);
+	assert.equal(layout.xTicks[0].label, '2016');
+	assert.equal(layout.xTicks[layout.xTicks.length - 1].label, '2020');
+});
+
+test('counts an open book as the fraction of pages logged', () => {
+	const series = cumulativeBooks(
+		[
+			{
+				tag: 'Health',
+				status: 'reading',
+				totalPages: 100,
+				readingHistory: [
+					{ date: '2024-01-01', page: 25 },
+					{ date: '2024-02-01', page: 40 }
+				]
+			}
+		],
+		new Date('2024-03-01T00:00:00Z')
+	);
+	assert.equal(series?.values[0][series.values[0].length - 1], 0.4);
+	const before = series?.times.indexOf('2024-01-01') ?? -1;
+	assert.equal(series?.values[0][before], 0.25);
+});
+
+test('finishes a logged book at its completion date when the page log stops short', () => {
+	const series = cumulativeBooks(
+		[
+			{
+				tag: 'Business',
+				status: 'read',
+				date: '2026-05-15',
+				totalPages: 336,
+				readingHistory: [{ date: '2026-04-02', page: 193 }]
+			}
+		],
+		new Date('2026-06-01T00:00:00Z')
+	);
+	const mid = series?.times.indexOf('2026-04-02') ?? -1;
+	const done = series?.times.indexOf('2026-05-15') ?? -1;
+	assert.ok(Math.abs((series?.values[0][mid] ?? 0) - 193 / 336) < 0.001);
+	assert.equal(series?.values[0][done], 1);
+});
+
+test('ramps a listening span and ignores a book that has no span', () => {
+	const series = cumulativeBooks(
+		[
+			{
+				tag: 'History',
+				status: 'listened',
+				date: '2026-06-30',
+				listening: { start: '2026-06-23', end: '2026-07-21' }
+			},
+			{ tag: 'Science', status: 'listening', date: '2026-11-04' },
+			{ tag: 'Travel', status: 'listened', date: '2026-10-17', listening: { start: 'nope' } }
+		],
+		new Date('2026-11-14T00:00:00Z')
+	);
+	assert.deepEqual(series?.categories, ['History', 'Travel']);
+	const start = series?.times.indexOf('2026-06-23') ?? -1;
+	const end = series?.times.indexOf('2026-07-21') ?? -1;
+	assert.equal(series?.values[0][start], 0);
+	assert.equal(series?.values[0][end], 1);
+	assert.equal(series?.values[1][series.values[1].length - 1], 1);
 });
 
 test('describes the series without mentioning empty days as data', () => {
