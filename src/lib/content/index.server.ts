@@ -3,7 +3,7 @@ import { marked } from 'marked';
 import mergeWith from 'lodash/mergeWith';
 import baseResume from '../../../resume.json';
 import { bookmarkImage, normalizeTags, sortBookmarks } from './bookmarks';
-import { normalizeReadingHistory } from './reading';
+import { normalizeListening, normalizeReadingHistory } from './reading';
 import type { Book, Bookmark, ContentBase, ContentKind, Post, Project, Resume, ResumeInput, ResumeVariant } from './types';
 
 marked.setOptions({ gfm: true, breaks: false });
@@ -58,7 +58,8 @@ export async function getBooks() {
 	return sortBooks(
 		(await readCollection<Book>(bookMetadata, bookRaw, 'book')).map((book) => ({
 			...book,
-			readingHistory: normalizeReadingHistory(book.readingHistory)
+			readingHistory: normalizeReadingHistory(book.readingHistory),
+			listening: normalizeListening(book.listening)
 		}))
 	);
 }

@@ -1,8 +1,10 @@
 <script lang="ts">
 	import AnimatedTitle from '$components/AnimatedTitle.svelte';
 	import Comments from '$components/Comments.svelte';
+	import ListeningDays from '$components/ListeningDays.svelte';
 	import Nav from '$components/Nav.svelte';
 	import ReadingProgressChart from '$components/ReadingProgressChart.svelte';
+	import { listeningDayCount, readingDayLabel, warsawToday } from '$content/reading';
 	import type { BookStatus } from '$content/types';
 
 	let { data } = $props();
@@ -16,6 +18,12 @@
 		paused: 'bg-brand-olive/10 text-brand-olive'
 	};
 	let isInProgress = $derived(book.status === 'reading' || book.status === 'listening');
+	let listeningDays = $derived(listeningDayCount(book.listening));
+	let readingLabel = $derived(
+		book.readingHistory?.length
+			? readingDayLabel(book.readingHistory, book.status, warsawToday())
+			: undefined
+	);
 	let date = $derived(
 		book.date
 			? new Intl.DateTimeFormat('en-US', {
@@ -63,8 +71,17 @@
 		</div>
 	</header>
 	{#if book.html}
-		{#if book.readingHistory?.length}
+		{#if listeningDays !== undefined}
 			<div class="mx-auto w-full max-w-2xl px-6 pt-4">
+				<ListeningDays days={listeningDays} />
+			</div>
+		{:else if book.readingHistory?.length}
+			<div class="mx-auto w-full max-w-2xl px-6 pt-4">
+				{#if readingLabel}
+					<div class="mb-2">
+						<ListeningDays label={readingLabel} />
+					</div>
+				{/if}
 				<ReadingProgressChart
 					history={book.readingHistory}
 					totalPages={book.totalPages}

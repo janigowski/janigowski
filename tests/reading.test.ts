@@ -1,6 +1,18 @@
 import assert from 'node:assert/strict';
 import matter from 'gray-matter';
-import { cumulativeBooks, layoutCumulativeChart, layoutReadingChart, normalizeReadingHistory, readingHistorySummary } from '../src/lib/content/reading.ts';
+import {
+	axisLabelWidth,
+	cumulativeBooks,
+	inclusiveDays,
+	layoutCumulativeChart,
+	layoutReadingChart,
+	listeningDayCount,
+	normalizeListening,
+	normalizeReadingHistory,
+	readingDayLabel,
+	readingHistorySummary,
+	warsawToday
+} from '../src/lib/content/reading.ts';
 
 function test(name: string, fn: () => void) {
 	try {
@@ -119,6 +131,8 @@ test('places axis dates on the real timeline', () => {
 	for (let index = 1; index < ticks.length; index += 1) {
 		assert.ok(ticks[index].x > ticks[index - 1].x);
 	}
+	assert.equal(ticks[0].anchor, 'start');
+	assert.equal(ticks[ticks.length - 1].anchor, 'end');
 	const jan7 = Date.UTC(2026, 0, 7);
 	const start = Date.UTC(2026, 0, 1);
 	const end = Date.UTC(2026, 0, 12);
@@ -126,6 +140,82 @@ test('places axis dates on the real timeline', () => {
 	const tick = ticks.find((item) => item.label === 'Jan 7');
 	assert.ok(tick);
 	assert.ok(Math.abs(tick.x - expected) < 0.2);
+});
+
+function assertAxisClear(
+	series: { date: string; page: number }[],
+	width: number,
+	inline: boolean,
+	totalPages?: number
+) {
+	const layout = layoutReadingChart(series, width, totalPages, inline);
+	assert.ok(layout);
+	const ticks = layout.xTicks;
+	assert.equal(ticks[0].anchor, ticks.length === 1 ? 'middle' : 'start');
+	assert.equal(ticks[ticks.length - 1].anchor, ticks.length === 1 ? 'middle' : 'end');
+	assert.equal(ticks[ticks.length - 1].x, layout.plot.right);
+	const compact = inline || width < 460;
+	const bounds = ticks.map((tick) => {
+		const size = axisLabelWidth(tick.label, compact);
+		if (tick.anchor === 'start') return [tick.x, tick.x + size];
+		if (tick.anchor === 'end') return [tick.x - size, tick.x];
+		return [tick.x - size / 2, tick.x + size / 2];
+	});
+	for (let index = 1; index < bounds.length; index += 1) {
+		assert.ok(bounds[index][0] >= bounds[index - 1][1] + 8, ticks.map((tick) => tick.label).join(' '));
+	}
+	assert.ok(bounds[bounds.length - 1][1] <= layout.width + 0.5);
+}
+
+test('keeps the first and last dates and drops labels that would overlap', () => {
+	const larman = [
+		{ date: '2026-10-01', page: 190 },
+		{ date: '2026-11-08', page: 736 }
+	];
+	const wojsiat = [
+		{ date: '2026-11-11', page: 34 },
+		{ date: '2026-11-13', page: 112 }
+	];
+	for (const [width, inline] of [
+		[320, true],
+		[390, true],
+		[768, false],
+		[1100, false]
+	] as const) {
+		assertAxisClear(larman, width, inline, 736);
+		assertAxisClear(wojsiat, width, inline, 512);
+	}
+	const narrow = layoutReadingChart(larman, 320, 736, true);
+	assert.ok(narrow);
+	assert.equal(narrow.xTicks[0].label, 'Oct 1');
+	assert.equal(narrow.xTicks[narrow.xTicks.length - 1].label, 'Nov 8');
+	assert.ok(narrow.xTicks.length < 8);
+});
+
+test('counts listening days inclusively from calendar dates', () => {
+	assert.equal(listeningDayCount({ start: '2026-10-18', end: '2026-10-30' }), 13);
+	assert.equal(listeningDayCount({ start: '2026-10-06', end: '2026-10-17' }), 12);
+	assert.equal(listeningDayCount({ start: '2026-06-23', end: '2026-07-21' }), 29);
+	assert.equal(listeningDayCount(normalizeListening({ start: '2026-10-18', end: '2026-10-17' })), undefined);
+	assert.equal(inclusiveDays('2026-10-01', '2026-11-08'), 39);
+});
+
+test('labels a finished reading span and an open one through today', () => {
+	const span = [
+		{ date: '2026-10-01', page: 190 },
+		{ date: '2026-11-08', page: 736 }
+	];
+	assert.equal(readingDayLabel(span, 'read', '2026-11-14'), 'Read in 39 days');
+	assert.equal(
+		readingDayLabel([{ date: '2026-11-11', page: 34 }, { date: '2026-11-13', page: 112 }], 'reading', '2026-11-14'),
+		'Reading for 4 days'
+	);
+	assert.equal(readingDayLabel([{ date: '2026-11-01', page: 10 }], 'reading', '2026-11-14'), 'Reading for 14 days');
+	assert.equal(readingDayLabel([{ date: '2018-12-01', page: 400 }], 'read', '2026-11-14'), undefined);
+	assert.equal(readingDayLabel([{ date: '2026-11-14', page: 12 }], 'reading', '2026-11-14'), undefined);
+	assert.equal(readingDayLabel(span, 'paused', '2026-11-14'), undefined);
+	assert.equal(warsawToday(new Date('2026-11-14T23:30:00Z')), '2026-11-15');
+	assert.equal(warsawToday(new Date('2026-11-14T22:30:00Z')), '2026-11-14');
 });
 
 test('counts finished books from 2016 and keeps earlier ones in the opening total', () => {
