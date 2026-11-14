@@ -21,13 +21,10 @@
 		'#a8a29e'
 	];
 
-	const uid = $props.id();
-
 	let width = $state(0);
 	let stage = $state<HTMLElement | undefined>();
 	let tipWidth = $state(180);
 	let hot = $state<number | null>(null);
-	let pinned = $state<number | null>(null);
 	let sampleIndex = $state<number | null>(null);
 	let moving = $state(false);
 	let intro = $state(true);
@@ -48,12 +45,6 @@
 		if (sample.x + half > layout.width - 4) return layout.width - 4 - (sample.x + half);
 		return 0;
 	});
-	let summary = $derived(
-		series.categories
-			.map((name, index) => `${name} ${formatCount(series.values[index]?.at(-1) ?? 0)}`)
-			.join(', ')
-	);
-
 	function color(index: number) {
 		return colors[index % colors.length];
 	}
@@ -113,15 +104,15 @@
 
 	function restore() {
 		moving = false;
-		hot = pinned;
-		sampleIndex = pinned === null || !layout ? null : layout.samples.length - 1;
+		hot = null;
+		sampleIndex = null;
 	}
 
 	function onPointerMove(event: PointerEvent) {
 		if (event.pointerType === 'touch') return;
 		const hit = nearest(event);
 		if (!hit) return;
-		show(hit.index, hit.category ?? pinned);
+		show(hit.index, hit.category);
 	}
 
 	function onPointerLeave(event: PointerEvent) {
@@ -139,37 +130,9 @@
 		}
 		show(hit.index, hit.category);
 	}
-
-	function onChipEnter(index: number) {
-		moving = sampleIndex !== null;
-		hot = index;
-		sampleIndex = sampleIndex ?? (layout ? layout.samples.length - 1 : 0);
-	}
-
-	function onChipLeave() {
-		if (pinned === hot) return;
-		restore();
-	}
-
-	function onChipClick(index: number) {
-		pinned = pinned === index ? null : index;
-		hot = pinned;
-		sampleIndex = pinned === null ? null : (sampleIndex ?? (layout ? layout.samples.length - 1 : 0));
-		moving = false;
-	}
 </script>
 
-<section class="cumulative" aria-labelledby="{uid}-title">
-	<p class="kicker">Cumulative</p>
-	<h2 id="{uid}-title">Reading and listening</h2>
-	<p class="lede">
-		A finished book counts as 1, whether it was read or heard. A book still open counts as the share of its pages
-		already logged, or the share of its listening span that has passed.
-	</p>
-	<p class="figure"><b>{formatCount(series.total)}</b><span>Books</span></p>
-	<p class="chart-label">Books</p>
-	<p class="chart-note">Reads and listens on one scale, stacked by category. The axis starts in 2016.</p>
-	<p class="sr-only">{formatCount(series.total)} books from 2016 through {series.to}. {summary}.</p>
+<section class="cumulative">
 	<div
 		class={['stage', hot !== null && 'is-hot']}
 		role="group"
@@ -233,90 +196,11 @@
 			{/if}
 		{/if}
 	</div>
-	<div class="legend">
-		{#each series.categories as name, index (name)}
-			<button
-				type="button"
-				class={['chip', hot === index && 'on']}
-				aria-pressed={hot === index}
-				style:--c={color(index)}
-				onpointerenter={(event) => {
-					if (event.pointerType !== 'touch') onChipEnter(index);
-				}}
-				onpointerleave={(event) => {
-					if (event.pointerType !== 'touch') onChipLeave();
-				}}
-				onclick={() => onChipClick(index)}
-			>
-				<i></i>{name}
-			</button>
-		{/each}
-	</div>
 </section>
 
 <style>
 	.cumulative {
 		margin: 0 0 4rem;
-	}
-
-	.kicker,
-	.chart-label {
-		margin: 0;
-		color: #595e44;
-		font-size: 0.75rem;
-		font-weight: 500;
-		letter-spacing: 0.14em;
-		line-height: 1.2;
-		text-transform: uppercase;
-	}
-
-	h2 {
-		margin: 0.7rem 0 0;
-		color: #fff;
-		font-size: 1.35rem;
-		font-weight: 500;
-		letter-spacing: -0.02em;
-	}
-
-	.lede,
-	.chart-note {
-		max-width: 42rem;
-		margin: 0.7rem 0 0;
-		color: #a1a1aa;
-		font-size: 0.95rem;
-		line-height: 1.55;
-	}
-
-	.chart-note {
-		margin-top: 0.35rem;
-		font-size: 0.8125rem;
-	}
-
-	.chart-label {
-		margin-top: 0.25rem;
-	}
-
-	.figure {
-		display: flex;
-		flex-direction: column;
-		margin: 1.5rem 0 1.25rem;
-	}
-
-	.figure b {
-		color: #bbdf32;
-		font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-		font-size: clamp(2.15rem, 4vw, 3.5rem);
-		font-weight: 600;
-		font-variant-numeric: tabular-nums;
-		letter-spacing: -0.03em;
-		line-height: 0.95;
-	}
-
-	.figure span {
-		margin-top: 0.55rem;
-		color: #595e44;
-		font-size: 0.95rem;
-		font-weight: 500;
 	}
 
 	.stage {
@@ -426,64 +310,11 @@
 		stroke-width: 2;
 	}
 
-	.legend {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.15rem 0.2rem;
-		margin-top: 0.35rem;
-	}
-
-	.chip {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		margin: 0;
-		padding: 0.32rem 0.55rem;
-		border: 0;
-		border-radius: 999px;
-		background: transparent;
-		color: #a1a1aa;
-		font: inherit;
-		font-size: 0.75rem;
-		line-height: 1;
-		cursor: pointer;
-		transition:
-			color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-			background 180ms cubic-bezier(0.23, 1, 0.32, 1);
-	}
-
-	.chip i,
 	.when i {
 		width: 0.45rem;
 		height: 0.45rem;
 		border-radius: 999px;
 		background: var(--c);
-		opacity: 0.45;
-		transition:
-			opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
-			transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
-	}
-
-	.chip:hover,
-	.chip.on,
-	.chip:focus-visible {
-		color: #f4f4f5;
-		background: rgba(255, 255, 255, 0.04);
-	}
-
-	.chip:hover i,
-	.chip.on i,
-	.when i {
-		opacity: 1;
-	}
-
-	.chip.on i {
-		transform: scale(1.2);
-	}
-
-	.chip:focus-visible {
-		outline: 2px solid #bbdf32;
-		outline-offset: 2px;
 	}
 
 	.tooltip {
@@ -553,18 +384,6 @@
 		white-space: nowrap;
 	}
 
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border: 0;
-	}
-
 	@media (min-width: 520px) {
 		.stage {
 			min-height: 280px;
@@ -589,9 +408,7 @@
 	@media (prefers-reduced-motion: reduce) {
 		.band,
 		.edge,
-		.total,
-		.chip,
-		.chip i {
+		.total {
 			transition: none;
 		}
 
