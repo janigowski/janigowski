@@ -1,5 +1,7 @@
 <script lang="ts">
+	import ListeningDays from '$components/ListeningDays.svelte';
 	import ReadingProgressChart from '$components/ReadingProgressChart.svelte';
+	import { listeningDayCount } from '$content/reading';
 	import type { Book, BookStatus } from '$content/types';
 
 	let { book }: { book: Book } = $props();
@@ -35,10 +37,13 @@
 	});
 	let barWidth = $derived(readPercent === undefined ? 0 : Math.min(100, Math.max(0, readPercent)));
 	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
+	let listeningDays = $derived(listeningDayCount(book.listening));
+	let showChart = $derived(hasHistory && listeningDays === undefined);
 </script>
 
 <article
-	class="article-enter group relative grid grid-cols-1 items-start gap-y-5 py-10 first:pt-0 last:pb-0 md:items-center {hasHistory
+	class="article-enter group relative grid grid-cols-1 items-start gap-y-5 py-10 first:pt-0 last:pb-0 md:items-center {showChart ||
+	listeningDays !== undefined
 		? 'md:grid-cols-2 md:gap-x-8'
 		: ''} {hasReview ? '-mx-6 rounded-2xl bg-brand-purple-dark/5 px-6' : ''}"
 >
@@ -89,7 +94,7 @@
 				</a>
 			{/if}
 		</div>
-		{#if readPercent !== undefined && !hasHistory}
+		{#if readPercent !== undefined && !showChart && listeningDays === undefined}
 			<div class="mt-4 flex items-center gap-3">
 				<div
 					class="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-brand-olive/25"
@@ -107,7 +112,11 @@
 		{/if}
 	</div>
 	</div>
-	{#if hasHistory}
+	{#if listeningDays !== undefined}
+		<div class="flex min-w-0 items-center md:justify-end">
+			<ListeningDays days={listeningDays} />
+		</div>
+	{:else if showChart}
 		<div class="min-w-0">
 			<ReadingProgressChart
 				inline

@@ -1,4 +1,4 @@
-import type { ReadingHistoryEntry } from './types';
+import type { ListeningSpan, ReadingHistoryEntry } from './types';
 
 const DAY = 86_400_000;
 
@@ -104,6 +104,24 @@ export function normalizeReadingHistory(value: unknown): ReadingHistoryEntry[] |
 	for (const entry of parsed) byDate.set(entry.date, { date: entry.date, page: entry.page });
 	const entries = [...byDate.values()];
 	return entries.length ? entries : undefined;
+}
+
+export function normalizeListening(value: unknown): ListeningSpan | undefined {
+	if (!value || typeof value !== 'object') return undefined;
+	const record = value as Record<string, unknown>;
+	const start = parseCalendarDate(record.start);
+	const end = parseCalendarDate(record.end);
+	if (!start || !end || end.time < start.time) return undefined;
+	return { start: start.iso, end: end.iso };
+}
+
+export function listeningDayCount(listening?: ListeningSpan): number | undefined {
+	const span = normalizeListening(listening);
+	if (!span) return undefined;
+	const start = parseCalendarDate(span.start);
+	const end = parseCalendarDate(span.end);
+	if (!start || !end) return undefined;
+	return Math.round((end.time - start.time) / DAY) + 1;
 }
 
 export function formatPage(value: number): string {

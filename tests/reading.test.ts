@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict';
 import matter from 'gray-matter';
-import { layoutReadingChart, normalizeReadingHistory, readingHistorySummary } from '../src/lib/content/reading.ts';
+import {
+	layoutReadingChart,
+	listeningDayCount,
+	normalizeListening,
+	normalizeReadingHistory,
+	readingHistorySummary
+} from '../src/lib/content/reading.ts';
 
 function test(name: string, fn: () => void) {
 	try {
@@ -126,6 +132,13 @@ test('places axis dates on the real timeline', () => {
 	const tick = ticks.find((item) => item.label === 'Jan 7');
 	assert.ok(tick);
 	assert.ok(Math.abs(tick.x - expected) < 0.2);
+});
+
+test('counts listening days inclusively from calendar dates', () => {
+	assert.equal(listeningDayCount({ start: '2026-10-18', end: '2026-10-30' }), 13);
+	assert.equal(listeningDayCount({ start: '2026-10-06', end: '2026-10-17' }), 12);
+	assert.equal(listeningDayCount({ start: '2026-06-23', end: '2026-07-21' }), 29);
+	assert.equal(listeningDayCount(normalizeListening({ start: '2026-10-18', end: '2026-10-17' })), undefined);
 });
 
 test('describes the series without mentioning empty days as data', () => {
