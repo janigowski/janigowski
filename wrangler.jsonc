@@ -1,14 +1,23 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "janigowski",
+	"account_id": "568cf9c286e579a21710b24d585c4baa",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2026-11-10",
 	"workers_dev": false,
+	"preview_urls": true,
+	"routes": [
+		{
+			"pattern": "janigowski.dev",
+			"custom_domain": true
+		}
+	],
 	"assets": {
 		"directory": ".svelte-kit/cloudflare",
 		"binding": "ASSETS"
 	},
 	"build": {
 		"command": "WORKERS_CI=1 bun run build"
-	}
+	},
+	"previews": {}
 }
