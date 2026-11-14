@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ReadingProgressChart from '$components/ReadingProgressChart.svelte';
 	import type { Book, BookStatus } from '$content/types';
 
 	let { book }: { book: Book } = $props();
@@ -25,7 +26,6 @@
 	let hasReview = $derived(
 		(book.status === 'read' || book.status === 'listened') && book.body.trim().length > 0
 	);
-	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
 	let isInProgress = $derived(book.status === 'reading' || book.status === 'listening');
 	let readPercent = $derived.by(() => {
 		const { pagesRead, totalPages } = book;
@@ -34,14 +34,16 @@
 		return Math.round((pagesRead / totalPages) * 100);
 	});
 	let barWidth = $derived(readPercent === undefined ? 0 : Math.min(100, Math.max(0, readPercent)));
+	let hasHistory = $derived((book.readingHistory?.length ?? 0) > 0);
 </script>
 
 <article
-	class="article-enter group relative flex items-start gap-8 py-10 first:pt-0 last:pb-0 {hasReview
-		? '-mx-6 rounded-2xl bg-brand-purple-dark/5 px-6'
-		: ''}"
+	class="article-enter group relative grid grid-cols-1 items-start gap-y-5 py-10 first:pt-0 last:pb-0 md:items-center {hasHistory
+		? 'md:grid-cols-2 md:gap-x-8'
+		: ''} {hasReview ? '-mx-6 rounded-2xl bg-brand-purple-dark/5 px-6' : ''}"
 >
-	<div class="relative aspect-2/3 w-28 flex-none overflow-hidden rounded-lg">
+	<div class="flex min-w-0 items-start gap-6 sm:gap-8">
+	<div class="relative aspect-2/3 w-24 flex-none overflow-hidden rounded-lg sm:w-28">
 		<img
 			src={book.cover}
 			alt={book.title}
@@ -70,14 +72,6 @@
 					Read review
 					<span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
 				</a>
-			{:else if hasHistory}
-				<a
-					{href}
-					class="group/link ml-auto inline-flex items-center gap-2 text-xs font-medium text-brand-lime transition-colors duration-300 hover:text-brand-lime/80"
-				>
-					Progress
-					<span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
-				</a>
 			{/if}
 		</div>
 		<h2 class="mt-4 line-clamp-2 text-xl leading-tight font-medium text-white">{book.title}</h2>
@@ -95,7 +89,7 @@
 				</a>
 			{/if}
 		</div>
-		{#if readPercent !== undefined}
+		{#if readPercent !== undefined && !hasHistory}
 			<div class="mt-4 flex items-center gap-3">
 				<div
 					class="h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-brand-olive/25"
@@ -112,6 +106,17 @@
 			</div>
 		{/if}
 	</div>
+	</div>
+	{#if hasHistory}
+		<div class="min-w-0">
+			<ReadingProgressChart
+				inline
+				history={book.readingHistory ?? []}
+				totalPages={book.totalPages}
+				title={book.title}
+			/>
+		</div>
+	{/if}
 </article>
 
 <style>

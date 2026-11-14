@@ -62,25 +62,21 @@
 			</div>
 		</div>
 	</header>
-	{#if book.readingHistory?.length}
-		<div class="mx-auto w-full max-w-2xl px-6">
-			<ReadingProgressChart
-				history={book.readingHistory}
-				totalPages={book.totalPages}
-				title={book.title}
-			/>
-		</div>
-	{/if}
 	{#if book.html}
-		<article
-			class="prose prose-quoteless mx-auto px-4 {book.readingHistory?.length ? 'pt-8 pb-12' : 'py-12'}"
-		>
+		{#if book.readingHistory?.length}
+			<div class="mx-auto w-full max-w-2xl px-6 pt-4">
+				<ReadingProgressChart
+					history={book.readingHistory}
+					totalPages={book.totalPages}
+					title={book.title}
+				/>
+			</div>
+		{/if}
+		<article class="prose prose-quoteless mx-auto px-4 py-12">
 			{@html book.html}
 			<Comments />
 		</article>
 	{:else}
-		<p class="mx-auto max-w-3xl px-4 text-zinc-400 {book.readingHistory?.length ? 'pt-8 pb-12' : 'py-12'}">
-			No review yet.
-		</p>
+		<p class="mx-auto max-w-3xl px-4 py-12 text-zinc-400">No review yet.</p>
 	{/if}
 </div>
