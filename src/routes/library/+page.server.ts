@@ -1,4 +1,5 @@
 import { getBooks, getLibraryStats } from '$content/index.server';
+import { cumulativeBooks } from '$content/reading';
 
 export async function load({ url }) {
 	const books = await getBooks();
@@ -24,6 +25,7 @@ export async function load({ url }) {
 		total: books.length,
 		selectedType,
 		selectedTag,
-		stats: getLibraryStats(books)
+		stats: getLibraryStats(books),
+		cumulative: cumulativeBooks(books)
 	};
 }
