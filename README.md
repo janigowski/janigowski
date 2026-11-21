@@ -1,3 +1,3 @@
 <div align="center">
-  <img src="./static/profile-readme.jpg" alt="Welcome Banner" />
+  <img src="./static/profile-readme.png" alt="Welcome Banner" />
 </div>
