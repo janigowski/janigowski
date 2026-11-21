@@ -227,7 +227,7 @@
 					</defs>
 					{#each layout.yTicks as tick (tick.label)}
 						<line
-							class={tick.label === '0' ? 'baseline' : 'grid'}
+							class={tick.label === '0' ? 'baseline acid' : 'grid'}
 							x1={layout.plot.left}
 							x2={layout.plot.right}
 							y1={tick.y}
@@ -240,12 +240,28 @@
 							{tick.label}
 						</text>
 					{/each}
-					{#if layout.area}
-						<path d={layout.area} fill="url(#{uid}-fill)" />
-					{/if}
-					{#if layout.line}
-						<path class="series" d={layout.line} />
-					{/if}
+					<g class="acid">
+						{#if layout.area}
+							<path d={layout.area} fill="url(#{uid}-fill)" />
+						{/if}
+						{#if layout.line}
+							<path class="series" d={layout.line} />
+						{/if}
+						{#each layout.points as point, index (point.date)}
+							<circle
+								class={['halo', open && pointIndex === index && 'on']}
+								cx={point.x}
+								cy={point.y}
+								r="8"
+							/>
+							<circle
+								class={['dot', open && pointIndex === index && 'on']}
+								cx={point.x}
+								cy={point.y}
+								r="3.25"
+							/>
+						{/each}
+					</g>
 					{#if activePoint}
 						<line
 							class="guide"
@@ -256,20 +272,6 @@
 							style:opacity={open ? 1 : 0}
 						/>
 					{/if}
-					{#each layout.points as point, index (point.date)}
-						<circle
-							class={['halo', open && pointIndex === index && 'on']}
-							cx={point.x}
-							cy={point.y}
-							r="8"
-						/>
-						<circle
-							class={['dot', open && pointIndex === index && 'on']}
-							cx={point.x}
-							cy={point.y}
-							r="3.25"
-						/>
-					{/each}
 				</svg>
 				<div class="points">
 					{#each layout.points as point, index (point.date)}
@@ -365,6 +367,10 @@
 	.baseline {
 		stroke: rgba(187, 223, 50, 0.4);
 		stroke-width: 1;
+	}
+
+	.acid {
+		transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1);
 	}
 
 	.series {
@@ -508,6 +514,17 @@
 		.hit {
 			cursor: pointer;
 		}
+
+		.acid {
+			opacity: 0.4;
+		}
+
+		.reading:hover .acid,
+		.reading:focus-within .acid,
+		:global(article.group:hover) .acid,
+		:global(article.group:focus-within) .acid {
+			opacity: 1;
+		}
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
@@ -521,6 +538,7 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.acid,
 		.guide,
 		.halo,
 		.dot {

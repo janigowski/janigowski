@@ -3,6 +3,7 @@
 	import Header from '$components/Header.svelte';
 	import BookArticle from '$components/BookArticle.svelte';
 	import LibraryStats from '$components/LibraryStats.svelte';
+	import CumulativeBooksChart from '$components/CumulativeBooksChart.svelte';
 	import BookFilters from '$components/BookFilters.svelte';
 	let { data } = $props();
 </script>
@@ -10,6 +11,9 @@
 <ContentLayout>
 	<Header title="Library" description="A curated collection of books that have shaped my perspective" />
 	<LibraryStats stats={data.stats} />
+	{#if data.cumulative}
+		<CumulativeBooksChart series={data.cumulative} />
+	{/if}
 	<div class="mb-24">
 		<BookFilters
 			types={data.types}

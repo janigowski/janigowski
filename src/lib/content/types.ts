@@ -32,6 +32,11 @@ export type ReadingHistoryEntry = {
 	page: number;
 };
 
+export type ListeningSpan = {
+	start: string;
+	end: string;
+};
+
 export type Book = ContentBase & {
 	kind: 'book';
 	author: string;
@@ -42,6 +47,7 @@ export type Book = ContentBase & {
 	pagesRead?: number;
 	totalPages?: number;
 	readingHistory?: ReadingHistoryEntry[];
+	listening?: ListeningSpan;
 };
 
 export type BookmarkType = 'article' | 'video' | 'podcast' | 'link';
